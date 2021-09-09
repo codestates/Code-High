@@ -5,7 +5,8 @@
   margin: 0;
   padding: 0; }
 
-div {
+
+.components-button {
   background-color: #2F8C4C;
   color: white;
   width: 100px;
@@ -15,3 +16,19 @@ div {
   text-justify: inter-word;
   cursor: pointer;
   line-height: 40px; }
+
+* {
+  margin: 0;
+  padding: 0; }
+
+.signup-background {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.399); }
+
+.signup-container {
+  width: 500px;
+  background-color: white; }
+
+.signup-right img {
+  width: 500px; }

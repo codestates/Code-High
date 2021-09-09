@@ -7,6 +7,7 @@ function GreenButton(props){
 
   return (
     <div
+      className='components-button'
       style={{
         backgroundColor,
         color

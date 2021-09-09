@@ -1,9 +1,9 @@
 import React from 'react';
-import GreenButton from './components/basic/button/Button';
+import Signup from './components/basic/modal/Signup';
 
 function App(){
   return (
-    <GreenButton />
+    <Signup />
   );
 };
 
