@@ -1,0 +1,8 @@
+@import '../../styles/constants/color';
+
+.test {
+  width: auto;
+  height: auto;
+  font-size: 100px;
+  background-color: #{$darkgreen};
+}
