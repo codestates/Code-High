@@ -1,9 +1,9 @@
 import React from 'react';
-import MainBanner from './components/landing/MainBanner';
+import GreenButton from './components/basic/button/Button';
 
 function App(){
   return (
-    <MainBanner />
+    <GreenButton />
   );
 };
 
