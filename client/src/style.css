@@ -17,18 +17,85 @@
   cursor: pointer;
   line-height: 40px; }
 
-* {
-  margin: 0;
-  padding: 0; }
-
-.signup-background {
+.signup-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.399); }
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+
+.signup-modal-overlay {
+  background-color: rgba(0, 0, 0, 0.379);
+  width: 100%;
+  height: 100%;
+  position: absolute; }
 
 .signup-container {
-  width: 500px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgda(0, 0, 0, 0.23);
+  position: relative;
+  top: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 1000px;
   background-color: white; }
 
-.signup-right img {
-  width: 500px; }
+.signup-right {
+  width: 600px;
+  background-color: #E1E1E1;
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+  .signup-right img {
+    width: 400px;
+    padding: 70px; }
+
+.signup-left {
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  background-color: white;
+  justify-content: center;
+  align-items: center; }
+  .signup-left .signup-close {
+    width: 90%;
+    text-align: end;
+    font-size: 30px;
+    margin-bottom: 30px; }
+  .signup-left img {
+    width: 250px;
+    padding: 0px 20px; }
+  .signup-left article {
+    width: 300px;
+    align-items: flex-start; }
+    .signup-left article div {
+      font-family: 'NanumGothic';
+      font-weight: 600;
+      font-size: 13px;
+      padding: 10px 0px; }
+    .signup-left article input {
+      border: solid 1px #E1E1E1;
+      border-radius: 5px;
+      height: 35px;
+      width: 280px;
+      padding: 0 10px; }
+      .signup-left article input:focus {
+        outline: none; }
+
+.signup-button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+  .signup-button-container button {
+    background-color: #2F8C4C;
+    color: white;
+    width: 300px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    margin-top: 20px;
+    margin-bottom: 60px;
+    font-family: 'NanumGothic';
+    cursor: pointer; }
