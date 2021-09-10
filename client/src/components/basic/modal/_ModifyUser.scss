@@ -1,0 +1,166 @@
+.modify-modal {
+  position:fixed;
+  top:0;
+  left:0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modify-modal-overlay {
+  background-color: rgba(0, 0, 0, 0.379);
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+
+
+.modify-container {
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgda(0, 0, 0, 0.23);
+  position: relative;
+  top: 0;
+  display: grid;
+  background-color: white;
+}
+
+.modify-right{
+  background-color: #{$gray};
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modify-left {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  justify-content: center;
+  align-items: center;
+  .modify-close {
+    width: 90%;
+    text-align: end;
+    font-size: 30px;
+    margin-bottom: 30px;
+  }
+  img {
+    width: 250px;
+    padding: 0px 20px;
+  }
+  article {
+    align-items: flex-start;
+    div {
+      font-family: 'NanumGothic';
+      font-weight: 600;
+      font-size: 13px;
+      padding: 10px 0px;
+    }
+    input {
+      border: solid 1px #{$gray};
+      border-radius: 5px;
+      height: 35px;
+      padding: 0 10px;
+      &:focus {
+        outline: none;
+      }
+    }
+  }
+}
+
+.modify-button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  button {
+  background-color: #{$green};
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  margin-top: 20px;
+  margin-bottom: 60px;
+  font-family: 'NanumGothic';
+  cursor: pointer;
+  }
+}
+
+@include desktop {
+  .modify-container{
+    grid-template-columns: 1fr 1fr;
+    width: 1000px;
+  }
+  .modify-right{
+    width: 600px;
+    img {
+      width: 400px;
+      padding: 70px;
+    }
+  }
+  .modify-left {
+    width: 400px;
+    input {
+      width: 280px;
+    }
+    article {
+      width: 300px;
+    }
+  }
+  .modify-button-container {
+    button {
+      width: 300px;
+    }
+  }
+}
+
+@include tablet {
+  .modify-container{
+    width: 400px;
+  }
+  .modify-right{
+    display: none;
+  }
+  .modify-left {
+    width: 400px;
+    .modify-close {
+      margin-top: 5px;
+    }
+    input {
+      width: 280px;
+    }
+    article {
+      width: 300px;
+    }
+  }
+  .modify-button-container {
+    button {
+      width: 300px;
+    }
+  }
+}
+
+@include mobile {
+  .modify-container{
+    width: 300px;
+  }
+  .modify-right{
+    display: none;
+  }
+  .modify-left {
+    width: 300px;
+    .modify-close {
+      margin-top: 5px;
+    }
+    input {
+      width: 200px;
+    }
+    article {
+      width: 220px;
+    }
+  }
+  .modify-button-container {
+    button {
+      width: 225px;
+    }
+  }
+}
