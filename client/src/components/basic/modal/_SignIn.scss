@@ -102,9 +102,6 @@
   display: flex;
   margin-top: 30px;
   margin-bottom: 60px;
-    img {
-      width: 50px;
-    }
 }
 
 @include desktop {
@@ -133,6 +130,11 @@
       width: 300px;
     }
   }
+  .signin-oauth-container {
+      img {
+        width: 50px;
+      }
+  }
 }
 
 @include tablet {
@@ -157,6 +159,11 @@
   .signin-button-container {
     button {
       width: 300px;
+    }
+  }  
+  .signin-oauth-container {
+    img {
+      width: 50px;
     }
   }
 }
@@ -183,6 +190,11 @@
   .signin-button-container {
     button {
       width: 225px;
+    }
+  }
+  .signin-oauth-container {
+    img {
+      width: 40px;
     }
   }
 }

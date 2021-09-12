@@ -226,8 +226,6 @@
   display: flex;
   margin-top: 30px;
   margin-bottom: 60px; }
-  .signin-oauth-container img {
-    width: 50px; }
 
 @media (min-width: 1200px) {
   .signin-container {
@@ -245,7 +243,9 @@
     .signin-left article {
       width: 300px; }
   .signin-button-container button {
-    width: 300px; } }
+    width: 300px; }
+  .signin-oauth-container img {
+    width: 50px; } }
 
 @media (min-width: 769px) and (max-width: 1199px) {
   .signin-container {
@@ -261,7 +261,9 @@
     .signin-left article {
       width: 300px; }
   .signin-button-container button {
-    width: 300px; } }
+    width: 300px; }
+  .signin-oauth-container img {
+    width: 50px; } }
 
 @media (min-width: 335px) and (max-width: 768px) {
   .signin-container {
@@ -277,7 +279,9 @@
     .signin-left article {
       width: 220px; }
   .signin-button-container button {
-    width: 225px; } }
+    width: 225px; }
+  .signin-oauth-container img {
+    width: 40px; } }
 
 .signup-modal {
   position: fixed;
