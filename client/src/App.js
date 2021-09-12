@@ -1,9 +1,9 @@
 import React from 'react';
-import Signup from './components/basic/modal/Signup';
+import Alert from './components/basic/alert/Alert'
 
 function App(){
   return (
-    <Signup />
+    <Alert />
   );
 };
 
