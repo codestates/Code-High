@@ -22,27 +22,19 @@
   position: relative;
   top: 0;
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  width: 1000px;
   background-color: white;
 }
 
 .signup-right{
-  width: 600px;
   background-color: #{$gray};
   display: flex;
   justify-content: center;
   align-items: center;
-  img {
-    width: 400px;
-    padding: 70px;
-  }
 }
 
 .signup-left {
   display: flex;
   flex-direction: column;
-  width: 400px;
   background-color: white;
   justify-content: center;
   align-items: center;
@@ -57,7 +49,6 @@
     padding: 0px 20px;
   }
   article {
-    width: 300px;
     align-items: flex-start;
     div {
       font-family: 'NanumGothic';
@@ -69,7 +60,6 @@
       border: solid 1px #{$gray};
       border-radius: 5px;
       height: 35px;
-      width: 280px;
       padding: 0 10px;
       &:focus {
         outline: none;
@@ -85,7 +75,6 @@
   button {
   background-color: #{$green};
   color: white;
-  width: 300px;
   padding: 10px;
   border: none;
   border-radius: 5px;
@@ -95,4 +84,83 @@
   cursor: pointer;
   }
 }
-  
+
+@include desktop {
+  .signup-container{
+    grid-template-columns: 1fr 1fr;
+    width: 1000px;
+  }
+  .signup-right{
+    width: 600px;
+    img {
+      width: 400px;
+      padding: 70px;
+    }
+  }
+  .signup-left {
+    width: 400px;
+    input {
+      width: 280px;
+    }
+    article {
+      width: 300px;
+    }
+  }
+  .signup-button-container {
+    button {
+      width: 300px;
+    }
+  }
+}
+
+@include tablet {
+  .signup-container{
+    width: 400px;
+  }
+  .signup-right{
+    display: none;
+  }
+  .signup-left {
+    width: 400px;
+    .signup-close {
+      margin-top: 5px;
+    }
+    input {
+      width: 280px;
+    }
+    article {
+      width: 300px;
+    }
+  }
+  .signup-button-container {
+    button {
+      width: 300px;
+    }
+  }
+}
+
+@include mobile {
+  .signup-container{
+    width: 300px;
+  }
+  .signup-right{
+    display: none;
+  }
+  .signup-left {
+    width: 300px;
+    .signup-close {
+      margin-top: 5px;
+    }
+    input {
+      width: 200px;
+    }
+    article {
+      width: 220px;
+    }
+  }
+  .signup-button-container {
+    button {
+      width: 225px;
+    }
+  }
+}

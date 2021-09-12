@@ -1,0 +1,21 @@
+.searchinput-container {
+  border: solid 1px #{$gray};
+  border-radius: 10px;
+  width: 270px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+    span {
+      font-size: 30px;
+      padding: 10px;
+      color: #{$gray};
+    }
+    input {
+      font-size: 20px;
+      color: black;
+      border: none;
+      &:focus {
+        outline: none;
+      }
+    }
+}
