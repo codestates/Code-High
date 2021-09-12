@@ -79,6 +79,21 @@
   cursor: pointer;
   line-height: 40px; }
 
+.loading-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column; }
+  .loading-container div {
+    color: #2F8C4C;
+    font-family: 'NanumGothic';
+    font-weight: 600; }
+
 .modifyuser-modal {
   position: fixed;
   top: 0;

@@ -1,9 +1,9 @@
 import React from 'react';
-import Alert from './components/basic/alert/Alert'
+import Loading from './components/basic/loding/Loding'
 
 function App(){
   return (
-    <Alert />
+    <Loading />
   );
 };
 
