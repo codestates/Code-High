@@ -1,9 +1,9 @@
 import React from 'react';
-import SearchInput from './components/basic/search/SearchInput'
+import Alert from './components/basic/alert/Alert'
 
 function App(){
   return (
-    <SearchInput />
+    <Alert />
   );
 };
 
