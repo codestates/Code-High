@@ -1,9 +1,9 @@
 import React from 'react';
-import Signup from './components/basic/modal/Signup';
+import Loading from './components/basic/loding/Loding'
 
 function App(){
   return (
-    <Signup />
+    <Loading />
   );
 };
 
