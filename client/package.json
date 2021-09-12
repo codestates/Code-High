@@ -13,6 +13,11 @@
   "license": "ISC",
   "dependencies": {
     "@babel/preset-env": "^7.15.4",
+    "@fortawesome/fontawesome-svg-core": "^1.2.36",
+    "@fortawesome/free-brands-svg-icons": "^5.15.4",
+    "@fortawesome/free-regular-svg-icons": "^5.15.4",
+    "@fortawesome/free-solid-svg-icons": "^5.15.4",
+    "@fortawesome/react-fontawesome": "^0.1.15",
     "axios": "^0.21.4",
     "express": "^4.17.1",
     "js-loader": "^0.1.1",

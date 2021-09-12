@@ -1,9 +1,9 @@
 import React from 'react';
-import ModifyUser from './components/basic/modal/ModifyUser'
+import SearchInput from './components/basic/search/SearchInput'
 
 function App(){
   return (
-    <ModifyUser />
+    <SearchInput />
   );
 };
 
