@@ -1,9 +1,9 @@
 import React from 'react';
-import Signup from './components/basic/modal/Signup';
+import SearchInput from './components/basic/search/SearchInput'
 
 function App(){
   return (
-    <Signup />
+    <SearchInput />
   );
 };
 
