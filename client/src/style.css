@@ -16,7 +16,7 @@
   cursor: pointer;
   line-height: 40px; }
 
-.modify-modal {
+.modifyuser-modal {
   position: fixed;
   top: 0;
   left: 0;
@@ -26,117 +26,127 @@
   justify-content: center;
   align-items: center; }
 
-.modify-modal-overlay {
+.modifyuser-modal-overlay {
   background-color: rgba(0, 0, 0, 0.379);
   width: 100%;
   height: 100%;
   position: absolute; }
 
-.modify-container {
+.modifyuser-container {
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgda(0, 0, 0, 0.23);
   position: relative;
   top: 0;
   display: grid;
   background-color: white; }
 
-.modify-right {
+.modifyuser-right {
   background-color: #E1E1E1;
   display: flex;
   justify-content: center;
   align-items: center; }
 
-.modify-left {
+.modifyuser-left {
   display: flex;
   flex-direction: column;
   background-color: white;
   justify-content: center;
   align-items: center; }
-  .modify-left .modify-close {
+  .modifyuser-left .modifyuser-close {
     width: 90%;
     text-align: end;
     font-size: 30px;
-    margin-bottom: 30px; }
-  .modify-left img {
+    margin-bottom: 50px; }
+  .modifyuser-left img {
     width: 250px;
-    padding: 0px 20px; }
-  .modify-left article {
+    padding: 0px 20px;
+    margin-bottom: 20px; }
+  .modifyuser-left article {
     align-items: flex-start; }
-    .modify-left article div {
-      font-family: 'NanumGothic';
-      font-weight: 600;
-      font-size: 13px;
-      padding: 10px 0px; }
-    .modify-left article input {
+    .modifyuser-left article input {
       border: solid 1px #E1E1E1;
       border-radius: 5px;
       height: 35px;
-      padding: 0 10px; }
-      .modify-left article input:focus {
+      padding: 0 10px;
+      margin-bottom: 10px; }
+      .modifyuser-left article input:focus {
         outline: none; }
+  .modifyuser-left ul {
+    display: flex; }
+    .modifyuser-left ul li {
+      list-style: none;
+      padding: 0 40px; }
+      .modifyuser-left ul li a {
+        text-decoration: none;
+        color: black;
+        font-family: 'NanumGothic';
+        font-size: 13px;
+        font-weight: 400; }
+    .modifyuser-left ul li:nth-child(1) {
+      border-right: solid 1px black; }
 
-.modify-button-container {
+.modifyuser-button-container {
   display: flex;
   justify-content: center;
   align-items: center; }
-  .modify-button-container button {
+  .modifyuser-button-container button {
     background-color: #2F8C4C;
     color: white;
     padding: 10px;
     border: none;
     border-radius: 5px;
     margin-top: 20px;
-    margin-bottom: 60px;
+    margin-bottom: 50px;
     font-family: 'NanumGothic';
     cursor: pointer; }
 
 @media (min-width: 1200px) {
-  .modify-container {
+  .modifyuser-container {
     grid-template-columns: 1fr 1fr;
     width: 1000px; }
-  .modify-right {
+  .modifyuser-right {
     width: 600px; }
-    .modify-right img {
+    .modifyuser-right img {
       width: 400px;
       padding: 70px; }
-  .modify-left {
+  .modifyuser-left {
     width: 400px; }
-    .modify-left input {
+    .modifyuser-left input {
       width: 280px; }
-    .modify-left article {
+    .modifyuser-left article {
       width: 300px; }
-  .modify-button-container button {
+  .modifyuser-button-container button {
     width: 300px; } }
 
 @media (min-width: 769px) and (max-width: 1199px) {
-  .modify-container {
+  .modifyuser-container {
     width: 400px; }
-  .modify-right {
+  .modifyuser-right {
     display: none; }
-  .modify-left {
+  .modifyuser-left {
     width: 400px; }
-    .modify-left .modify-close {
+    .modifyuser-left .modifyuser-close {
       margin-top: 5px; }
-    .modify-left input {
+    .modifyuser-left input {
       width: 280px; }
-    .modify-left article {
+    .modifyuser-left article {
       width: 300px; }
-  .modify-button-container button {
+  .modifyuser-button-container button {
     width: 300px; } }
 
 @media (min-width: 335px) and (max-width: 768px) {
-  .modify-container {
+  .modifyuser-container {
     width: 300px; }
-  .modify-right {
+  .modifyuser-right {
     display: none; }
-  .modify-left {
+  .modifyuser-left {
     width: 300px; }
-    .modify-left .modify-close {
+    .modifyuser-left .modifyuser-close {
       margin-top: 5px; }
-    .modify-left input {
+    .modifyuser-left input {
       width: 200px; }
-    .modify-left article {
+    .modifyuser-left article {
       width: 220px; }
-  .modify-button-container button {
+  .modifyuser-button-container button {
     width: 225px; } }
 
 .signin-modal {
