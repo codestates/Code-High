@@ -1,4 +1,6 @@
 import React from 'react';
+import Signupimg from '../../../image/Signupimg.svg';
+import codehighlogo from '../../../image/codehighlogo.png';
 
 function Signup(){
   return (
@@ -6,11 +8,11 @@ function Signup(){
       <div className='signup-modal-overlay'></div>
       <div className='signup-container'>
         <div className='signup-right'>
-          <img src='/image/Fill out-pana.svg' alt='signup' />
+          <img src={Signupimg} alt='signup' />
         </div>
         <div className='signup-left'>
           <div className='signup-close'>&times;</div>
-          <img src='/image/codehighlogo.png' alt='logo' />
+          <img src={codehighlogo} alt='logo' />
           <article>
             <div>이메일</div>
             <input placeholder='이메일을 입력해주세요.'/>

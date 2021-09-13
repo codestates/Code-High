@@ -51,6 +51,12 @@
   }
   article {
     align-items: flex-start;
+    div {
+      font-family: 'NanumGothic';
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 5px;
+    }
     input {
       border: solid 1px #{$gray};
       border-radius: 5px;

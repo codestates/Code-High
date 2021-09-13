@@ -52,9 +52,9 @@
     align-items: flex-start;
     div {
       font-family: 'NanumGothic';
+      font-size: 14px;
       font-weight: 600;
-      font-size: 13px;
-      padding: 10px 0px;
+      margin-bottom: 5px;
     }
     input {
       border: solid 1px #{$gray};
