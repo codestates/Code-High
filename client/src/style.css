@@ -652,6 +652,24 @@ a {
   .signup-button-container button {
     width: 225px; } }
 
+.sidebar-container {
+  height: 800px;
+  width: 25%;
+  background-color: #E1E1E1;
+  display: flex; }
+
+.menutab-container {
+  margin: auto; }
+
+ul {
+  font-size: 16px;
+  line-height: 200%;
+  text-align: center;
+  cursor: pointer;
+  margin: auto;
+  font-family: 'NanumGothic';
+  font-weight: 500; }
+
 .searchinput-container {
   border: solid 1px #E1E1E1;
   border-radius: 10px;
@@ -867,7 +885,6 @@ a {
     .mainbanner-button-container-mobile span {
       margin-bottom: 10px;
       padding: 10px 50px; } }
-
 .subbanner {
   width: 100%;
   height: 100%;

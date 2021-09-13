@@ -1,0 +1,18 @@
+.sidebar-container{
+    height : 800px;
+    width: 25%;
+    background-color: $gray;
+    display: flex;
+}
+.menutab-container{
+    margin:auto;
+}
+ul{
+    font-size: 16px;
+    line-height: 200%;
+    text-align: center;
+    cursor: pointer;
+    margin: auto;
+    font-family: 'NanumGothic';
+    font-weight: 500;
+}

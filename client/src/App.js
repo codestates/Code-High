@@ -1,9 +1,11 @@
 import React from 'react';
-import Landing from './pages/Landing';
+// import Landing from './pages/Landing';
+import SideBar from './components/basic/navbar/SideBar';
 
 function App(){
   return (
-    <Landing />
+    // <Landing />
+    <SideBar/>
   );
 };
 
