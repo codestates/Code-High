@@ -6,7 +6,7 @@ export class Authority {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @Column('varcher')
+    @Column()
     name: string;
 
     @OneToOne(

@@ -3,6 +3,7 @@ import * as express from 'express';
 import * as cookieParser from 'cookie-parser';
 import * as cors from 'cors';
 import { createConnection } from 'typeorm';
+import router from './routes';
 
 dotenv.config();
 const port = process.env.HTTP_PORT || 80;
@@ -25,6 +26,8 @@ app.use(cors({
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS']
 }));
+
+app.use('/', router);
 
 app.get('/', (req: express.Request, res: express.Response) => {
   res.send('Hello World!');
