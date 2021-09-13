@@ -38,5 +38,5 @@ lerna-debug.log*
 .prettierrc
 .env
 .eslintrc.js
-appspec.yml
-/scripts
+; appspec.yml
+; /scripts
