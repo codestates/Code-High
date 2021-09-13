@@ -140,6 +140,11 @@
     margin-bottom: 20px; }
   .modifyuser-left article {
     align-items: flex-start; }
+    .modifyuser-left article div {
+      font-family: 'NanumGothic';
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 5px; }
     .modifyuser-left article input {
       border: solid 1px #E1E1E1;
       border-radius: 5px;
@@ -273,6 +278,11 @@
     margin-bottom: 20px; }
   .signin-left article {
     align-items: flex-start; }
+    .signin-left article div {
+      font-family: 'NanumGothic';
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 5px; }
     .signin-left article input {
       border: solid 1px #E1E1E1;
       border-radius: 5px;
@@ -418,9 +428,9 @@
     align-items: flex-start; }
     .signup-left article div {
       font-family: 'NanumGothic';
+      font-size: 14px;
       font-weight: 600;
-      font-size: 13px;
-      padding: 10px 0px; }
+      margin-bottom: 5px; }
     .signup-left article input {
       border: solid 1px #E1E1E1;
       border-radius: 5px;

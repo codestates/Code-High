@@ -1,9 +1,9 @@
 import React from 'react';
-import Loading from './components/basic/loding/Loding'
+import ModifyUser from './components/basic/modal/ModifyUser'
 
 function App(){
   return (
-    <Loading />
+    <ModifyUser />
   );
 };
 
