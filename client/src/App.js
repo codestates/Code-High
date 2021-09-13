@@ -1,9 +1,9 @@
 import React from 'react';
-import WhiteFooter from './components/basic/footer/WhiteFooter'
+import Tag from './components/basic/tag/Tag'
 
 function App(){
   return (
-    <WhiteFooter />
+    <Tag />
   );
 };
 
