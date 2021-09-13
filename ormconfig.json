@@ -1,8 +1,8 @@
 {
    "type": "mysql",
-   "host": "localhost",
-   "port": 3306,
-   "username": "root",
+   "host": "codehigh.c7mpfperglqa.ap-northeast-2.rds.amazonaws.com",
+   "port": 13306,
+   "username": "admin",
    "password": "",
    "database": "test",
    "synchronize": true,

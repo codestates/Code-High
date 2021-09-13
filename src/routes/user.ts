@@ -1,8 +1,8 @@
 import { Router } from 'express';
 const userRouter = Router();
 
-userRouter.get('/user');
-userRouter.patch('/user');
-userRouter.delete('/user');
+userRouter.get('/');
+userRouter.patch('/');
+userRouter.delete('/');
 
 export default userRouter;
