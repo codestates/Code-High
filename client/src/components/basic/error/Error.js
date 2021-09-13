@@ -1,10 +1,12 @@
 import React from 'react';
+import Error404 from '../../../image/naver.png';
+
 
 const Error = () => {
     return (
-        <div>
-            <img href="./401Error.svg"></img>
-            <img href="./404Error.svg"></img>
+        <div className="error-container">
+            eee
+            <img href={Error404} alt='Error'></img>
         </div>
     );
 };
