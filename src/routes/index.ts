@@ -1,5 +1,6 @@
 import * as express from 'express';
 import userRouter from './user'
+import signRoute from './sign';
 
 const app = express();
 
