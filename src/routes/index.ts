@@ -1,9 +1,12 @@
 import * as express from 'express';
-import userRouter from './user'
-import signRoute from './sign';
+import userRouter from './user';
+import authRouter from './auth';
+import postRouter from './post';
 
 const app = express();
 
-app.use('/');
+app.use('/auth', authRouter);
 app.use('/user', userRouter);
-app.use('/post', )
+app.use('/post', postRouter);
+
+export default app;
