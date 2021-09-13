@@ -1,9 +1,9 @@
 import React from 'react';
-import Mainbanner from './components/landing/Mainbanner';
+import Landing from './pages/Landing';
 
 function App(){
   return (
-    <Mainbanner />
+    <Landing />
   );
 };
 

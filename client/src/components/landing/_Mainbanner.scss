@@ -22,6 +22,7 @@
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
+  width: 600px;
   h1 {
      color: #2F8C4C;
      font-family: 'NanumGothic';
@@ -33,6 +34,7 @@
 }
 
 .mainbanner-right {
+  width: 600px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -139,7 +141,7 @@
   .mainbanner-right {
     flex-direction: column;
     img {
-      width: 400px;
+      width: 375px;
       margin-bottom: 20px;
     }
   }
