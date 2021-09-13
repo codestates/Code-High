@@ -11,7 +11,6 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: '[name].js',
-    // publicPath: 'www.codehigh.club'
   },
   module: {
     rules: [
@@ -59,13 +58,13 @@ module.exports = {
           },
         ],
       },
-      {
-        test: /\.(png|jpe?g|gif|webp)(\?.*)?$/,
-        loader: 'webpack-loader-s3',
-        options: {
-          endpoint: 'www.codehigh.club'
-        },
-      }
+      // {
+      //   test: /\.(png|jpe?g|gif|webp)(\?.*)?$/,
+      //   loader: 'webpack-loader-s3',
+      //   options: {
+      //     endpoint: 'www.codehigh.club'
+      //   },
+      // }
     ]
   },
   plugins: [
