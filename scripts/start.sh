@@ -2,4 +2,4 @@
 cd /home/ubuntu/Code-High
 
 npm run --script build
-authbind --deep pm2 start dist/main.js
+authbind --deep pm2 start dist/index.js
