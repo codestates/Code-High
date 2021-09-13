@@ -1,17 +1,19 @@
-import { Column, CreateDateColumn, Entity, PrimaryColumn, UpdateDateColumn } from "typeorm";
+import { type } from "os";
+import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryColumn, UpdateDateColumn } from "typeorm";
+import { User } from "./User";
 
 @Entity()
 export class Comment {
-    @PrimaryColumn()
+    @PrimaryColumn({ type: 'int' })
     id: number;
 
-    @Column()
+    @Column({ type: 'varchar' })
     content: string;
 
-    @Column()
+    @Column({ type: 'int' })
     userId: number;
 
-    @Column()
+    @Column({ type: 'int' })
     postId: number;
 
     @CreateDateColumn()
@@ -19,4 +21,10 @@ export class Comment {
 
     @UpdateDateColumn()
     updatedAt: Date;
+
+    // foreign key
+    // comment <-> user n:1
+    @ManyToOne((type) => User, (user) => user.comment)
+    @JoinColumn({ name: 'userId' })
+    user:User;
 }

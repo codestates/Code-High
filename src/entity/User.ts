@@ -1,29 +1,31 @@
-import {Entity, PrimaryGeneratedColumn, Column, BaseEntity, CreateDateColumn, UpdateDateColumn, OneToMany, OneToOne, JoinColumn} from "typeorm";
+import {Entity, PrimaryGeneratedColumn, Column, BaseEntity, CreateDateColumn, UpdateDateColumn, JoinColumn, ManyToOne, OneToMany} from "typeorm";
 import {Authority} from './Authority';
+import { Comment } from "./Comment";
+import { Post } from "./Post";
 
 // BaseEntity 사용한 이유: save, remove 메소드 사용하기 위해서
 @Entity()
 export class User extends BaseEntity {
 
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn({ type: 'int' })
   id: number;
 
-  @Column()
+  @Column({ type: 'varchar'})
   name: string;
 
-  @Column()
+  @Column({ type: 'varchar'})
   phone: string;
 
-  @Column()
+  @Column({ type: 'varchar'})
   email: string;
 
-  @Column()
+  @Column({ type: 'varchar'})
   password: string;
 
-  @Column()
+  @Column({ type: 'varchar'})
   image: string;
 
-  @Column()
+  @Column({ type: 'varchar'})
   loginType: string;
 
   @CreateDateColumn()
@@ -32,8 +34,17 @@ export class User extends BaseEntity {
   @UpdateDateColumn()
   updatedAt: Date;
 
-  // user <-> authoritys
-  @OneToOne(() => Authority)
-  @JoinColumn()
+  // foreign key
+  // user <-> authoritys n:1
+  @ManyToOne((type) => Authority, (authority) => authority.user)
+  @JoinColumn({ name: 'authorityId' })
   authority: Authority;
+
+  // user <-> post 1:n
+  @OneToMany((type) => Post, (post) => post.user, {onDelete: 'CASCADE'})
+  post:Post[];
+
+  // user <-> comment 1:n
+  @OneToMany((type) => Comment, (comment) => comment.user, {onDelete: 'CASCADE'})
+  comment:Comment[];
 }
