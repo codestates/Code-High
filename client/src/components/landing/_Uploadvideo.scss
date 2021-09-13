@@ -1,0 +1,40 @@
+.uploadvideo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.uploadvideo-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+   img {
+     margin: 70px 0;
+   }
+}
+@include desktop {
+  .uploadvideo-container {
+    width: 1200px;
+    img {
+      width: 1100px;
+    }
+  }
+}
+
+@include tablet {
+  .uploadvideo-container {
+    width: 800px;
+    img {
+      width: 800px;
+    }
+  }
+}
+
+@include mobile {
+  .uploadvideo-container {
+    width: 375px;
+    img {
+      width: 375px;
+    }
+  }
+}
