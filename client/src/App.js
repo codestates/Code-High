@@ -1,9 +1,9 @@
 import React from 'react';
-import ModifyUser from './components/basic/modal/ModifyUser'
+import WhiteFooter from './components/basic/footer/WhiteFooter'
 
 function App(){
   return (
-    <ModifyUser />
+    <WhiteFooter />
   );
 };
 

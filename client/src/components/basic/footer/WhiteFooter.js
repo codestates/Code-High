@@ -4,7 +4,7 @@ const WhiteFooter = () => {
     return (
         <>
             <footer>
-                <div>
+                <div className="footer-container">
                     &copy;2021 슬기로운 코딩생활 all right reserved.
                 </div>
             </footer>

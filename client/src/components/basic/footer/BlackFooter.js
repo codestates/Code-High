@@ -16,19 +16,18 @@ const BlackFooter = () => {
                             href="https://github.com/codestates/Code-High/wiki"
                             target="_blank"
                             rel="noopener noreferrer"
-                            style={{ cursor: 'pointer' }}
                         >
                             Wiki
                         </a>
                     </div>
                     <div>
-                        <strong>Contact</strong>
+                        <strong>Contact &nbsp;</strong>
                         <a
                             href="https://github.com/loverduck"
                             target="_blank"
                             rel="noopener noreferrer"
                         >
-                            Yoo So-yeon
+                            Yoo So-yeon &nbsp;
                         </a>
                         |
                         <a
@@ -36,7 +35,7 @@ const BlackFooter = () => {
                             target="_blank"
                             rel="noopener noreferrer"                    
                         >
-                            Kim Tae-il
+                            &nbsp; Kim Tae-il &nbsp;
                         </a>
                         |
                         <a
@@ -45,7 +44,7 @@ const BlackFooter = () => {
                             rel="noopener noreferrer"
                             
                         >
-                            Jeon Si-yoon
+                            &nbsp; Jeon Si-yoon &nbsp;
                         </a>
                         |
                         <a
@@ -53,7 +52,7 @@ const BlackFooter = () => {
                             target="_blank"
                             rel="noopener noreferrer"
                         >
-                            Jang Soo-wan
+                            &nbsp; Jang Soo-wan &nbsp;
                         </a>
                     </div>
                     <div>
