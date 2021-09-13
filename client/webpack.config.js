@@ -62,7 +62,7 @@ module.exports = {
       //   test: /\.(png|jpe?g|gif|webp)(\?.*)?$/,
       //   loader: 'webpack-loader-s3',
       //   options: {
-      //     endpoint: 'www.codehigh.club'
+      //     endpoint: 'www.codehigh.club','localhost:3000'
       //   },
       // }
     ]
