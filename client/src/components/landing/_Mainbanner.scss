@@ -81,21 +81,23 @@
 @include tablet {
   .mainbanner-container {
     padding: 10px 30px;
-    grid-template-columns: 420px 1fr;
+    grid-template-columns: 400px 400px;
   }
   .mainbanner-right {
+    width: 400px;
     img {
-      width: 450px;
+      width: 400px;
     }
   }
   .mainbanner-left {
+    width: 400px;
     h1 {
-       font-size: 3.5rem;
-       line-height: 50px;
+       font-size: 3.0rem;
+       line-height: 40px;
        margin-bottom: 100px;
      }
      p {
-       font-size: 1.7rem;
+       font-size: 1.5rem;
        font-family: 'NanumGothic';
        font-weight: 500;
        line-height: 23px;
