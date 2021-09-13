@@ -1,9 +1,9 @@
 import React from 'react';
-import Tag from './components/basic/tag/Tag'
+import Landing from './pages/Landing';
 
 function App(){
   return (
-    <Tag />
+    <Landing />
   );
 };
 
