@@ -1,6 +1,6 @@
 import React from 'react';
-import modifyimg from '../../../image/modifyimg.png';
-import codehighlogo from '../../../image/codehighlogo.png';
+import modifyimg from '../../../images/modifyimg.png';
+import codehighlogo from '../../../images/codehighlogo.png';
 
 function ModifyUser(){
   return (
