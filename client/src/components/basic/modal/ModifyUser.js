@@ -1,4 +1,6 @@
 import React from 'react';
+import modifyimg from '../../../image/modifyimg.png';
+import codehighlogo from '../../../image/codehighlogo.png';
 
 function ModifyUser(){
   return (
@@ -6,11 +8,11 @@ function ModifyUser(){
       <div className='modifyuser-modal-overlay'></div>
       <div className='modifyuser-container'>
         <div className='modifyuser-right'>
-          <img src='/image/Maintenance-bro.png' alt='modifyuser' />
+          <img src={modifyimg} alt='modifyuser' />
         </div>
         <div className='modifyuser-left'>
           <div className='modifyuser-close'>&times;</div>
-          <img src='/image/codehighlogo.png' alt='logo' />
+          <img src={codehighlogo} alt='logo' />
           <article>
             <div>이메일</div>
             <input placeholder='kimcoding@gmail.com' disabled/>
