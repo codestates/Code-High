@@ -1,13 +1,20 @@
-import { Column, Entity, PrimaryColumn } from "typeorm";
+import { type } from "os";
+import { Column, Entity, OneToMany, PrimaryColumn } from "typeorm";
+import { Posttag } from "./Posttag";
 
 @Entity()
 export class Tag {
-    @PrimaryColumn()
+    @PrimaryColumn({ type: 'int' })
     id: number;
 
-    @Column()
+    @Column({ type: 'varchar' })
     name: string;
 
-    @Column()
+    @Column({ type: 'varchar' })
     category: string;
+
+    // foreign key
+    // tag <-> postTag 1:n
+    @OneToMany((type) => Posttag, (postTag) => postTag.tag, {onDelete: 'CASCADE'})
+    postTag:Posttag[];
 }

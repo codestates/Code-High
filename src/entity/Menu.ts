@@ -1,16 +1,24 @@
-import { Column, Entity, PrimaryColumn } from "typeorm";
+import { type } from "os";
+import { Column, Entity, JoinColumn, ManyToOne, PrimaryColumn } from "typeorm";
+import { Authority } from "./Authority";
 
 @Entity()
 export class Menu {
-    @PrimaryColumn()
+    @PrimaryColumn({ type: 'int' })
     id: number;
 
-    @Column()
+    @Column({ type: 'int' })
     authorityId: number;
 
-    @Column()
+    @Column({ type: 'varchar' })
     name: string;
 
-    @Column()
+    @Column({ type: 'varchar' })
     url: string;
+
+    // foreign key
+    // menu <-> authoritys n:1
+    @ManyToOne((type) => Authority, (authority) => authority.menu)
+    @JoinColumn({ name: 'authorityId' })
+    authority:Authority;
 }
