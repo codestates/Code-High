@@ -6,7 +6,8 @@
   "scripts": {
     "start": "webpack serve --progress --mode development",
     "build": "webpack",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "scss": "node-sass src/scss/main.scss src/style.css"
   },
   "keywords": [],
   "author": "",
