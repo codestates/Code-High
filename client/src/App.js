@@ -1,9 +1,9 @@
 import React from 'react';
-import ModifyUser from './components/basic/modal/ModifyUser'
+import Mainbanner from './components/landing/Mainbanner';
 
 function App(){
   return (
-    <ModifyUser />
+    <Mainbanner />
   );
 };
 
