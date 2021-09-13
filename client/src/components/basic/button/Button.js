@@ -6,14 +6,14 @@ function GreenButton(props){
   //props 넘겨줄 때는 content={'확인'}
 
   return (
-    <div
+    <span
       className='components-button'
       style={{
         backgroundColor,
         color
       }}
       onClick={onClickHandle}
-    >{content}</div>
+    >{content}</span>
   );
 };
 

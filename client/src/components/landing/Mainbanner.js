@@ -1,4 +1,6 @@
 import React from 'react';
+import mainbannerimg from '../../images/mainbannerimg.svg';
+import Button from '../basic/button/Button';
 
 function Mainbanner() {
   return (
@@ -16,12 +18,16 @@ function Mainbanner() {
             이해도에 따라 알고리즘 코드를 분류해 실력을 높혀보세요.
           </p>
           <div className='mainbanner-button-container'>
-            <button>시작하기</button>
-            <button>시작하기</button>
+            <Button content='시작하기' backgroundColor='#2F8C4C' color='#fff'/>
+            <Button content='다른 코드 구경하기' backgroundColor='#E1E1E1' />
           </div>
         </div>
         <div className='mainbanner-right'>
-          <img src='' alt='' />
+          <img src={mainbannerimg} alt='' />
+          <div className='mainbanner-button-container-mobile'>
+            <Button content='시작하기' backgroundColor='#2F8C4C' color='#fff'/>
+            <Button content='다른 코드 구경하기' backgroundColor='#E1E1E1' />
+          </div>
         </div>
       </div>
     </div>
