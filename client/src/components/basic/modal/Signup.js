@@ -1,6 +1,6 @@
 import React from 'react';
-import Signupimg from '../../../image/Signupimg.svg';
-import codehighlogo from '../../../image/codehighlogo.png';
+import Signupimg from '../../../images/Signupimg.svg';
+import codehighlogo from '../../../images/codehighlogo.png';
 
 function Signup(){
   return (

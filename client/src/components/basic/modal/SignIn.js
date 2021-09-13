@@ -1,9 +1,9 @@
 import React from 'react';
-import Signinimg from '../../../image/Signin.svg';
-import codehighlogo from '../../../image/codehighlogo.png';
-import github from '../../../image/github.png';
-import kakao from '../../../image/kakao.png';
-import naver from '../../../image/naver.png';
+import Signinimg from '../../../images/Signin.svg';
+import codehighlogo from '../../../images/codehighlogo.png';
+import github from '../../../images/github.png';
+import kakao from '../../../images/kakao.png';
+import naver from '../../../images/naver.png';
 
 function SignIn(){
   return (
