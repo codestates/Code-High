@@ -5,3 +5,4 @@ const app = express();
 
 app.use('/');
 app.use('/user', userRouter);
+app.use('/post', )
