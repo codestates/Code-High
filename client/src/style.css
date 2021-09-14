@@ -706,6 +706,37 @@ ul {
   font-size: 16px;
   cursor: pointer; }
 
+.kanban {
+  display: flex;
+  align-items: center;
+  justify-content: center; }
+
+.kanban-container {
+  width: 1200px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr; }
+
+.kanban-list {
+  background-color: #E1E1E1;
+  height: 90vh;
+  border-radius: 10px;
+  padding: 10px;
+  margin: 10px;
+  overflow-y: scroll; }
+
+.kanban-list-item {
+  background-color: white;
+  font-size: 2.0rem;
+  margin: 10px 0;
+  font-family: 'Nanum Gothic';
+  height: 150px;
+  cursor: grab; }
+  .kanban-list-item:active {
+    cursor: grabbing; }
+
+.kanban-list .kanban-list-item {
+  transition: all 0.2s linear; }
+
 .buttoncontainer {
   display: flex;
   align-items: center;
