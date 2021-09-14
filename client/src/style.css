@@ -706,6 +706,102 @@ ul {
   font-size: 16px;
   cursor: pointer; }
 
+.codereview {
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+
+.codereview-container {
+  margin: 100px 0;
+  display: grid; }
+
+.codereview-left {
+  display: flex;
+  align-items: center;
+  justify-content: center; }
+  .codereview-left img {
+    width: 450px;
+    position: relative; }
+
+.codereview-img-box {
+  display: flex; }
+
+.codereview-left-rectangle {
+  background-color: #2F8C4C;
+  width: 40px;
+  height: 200px; }
+
+.codereview-right-rectangle {
+  background-color: #2F8C4C;
+  width: 40px;
+  height: 200px; }
+
+.codereview-right {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 50px; }
+  .codereview-right h1 {
+    font-size: 3.5rem;
+    color: #2F8C4C;
+    margin-bottom: 40px; }
+  .codereview-right p {
+    font-size: 1.8rem;
+    line-height: 2.3rem;
+    margin-bottom: 40px; }
+  .codereview-right span {
+    padding: 0 30px; }
+
+@media (min-width: 1200px) {
+  .codereview-container {
+    margin: 100px 0;
+    display: grid; }
+  .codereview-container {
+    margin: 100px 0;
+    width: 1200px;
+    display: grid;
+    grid-template-columns: 700px 500px; } }
+
+@media (min-width: 769px) and (max-width: 1199px) {
+  .codereview-container {
+    margin: 0;
+    margin-bottom: 50px; }
+  .codereview-container {
+    grid-template-rows: 500px 200px; }
+  .codereview-left {
+    margin: 0; }
+    .codereview-left img {
+      width: 500px; }
+  .codereview-left-rectangle {
+    width: 40px;
+    height: 150px; }
+  .codereview-right-rectangle {
+    width: 40px;
+    height: 150px; }
+  .codereview-right {
+    margin-left: 0;
+    padding-bottom: 100px; } }
+
+@media (min-width: 335px) and (max-width: 768px) {
+  .codereview-container {
+    margin: 0;
+    margin-bottom: 50px; }
+  .codereview-container {
+    grid-template-rows: 300px 200px; }
+  .codereview-left {
+    margin: 0; }
+    .codereview-left img {
+      width: 300px; }
+  .codereview-left-rectangle {
+    width: 30px;
+    height: 150px; }
+  .codereview-right-rectangle {
+    width: 30px;
+    height: 150px; }
+  .codereview-right {
+    margin-left: 0; } }
+
 .gettingstart {
   display: flex;
   align-items: center;

@@ -4,6 +4,7 @@ import Subbanner from '../components/landing/Subbanner';
 import GettingStart from '../components/landing/GettingStart';
 import Uploadvideo from '../components/landing/Uploadvideo';
 import UserReview from '../components/landing/UserReview';
+import CodeReview from '../components/landing/CodeReview';
 
 function Landing() {
   return (
@@ -13,6 +14,7 @@ function Landing() {
       <GettingStart />
       <Uploadvideo />
       <UserReview />
+      <CodeReview />
     </>
   );
 }
