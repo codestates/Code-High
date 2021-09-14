@@ -43,14 +43,17 @@
      font-size: 3.5rem;
      color: #{$green};
      margin-bottom: 40px;
+     font-family: 'NanumGothic';
    }
    p {
      font-size: 1.8rem;
      line-height: 2.3rem;
      margin-bottom: 40px;
+     font-family: 'NanumGothic';
    }
    span {
      padding: 0 30px;
+     font-family: 'NanumGothic';
    }
 }
 
@@ -99,7 +102,7 @@
 @include mobile {
   .codereview-container {
     margin: 0;
-    margin-bottom: 50px;
+    margin-bottom: 80px;
   }
   .codereview-container {
     grid-template-rows: 300px 200px;
@@ -121,5 +124,21 @@
   }
   .codereview-right{
     margin-left: 0;
+    h1{
+      font-size: 2.5rem;
+      color: #{$green};
+      margin-bottom: 40px;
+      font-family: 'NanumGothic';
+    }
+    p {
+      font-size: 1.5rem;
+      line-height: 2.1rem;
+      margin-bottom: 40px;
+      font-family: 'NanumGothic';
+    }
+    span {
+      padding: 0 30px;
+      font-family: 'NanumGothic';
+    }
   }
 }

@@ -706,6 +706,27 @@ ul {
   font-size: 16px;
   cursor: pointer; }
 
+.buttoncontainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #2F8C4C; }
+
+.buttoncontainer-container {
+  width: 1200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 100px 0; }
+  .buttoncontainer-container div span {
+    padding: 15px 50px;
+    font-size: 2.0rem;
+    font-family: 'NanumGothic'; }
+
+@media (min-width: 335px) and (max-width: 768px) {
+  .buttoncontainer-container div span {
+    font-size: 1.6rem; } }
+
 .codereview {
   display: flex;
   justify-content: center;
@@ -745,13 +766,16 @@ ul {
   .codereview-right h1 {
     font-size: 3.5rem;
     color: #2F8C4C;
-    margin-bottom: 40px; }
+    margin-bottom: 40px;
+    font-family: 'NanumGothic'; }
   .codereview-right p {
     font-size: 1.8rem;
     line-height: 2.3rem;
-    margin-bottom: 40px; }
+    margin-bottom: 40px;
+    font-family: 'NanumGothic'; }
   .codereview-right span {
-    padding: 0 30px; }
+    padding: 0 30px;
+    font-family: 'NanumGothic'; }
 
 @media (min-width: 1200px) {
   .codereview-container {
@@ -786,7 +810,7 @@ ul {
 @media (min-width: 335px) and (max-width: 768px) {
   .codereview-container {
     margin: 0;
-    margin-bottom: 50px; }
+    margin-bottom: 80px; }
   .codereview-container {
     grid-template-rows: 300px 200px; }
   .codereview-left {
@@ -800,7 +824,20 @@ ul {
     width: 30px;
     height: 150px; }
   .codereview-right {
-    margin-left: 0; } }
+    margin-left: 0; }
+    .codereview-right h1 {
+      font-size: 2.5rem;
+      color: #2F8C4C;
+      margin-bottom: 40px;
+      font-family: 'NanumGothic'; }
+    .codereview-right p {
+      font-size: 1.5rem;
+      line-height: 2.1rem;
+      margin-bottom: 40px;
+      font-family: 'NanumGothic'; }
+    .codereview-right span {
+      padding: 0 30px;
+      font-family: 'NanumGothic'; } }
 
 .gettingstart {
   display: flex;
@@ -840,14 +877,17 @@ ul {
   .gettingstart-box h1 {
     color: #2F8C4C;
     font-size: 2.5rem;
-    margin-bottom: 35px; }
+    margin-bottom: 35px;
+    font-family: 'NanumGothic'; }
   .gettingstart-box p {
     font-size: 1.6rem;
     margin-bottom: 35px;
-    line-height: 1.9rem; }
+    line-height: 1.9rem;
+    font-family: 'NanumGothic'; }
   .gettingstart-box span {
     padding: 10px 40px;
-    font-size: 1.5rem; }
+    font-size: 1.5rem;
+    font-family: 'NanumGothic'; }
 
 @media (min-width: 769px) and (max-width: 1199px) {
   .gettingstart-rectangle {
@@ -1014,12 +1054,15 @@ ul {
   .subbanner-right h1 {
     color: #2F8C4C;
     font-size: 3.0rem;
-    margin-bottom: 20px; }
+    margin-bottom: 20px;
+    font-family: 'NanumGothic'; }
   .subbanner-right p {
     font-size: 1.7rem;
-    margin-bottom: 20px; }
+    margin-bottom: 20px;
+    font-family: 'NanumGothic'; }
   .subbanner-right span {
-    padding: 5px 60px; }
+    padding: 5px 60px;
+    font-family: 'NanumGothic'; }
 
 @media (min-width: 1200px) {
   .subbanner-container {
@@ -1054,9 +1097,11 @@ ul {
     display: flex;
     flex-direction: column-reverse; }
     .subbanner-right h1 {
-      font-size: 2.0rem; }
+      font-size: 2.0rem;
+      font-family: 'NanumGothic'; }
     .subbanner-right p {
-      font-size: 1.5rem; }
+      font-size: 1.5rem;
+      font-family: 'NanumGothic'; }
     .subbanner-right img {
       background-color: white;
       width: 350px;
@@ -1064,9 +1109,11 @@ ul {
       justify-content: center;
       margin-top: 10px; }
     .subbanner-right span {
-      padding: 5px 30px; }
+      padding: 5px 30px;
+      font-family: 'NanumGothic'; }
   .subbanner-p {
-    display: none; } }
+    display: none;
+    font-family: 'NanumGothic'; } }
 
 .uploadvideo {
   display: flex;
