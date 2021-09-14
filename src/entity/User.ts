@@ -1,7 +1,9 @@
-import {Entity, PrimaryGeneratedColumn, Column, BaseEntity, CreateDateColumn, UpdateDateColumn, JoinColumn, ManyToOne, OneToMany} from "typeorm";
-import {Authority} from './Authority';
+import { Entity, PrimaryGeneratedColumn, Column, BaseEntity, CreateDateColumn, UpdateDateColumn, JoinColumn, ManyToOne, OneToMany } from "typeorm";
+import { Authority } from './Authority';
 import { Comment } from "./Comment";
 import { Post } from "./Post";
+
+
 
 // BaseEntity 사용한 이유: save, remove 메소드 사용하기 위해서
 @Entity()
