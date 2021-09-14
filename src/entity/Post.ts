@@ -11,10 +11,10 @@ export class Post {
     @Column({ type: 'varchar' })
     title: string;
 
-    @Column({ type: 'varchar' })
+    @Column({ type: 'varchar', nullable: true  })
     textContent: string;
 
-    @Column({ type: 'varchar' })
+    @Column({ type: 'varchar', nullable: true  })
     codeContent: string;
 
     @Column({ type: 'boolean' })
