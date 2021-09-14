@@ -37,12 +37,15 @@ export const signUpEmail = async (req: Request, res: Response) => {
   }
 
   const hashPwd = await bcrypt.hash(password, 10);
-  const userInfo = await User.create({
-    email,
-    password,
-    name,
-    phone
-  });
+  let userInfo = new User();
+  userInfo.name = name;
+  userInfo.email = email;
+  userInfo.password = hashPwd;
+  userInfo.phone = phone;
+  userInfo.loginType = 'email';
+  await userInfo.save();
+
+  return res.status(200).send('success');
 }
 
 export const checkEmail = () => {
