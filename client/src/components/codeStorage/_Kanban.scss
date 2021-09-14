@@ -6,14 +6,39 @@
 
 .kanban-container{
   width: 1200px;
+  display: flex;
+  flex-direction: column;
+}
+
+.kanban-header{
+  display: flex;
+  justify-content: space-between;
+  margin: 10px;
+    span:nth-child(2){
+      padding: 0px 40px;
+    }
+}
+
+.kanban-subject{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  margin-top: 10px;
+    div{
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-left: 15px;
+      color: #{$green};
+    }
+}
+
+.kanban-list-container{
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
 }
 
 .kanban-list {
   background-color: #{$gray};
-  height: 90vh;
-  border-radius: 10px;
+  height: 80vh;
   padding: 10px;
   margin: 10px;
   overflow-y: scroll;
@@ -24,11 +49,23 @@
   font-size: 2.0rem;
   margin: 10px 0;
   font-family: 'Nanum Gothic';
-  height: 150px;
+  height: 130px;
+  padding: 10px;
   cursor:grab;
    &:active {
      cursor:grabbing;
    }
+   h1{
+     font-size: 1.5rem;
+     margin-bottom: 5px;
+   }
+   div:nth-child(2){
+     font-size: 1.3rem;
+     margin-bottom: 10px;
+   }
+   div:nth-child(3){
+    font-size: 1.5rem;
+  }
 }
 
 .kanban-list .kanban-list-item {
