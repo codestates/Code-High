@@ -3,9 +3,9 @@ import React from 'react';
 const Tag = () => {
     return (
         <div>
-            <a className="tag-container">awefawefawefwaefwafe</a>
+            <div className="tag-container">[name]</div>
         </div>
     );
 };
 
-export default Tag;
+export default Tag
