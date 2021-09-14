@@ -24,7 +24,7 @@ export class User extends BaseEntity {
   @Column({ type: 'varchar'})
   password: string;
 
-  @Column({ type: 'varchar'})
+  @Column({ type: 'varchar', nullable: true })
   image: string;
 
   @Column({ type: 'varchar'})
