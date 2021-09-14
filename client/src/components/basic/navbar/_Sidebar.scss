@@ -1,8 +1,11 @@
 .sidebar-container{
-    height : 800px;
-    width: 25%;
+    height : 100vh;
+    width: 230px;
     background-color: $gray;
     display: flex;
+    position: absolute;
+    right: 0;
+    
 }
 .menutab-container{
     margin:auto;
