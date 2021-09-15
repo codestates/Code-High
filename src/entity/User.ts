@@ -33,6 +33,9 @@ export class User extends BaseEntity {
   @Column({ type: 'int'})
   authorityId: number;
 
+  @Column({ type: 'boolean' })
+  verified: boolean;
+
   @CreateDateColumn()
   createdAt: Date;
 
@@ -46,9 +49,9 @@ export class User extends BaseEntity {
 
   // user <-> post 1:n
   @OneToMany((type) => Post, (post) => post.user, {onDelete: 'CASCADE'})
-  post:Post[];
+  posts: Post[];
 
   // user <-> comment 1:n
   @OneToMany((type) => Comment, (comment) => comment.user, {onDelete: 'CASCADE'})
-  comment:Comment[];
+  comments: Comment[];
 }

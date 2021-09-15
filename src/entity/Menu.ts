@@ -19,5 +19,5 @@ export class Menu {
     // foreign key
     // menu <-> authoritys n:1
     @ManyToOne((type) => Authority, (authority) => authority.menus)
-    authority:Authority;
+    authority: Authority;
 }

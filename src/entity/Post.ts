@@ -31,7 +31,7 @@ export class Post {
 
     // foreign key
     // post <-> user n:1
-    @ManyToOne((type) => User, (user) => user.post)
+    @ManyToOne((type) => User, (user) => user.posts)
     user: User;
 
     // post <-> postTag 1:n
