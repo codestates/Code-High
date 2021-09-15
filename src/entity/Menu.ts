@@ -18,7 +18,6 @@ export class Menu {
 
     // foreign key
     // menu <-> authoritys n:1
-    @ManyToOne((type) => Authority, (authority) => authority.menu)
-    @JoinColumn({ name: 'authorityId' })
-    authority:Authority;
+    @ManyToOne((type) => Authority, (authority) => authority.menus)
+    authority: Authority;
 }
