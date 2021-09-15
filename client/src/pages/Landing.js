@@ -8,6 +8,7 @@ import CodeReview from '../components/landing/CodeReview';
 import ButtonContainer from '../components/landing/ButtonContainer';
 import NavBar from '../components/basic/navbar/NavBar'
 import BlackFooter from '../components/basic/footer/BlackFooter';
+import SideBar from '../components/basic/navbar/SideBar';
 
 function Landing() {
   return (
