@@ -2,7 +2,7 @@ import React from 'react';
 
 const BlackFooter = () => {
     return (
-            <div className='footer-container'>
+            <div className='black-footer-container'>
                 <h1>
                     고객센터 070-2021-3012
                 </h1>
