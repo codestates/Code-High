@@ -1,4 +1,5 @@
 import React from 'react';
+import SignIn from './components/basic/modal/SignIn';
 // import Landing from './pages/Landing';
 // import SideBar from './components/basic/navbar/SideBar';
 // import NavBar from './components/basic/navbar/NavBar'
@@ -11,13 +12,14 @@ import CodeStorage from './pages/CodeStorage';
 
 function App(){
   return (
-    <CodeStorage/>
+    // <CodeStorage/>
     // <Landing />
     // <SideBar/>
     // <NavBar/>
     // <BlackFooter/>
     // <WhiteFooter/>
     // <Tag/>
+    <SignIn />
   );
 };
 
