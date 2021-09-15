@@ -11,8 +11,7 @@ export const checkAuth = async (req: Request, res: Response, next: NextFunction)
 
   const accessToken = authorization.split('')[1];
   try {
-    const decoded = await verifyAccessToken(accessToken);
-    // 권한 확인
+    const decoded = verifyAccessToken(accessToken);
     req.body.authUser = decoded;
     next();
   } catch (err) {
