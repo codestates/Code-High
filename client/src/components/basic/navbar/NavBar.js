@@ -1,13 +1,12 @@
 import React from 'react';
 import Logo from '../../../images/codehighlogo.png'
 import HamburgerMenubar from '../../../images/hamburger-menu-icon.jpeg'
-import SideBar from './SideBar'
 
 const NavBar = () => {
     return (
         <>
             <div className="navbar-container">
-                <div className="navbar-logo">
+                <div className="navbar-logo-container">
                     <img className="logo" src={Logo} alt="logo"></img>
                 </div>
                 
@@ -18,7 +17,7 @@ const NavBar = () => {
                     </li>
                     <li className="navbar-menubar-sidebar-container">
                         <img className="hamburger-menubar" src={HamburgerMenubar} alt="menubar"/>
-                    <li><SideBar/></li>
+                    <li></li>
                     </li>
                 </div>                      
             </div>
