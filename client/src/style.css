@@ -86,7 +86,14 @@
     height: 500px; }
 
 * {
-  margin: 0px 0px 0px 0px; }
+  margin: 0;
+  padding: 0; }
+
+.footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: black; }
 
 .wiki {
   padding-bottom: 10px; }
@@ -762,16 +769,21 @@ ul {
   margin: 0; }
 
 .tag-button {
-  width: 80px;
+  width: auto;
+  padding: 0 12px;
   height: 23px;
   line-height: 23px;
   font-family: 'NanumGothic';
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 800;
   color: white;
   background-color: #E1E1E1;
-  border-radius: 5px 5px 5px 5px;
-  text-align: center; }
+  border-radius: 4px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 5px; }
 
 .codeinputmain {
   display: flex;
@@ -784,7 +796,7 @@ ul {
   display: flex; }
   .codeinputmain-container textarea:nth-child(1) {
     width: 70%;
-    height: 70vh;
+    height: 65vh;
     background-color: #000;
     margin: 5px;
     overflow-y: scroll;
@@ -798,7 +810,7 @@ ul {
       outline: none; }
   .codeinputmain-container textarea:nth-child(2) {
     width: 30%;
-    height: 70vh;
+    height: 65vh;
     background-color: #E1E1E1;
     margin: 5px;
     overflow-y: scroll;
@@ -879,7 +891,7 @@ ul {
   .codeinputtagbox-tagbox span {
     display: flex;
     align-items: center;
-    font-size: 1.4rem;
+    font-size: 1.3rem;
     margin: 7px;
     width: 53px;
     text-align: center;
@@ -900,7 +912,7 @@ ul {
   justify-content: center;
   display: flex; }
   .codeinputtitle-container span {
-    font-size: 1.6rem;
+    font-size: 1.3rem;
     margin: 0 10px;
     width: 35px;
     min-width: 35px;
@@ -908,9 +920,9 @@ ul {
     font-weight: 600; }
   .codeinputtitle-container input {
     width: 90vw;
-    height: 3vh;
+    height: 2vh;
     padding: 0 5px;
-    font-size: 1.6rem;
+    font-size: 1.3rem;
     border-radius: 3px;
     border: solid 1px #E1E1E1;
     font-family: 'NanumGothic'; }

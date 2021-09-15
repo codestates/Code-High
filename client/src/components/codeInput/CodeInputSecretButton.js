@@ -2,6 +2,8 @@ import React from 'react';
 import Button from '../basic/button/Button';
 
 function CodeInputSecretButton(){
+
+  //공개 비공개 여부 서버로 보내야함. T/F
   return (
     <div className='codeinputsecretbutton'>
       <div className='codeinputsecretbutton-container'>
