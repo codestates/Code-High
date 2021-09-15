@@ -9,7 +9,7 @@ export const generateRefreshToken = (data: object) => {
   return sign(data, process.env.REFRESH_SECRET, { expiresIn: '3d' });
 }
 
-export const generateEmailToken = (data: string) => {
+export const generateEmailToken = (data: object) => {
   return sign(data, process.env.EMAIL_SECRET, { expiresIn: '5m' });
 }
 
@@ -24,6 +24,14 @@ export const verifyAccessToken = (accessToken: string) => {
 export const verifyRefreshToken = (refreshToken: string) => {
   try {
     return verify(refreshToken, process.env.REFRESH_SECRET);
+  } catch (err) {
+    return null;
+  }
+}
+
+export const verifyEmailToken = (emailToken: string) => {
+  try {
+    return verify(emailToken, process.env.EMAIL_SECRET);
   } catch (err) {
     return null;
   }
