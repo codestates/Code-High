@@ -11,7 +11,7 @@
   justify-content: center;
   display: flex;
    span{
-     font-size: 1.6rem;
+     font-size: 1.3rem;
      margin: 0 10px;
      width: 35px;
      min-width: 35px;
@@ -20,9 +20,9 @@
    }
    input {
      width: 90vw;
-     height: 3vh;
+     height: 2vh;
      padding: 0 5px;
-     font-size: 1.6rem;
+     font-size: 1.3rem;
      border-radius: 3px;
      border: solid 1px #{$gray};
      font-family: 'NanumGothic';

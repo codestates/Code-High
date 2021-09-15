@@ -4,14 +4,19 @@
 }
 
 .tag-button{
-      width: 80px;
-      height: 23px;
-      line-height: 23px;
-      font-family: 'NanumGothic';
-      font-size: 10px;
-      font-weight: 800;
-      color: white;
-      background-color: #{$gray};
-      border-radius: 5px 5px 5px 5px;
-      text-align: center;
+  width: auto;
+  padding: 0 12px;
+  height: 23px;
+  line-height: 23px;
+  font-family: 'NanumGothic';
+  font-size: 12px;
+  font-weight: 800;
+  color: white;
+  background-color: #{$gray};
+  border-radius: 4px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 5px;
 }
