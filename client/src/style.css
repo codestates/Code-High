@@ -131,7 +131,7 @@
   text-decoration: none;
   font-family: 'NanumGothic';
   font-size: 13px;
-  font-weight: 600; }
+  font-weight: 500; }
 
 .loading-container {
   position: fixed;
@@ -767,6 +767,150 @@ ul {
   background-color: #E1E1E1;
   border-radius: 5px 5px 5px 5px;
   text-align: center; }
+
+.codeinputmain {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px; }
+
+.codeinputmain-container {
+  width: 1200px;
+  display: flex; }
+  .codeinputmain-container textarea:nth-child(1) {
+    width: 70%;
+    height: 70vh;
+    background-color: #000;
+    margin: 5px;
+    overflow-y: scroll;
+    padding: 10px;
+    font-size: 1.5rem;
+    color: white;
+    resize: none;
+    border: none;
+    font-family: 'NanumGothic'; }
+    .codeinputmain-container textarea:nth-child(1):focus {
+      outline: none; }
+  .codeinputmain-container textarea:nth-child(2) {
+    width: 30%;
+    height: 70vh;
+    background-color: #E1E1E1;
+    margin: 5px;
+    overflow-y: scroll;
+    padding: 10px;
+    font-size: 1.5rem;
+    resize: none;
+    border: none;
+    font-family: 'NanumGothic'; }
+    .codeinputmain-container textarea:nth-child(2):focus {
+      outline: none; }
+
+.codeinputsecretbutton {
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+
+.codeinputsecretbutton-container {
+  width: 1200px;
+  display: flex;
+  justify-content: flex-end; }
+
+.codeinputsecretbutton-checkbox {
+  margin: 5px;
+  display: flex;
+  align-items: center; }
+  .codeinputsecretbutton-checkbox span {
+    font-size: 1.5rem;
+    margin-left: 5px;
+    font-family: 'NanumGothic'; }
+  .codeinputsecretbutton-checkbox input[type="checkbox"] {
+    cursor: pointer;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    outline: 0;
+    height: 14px;
+    width: 14px;
+    border: 1px solid #bdbdbd;
+    border-radius: 3px; }
+  .codeinputsecretbutton-checkbox input[type="checkbox"]:checked {
+    background: #2F8C4C; }
+  .codeinputsecretbutton-checkbox input[type="checkbox"]:after {
+    content: "";
+    position: relative;
+    left: 40%;
+    top: 20%;
+    width: 15%;
+    height: 40%;
+    border: solid #fff;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+    display: none; }
+  .codeinputsecretbutton-checkbox input[type="checkbox"]:checked:after {
+    display: block; }
+
+.codeinputsecretbutton-button {
+  margin-left: 10px; }
+  .codeinputsecretbutton-button span {
+    padding: 10px 30px;
+    font-size: 1.7rem;
+    font-family: 'NanumGothic'; }
+
+.codeinputtagbox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px; }
+
+.codeinputtagbox-container {
+  width: 1200px;
+  display: flex;
+  flex-direction: column; }
+
+.codeinputtagbox-tagbox {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; }
+  .codeinputtagbox-tagbox span {
+    display: flex;
+    align-items: center;
+    font-size: 1.4rem;
+    margin: 7px;
+    width: 53px;
+    text-align: center;
+    font-family: 'NanumGothic';
+    font-weight: 500; }
+  .codeinputtagbox-tagbox div:nth-child(2) {
+    display: flex; }
+
+.codeinputtitle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px 0; }
+
+.codeinputtitle-container {
+  width: 1200px;
+  align-items: center;
+  justify-content: center;
+  display: flex; }
+  .codeinputtitle-container span {
+    font-size: 1.6rem;
+    margin: 0 10px;
+    width: 35px;
+    min-width: 35px;
+    font-family: 'NanumGothic';
+    font-weight: 600; }
+  .codeinputtitle-container input {
+    width: 90vw;
+    height: 3vh;
+    padding: 0 5px;
+    font-size: 1.6rem;
+    border-radius: 3px;
+    border: solid 1px #E1E1E1;
+    font-family: 'NanumGothic'; }
+    .codeinputtitle-container input:focus {
+      outline: none; }
 
 .kanban {
   display: flex;
