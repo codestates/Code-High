@@ -32,12 +32,11 @@ export class Post {
     // foreign key
     // post <-> user n:1
     @ManyToOne((type) => User, (user) => user.post)
-    @JoinColumn({ name: 'userId' })
-    user:User;
+    user: User;
 
     // post <-> postTag 1:n
     @OneToMany((type) => Posttag, (postTag) => postTag.post, {onDelete: 'CASCADE'})
-    postTag:Posttag[];
+    postTags: Posttag[];
 
 
 }

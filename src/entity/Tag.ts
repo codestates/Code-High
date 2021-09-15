@@ -16,5 +16,5 @@ export class Tag {
     // foreign key
     // tag <-> postTag 1:n
     @OneToMany((type) => Posttag, (postTag) => postTag.tag, {onDelete: 'CASCADE'})
-    postTag:Posttag[];
+    postTags: Posttag[];
 }

@@ -13,9 +13,9 @@ export class Authority {
     // foreign key
     // authoritys <-> user 1:n
     @OneToMany((type) => User, (user) => user.authority, {onDelete: 'CASCADE'})
-    user:User[];
+    users: User[];
 
     // authoritys <-> menu 1:n
     @OneToMany((type) => Menu, (menu) => menu.authority, {onDelete: 'CASCADE'})
-    menu:Menu[];
+    menus: Menu[];
 }

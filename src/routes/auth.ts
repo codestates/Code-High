@@ -2,7 +2,7 @@ import { Router } from 'express';
 import * as authController from '../controllers/authController'
 const authRouter = Router();
 
-authRouter.get('/email', authController.emailLogin);
+authRouter.post('/email', authController.emailLogin);
 authRouter.post('/kakao', authController.kakaoLogin);
 authRouter.post('/google', authController.googleLogin);
 authRouter.post('/github', authController.githubLogin);

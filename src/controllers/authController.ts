@@ -3,10 +3,46 @@ import { getRepository } from 'typeorm';
 import { User } from '../entity/User';
 import { sendEmail } from './mail';
 import * as bcrypt from 'bcrypt';
-import { generateEmailToken, verifyEmailToken } from './jwt';
+import { generateAccessToken, generateRefreshToken, generateEmailToken, verifyEmailToken } from './jwt';
 
-export const emailLogin = () => {
-  
+
+
+export const emailLogin = async (req: Request, res: Response) => {
+  try {
+    const { email, password } = req.body;
+    const userRepository = getRepository(User);
+    const userInfo = await userRepository.findOne({ where: { email } });
+    //const userInfo = await User.findOne({ where: { email } });
+
+    if (!userInfo) {
+      return res.status(404).send({ message: 'undefined user' });
+    }
+
+    if (userInfo.loginType !== 'email') {
+      return res.status(401).send({ message: 'social login user' })
+    }
+
+    const same = await bcrypt.compare(password, userInfo.password);
+    if (!same) {
+      return res.status(401).send({ message: 'unauthorized' });
+    }
+
+    const tokenInfo = { id: userInfo.id, email: userInfo.email, authority: userInfo.authority };
+    const accessToken: string = generateAccessToken(tokenInfo);
+    const refreshToken: string = generateRefreshToken(tokenInfo);
+
+    res.cookie('refreshToken', refreshToken, {
+        maxAge: 1000 * 60 * 60 * 24, // 1d
+        httpOnly: true,
+        secure: true,
+    })
+    delete userInfo.password;
+    return res.status(200).send({ accessToken, userInfo, message: 'login success'});
+
+  } catch (err) {
+    console.log(err);
+    res.status(400).send({ message: err.message });
+  }
 }
 
 export const kakaoLogin = () => {
@@ -40,7 +76,7 @@ export const signUpEmail = async (req: Request, res: Response) => {
         return res.status(409).send({ message: 'Email Conflict' });
     }
     const hashPwd = await bcrypt.hash(password, 10);
-    const token = generateEmailToken({
+    const token: string = generateEmailToken({
       email,
       password: hashPwd,
       name,
@@ -68,12 +104,13 @@ export const checkEmailCode = async (req: Request, res: Response) => {
     const email = user.email;
     const userEmail = await User.findOne({ where: { email } })
     if (userEmail) {
-        return res.status(409).send({ message: 'Email Conflict'});
+      return res.status(409).send({ message: 'Email Conflict'});
     }
     
-    const userRepository = await getRepository(User);
-    const userInfo = await userRepository.create({  
+    const userRepository = getRepository(User);
+    const userInfo = userRepository.create({  
       loginType: 'email',
+      authorityId: 3,
       ...user,
     })
     const result = await userRepository.save(userInfo);

@@ -30,6 +30,9 @@ export class User extends BaseEntity {
   @Column({ type: 'varchar'})
   loginType: string;
 
+  @Column({ type: 'int'})
+  authorityId: number;
+
   @CreateDateColumn()
   createdAt: Date;
 
@@ -38,8 +41,7 @@ export class User extends BaseEntity {
 
   // foreign key
   // user <-> authoritys n:1
-  @ManyToOne((type) => Authority, (authority) => authority.user)
-  @JoinColumn({ name: 'authorityId' })
+  @ManyToOne((type) => Authority, (authority) => authority.users)
   authority: Authority;
 
   // user <-> post 1:n

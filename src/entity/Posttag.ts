@@ -15,12 +15,10 @@ export class Posttag {
 
     // foreign key
     // postTag <-> post n:1
-    @ManyToOne((type) => Post, (post) => post.postTag)
-    @JoinColumn({ name: 'postId' })
+    @ManyToOne((type) => Post, (post) => post.postTags)
     post:Post;
 
     // posttag <-> tag n:1
-    @ManyToOne((type) => Tag, (tag) => tag.postTag)
-    @JoinColumn({ name: 'tagId'})
+    @ManyToOne((type) => Tag, (tag) => tag.postTags)
     tag:Tag;
 }

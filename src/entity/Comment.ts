@@ -25,6 +25,5 @@ export class Comment {
     // foreign key
     // comment <-> user n:1
     @ManyToOne((type) => User, (user) => user.comment)
-    @JoinColumn({ name: 'userId' })
     user:User;
 }
