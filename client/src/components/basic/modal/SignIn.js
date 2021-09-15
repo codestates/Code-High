@@ -1,9 +1,10 @@
 import React from 'react';
-import Signinimg from '../../../images/Signin.svg';
+import Signinimg from '../../../images/Signinimg.svg';
 import codehighlogo from '../../../images/codehighlogo.png';
 import github from '../../../images/github.png';
 import kakao from '../../../images/kakao.png';
 import naver from '../../../images/naver.png';
+
 
 function SignIn(){
   return (
@@ -29,7 +30,7 @@ function SignIn(){
           </ul>
           <div className='signin-oauth-container'>
             <a href=''><img src={github} alt='github' /></a>
-            <a href=''><img src={kakao} alt='kakao' /></a>
+            <a href=''><img src={kakao} alt='kakao'  /></a>
             <a href=''><img src={naver} alt='naver' /></a>
           </div>
         </div>

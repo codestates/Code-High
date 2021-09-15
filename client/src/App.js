@@ -1,4 +1,5 @@
 import React from 'react';
+import SignIn from './components/basic/modal/SignIn';
 import CodeInput from './pages/CodeInput';
 // import Landing from './pages/Landing';
 import SideBar from './components/basic/navbar/SideBar';
