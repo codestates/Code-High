@@ -6,6 +6,13 @@ import kakao from '../../../images/kakao.png';
 import naver from '../../../images/naver.png';
 
 function SignIn(){
+
+  const githubLoginHandler = () => {
+    const client_id = '';
+    const redirect_uri = 'localhost:3000';
+    const githubLoginUrl = `https://github.com/login/oauth/authorize?client_id=${client_id}&redirect_uri=${redirect_uri}`
+  }
+
   return (
     <div className='signin-modal'>
       <div className='signin-modal-overlay'></div>
