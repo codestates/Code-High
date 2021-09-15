@@ -5,8 +5,6 @@ import { sendEmail } from './mail';
 import * as bcrypt from 'bcrypt';
 import { generateAccessToken, generateRefreshToken, generateEmailToken, verifyEmailToken } from './jwt';
 
-
-
 export const emailLogin = async (req: Request, res: Response) => {
   try {
     const { email, password } = req.body;
@@ -55,8 +53,9 @@ export const githubLogin = () => {
 
 }
 
-export const logout = () => {
-  
+export const logout = (req: Request, res: Response) => {
+  res.clearCookie('refreshToken');
+  res.send({ message: 'logout success'});
 }
 
 export const signUpEmail = async (req: Request, res: Response) => {
