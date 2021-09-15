@@ -16,7 +16,7 @@ function App(){
     <SignIn/>
     // <CodeInput />
     // <CodeStorage/>
-    // <Landing />
+    //<Landing />
     // <SideBar/>
     // <NavBar/>
     // <BlackFooter/>

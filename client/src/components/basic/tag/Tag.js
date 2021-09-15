@@ -1,6 +1,9 @@
 import React from 'react';
+import { useState } from 'react';
 
 const Tag = (props) => {
+    const [color, setColor] = useState(gray)
+
     const { content, onClickHandle, backgroundColor } = props;
     return (
         <div 
