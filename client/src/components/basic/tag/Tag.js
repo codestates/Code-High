@@ -1,9 +1,15 @@
 import React from 'react';
 
-const Tag = () => {
+const Tag = (props) => {
+    const { content, onClickHandle, backgroundColor } = props;
     return (
-        <div>
-            <div className="tag-container">[name]</div>
+        <div 
+        className="tag-button"
+        style={{
+            backgroundColor
+        }}
+        onClick={onClickHandle}
+        >{content}
         </div>
     );
 };
