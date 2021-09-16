@@ -9,7 +9,7 @@ export const checkAuth = async (req: Request, res: Response, next: NextFunction)
     return res.status(404).send({ message: '로그인해주세요'});
   }
 
-  const accessToken = authorization.split('')[1];
+  const accessToken = authorization.split(' ')[1];
   try {
     const decoded = verifyAccessToken(accessToken);
     req.body.authUser = decoded;

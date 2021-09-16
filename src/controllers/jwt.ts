@@ -17,6 +17,7 @@ export const verifyAccessToken = (accessToken: string) => {
   try {
     return verify(accessToken, process.env.ACCESS_SECRET);
   } catch (err) {
+    console.log(err.message);
     return null;
   }
 }

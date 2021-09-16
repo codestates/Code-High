@@ -57,7 +57,7 @@ export const googleLogin = async (req: Request, res: Response) => {
     const accessToken = result.data.access_token;
     return res.status(200).send({ accessToken, message: 'Google login Success' });
   } catch (err) {
-    console.log(err);
+    // console.log(err);
     return res.send(err.message);
   }
 }
@@ -74,7 +74,7 @@ export const githubLogin = async (req: Request, res: Response) => {
     return res.status(200).send({ accessToken, message: 'Github login Success' });
 
   } catch (err) {
-    console.log(err);
+    // console.log(err);
     return res.send(err.message);
   }
 }

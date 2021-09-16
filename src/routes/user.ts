@@ -1,10 +1,11 @@
 import { Router } from 'express';
+import { userInfo } from '../controllers/user';
 import { checkAuth } from '../middleware/auth'
 const userRouter = Router();
 
 userRouter.use('/', checkAuth);
 
-userRouter.get('/');
+userRouter.get('/info', userInfo);
 userRouter.patch('/');
 userRouter.delete('/');
 userRouter.get('/info');
