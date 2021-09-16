@@ -1,19 +1,17 @@
-import React, { useEffect } from 'react';
-import SignIn from './components/basic/modal/SignIn';
-import CodeInput from './pages/CodeInput';
-// import Landing from './pages/Landing';
-import SideBar from './components/basic/navbar/SideBar';
-import NavBar from './components/basic/navbar/NavBar'
-import Tag from './components/basic/tag/Tag'
-import BlackFooter from './components/basic/footer/BlackFooter'
-import WhiteFooter from './components/basic/footer/WhiteFooter'
-import Landing from './pages/Landing';
-// import SideBar from './components/basic/navbar/SideBar';
-// import CodeStorage from './pages/CodeStorage';
-import axios from 'axios';
 
-function App(){
-  
+import React, { useEffect } from 'react';
+import axios from 'axios';
+import { Route, Switch } from 'react-router-dom';
+import Landing from './pages/Landing';
+import SignIn from './components/basic/modal/SignIn';
+import Signup from './components/basic/modal/Signup';
+
+import CodeInput from './pages/CodeInput';
+import CodeReview from './pages/CodeReview';
+import CodeStorage from './pages/CodeStorage';
+
+function App() {
+
   // Oauth authorizationCode 요청
   // TODO: 추후 클라이언트 내 다른 페이지로 리다이렉트 되도록 변경해야함
   useEffect(() => {
@@ -47,16 +45,29 @@ function App(){
   }
 
   return (
-    <SignIn/>
-    // <CodeInput />
-    // <CodeStorage/>
-    //<Landing />
-    // <SideBar/>
-    // <NavBar/>
-    // <BlackFooter/>
-    // <WhiteFooter/>
-    
+    <>
+      <Switch>
+        <Route exact path='/'>
+          <Landing/>
+        </Route>
+        <Route path='/login'>
+          <SignIn/>
+        </Route>
+        <Route path='/signup'>
+          <Signup/>
+        </Route>
+        <Route path='/codestorage'>
+          <CodeStorage/>
+        </Route>
+        <Route path='/codeinput'>
+          <CodeInput/>
+        </Route>
+        <Route path='/codereview'>
+          <CodeReview/>
+        </Route>
+      </Switch>
+    </>
   );
-};
+}
 
 export default App;

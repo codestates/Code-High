@@ -43,6 +43,10 @@
    }
 }
 
+.up-on-scroll{
+  transition: transform 0.7s, opacity 1s;
+}
+
 @include desktop {
   .mainbanner-container {
     grid-template-columns: 1fr 1fr;
