@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import mainbannerimg from '../../images/mainbannerimg.svg';
 import Button from '../basic/button/Button';
 
@@ -27,7 +28,7 @@ function Mainbanner() {
           <img src={mainbannerimg} alt='' />
           <div className='mainbanner-button-container-mobile'>
             <Button content='시작하기' backgroundColor='#2F8C4C' color='#fff'/>
-            <Button content='다른 코드 구경하기' backgroundColor='#E1E1E1' />
+            <Link to='/codereview'><Button content='다른 코드 구경하기' backgroundColor='#E1E1E1' /></Link>
           </div>
         </div>
       </div>

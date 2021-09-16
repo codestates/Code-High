@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import Logo from '../../../images/codehighlogo.png';
 import HamburgerMenubar from '../../../images/hamburger-menu-icon.jpeg';
 
@@ -12,7 +13,7 @@ const NavBar = () => {
         <div className='navbar-container'>
 
           <div className='navbar-logo-container'>
-            <img src={Logo} alt='logo'></img>
+          <Link to='/'><img src={Logo} alt='logo'/></Link>
           </div>
 
           <ul className='navbar-right'>

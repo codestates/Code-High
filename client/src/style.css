@@ -706,12 +706,13 @@
   margin: 0;
   text-align: center; }
   .navbar-right li {
-    font-family: 'NanumGothic';
-    font-size: 17px;
-    font-weight: 500;
     display: flex;
     align-items: center;
-    color: #263238; }
+    color: #263238;
+    font-family: 'NanumGothic';
+    text-decoration: none;
+    font-size: 17px;
+    font-weight: 500; }
     .navbar-right li img {
       width: 25px; }
 

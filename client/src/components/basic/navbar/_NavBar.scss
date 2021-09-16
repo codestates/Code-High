@@ -22,12 +22,13 @@
     margin: 0;
     text-align: center;
         li {
-            font-family: 'NanumGothic';
-            font-size: 17px;
-            font-weight: 500;
             display: flex;
             align-items: center;
             color: #{$blackgreen};
+            font-family: 'NanumGothic';
+            text-decoration: none;
+            font-size: 17px;
+            font-weight: 500;
             img{
                 width: 25px;
             }

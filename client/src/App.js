@@ -1,29 +1,40 @@
 import React from 'react';
-import SignIn from './components/basic/modal/SignIn';
-import CodeInput from './pages/CodeInput';
-// import Landing from './pages/Landing';
-import SideBar from './components/basic/navbar/SideBar';
-import NavBar from './components/basic/navbar/NavBar'
-import Tag from './components/basic/tag/Tag'
-import BlackFooter from './components/basic/footer/BlackFooter'
-import WhiteFooter from './components/basic/footer/WhiteFooter'
+import { Route, Switch } from 'react-router-dom';
 import Landing from './pages/Landing';
-import CodeReview from './pages/CodeReview';
-// import SideBar from './components/basic/navbar/SideBar';
-// import CodeStorage from './pages/CodeStorage';
+import SignIn from './components/basic/modal/SignIn';
+import Signup from './components/basic/modal/Signup';
 
-function App(){
+import CodeInput from './pages/CodeInput';
+import CodeReview from './pages/CodeReview';
+import CodeStorage from './pages/CodeStorage';
+
+function App() {
   return (
-    // <CodeReview /> 
-    // <CodeInput />
-    // <CodeStorage/>
-    <Landing />
-    // <SideBar/>
-    // <NavBar/>
-    // <BlackFooter/>
-    // <WhiteFooter/>
-    
+    <>
+      <Landing />
+
+      <Switch>
+        <Route exact path='/'>
+          <Landing/>
+        </Route>
+        <Route path='/login'>
+          <SignIn/>
+        </Route>
+        <Route path='/signup'>
+          <Signup/>
+        </Route>
+        <Route path='/codestorage'>
+          <CodeStorage/>
+        </Route>
+        <Route path='/codeinput'>
+          <CodeInput/>
+        </Route>
+        <Route path='/codereview'>
+          <CodeReview/>
+        </Route>
+      </Switch>
+    </>
   );
-};
+}
 
 export default App;
