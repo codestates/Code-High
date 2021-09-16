@@ -35,6 +35,15 @@
         }
 }
 
+
+.navbar-menu{
+    display:none;
+}
+.navbar-menu.active{
+    display:flex;
+}
+
+
 @include desktop {
     .navbar{
         position: sticky;

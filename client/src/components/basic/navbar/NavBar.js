@@ -2,10 +2,12 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Logo from '../../../images/codehighlogo.png';
 import HamburgerMenubar from '../../../images/hamburger-menu-icon.jpeg';
+import SideBar from './SideBar';
 
 const NavBar = () => {
-  const [OpenSidebar, setOpenSidebar] = useState(false);
-  const showSidebar = () => setOpenSidebar(!OpenSidebar);
+  const [openSidebar, setOpenSidebar] = useState(false);
+  const showSidebar = () => setOpenSidebar(!openSidebar);
+
 
   return (
     <>
@@ -25,7 +27,10 @@ const NavBar = () => {
                 alt='menubar'
                 onClick={showSidebar}
               />
-              {OpenSidebar ? <Sidebar /> : <></>}
+              <span className={openSidebar? 'navbar-menu active' : 'navbar-menu'}>
+                <SideBar />
+              </span>
+
             </li>
           </ul>
           
