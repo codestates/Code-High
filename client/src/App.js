@@ -46,8 +46,6 @@ function App() {
 
   return (
     <>
-      <Landing />
-
       <Switch>
         <Route exact path='/'>
           <Landing/>
