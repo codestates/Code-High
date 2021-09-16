@@ -3,7 +3,7 @@ import CodeReviewBoard from '../components/codeReview/CodeReviewBoard';
 import NavBar from '../components/basic/navbar/NavBar'
 import WhiteFooter from '../components/basic/footer/WhiteFooter';
 
-function CodeReview(){
+function CodeReview () {
   return (
     <>
       <NavBar />
@@ -11,6 +11,6 @@ function CodeReview(){
       <WhiteFooter />
     </>
   );
-};
+}
 
 export default CodeReview;

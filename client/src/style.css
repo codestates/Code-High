@@ -450,8 +450,12 @@
   .signin-left .signin-close {
     width: 90%;
     text-align: end;
-    font-size: 30px;
-    margin-bottom: 60px; }
+    margin-bottom: 60px;
+    padding: 10px; }
+    .signin-left .signin-close span {
+      font-size: 30px; }
+    .signin-left .signin-close:focus {
+      cursor: pointer; }
   .signin-left img {
     width: 250px;
     padding: 0px 20px;
@@ -599,8 +603,10 @@
   .signup-left .signup-close {
     width: 90%;
     text-align: end;
-    font-size: 30px;
-    margin-bottom: 30px; }
+    margin-bottom: 30px;
+    padding: 5px; }
+    .signup-left .signup-close span {
+      font-size: 30px; }
   .signup-left img {
     width: 250px;
     padding: 0px 20px; }
@@ -610,7 +616,8 @@
       font-family: 'NanumGothic';
       font-size: 14px;
       font-weight: 600;
-      margin-bottom: 5px; }
+      margin-bottom: 10px;
+      padding: 5px 0; }
     .signup-left article input {
       border: solid 1px #E1E1E1;
       border-radius: 5px;
@@ -716,6 +723,13 @@
     .navbar-right li img {
       width: 25px; }
 
+.navbar-menu {
+  display: none; }
+
+.navbar-menu.active {
+  display: flex; }
+
+
 @media (min-width: 1200px) {
   .navbar {
     position: sticky;
@@ -742,17 +756,14 @@
 
 @media (min-width: 335px) and (max-width: 768px) {
   .navbar-container {
-    height: 100px; }
+    height: 70px; }
   .navbar-logo-container img {
     width: 250px;
     padding: 5px 0; }
-  .navbar-container {
-    justify-content: center;
-    flex-direction: column; }
-    .navbar-container li:nth-child(1) {
-      display: none;
-      margin-left: 0px;
-      margin-bottom: 10px; } }
+  .navbar-container li:nth-child(1) {
+    display: none;
+    margin-left: 0px;
+    margin-bottom: 10px; } }
 
 .sidebar-container {
   height: 100vh;
@@ -816,7 +827,6 @@ ul {
   font-size: 12px;
   font-weight: 800;
   color: white;
-  background-color: #E1E1E1;
   border-radius: 4px;
   text-align: center;
   display: flex;
@@ -1030,7 +1040,7 @@ ul {
 
 .kanban-list {
   background-color: #E1E1E1;
-  height: 80vh;
+  height: 70vh;
   padding: 10px;
   margin: 10px;
   overflow-y: scroll; }
@@ -1124,9 +1134,9 @@ ul {
     line-height: 2.3rem;
     margin-bottom: 40px;
     font-family: 'NanumGothic'; }
-  .codereview-right span {
-    padding: 0 30px;
-    font-family: 'NanumGothic'; }
+  .codereview-right a span {
+    font-family: 'NanumGothic';
+    padding: 15px 20px; }
 
 @media (min-width: 1200px) {
   .codereview-container {
@@ -1307,12 +1317,16 @@ ul {
     font-weight: 500;
     line-height: 30px;
     margin-bottom: 50px; }
-  .mainbanner-button-container span {
-    margin-right: 50px;
-    padding: 20px 50px;
-    width: 100px; }
   .mainbanner-button-container-mobile {
-    display: none; } }
+    display: none; }
+  .mainbanner-button-container a {
+    text-decoration: none;
+    font-family: 'NanumGothic'; }
+    .mainbanner-button-container a span {
+      margin-right: 50px;
+      padding: 20px 50px;
+      width: 100px;
+      font-family: 'NanumGothic'; } }
 
 @media (min-width: 769px) and (max-width: 1199px) {
   .mainbanner-container {
@@ -1327,21 +1341,29 @@ ul {
     .mainbanner-left h1 {
       font-size: 3.0rem;
       line-height: 40px;
-      margin-bottom: 100px; }
+      margin-bottom: 40px;
+      font-family: 'NanumGothic'; }
     .mainbanner-left p {
       font-size: 1.5rem;
       font-family: 'NanumGothic';
       font-weight: 500;
       line-height: 23px;
-      margin-bottom: 100px; }
+      margin-bottom: 60px; }
   .mainbanner-button-container {
     display: flex;
     flex-direction: column; }
-    .mainbanner-button-container span {
-      margin-bottom: 20px;
-      padding: 10px 50px; }
   .mainbanner-button-container-mobile {
-    display: none; } }
+    display: none; }
+  .mainbanner-button-container a {
+    text-decoration: none;
+    margin-bottom: 20px;
+    font-family: 'NanumGothic'; }
+    .mainbanner-button-container a span {
+      font-size: 1.3rem;
+      margin-right: 50px;
+      padding: 15px 30px;
+      width: 100px;
+      font-family: 'NanumGothic'; } }
 
 @media (min-width: 335px) and (max-width: 768px) {
   .mainbanner-container {
@@ -1371,10 +1393,21 @@ ul {
     display: none; }
   .mainbanner-button-container-mobile {
     display: flex;
-    flex-direction: column; }
-    .mainbanner-button-container-mobile span {
-      margin-bottom: 10px;
-      padding: 10px 50px; } }
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; }
+    .mainbanner-button-container-mobile a {
+      text-decoration: none;
+      margin-bottom: 20px;
+      font-family: 'NanumGothic'; }
+      .mainbanner-button-container-mobile a span {
+        font-size: 1.3rem;
+        padding: 15px 30px;
+        width: 100px;
+        font-family: 'NanumGothic'; } }
+
+a {
+  text-decoration: none; }
 
 .subbanner {
   width: 100%;
