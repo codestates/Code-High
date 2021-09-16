@@ -3,6 +3,7 @@ import mainbannerimg from '../../images/mainbannerimg.svg';
 import Button from '../basic/button/Button';
 
 function Mainbanner() {
+
   return (
     <div className='mainbanner'>
       <div className='mainbanner-container'>

@@ -967,6 +967,35 @@ ul {
     .codeinputtitle-container input:focus {
       outline: none; }
 
+.codereviewboard {
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+
+.codereviewboard-container {
+  width: 1200px;
+  justify-content: center;
+  align-items: center; }
+
+.codereviewboard-cardbox {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  height: 85vh;
+  overflow-y: scroll; }
+
+.codereviewboard-card {
+  border: solid 1px #E1E1E1;
+  padding: 10px;
+  margin: 5px; }
+  .codereviewboard-card h1 {
+    font-size: 1.5rem;
+    margin-bottom: 5px; }
+  .codereviewboard-card div:nth-child(2) {
+    font-size: 1.3rem;
+    background-color: #E1E1E1;
+    padding: 5px;
+    height: 200px; }
+
 .kanban {
   display: flex;
   align-items: center;
@@ -1258,6 +1287,9 @@ ul {
   justify-content: center; }
   .mainbanner-right img {
     width: 650px; }
+
+.up-on-scroll {
+  transition: transform 0.7s, opacity 1s; }
 
 @media (min-width: 1200px) {
   .mainbanner-container {

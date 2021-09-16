@@ -8,12 +8,13 @@ import Tag from './components/basic/tag/Tag'
 import BlackFooter from './components/basic/footer/BlackFooter'
 import WhiteFooter from './components/basic/footer/WhiteFooter'
 import Landing from './pages/Landing';
+import CodeReview from './pages/CodeReview';
 // import SideBar from './components/basic/navbar/SideBar';
 // import CodeStorage from './pages/CodeStorage';
 
 function App(){
   return (
-    // <CodeInput />
+    // <CodeReview /> 
     // <CodeInput />
     // <CodeStorage/>
     <Landing />
