@@ -1,6 +1,6 @@
 import React from 'react';
 
-function CodeInputTitle(){
+function CodeInputTitle() {
   //리덕스 후 같이 보내줘야함.
   return (
     <div className='codeinputtitle'>
@@ -10,6 +10,6 @@ function CodeInputTitle(){
       </div>
     </div>
   );
-};
+}
 
 export default CodeInputTitle;

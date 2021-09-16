@@ -4,7 +4,6 @@ import mainbannerimg from '../../images/mainbannerimg.svg';
 import Button from '../basic/button/Button';
 
 function Mainbanner() {
-
   return (
     <div className='mainbanner'>
       <div className='mainbanner-container'>
@@ -20,15 +19,39 @@ function Mainbanner() {
             이해도에 따라 알고리즘 코드를 분류해 실력을 높혀보세요.
           </p>
           <div className='mainbanner-button-container'>
-            <Link to='/codeinput'><Button content='시작하기' backgroundColor='#2F8C4C' color='#fff'/></Link>
-            <Link to='/codereview'><Button content='다른 코드 구경하기' backgroundColor='#E1E1E1' color='#000'/></Link>
+            <Link to='/codeinput'>
+              <Button
+                content='시작하기'
+                backgroundColor='#2F8C4C'
+                color='#fff'
+              />
+            </Link>
+            <Link to='/codereview'>
+              <Button
+                content='다른 코드 구경하기'
+                backgroundColor='#E1E1E1'
+                color='#000'
+              />
+            </Link>
           </div>
         </div>
         <div className='mainbanner-right'>
           <img src={mainbannerimg} alt='' />
           <div className='mainbanner-button-container-mobile'>
-            <Link to='/codeinput'><Button content='시작하기' backgroundColor='#2F8C4C' color='#fff'/></Link>
-            <Link to='/codereview'><Button content='다른 코드 구경하기' backgroundColor='#E1E1E1' color='#000' /></Link>
+            <Link to='/codeinput'>
+              <Button
+                content='시작하기'
+                backgroundColor='#2F8C4C'
+                color='#fff'
+              />
+            </Link>
+            <Link to='/codereview'>
+              <Button
+                content='다른 코드 구경하기'
+                backgroundColor='#E1E1E1'
+                color='#000'
+              />
+            </Link>
           </div>
         </div>
       </div>

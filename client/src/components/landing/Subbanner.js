@@ -5,7 +5,6 @@ import Subbannerimg from '../../images/subbannerimg.svg';
 import gif from '../../images/gif.png';
 
 function Subbanner() {
-
   return (
     <div className='subbanner'>
       <div className='subbanner-container'>
@@ -24,7 +23,13 @@ function Subbanner() {
             <p className='subbanner-mobile-p'>
               학습에 필요한 코드를 보기 쉽게 관리할 수 있습니다.
             </p>
-            <Link to='/codestorage'><Button content='체험하기' backgroundColor='#2F8C4C' color='#fff' /></Link>
+            <Link to='/codestorage'>
+              <Button
+                content='체험하기'
+                backgroundColor='#2F8C4C'
+                color='#fff'
+              />
+            </Link>
           </div>
         </div>
       </div>

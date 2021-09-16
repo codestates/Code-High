@@ -12,20 +12,23 @@ const NavBar = () => {
   //!modal
   const [showLoginModal, setShowLoginModal] = useState(false);
   const togglePopUp = () => {
-    setShowLoginModal(!showLoginModal)
-  }
+    setShowLoginModal(!showLoginModal);
+  };
 
   return (
     <>
       <div className='navbar'>
         <div className='navbar-container'>
-
           <div className='navbar-logo-container'>
-          <Link to='/'><img src={Logo} alt='logo'/></Link>
+            <Link to='/'>
+              <img src={Logo} alt='logo' />
+            </Link>
           </div>
 
           <ul className='navbar-right'>
-            <li className='login-tag' onClick={togglePopUp}>Login</li>
+            <li className='login-tag' onClick={togglePopUp}>
+              Login
+            </li>
             <li className='navbar-menubar-sidebar-container'>
               <img
                 className='hamburger-menubar'
@@ -36,9 +39,13 @@ const NavBar = () => {
               {OpenSidebar ? <SideBar /> : <></>}
             </li>
           </ul>
-          
         </div>
-        {showLoginModal ? <Signin togglePopUp={togglePopUp} setShowLoginModal={setShowLoginModal}/> : null}
+        {showLoginModal ? (
+          <Signin
+            togglePopUp={togglePopUp}
+            setShowLoginModal={setShowLoginModal}
+          />
+        ) : null}
       </div>
     </>
   );

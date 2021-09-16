@@ -25,7 +25,9 @@ function CodeReview() {
             <br />
             주고 받을 수 있습니다.
           </p>
-          <Link to='/codereview'><Button content='바로가기' backgroundColor='#2F8C4C' color='#fff' /></Link>
+          <Link to='/codereview'>
+            <Button content='바로가기' backgroundColor='#2F8C4C' color='#fff' />
+          </Link>
         </div>
       </div>
     </div>
