@@ -4,6 +4,7 @@ import { User } from '../entity/User';
 import { sendEmail } from './mail';
 import * as bcrypt from 'bcrypt';
 import { generateAccessToken, generateRefreshToken, generateEmailToken, verifyEmailToken } from './jwt';
+import axios from 'axios';
 
 export const emailLogin = async (req: Request, res: Response) => {
   try {
@@ -45,12 +46,37 @@ export const kakaoLogin = () => {
   
 }
 
-export const googleLogin = () => {
-
+export const googleLogin = async (req: Request, res: Response) => {
+  try {
+    const result = await axios.post('https://oauth2.googleapis.com/token', {
+      client_id: process.env.GOOGLE_CLIENT_ID,
+      client_secret: process.env.GOOGLE_CLIENT_SECRET,
+      code: req.body.authorizationCode,
+      grant_type: 'authorization_code',
+    })
+    const accessToken = result.data.access_token;
+    return res.status(200).send({ accessToken, message: 'Google login Success' });
+  } catch (err) {
+    console.log(err);
+    return res.send(err.message);
+  }
 }
 
-export const githubLogin = () => {
+export const githubLogin = async (req: Request, res: Response) => {
+  try {
+    const result = await axios.post('https://github.com/login/oauth/access_token', {
+      client_id: process.env.GITHUB_CLIENT_ID,
+      client_secret: process.env.GITHUB_CLIENT_SECRET,
+      code: req.body.authorizationCode
+    }, { headers: { accept: 'application/json' } })
 
+    const accessToken = result.data.access_token;
+    return res.status(200).send({ accessToken, message: 'Github login Success' });
+
+  } catch (err) {
+    console.log(err);
+    return res.send(err.message);
+  }
 }
 
 export const logout = (req: Request, res: Response) => {
