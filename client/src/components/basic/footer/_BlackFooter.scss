@@ -3,15 +3,8 @@
     padding: 0;
 }
 
-.footer{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: black;
-}
-
 .wiki{
-    padding-bottom : 10px;
+    padding-bottom : 30px;
 }
 
 .black-footer-container{
@@ -22,21 +15,24 @@
     text-align: center;
     text-decoration: none;
     line-height: 150%;
-    padding-top : 10px;
-    padding-bottom: 5px;
+    padding: 35px 0;
     margin: 0px;
     div{
         background-color: #263238;
         color: white;
         font-size: 13px;
         height:20px;
+        margin-bottom: 5px;
+        font-family: 'NanumGothic';
     }
     h1{
         background-color: #263238;
-        font-size: 18px;
+        font-size: 20px;
         font-weight: 800;
         color: white;
         line-height: 150%;
+        margin-bottom: 3px;
+        font-family: 'NanumGothic';
     }
     h2{
         background-color: #263238;
@@ -44,13 +40,16 @@
         color: white;
         line-height: 100%;
         font-weight: 300;
+        margin-bottom: 3px;
+        font-family: 'NanumGothic';
     }
     a {
         text-decoration: none;
         color: white;
         cursor: pointer;
         background-color: #263238;
-        font-size: 12px;
+        font-size: 13px;
+        font-family: 'NanumGothic';
     }
     
 }
