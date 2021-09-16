@@ -8,6 +8,7 @@ const NavBar = () => {
   const [openSidebar, setOpenSidebar] = useState(false);
   const showSidebar = () => setOpenSidebar(!openSidebar);
 
+
   return (
     <>
       <div className='navbar'>
@@ -29,6 +30,7 @@ const NavBar = () => {
               <span className={openSidebar? 'navbar-menu active' : 'navbar-menu'}>
                 <SideBar />
               </span>
+
             </li>
           </ul>
           
