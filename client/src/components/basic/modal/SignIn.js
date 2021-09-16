@@ -1,11 +1,17 @@
 import React from 'react';
-import Signinimg from '../../../images/Signin.svg';
+import Signinimg from '../../../images/Signinimg.svg';
 import codehighlogo from '../../../images/codehighlogo.png';
 import github from '../../../images/github.png';
 import kakao from '../../../images/kakao.png';
 import naver from '../../../images/naver.png';
 
+
 function SignIn(){
+  const CLIENT_ID = '797d18ff9367b68e06251728d174cc39';
+  const REDIRECT_URI = 'http://localhost:3000';
+  const KAKAO_AUTH_URL = `https://kauth.kakao.com/oauth/authorize?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=code`;
+
+  
   return (
     <div className='signin-modal'>
       <div className='signin-modal-overlay'></div>
@@ -29,7 +35,7 @@ function SignIn(){
           </ul>
           <div className='signin-oauth-container'>
             <a href=''><img src={github} alt='github' /></a>
-            <a href=''><img src={kakao} alt='kakao' /></a>
+            <a href={KAKAO_AUTH_URL}><img src={kakao} alt='kakao' /></a>
             <a href=''><img src={naver} alt='naver' /></a>
           </div>
         </div>

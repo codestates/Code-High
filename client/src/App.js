@@ -8,16 +8,18 @@ import WhiteFooter from './components/basic/footer/WhiteFooter'
 // import Landing from './pages/Landing';
 // import SideBar from './components/basic/navbar/SideBar';
 import CodeStorage from './pages/CodeStorage';
+import SignIn from './components/basic/modal/SignIn';
 
 function App(){
   return (
     // <CodeStorage/>
     // <Landing />
-    <SideBar/>
+    // <SideBar/>
     // <NavBar/>
     // <BlackFooter/>
     // <WhiteFooter/>
     // <Tag/>
+    <SignIn />
   );
 };
 
