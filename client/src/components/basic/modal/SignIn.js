@@ -23,6 +23,13 @@ function Signin ({ togglePopUp, setShowLoginModal }) {
     window.location.assign(githubLoginUrl);
   };
 
+  const kakaoLoginHandler = () => {
+    const client_id = '';
+    const redirect_uri = 'http://localhost:3000/';
+    const kakaoLoginUrl = `https://kauth.kakao.com/oauth/authorize?client_id=${client_id}&redirect_uri=${redirect_uri}&response_type=code`;
+    window.location.assign(kakaoLoginUrl);
+  }
+
   const GoogleLoginHandler = () => {
     const client_id = '';
     const redirect_uri = 'http://localhost:3000';
@@ -68,7 +75,7 @@ function Signin ({ togglePopUp, setShowLoginModal }) {
               <img src={github} alt='github' />
             </div>
             <div className='kakao-oauth'>
-              <img src={kakao} alt='kakao' />
+              <img src={kakao} alt='kakao' onClick={kakaoLoginHandler}/>
             </div>
             <div className='google-oauth' onClick={GoogleLoginHandler}>
               <img src={naver} alt='naver' />
