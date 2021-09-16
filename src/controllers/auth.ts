@@ -42,7 +42,7 @@ export const emailLogin = async (req: Request, res: Response) => {
 }
 
 export const kakaoLogin = () => {
-
+  
 }
 
 export const googleLogin = () => {
