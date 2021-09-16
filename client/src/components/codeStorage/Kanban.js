@@ -1,57 +1,56 @@
-import React from 'react';
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import SearchInput from '../basic/search/SearchInput';
 import Button from '../basic/button/Button';
 
-function Kanban() {
-  //Redux 사용 후 상태 유지, 데이터 전송 관리하기
-  let mockCode = [
+function Kanban () {
+  // Redux 사용 후 상태 유지, 데이터 전송 관리하기
+  const mockCode = [
     {
       subject: '알고리즘1',
       date: '2021.09.14',
-      code: 'if(now === night){return `I have to go to bed.`}',
+      code: 'if(now === night){return `I have to go to bed.`}'
     },
     {
       subject: '알고리즘2',
       date: '2021.09.14',
-      code: 'if(now === night){return `I have to go to bed.`}',
+      code: 'if(now === night){return `I have to go to bed.`}'
     },
     {
       subject: '알고리즘3',
       date: '2021.09.14',
-      code: 'if(now === lunch){return `I wanna sleep`}',
+      code: 'if(now === lunch){return `I wanna sleep`}'
     },
     {
       subject: '알고리즘4',
       date: '2021.09.14',
-      code: 'if(now === night){return `I have to go to bed.`}',
+      code: 'if(now === night){return `I have to go to bed.`}'
     },
     {
       subject: '알고리즘5',
       date: '2021.09.14',
-      code: 'if(now === morning){return `OMG`}',
+      code: 'if(now === morning){return `OMG`}'
     },
     {
       subject: '알고리즘6',
       date: '2021.09.14',
-      code: 'if(now === night){return `I have to go to bed.`}',
+      code: 'if(now === night){return `I have to go to bed.`}'
     },
     {
       subject: '알고리즘7',
       date: '2021.09.14',
-      code: 'if(now === richguy){return `I will run.!`}',
+      code: 'if(now === richguy){return `I will run.!`}'
     },
     {
       subject: '알고리즘8',
       date: '2021.09.14',
-      code: 'if(now === night){return `I have to go to bed.`}',
-    },
+      code: 'if(now === night){return `I have to go to bed.`}'
+    }
   ];
 
   useEffect(() => {
     const list_items = document.querySelectorAll('.kanban-list-item');
     const lists = document.querySelectorAll('.kanban-list');
-    console.log('list', list_items); //!빈객체임
+    console.log('list', list_items); //! 빈객체임
 
     let draggedItem = null;
 
@@ -119,8 +118,8 @@ function Kanban() {
               );
             })}
           </section>
-          <section className='kanban-list'></section>
-          <section className='kanban-list'></section>
+          <section className='kanban-list' />
+          <section className='kanban-list' />
         </div>
         {/* 푸터 */}
       </div>

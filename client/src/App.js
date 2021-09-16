@@ -9,7 +9,7 @@ import CodeInput from './pages/CodeInput';
 import CodeReview from './pages/CodeReview';
 import CodeStorage from './pages/CodeStorage';
 
-function App() {
+function App () {
   // Oauth authorizationCode 요청
   // TODO: 추후 클라이언트 내 다른 페이지로 리다이렉트 되도록 변경해야함
   useEffect(() => {
@@ -17,7 +17,7 @@ function App() {
     const authorizationCode = url.searchParams.get('code');
     if (authorizationCode) {
       console.log(authorizationCode);
-      //getGithubAccessToken(authorizationCode);
+      // getGithubAccessToken(authorizationCode);
       getGoogleAccessToken(authorizationCode);
     }
   });

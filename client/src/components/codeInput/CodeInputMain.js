@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 
-function CodeInputMain() {
+function CodeInputMain () {
   const [userCodeCard, setUserCodeCard] = useState({
     codeContent: '',
-    textContent: '',
+    textContent: ''
   });
 
   const handleInputValue = (key) => (e) => {
@@ -18,13 +18,13 @@ function CodeInputMain() {
           className='codeinputmain-code'
           placeholder='코드를 입력하세요.'
           onChange={handleInputValue('codeContent')}
-        ></textarea>
+        />
         <textarea
           type='text'
           className='codeinputmain-text'
           placeholder='설명을 입력하세요.'
           onChange={handleInputValue('textContent')}
-        ></textarea>
+        />
       </div>
     </div>
   );

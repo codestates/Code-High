@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import Button from '../basic/button/Button';
 import Signup from '../basic/modal/Signup';
 
-function ButtonContainer() {
-  //!modal
+function ButtonContainer () {
+  //! modal
   const [showSignupModal, setShowSignupModal] = useState(false);
   const SignupTogglePopUp = () => {
     setShowSignupModal(!showSignupModal);
@@ -21,12 +21,14 @@ function ButtonContainer() {
           />
         </div>
       </div>
-      {showSignupModal ? (
-        <Signup
-          SignupTogglePopUp={SignupTogglePopUp}
-          setShowSignupModal={setShowSignupModal}
-        />
-      ) : null}
+      {showSignupModal
+        ? (
+          <Signup
+            SignupTogglePopUp={SignupTogglePopUp}
+            setShowSignupModal={setShowSignupModal}
+          />
+          )
+        : null}
     </div>
   );
 }

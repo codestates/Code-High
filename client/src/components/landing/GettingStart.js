@@ -3,11 +3,11 @@ import gettingstartimg from '../../images/gettingstartimg.svg';
 import Button from '../basic/button/Button';
 import { Link } from 'react-router-dom';
 
-function GettingStart() {
+function GettingStart () {
   return (
     <div className='gettingstart'>
       <div className='gettingstart-container'>
-        <div className='gettingstart-rectangle up-on-scroll'></div>
+        <div className='gettingstart-rectangle up-on-scroll' />
         <div className='gettingstart-img-container up-on-scroll'>
           <img src={gettingstartimg} alt='gettingstartimg' />
         </div>

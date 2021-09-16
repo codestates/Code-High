@@ -1,5 +1,4 @@
 import React from 'react';
-import { useState } from 'react';
 
 const Tag = (props) => {
   const { content, onClickHandle, backgroundColor } = props;
@@ -7,7 +6,7 @@ const Tag = (props) => {
     <div
       className='tag-button'
       style={{
-        backgroundColor,
+        backgroundColor
       }}
       onClick={onClickHandle}
     >

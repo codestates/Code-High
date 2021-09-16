@@ -2,10 +2,10 @@ import React from 'react';
 import modifyimg from '../../../images/modifyimg.png';
 import codehighlogo from '../../../images/codehighlogo.png';
 
-function ModifyUser() {
+function ModifyUser () {
   return (
     <div className='modifyuser-modal'>
-      <div className='modifyuser-modal-overlay'></div>
+      <div className='modifyuser-modal-overlay' />
       <div className='modifyuser-container'>
         <div className='modifyuser-right'>
           <img src={modifyimg} alt='modifyuser' />

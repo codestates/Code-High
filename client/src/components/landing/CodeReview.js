@@ -3,15 +3,15 @@ import Button from '../basic/button/Button';
 import codereviwimg from '../../images/codereview.svg';
 import { Link } from 'react-router-dom';
 
-function CodeReview() {
+function CodeReview () {
   return (
     <div className='codereview'>
       <div className='codereview-container'>
         <div className='codereview-left up-on-scroll'>
           <div className='codereview-img-box'>
-            <div className='codereview-left-rectangle'></div>
+            <div className='codereview-left-rectangle' />
             <img src={codereviwimg} alt='codereviwimg' />
-            <div className='codereview-right-rectangle'></div>
+            <div className='codereview-right-rectangle' />
           </div>
         </div>
         <div className='codereview-right up-on-scroll'>

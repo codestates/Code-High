@@ -4,7 +4,7 @@ import Button from '../basic/button/Button';
 import Subbannerimg from '../../images/subbannerimg.svg';
 import gif from '../../images/gif.png';
 
-function Subbanner() {
+function Subbanner () {
   return (
     <div className='subbanner'>
       <div className='subbanner-container'>

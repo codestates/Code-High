@@ -1,7 +1,7 @@
 import React from 'react';
 import video from '../../images/video.png';
 
-function Uploadvideo() {
+function Uploadvideo () {
   return (
     <div className='uploadvideo'>
       <div className='uploadvideo-container up-on-scroll'>

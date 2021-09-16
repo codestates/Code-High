@@ -723,6 +723,13 @@
     .navbar-right li img {
       width: 25px; }
 
+.navbar-menu {
+  display: none; }
+
+.navbar-menu.active {
+  display: flex; }
+
+
 @media (min-width: 1200px) {
   .navbar {
     position: sticky;

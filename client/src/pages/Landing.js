@@ -10,7 +10,7 @@ import NavBar from '../components/basic/navbar/NavBar';
 import BlackFooter from '../components/basic/footer/BlackFooter';
 import SideBar from '../components/basic/navbar/SideBar';
 
-function Landing() {
+function Landing () {
   useEffect(() => {
     const isElementUnderBottom = (elem, triggerDiff) => {
       const { top } = elem.getBoundingClientRect();

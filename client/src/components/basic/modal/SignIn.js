@@ -5,7 +5,7 @@ import github from '../../../images/github.png';
 import kakao from '../../../images/kakao.png';
 import naver from '../../../images/naver.png';
 
-function Signin({ togglePopUp, setShowLoginModal }) {
+function Signin ({ togglePopUp, setShowLoginModal }) {
   const SigninBackgroundEl = useRef(null);
 
   const SigninBackgroundClick = (e) => {
@@ -38,7 +38,7 @@ function Signin({ togglePopUp, setShowLoginModal }) {
         className='signin-modal-overlay'
         onClick={(e) => SigninBackgroundClick(e)}
         ref={SigninBackgroundEl}
-      ></div>
+      />
       <div className='signin-container'>
         <div className='signin-right'>
           <img src={Signinimg} alt='signin' />

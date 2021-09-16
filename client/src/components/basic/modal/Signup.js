@@ -2,7 +2,7 @@ import React, { useRef } from 'react';
 import Signupimg from '../../../images/Signupimg.svg';
 import codehighlogo from '../../../images/codehighlogo.png';
 
-function Signup({ SignupTogglePopUp, setShowSignupModal }) {
+function Signup ({ SignupTogglePopUp, setShowSignupModal }) {
   const backgroundEl = useRef(null);
 
   const backgroundClick = (e) => {
@@ -16,7 +16,7 @@ function Signup({ SignupTogglePopUp, setShowSignupModal }) {
         className='signup-modal-overlay'
         onClick={(e) => backgroundClick(e)}
         ref={backgroundEl}
-      ></div>
+      />
       <div className='signup-container'>
         <div className='signup-right'>
           <img src={Signupimg} alt='signup' />

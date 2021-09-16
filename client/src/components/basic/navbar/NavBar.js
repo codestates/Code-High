@@ -6,10 +6,10 @@ import Signin from '../modal/Signin';
 import SideBar from '../navbar/SideBar';
 
 const NavBar = () => {
-  const [OpenSidebar, setOpenSidebar] = useState(false);
-  const showSidebar = () => setOpenSidebar(!OpenSidebar);
+  const [openSidebar, setOpenSidebar] = useState(false);
+  const showSidebar = () => setOpenSidebar(!openSidebar);
 
-  //!modal
+  //! modal
   const [showLoginModal, setShowLoginModal] = useState(false);
   const togglePopUp = () => {
     setShowLoginModal(!showLoginModal);
@@ -36,16 +36,20 @@ const NavBar = () => {
                 alt='menubar'
                 onClick={showSidebar}
               />
-              {OpenSidebar ? <SideBar /> : <></>}
+              <span className={openSidebar ? 'navbar-menu active' : 'navbar-menu'}>
+                <SideBar />
+              </span>
             </li>
           </ul>
         </div>
-        {showLoginModal ? (
-          <Signin
-            togglePopUp={togglePopUp}
-            setShowLoginModal={setShowLoginModal}
-          />
-        ) : null}
+        {showLoginModal
+          ? (
+            <Signin
+              togglePopUp={togglePopUp}
+              setShowLoginModal={setShowLoginModal}
+            />
+            )
+          : null}
       </div>
     </>
   );
