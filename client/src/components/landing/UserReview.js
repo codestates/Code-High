@@ -1,7 +1,6 @@
 import React from 'react';
 import user from '../../images/user.png';
 import star from '../../images/star.png';
-import { indigo } from 'color-name';
 
 function UserReview(){
 
@@ -15,11 +14,11 @@ function UserReview(){
   return (
     <div className='userreview'>
       <div className='userreview-container'>
-        <div className='userreview-subject'>
+        <div className='userreview-subject up-on-scroll'>
           <h1>User Review</h1>
         </div>
-        <div className='userreview-reverse'>
-        <div className='userreview-box-container'>
+        <div className='userreview-reverse up-on-scroll'>
+        <div className='userreview-box-container up-on-scroll'>
           {mockReview.map((info) => {
             return <span>
             <img src={info.img} alt='userimage' />
@@ -29,8 +28,8 @@ function UserReview(){
           </span>
           })}
         </div>
-        <div className='userreview-howmany-container'>
-          <div className='userreview-howmany'>
+        <div className='userreview-howmany-container up-on-scroll'>
+          <div className='userreview-howmany up-on-scroll'>
             <h1>19,203,049명이 코드를 공유하고 있습니다.</h1>
           </div>
         </div>

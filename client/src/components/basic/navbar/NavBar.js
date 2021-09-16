@@ -1,34 +1,41 @@
-import React, {useState} from 'react';
-import Logo from '../../../images/codehighlogo.png'
-import HamburgerMenubar from '../../../images/hamburger-menu-icon.jpeg'
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import Logo from '../../../images/codehighlogo.png';
+import HamburgerMenubar from '../../../images/hamburger-menu-icon.jpeg';
+import SideBar from './SideBar';
 
 const NavBar = () => {
-    const [OpenSidebar, setOpenSidebar] = useState(false);
-    const showSidebar = () => setOpenSidebar(!OpenSidebar);
+  const [openSidebar, setOpenSidebar] = useState(false);
+  const showSidebar = () => setOpenSidebar(!openSidebar);
 
-    return (
-        <>
-            <div className="navbar-container">
-                <div className="navbar-logo-container">
-                    <img className="logo" src={Logo} alt="logo"></img>
-                </div>
-                
+  return (
+    <>
+      <div className='navbar'>
+        <div className='navbar-container'>
 
-                <div className="navbar-right">
-                    <li className="login-tag">
-                        Login/Logout
-                    </li>
-                    <li className="navbar-menubar-sidebar-container">
-                        <img className="hamburger-menubar" src={HamburgerMenubar} alt="menubar"
-                        onClick={showSidebar}
-                        />
-                        {OpenSidebar? <Sidebar/>:<></>}
-                    <li></li>
-                    </li>
-                </div>                      
-            </div>
-        </>
-    );
+          <div className='navbar-logo-container'>
+          <Link to='/'><img src={Logo} alt='logo'/></Link>
+          </div>
+
+          <ul className='navbar-right'>
+            <li className='login-tag'>Login</li>
+            <li className='navbar-menubar-sidebar-container'>
+              <img
+                className='hamburger-menubar'
+                src={HamburgerMenubar}
+                alt='menubar'
+                onClick={showSidebar}
+              />
+              <span className={openSidebar? 'navbar-menu active' : 'navbar-menu'}>
+                <SideBar />
+              </span>
+            </li>
+          </ul>
+          
+        </div>
+      </div>
+    </>
+  );
 };
 
 export default NavBar;
