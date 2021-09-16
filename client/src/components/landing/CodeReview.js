@@ -6,14 +6,14 @@ function CodeReview() {
   return (
     <div className='codereview'>
       <div className='codereview-container'>
-        <div className='codereview-left'>
+        <div className='codereview-left up-on-scroll'>
           <div className='codereview-img-box'>
             <div className='codereview-left-rectangle'></div>
             <img src={codereviwimg} alt='codereviwimg' />
             <div className='codereview-right-rectangle'></div>
           </div>
         </div>
-        <div className='codereview-right'>
+        <div className='codereview-right up-on-scroll'>
           <h1>코드리뷰</h1>
           <p>
             코드리뷰를 통해
