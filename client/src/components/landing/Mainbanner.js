@@ -3,8 +3,7 @@ import { Link } from 'react-router-dom';
 import mainbannerimg from '../../images/mainbannerimg.svg';
 import Button from '../basic/button/Button';
 
-function Mainbanner() {
-
+function Mainbanner () {
   return (
     <div className='mainbanner'>
       <div className='mainbanner-container'>
@@ -20,15 +19,39 @@ function Mainbanner() {
             이해도에 따라 알고리즘 코드를 분류해 실력을 높혀보세요.
           </p>
           <div className='mainbanner-button-container'>
-            <Button content='시작하기' backgroundColor='#2F8C4C' color='#fff'/>
-            <Button content='다른 코드 구경하기' backgroundColor='#E1E1E1' />
+            <Link to='/codeinput'>
+              <Button
+                content='시작하기'
+                backgroundColor='#2F8C4C'
+                color='#fff'
+              />
+            </Link>
+            <Link to='/codereview'>
+              <Button
+                content='다른 코드 구경하기'
+                backgroundColor='#E1E1E1'
+                color='#000'
+              />
+            </Link>
           </div>
         </div>
         <div className='mainbanner-right'>
           <img src={mainbannerimg} alt='' />
           <div className='mainbanner-button-container-mobile'>
-            <Button content='시작하기' backgroundColor='#2F8C4C' color='#fff'/>
-            <Link to='/codereview'><Button content='다른 코드 구경하기' backgroundColor='#E1E1E1' /></Link>
+            <Link to='/codeinput'>
+              <Button
+                content='시작하기'
+                backgroundColor='#2F8C4C'
+                color='#fff'
+              />
+            </Link>
+            <Link to='/codereview'>
+              <Button
+                content='다른 코드 구경하기'
+                backgroundColor='#E1E1E1'
+                color='#000'
+              />
+            </Link>
           </div>
         </div>
       </div>

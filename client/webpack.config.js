@@ -4,14 +4,14 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  mode:'development',
+  mode: 'development',
   entry: './src/index.js',
   resolve: {
-    extensions: ['.js', '.jsx', '.css'] 
+    extensions: ['.js', '.jsx', '.css']
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'bundle.js',
+    filename: 'bundle.js'
   },
   module: {
     rules: [
@@ -20,16 +20,16 @@ module.exports = {
         exclude: /node_modules/,
         use: 'babel-loader'
       },
-      { 
-        test: /\.html$/, 
-        use: 'html-loader' 
+      {
+        test: /\.html$/,
+        use: 'html-loader'
       },
       {
         test: /\.css$/,
         use: [{ loader: 'style-loader' }, { loader: 'css-loader' }]
       },
-      { 
-        test: /\.scss$/, use: [ "style-loader", "css-loader", "sass-loader" ] 
+      {
+        test: /\.scss$/, use: ['style-loader', 'css-loader', 'sass-loader']
       },
       {
         // write image files under 10k to inline or copy image files over 10k
@@ -40,10 +40,10 @@ module.exports = {
             options: {
               limit: 10000,
               fallback: 'file-loader',
-              name: 'images/[name].[ext]',
-            },
-          },
-        ],
+              name: 'images/[name].[ext]'
+            }
+          }
+        ]
       },
       {
         // write files under 10k to inline or copy files over 10k
@@ -54,11 +54,11 @@ module.exports = {
             options: {
               limit: 10000,
               fallback: 'file-loader',
-              name: 'fonts/[name].[ext]',
-            },
-          },
-        ],
-      },
+              name: 'fonts/[name].[ext]'
+            }
+          }
+        ]
+      }
       // {
       //   test: /\.(png|jpe?g|gif|webp)(\?.*)?$/,
       //   loader: 'webpack-loader-s3',
@@ -80,5 +80,5 @@ module.exports = {
     hot: true,
     historyApiFallback: true,
     open: true
-  },
+  }
 };

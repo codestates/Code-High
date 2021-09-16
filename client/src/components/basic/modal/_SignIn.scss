@@ -41,8 +41,15 @@
   .signin-close {
     width: 90%;
     text-align: end;
-    font-size: 30px;
     margin-bottom: 60px;
+    padding: 10px;
+    span{
+        font-size: 30px;
+
+      }
+     &:focus {
+       cursor: pointer;
+     }
   }
   img {
     width: 250px;

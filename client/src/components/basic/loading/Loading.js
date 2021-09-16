@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Loading() {
+function Loading () {
   return (
     <div className='loading-container'>
       <div class='loadingio-spinner-spin-536paybpd9n'>
