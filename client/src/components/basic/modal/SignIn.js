@@ -7,6 +7,25 @@ import naver from '../../../images/naver.png';
 
 
 function SignIn(){
+
+  const githubLoginHandler = () => {
+    const client_id = '';
+    const client_secret = '';
+    const redirect_uri = 'http://localhost:3000';
+    const scope = 'user'
+    const githubLoginUrl = `https://github.com/login/oauth/authorize?client_id=${client_id}&redirect_uri=${redirect_uri}&scope=${scope}`
+    window.location.assign(githubLoginUrl);
+  }
+
+  const GoogleLoginHandler = () => {
+    const client_id = '';
+    const redirect_uri = 'http://localhost:3000';
+    const response_type = 'code';
+    const scope = 'https://www.googleapis.com/auth/userinfo.email';
+    const googleLoginUrl = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${client_id}&redirect_uri=${redirect_uri}&response_type=${response_type}&scope=${scope}&access_type=offline`
+    window.location.assign(googleLoginUrl);
+  }
+
   return (
     <div className='signin-modal'>
       <div className='signin-modal-overlay'></div>
@@ -29,9 +48,9 @@ function SignIn(){
             <li><a href=''>회원가입</a></li>
           </ul>
           <div className='signin-oauth-container'>
-            <a href=''><img src={github} alt='github' /></a>
-            <a href=''><img src={kakao} alt='kakao'  /></a>
-            <a href=''><img src={naver} alt='naver' /></a>
+            <div className='github-oauth' onClick={githubLoginHandler}><img src={github} alt='github'/></div>
+            <div className='kakao-oauth' ><img src={kakao} alt='kakao'  /></div>
+            <div className='google-oauth' onClick={GoogleLoginHandler}><img src={naver} alt='naver' /></div>
           </div>
         </div>
       </div>
