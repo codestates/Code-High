@@ -13,9 +13,6 @@ function CodeInputTagBox(){
   const [choiceTag, setChoiceTag] = useState([]);
 
   const handleChangeColor = (e) => {
-    console.log('태그 서버에 보내주기 : ', choiceTag)
-    console.log('스타일', e.target.style.backgroundColor)
-
     //빈 배열이면 클릭한 정보를 배열에 넣습니다. 색 바꾸기
     //빈 배열이 아니라면, 배열을 필터해 있는지 없는지 살피고,
     //없다면 추가하고, 색을 바꿉니다.
@@ -45,19 +42,19 @@ function CodeInputTagBox(){
         <div className='codeinputtagbox-tagbox'>
           <span>알고리즘</span>
           <div>{tagNameMock[0].map((item)=> {
-            return <Tag content={item} onClickHandle={handleChangeColor}/>
+            return <Tag content={item} backgroundColor='#E1E1E1' onClickHandle={handleChangeColor}/>
           })}</div>
         </div>
         <div className='codeinputtagbox-tagbox'>
           <span>플랫폼</span>
           <div>{tagNameMock[1].map((item)=> {
-            return <Tag content={item} onClickHandle={handleChangeColor}/>
+            return <Tag content={item} backgroundColor='#E1E1E1' onClickHandle={handleChangeColor}/>
           })}</div>
         </div>
         <div className='codeinputtagbox-tagbox'>
           <span>난이도</span>
           <div>{tagNameMock[2].map((item)=> {
-            return <Tag content={item} onClickHandle={handleChangeColor}/>
+            return <Tag content={item} backgroundColor='#E1E1E1' onClickHandle={handleChangeColor}/>
           })}</div>
         </div>
         <div className='codeinputtagbox-tagbox'>

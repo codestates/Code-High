@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useRef}  from 'react';
 import Signinimg from '../../../images/Signinimg.svg';
 import codehighlogo from '../../../images/codehighlogo.png';
 import github from '../../../images/github.png';
@@ -6,7 +6,14 @@ import kakao from '../../../images/kakao.png';
 import naver from '../../../images/naver.png';
 
 
-function SignIn(){
+function Signin({togglePopUp, setShowLoginModal}){
+  const SigninBackgroundEl = useRef(null)
+  
+  const SigninBackgroundClick = (e) => {
+    if(e.target === SigninBackgroundEl.current) {
+      setShowLoginModal(!togglePopUp)
+    }
+  }
 
   const githubLoginHandler = () => {
     const client_id = '';
@@ -28,13 +35,13 @@ function SignIn(){
 
   return (
     <div className='signin-modal'>
-      <div className='signin-modal-overlay'></div>
+      <div className='signin-modal-overlay' onClick={(e) => SigninBackgroundClick(e)} ref={SigninBackgroundEl}></div>
       <div className='signin-container'>
         <div className='signin-right'>
           <img src={Signinimg} alt='signin' />
         </div>
         <div className='signin-left'>
-          <div className='signin-close'>&times;</div>
+          <div className='signin-close'><span onClick={togglePopUp}>&times;</span></div>
           <img src={codehighlogo} alt='logo' />
           <article>
             <input placeholder='Email'/>
@@ -58,4 +65,4 @@ function SignIn(){
   );
 };
 
-export default SignIn;
+export default Signin;

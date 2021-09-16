@@ -1,6 +1,7 @@
 import React from 'react';
 import gettingstartimg from '../../images/gettingstartimg.svg';
 import Button from '../basic/button/Button';
+import { Link } from 'react-router-dom';
 
 function GettingStart() {
 
@@ -16,7 +17,7 @@ function GettingStart() {
           <p>
             풀어본 코드를 이해도에 따라 <br /> 칸반보드에 분류할 수 있습니다.
           </p>
-          <Button content='Start' backgroundColor='#2F8C4C' color='#fff' />
+          <Link to='/codestorage'><Button content='Start' backgroundColor='#2F8C4C' color='#fff' /></Link>
         </div>
       </div>
     </div>

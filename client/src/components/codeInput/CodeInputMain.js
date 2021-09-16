@@ -10,7 +10,7 @@ function CodeInputMain() {
   const handleInputValue = (key) => (e) => {
     setUserCodeCard({ ...userCodeCard, [key] : e.target.value })
   }
-  console.log(userCodeCard)
+
   return (
     <div className='codeinputmain'>
       <div className='codeinputmain-container'>

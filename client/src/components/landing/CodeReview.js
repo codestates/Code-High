@@ -1,6 +1,7 @@
 import React from 'react';
 import Button from '../basic/button/Button';
 import codereviwimg from '../../images/codereview.svg';
+import { Link } from 'react-router-dom';
 
 function CodeReview() {
   return (
@@ -24,7 +25,7 @@ function CodeReview() {
             <br />
             주고 받을 수 있습니다.
           </p>
-          <Button content='바로가기' backgroundColor='#2F8C4C' color='#fff' />
+          <Link to='/codereview'><Button content='바로가기' backgroundColor='#2F8C4C' color='#fff' /></Link>
         </div>
       </div>
     </div>

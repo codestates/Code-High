@@ -22,10 +22,7 @@ function CodeReviewBoard(){
     {'subject':'알고리즘17', 'date':'2021.09.14', 'code':'if(now === night){return `I have to go to bed.`}'},
     {'subject':'알고리즘18', 'date':'2021.09.14', 'code':'if(now === morning){return `OMG`}'},
   ]
-  useEffect(()=> {
-    console.log('나와주세요',document.querySelectorAll('.codereviewboard-cardbox').clientHeight())
 
-  },[])
   return (
     <div className='codereviewboard'>
       <div className='codereviewboard-container'>

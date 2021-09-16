@@ -41,8 +41,11 @@
   .signup-close {
     width: 90%;
     text-align: end;
-    font-size: 30px;
     margin-bottom: 30px;
+    padding: 5px;
+    span{
+      font-size: 30px;
+    }
   }
   img {
     width: 250px;
@@ -54,7 +57,8 @@
       font-family: 'NanumGothic';
       font-size: 14px;
       font-weight: 600;
-      margin-bottom: 5px;
+      margin-bottom: 10px;
+      padding: 5px 0;
     }
     input {
       border: solid 1px #{$gray};

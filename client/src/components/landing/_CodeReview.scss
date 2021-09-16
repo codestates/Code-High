@@ -51,10 +51,12 @@
      margin-bottom: 40px;
      font-family: 'NanumGothic';
    }
-   span {
-     padding: 0 30px;
-     font-family: 'NanumGothic';
-   }
+   a{
+    span {
+      font-family: 'NanumGothic';
+      padding: 15px 20px;
+    }
+  }
 }
 
 @include desktop {

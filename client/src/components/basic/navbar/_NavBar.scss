@@ -77,7 +77,7 @@
 
 @include mobile {
     .navbar-container {
-        height: 100px;
+        height: 70px;
     }
     .navbar-logo-container{
         img {
@@ -86,8 +86,6 @@
         }
     }
     .navbar-container {
-        justify-content: center;
-        flex-direction: column;
         li:nth-child(1){
             display: none;
             margin-left: 0px;

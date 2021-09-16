@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 import axios from 'axios';
 import { Route, Switch } from 'react-router-dom';
 import Landing from './pages/Landing';
-import SignIn from './components/basic/modal/SignIn';
+import Signin from './components/basic/modal/Signin';
 import Signup from './components/basic/modal/Signup';
 
 import CodeInput from './pages/CodeInput';
@@ -51,7 +51,7 @@ function App() {
           <Landing/>
         </Route>
         <Route path='/login'>
-          <SignIn/>
+          <Signin/>
         </Route>
         <Route path='/signup'>
           <Signup/>
