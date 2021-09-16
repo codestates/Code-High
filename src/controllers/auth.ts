@@ -42,8 +42,19 @@ export const emailLogin = async (req: Request, res: Response) => {
   }
 }
 
-export const kakaoLogin = () => {
-  
+export const kakaoLogin = async (req: Request, res: Response) => {
+  try {
+    const result = await axios.post('https://kauth.kakao.com/oauth/token', {
+      client_id: process.env.KAKAO_CLIENT_ID,
+      client_secret: process.env.KAKAO_CLIENT_SECRET,
+      code: req.body.authorizationCode,
+      grant_type: 'authorization_code',
+    })
+    const accessToken = result.data.access_token;
+    return res.status(200).send({ accessToken, message: 'Kakao Login Success'});
+  } catch (err) {
+    throw new Error(err);
+  }
 }
 
 export const googleLogin = async (req: Request, res: Response) => {
