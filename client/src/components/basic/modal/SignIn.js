@@ -8,7 +8,7 @@ import naver from '../../../images/naver.png';
 function Signin({ togglePopUp, setShowLoginModal }) {
   const SigninBackgroundEl = useRef(null);
 
-  function SignIn() {
+  
     const kakaoLoginHandler = () => {
       const client_id = '';
       const redirect_uri = 'http://localhost:3000';
@@ -86,5 +86,5 @@ function Signin({ togglePopUp, setShowLoginModal }) {
       </div>
     );
   }
-}
+
 export default Signin;
