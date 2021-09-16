@@ -1,9 +1,18 @@
 import React from 'react';
+import { useState } from 'react';
 
-const Tag = () => {
+const Tag = (props) => {
+    const [color, setColor] = useState(gray)
+
+    const { content, onClickHandle, backgroundColor } = props;
     return (
-        <div>
-            <div className="tag-container">[name]</div>
+        <div 
+        className="tag-button"
+        style={{
+            backgroundColor
+        }}
+        onClick={onClickHandle}
+        >{content}
         </div>
     );
 };

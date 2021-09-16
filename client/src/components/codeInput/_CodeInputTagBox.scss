@@ -1,0 +1,31 @@
+.codeinputtagbox{
+  display: flex; 
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.codeinputtagbox-container{
+  width: 1200px;
+  display: flex;
+  flex-direction: column;
+}
+
+.codeinputtagbox-tagbox{
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+    span{
+      display: flex;
+      align-items: center;
+      font-size: 1.3rem;
+      margin: 7px;
+      width: 53px;
+      text-align: center;
+      font-family: 'NanumGothic';
+      font-weight: 500;
+    }
+    div:nth-child(2){
+      display: flex;
+    }
+}

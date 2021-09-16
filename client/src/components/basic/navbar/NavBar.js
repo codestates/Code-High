@@ -1,13 +1,15 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Logo from '../../../images/codehighlogo.png'
 import HamburgerMenubar from '../../../images/hamburger-menu-icon.jpeg'
-import SideBar from './SideBar'
 
 const NavBar = () => {
+    const [OpenSidebar, setOpenSidebar] = useState(false);
+    const showSidebar = () => setOpenSidebar(!OpenSidebar);
+
     return (
         <>
             <div className="navbar-container">
-                <div className="navbar-logo">
+                <div className="navbar-logo-container">
                     <img className="logo" src={Logo} alt="logo"></img>
                 </div>
                 
@@ -17,8 +19,11 @@ const NavBar = () => {
                         Login/Logout
                     </li>
                     <li className="navbar-menubar-sidebar-container">
-                        <img className="hamburger-menubar" src={HamburgerMenubar} alt="menubar"/>
-                    <li><SideBar/></li>
+                        <img className="hamburger-menubar" src={HamburgerMenubar} alt="menubar"
+                        onClick={showSidebar}
+                        />
+                        {OpenSidebar? <Sidebar/>:<></>}
+                    <li></li>
                     </li>
                 </div>                      
             </div>

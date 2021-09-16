@@ -21,6 +21,13 @@
 @import '../components/basic/search/SearchInput';
 @import '../components/basic/tag/Tag';
 
+@import '../components/codeInput/CodeInputMain';
+@import '../components/codeInput/CodeInputSecretButton';
+@import '../components/codeInput/CodeInputTagBox';
+@import '../components/codeInput/CodeInputTitle';
+
+@import '../components/codeReview/CodeReviewBoard';
+
 @import '../components/codeStorage/Kanban';
 
 @import '../components/landing/ButtonContainer';

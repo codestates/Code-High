@@ -1,0 +1,33 @@
+.codeinputtitle{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px 0;
+}
+
+.codeinputtitle-container{
+  width: 1200px;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+   span{
+     font-size: 1.3rem;
+     margin: 0 10px;
+     width: 35px;
+     min-width: 35px;
+     font-family: 'NanumGothic';
+     font-weight: 600;
+   }
+   input {
+     width: 90vw;
+     height: 2vh;
+     padding: 0 5px;
+     font-size: 1.3rem;
+     border-radius: 3px;
+     border: solid 1px #{$gray};
+     font-family: 'NanumGothic';
+      &:focus {
+        outline: none;
+      }
+   }
+}
