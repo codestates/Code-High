@@ -15,6 +15,7 @@ function Signin({ togglePopUp, setShowLoginModal }) {
       const kakaoLoginUrl = `https://kauth.kakao.com/oauth/authorize?client_id=${client_id}&redirect_uri=${redirect_uri}&response_type=code`;
       window.location.assign(kakaoLoginUrl);
     }
+    
     const SigninBackgroundClick = (e) => {
       if (e.target === SigninBackgroundEl.current) {
         setShowLoginModal(!togglePopUp);
@@ -74,7 +75,7 @@ function Signin({ togglePopUp, setShowLoginModal }) {
               <div className='github-oauth' onClick={githubLoginHandler}>
                 <img src={github} alt='github' />
               </div>
-              <div className='kakao-oauth'>
+              <div className='kakao-oauth' onClick={kakaoLoginHandler}>
                 <img src={kakao} alt='kakao' />
               </div>
               <div className='google-oauth' onClick={GoogleLoginHandler}>
