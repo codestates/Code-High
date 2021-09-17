@@ -5,7 +5,7 @@ import github from '../../../images/github.png';
 import kakao from '../../../images/kakao.png';
 import naver from '../../../images/naver.png';
 
-function Signin({ togglePopUp, setShowLoginModal }) {
+function Signin ({ togglePopUp, setShowLoginModal }) {
   const SigninBackgroundEl = useRef(null);
 
     

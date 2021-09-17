@@ -1686,11 +1686,6 @@ a {
     border: none;
     font-family: 'NanumGothic'; }
 
-* {
-  border-radius: 5px;
-  font-family: 'NanumGothic';
-  font-size: 13px; }
-
 .postcomment {
   padding: 10px;
   margin: auto; }
