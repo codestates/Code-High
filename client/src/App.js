@@ -59,15 +59,6 @@ function App () {
     }
   };
 
-  const getKakaoAccessToken = async (authorizationCode) => {
-    try {
-      const serverUrl = 'http://localhost:4000/auth/kakao';
-      const token = await axios.post(serverUrl, { authorizationCode });
-    } catch (err) {
-      throw new Error(err);
-    }
-  }
-
   return (
     <>
       <Switch>
