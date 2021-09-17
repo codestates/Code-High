@@ -24,9 +24,9 @@ function App () {
     const authorizationCode = url.searchParams.get('code');
     if (authorizationCode) {
       console.log(authorizationCode);
-      getGithubAccessToken(authorizationCode);
-      getKakaoAccessToken(authorizationCode);
-      getGoogleAccessToken(authorizationCode);
+      // getGithubAccessToken(authorizationCode);
+      // getKakaoAccessToken(authorizationCode);
+      // getGoogleAccessToken(authorizationCode);
     }
   });
 
@@ -58,15 +58,6 @@ function App () {
       console.log(err);
     }
   };
-
-  const getKakaoAccessToken = async (authorizationCode) => {
-    try {
-      const serverUrl = 'http://localhost:4000/auth/kakao';
-      const token = await axios.post(serverUrl, { authorizationCode });
-    } catch (err) {
-      throw new Error(err);
-    }
-  }
 
   return (
     <>
