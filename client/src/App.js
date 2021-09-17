@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import axios from 'axios';
 import { Route, Switch } from 'react-router-dom';
 import Landing from './pages/Landing';
-import Signin from './components/basic/modal/Signin';
+import Signin from './components/basic/modal/SignIn';
 import Signup from './components/basic/modal/Signup';
 import CodeInput from './pages/CodeInput';
 import SideBar from './components/basic/navbar/SideBar';

@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Logo from '../../../images/codehighlogo.png';
 import HamburgerMenubar from '../../../images/hamburger-menu-icon.jpeg';
-import Signin from '../modal/Signin';
+import Signin from '../modal/SignIn';
 import SideBar from '../navbar/SideBar';
 
 const NavBar = () => {
