@@ -1,0 +1,38 @@
+*{
+    border-radius: 5px;
+    font-family: 'NanumGothic';
+    font-size: 13px;
+}
+.postcomment{
+    padding :10px;
+    margin: auto;
+}
+
+.postcomment-input-container-text{
+    width: 1200px;
+    display: flex;
+    margin: auto;
+}
+
+.postcomment-input-message{
+    width: 1070px;
+    height: 50px;
+    color: #{$black};
+    background-color: #{$gray};
+}
+
+.postcomment-button{
+    margin-left: 30px;
+    width: 100px;
+}
+
+.postcomment-output-container{
+    margin: auto;
+    margin-top: 15px;
+    display: flex;
+    width: 1200px;
+    height: 50px;
+    color: #{$black};
+    border: 1px solid #{$gray};
+    align-items: center;
+}
