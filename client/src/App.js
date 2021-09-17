@@ -8,6 +8,8 @@ import Signup from './components/basic/modal/Signup';
 import CodeInput from './pages/CodeInput';
 import CodeReview from './pages/CodeReview';
 import CodeStorage from './pages/CodeStorage';
+import UserWriteInfo from './components/mypage/UserWriteInfo';
+import CodePost from './pages/CodePost'
 
 function App () {
   // Oauth authorizationCode 요청
@@ -62,6 +64,12 @@ function App () {
         </Route>
         <Route path='/codereview'>
           <CodeReview />
+        </Route>
+        <Route path='/post'>
+          <CodePost />
+        </Route>
+        <Route path='/mypage'>
+          <UserWriteInfo />
         </Route>
       </Switch>
     </>
