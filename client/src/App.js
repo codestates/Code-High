@@ -24,9 +24,9 @@ function App () {
     const authorizationCode = url.searchParams.get('code');
     if (authorizationCode) {
       console.log(authorizationCode);
-      getGithubAccessToken(authorizationCode);
-      getKakaoAccessToken(authorizationCode);
-      getGoogleAccessToken(authorizationCode);
+      // getGithubAccessToken(authorizationCode);
+      // getKakaoAccessToken(authorizationCode);
+      // getGoogleAccessToken(authorizationCode);
     }
   });
 
