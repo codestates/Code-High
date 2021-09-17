@@ -4,10 +4,15 @@ import { Route, Switch } from 'react-router-dom';
 import Landing from './pages/Landing';
 import Signin from './components/basic/modal/Signin';
 import Signup from './components/basic/modal/Signup';
-
 import CodeInput from './pages/CodeInput';
-import CodeReview from './pages/CodeReview';
+import SideBar from './components/basic/navbar/SideBar';
+import NavBar from './components/basic/navbar/NavBar'
+import Tag from './components/basic/tag/Tag'
+import BlackFooter from './components/basic/footer/BlackFooter'
+import WhiteFooter from './components/basic/footer/WhiteFooter'
 import CodeStorage from './pages/CodeStorage';
+import CodeReview from './pages/CodeReview';
+
 import UserWriteInfo from './components/mypage/UserWriteInfo';
 import CodePost from './pages/CodePost'
 
@@ -53,6 +58,15 @@ function App () {
       console.log(err);
     }
   };
+
+  const getKakaoAccessToken = async (authorizationCode) => {
+    try {
+      const serverUrl = 'http://localhost:4000/auth/kakao';
+      const token = await axios.post(serverUrl, { authorizationCode });
+    } catch (err) {
+      throw new Error(err);
+    }
+  }
 
   return (
     <>
