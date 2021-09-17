@@ -17,7 +17,8 @@ function App () {
     const authorizationCode = url.searchParams.get('code');
     if (authorizationCode) {
       console.log(authorizationCode);
-      // getGithubAccessToken(authorizationCode);
+      getGithubAccessToken(authorizationCode);
+      getKakaoAccessToken(authorizationCode);
       getGoogleAccessToken(authorizationCode);
     }
   });
@@ -39,7 +40,7 @@ function App () {
     } catch (err) {
       throw new Error(err);
     }
-  }
+  };
 
   const getGoogleAccessToken = async (authorizationCode) => {
     try {
