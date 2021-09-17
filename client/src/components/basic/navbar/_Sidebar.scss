@@ -1,8 +1,11 @@
 .sidebar-container{
-    height : 100vh;
-    width: 230px;
-    background-color: $gray;
-    display: flex;
+    margin-top: 20px;
+    padding-top: 20px;
+    height : 230px;
+    width: 180px;
+    background-color: rgba(255, 250, 250, 0.8);
+    border-radius: 10px;
+    border: 1px solid;
     position: absolute;
     right: 0;
     
@@ -11,11 +14,13 @@
     margin:auto;
 }
 ul{
-    font-size: 16px;
+    font-size: 14px;
+    text-decoration: none;
+    color: black;
     line-height: 200%;
     text-align: center;
     cursor: pointer;
     margin: auto;
     font-family: 'NanumGothic';
-    font-weight: 500;
+    font-weight: 700;
 }

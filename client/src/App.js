@@ -13,6 +13,8 @@ import WhiteFooter from './components/basic/footer/WhiteFooter'
 import CodeStorage from './pages/CodeStorage';
 import CodeReview from './pages/CodeReview';
 
+import UserWriteInfo from './components/mypage/UserWriteInfo';
+import CodePost from './pages/CodePost'
 
 function App () {
   // Oauth authorizationCode 요청
@@ -22,7 +24,8 @@ function App () {
     const authorizationCode = url.searchParams.get('code');
     if (authorizationCode) {
       console.log(authorizationCode);
-      // getGithubAccessToken(authorizationCode);
+      getGithubAccessToken(authorizationCode);
+      getKakaoAccessToken(authorizationCode);
       getGoogleAccessToken(authorizationCode);
     }
   });
@@ -34,6 +37,15 @@ function App () {
       console.log(token.data);
     } catch (err) {
       console.log(err);
+    }
+  };
+
+  const getKakaoAccessToken = async (authorizationCode) => {
+    try {
+      const serverUrl = 'http://localhost:4000/auth/kakao';
+      const token = await axios.post(serverUrl, { authorizationCode });
+    } catch (err) {
+      throw new Error(err);
     }
   };
 
@@ -76,6 +88,12 @@ function App () {
         </Route>
         <Route path='/codereview'>
           <CodeReview />
+        </Route>
+        <Route path='/post'>
+          <CodePost />
+        </Route>
+        <Route path='/mypage'>
+          <UserWriteInfo />
         </Route>
       </Switch>
     </>

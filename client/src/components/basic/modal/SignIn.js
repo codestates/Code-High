@@ -8,13 +8,6 @@ import naver from '../../../images/naver.png';
 function Signin({ togglePopUp, setShowLoginModal }) {
   const SigninBackgroundEl = useRef(null);
 
-  
-    const kakaoLoginHandler = () => {
-      const client_id = '';
-      const redirect_uri = 'http://localhost:3000';
-      const kakaoLoginUrl = `https://kauth.kakao.com/oauth/authorize?client_id=${client_id}&redirect_uri=${redirect_uri}&response_type=code`;
-      window.location.assign(kakaoLoginUrl);
-    }
     
     const SigninBackgroundClick = (e) => {
       if (e.target === SigninBackgroundEl.current) {
@@ -31,14 +24,21 @@ function Signin({ togglePopUp, setShowLoginModal }) {
       window.location.assign(githubLoginUrl);
     };
 
-    const GoogleLoginHandler = () => {
-      const client_id = '';
-      const redirect_uri = 'http://localhost:3000';
-      const response_type = 'code';
-      const scope = 'https://www.googleapis.com/auth/userinfo.email';
-      const googleLoginUrl = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${client_id}&redirect_uri=${redirect_uri}&response_type=${response_type}&scope=${scope}&access_type=offline`;
-      window.location.assign(googleLoginUrl);
-    };
+  const kakaoLoginHandler = () => {
+    const client_id = '';
+    const redirect_uri = 'http://localhost:3000/';
+    const kakaoLoginUrl = `https://kauth.kakao.com/oauth/authorize?client_id=${client_id}&redirect_uri=${redirect_uri}&response_type=code`;
+    window.location.assign(kakaoLoginUrl);
+  }
+
+  const GoogleLoginHandler = () => {
+    const client_id = '';
+    const redirect_uri = 'http://localhost:3000';
+    const response_type = 'code';
+    const scope = 'https://www.googleapis.com/auth/userinfo.email';
+    const googleLoginUrl = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${client_id}&redirect_uri=${redirect_uri}&response_type=${response_type}&scope=${scope}&access_type=offline`;
+    window.location.assign(googleLoginUrl);
+  };
 
     return (
       <div className='signin-modal'>
