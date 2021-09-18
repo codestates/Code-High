@@ -4,7 +4,9 @@ import { User } from '../entity/User';
 import { sendEmail } from './mail';
 import * as bcrypt from 'bcrypt';
 import { generateAccessToken, generateRefreshToken, generateEmailToken, verifyEmailToken } from './jwt';
+import { stringify } from 'query-string';
 import axios from 'axios';
+import 'dotenv/config';
 
 const emailLogin = async (req: Request, res: Response) => {
   try {
@@ -47,24 +49,29 @@ const kakaoLogin = async (req: Request, res: Response) => {
     const getTokenUrl = 'https://kauth.kakao.com/oauth/token';
     const getInfoUrl = 'https://kapi.kakao.com/v2/user/me';
 
-    const result = await axios.post(getTokenUrl, {
+    const result = await axios.post(getTokenUrl, stringify({
       client_id: process.env.KAKAO_CLIENT_ID,
       client_secret: process.env.KAKAO_CLIENT_SECRET,
       code: req.body.authorizationCode,
       grant_type: 'authorization_code',
       redirect_uri: 'http://localhost:3000'
+    }), {
+      headers: {
+        'Content-type': 'application/x-www-form-urlencoded;charset=utf-8'
+      }
     })
+
     const accessToken = result.data.access_token;
     const refreshToken = result.data.refresh_token;
 
-    const userInfoBykakao = await axios.get(getInfoUrl, {
-      headers: {
-        Authorization: `Bearer ${accessToken}`
-      }
-    })
-    const { email } = userInfoBykakao.data;
+    // const userInfoBykakao = await axios.get(getInfoUrl, {
+    //   headers: {
+    //     Authorization: `Bearer ${accessToken}`
+    //   }
+    // })
+    // const { email } = userInfoBykakao.data;
 
-    console.log(userInfoBykakao.data);
+    // console.log(userInfoBykakao.data);
     
     // 가입여부 확인
     // const userInfo = await User.findOne({ where: { email }})
@@ -89,7 +96,7 @@ const kakaoLogin = async (req: Request, res: Response) => {
 
     return res.status(200).send({ accessToken, message: 'Kakao Login Success'});
   } catch (err) {
-    throw new Error(err);
+    console.log(err);
   }
 }
 
