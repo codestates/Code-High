@@ -2,12 +2,13 @@ import React, { useEffect } from 'react';
 import axios from 'axios';
 import { Route, Switch } from 'react-router-dom';
 import Landing from './pages/Landing';
-import Signin from './components/basic/modal/Signin';
+import SignIn from './components/basic/modal/SignIn';
 import Signup from './components/basic/modal/Signup';
-
 import CodeInput from './pages/CodeInput';
-import CodeReview from './pages/CodeReview';
 import CodeStorage from './pages/CodeStorage';
+import CodeReview from './pages/CodeReview';
+import UserWriteInfo from './components/mypage/UserWriteInfo';
+import CodePost from './pages/CodePost';
 
 function App () {
   // Oauth authorizationCode 요청
@@ -18,7 +19,8 @@ function App () {
     if (authorizationCode) {
       console.log(authorizationCode);
       // getGithubAccessToken(authorizationCode);
-      getGoogleAccessToken(authorizationCode);
+      // getKakaoAccessToken(authorizationCode);
+      // getGoogleAccessToken(authorizationCode);
     }
   });
 
@@ -29,6 +31,15 @@ function App () {
       console.log(token.data);
     } catch (err) {
       console.log(err);
+    }
+  };
+
+  const getKakaoAccessToken = async (authorizationCode) => {
+    try {
+      const serverUrl = 'http://localhost:4000/auth/kakao';
+      const token = await axios.post(serverUrl, { authorizationCode });
+    } catch (err) {
+      throw new Error(err);
     }
   };
 
@@ -49,7 +60,7 @@ function App () {
           <Landing />
         </Route>
         <Route path='/login'>
-          <Signin />
+          <SignIn />
         </Route>
         <Route path='/signup'>
           <Signup />
@@ -62,6 +73,12 @@ function App () {
         </Route>
         <Route path='/codereview'>
           <CodeReview />
+        </Route>
+        <Route path='/post'>
+          <CodePost />
+        </Route>
+        <Route path='/mypage'>
+          <UserWriteInfo />
         </Route>
       </Switch>
     </>
