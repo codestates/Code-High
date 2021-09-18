@@ -3,7 +3,7 @@ import Signinimg from '../../../images/Signinimg.svg';
 import codehighlogo from '../../../images/codehighlogo.png';
 import github from '../../../images/github.png';
 import kakao from '../../../images/kakao.png';
-import naver from '../../../images/naver.png';
+import google from '../../../images/google.png';
 
 function Signin ({ togglePopUp, setShowLoginModal }) {
   const SigninBackgroundEl = useRef(null);
@@ -79,7 +79,7 @@ function Signin ({ togglePopUp, setShowLoginModal }) {
                 <img src={kakao} alt='kakao' />
               </div>
               <div className='google-oauth' onClick={GoogleLoginHandler}>
-                <img src={naver} alt='naver' />
+                <img src={google} alt='google' />
               </div>
             </div>
           </div>

@@ -14,9 +14,11 @@
   display: flex;
   justify-content: space-between;
   margin: 10px;
-    span:nth-child(2){
-      padding: 0px 40px;
+  a{
+    span{
+      padding: 10px 40px;
     }
+  }
 }
 
 .kanban-subject{
