@@ -5,7 +5,7 @@ import { checkRole } from '../middleware/checkRole';
 const userRouter = Router();
 
 userRouter.use('/', checkAuth);
-//userRouter.use('/', checkRole);
+userRouter.use('/', checkRole);
 
 userRouter.get('/info', userController.userInfo);
 userRouter.get('/post');
