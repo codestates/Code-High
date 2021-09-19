@@ -13,9 +13,10 @@ const userList = async (req: Request, res: Response) => {
 
 // get login user profile
 const userInfo = async (req: Request, res: Response) => {
-  // if (req.body.userRole > 3 ) {
-  //   return res.status(403).send({ message: 'forbidden user'})
-  // }
+  if (req.body.userRole > 3 ) {
+    return res.status(403).send({ message: 'forbidden user'})
+  }
+  
   const loginUserInfo = await User.findOne({ where: { email: req.body.authUser } });
   delete loginUserInfo.password;
   delete loginUserInfo.verified;
@@ -35,6 +36,10 @@ const userInfoById = async (req: Request, res: Response) => {
 
 // update login user profile
 const editUser = async (req: Request, res: Response) => {
+  if (req.body.userRole > 3 ) {
+    return res.status(403).send({ message: 'forbidden user'})
+  }
+
   const loginType = req.headers['login-type'];
   const { name, image, phone } = req.body;
   let password = req.body.password;
@@ -51,6 +56,10 @@ const editUser = async (req: Request, res: Response) => {
 
 // delete login user account
 const deleteUser = async (req: Request, res: Response) => {
+  if (req.body.userRole > 3 ) {
+    return res.status(403).send({ message: 'forbidden user'})
+  }
+
   const userInfo = await User.findOne({ where: { email: req.body.authUser } });
   await userInfo.remove();
   res.status(200).send({ message: 'delete account successfully'});
