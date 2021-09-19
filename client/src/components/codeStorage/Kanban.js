@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import SearchInput from '../basic/search/SearchInput';
 import Button from '../basic/button/Button';
+import { Link } from 'react-router-dom';
 
 function Kanban () {
   // Redux 사용 후 상태 유지, 데이터 전송 관리하기
@@ -99,7 +100,7 @@ function Kanban () {
         {/* 헤더 */}
         <div className='kanban-header'>
           <SearchInput />
-          <Button content='NEW' backgroundColor='#2F8C4C' color='#fff' />
+          <Link to='/codeinput'><Button content='NEW' backgroundColor='#2F8C4C' color='#fff' /></Link>
         </div>
         <div className='kanban-subject'>
           <div>이해도 (하)</div>
