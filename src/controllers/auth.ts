@@ -64,35 +64,34 @@ const kakaoLogin = async (req: Request, res: Response) => {
     const accessToken = result.data.access_token;
     const refreshToken = result.data.refresh_token;
 
-    // const userInfoBykakao = await axios.get(getInfoUrl, {
-    //   headers: {
-    //     Authorization: `Bearer ${accessToken}`
-    //   }
-    // })
-    // const { email } = userInfoBykakao.data;
-
-    // console.log(userInfoBykakao.data);
+    const userInfoBykakao = await axios.get(getInfoUrl, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`
+      }
+    })
+    const kakaoEmail = `${userInfoBykakao.data.id}@kakao.com`;
     
     // 가입여부 확인
-    // const userInfo = await User.findOne({ where: { email }})
-    // if (!userInfo) {
-    //   const name = email.split('@')[0];
-    //   const newGoogleUser = User.create({  
-    //     email,
-    //     image,
-    //     name,
-    //     loginType: 'google',
-    //     authorityId: 3,
-    //     verified: true,
-    //   })
-    //   await User.save(newGoogleUser);
-    // }
+    const userInfo = await User.findOne({ where: { email: kakaoEmail }})
+    if (!userInfo) {
+      const name = userInfoBykakao.data.kakao_account.profile.nickname;
+      const image = userInfoBykakao.data.kakao_account.profile.profile_image_url;
+      const newKakaoUser = User.create({  
+        email: kakaoEmail,
+        image,
+        name,
+        loginType: 'kakao',
+        authorityId: 3,
+        verified: true,
+      })
+      await User.save(newKakaoUser);
+    }
     
-    // res.cookie('refreshToken', refreshToken, {
-    //   maxAge: 1000 * 60 * 60 * 24, // 1d
-    //   httpOnly: true,
-    //   secure: true,
-    // },)
+    res.cookie('refreshToken', refreshToken, {
+      maxAge: 1000 * 60 * 60 * 24, // 1d
+      httpOnly: true,
+      secure: true,
+    },)
 
     return res.status(200).send({ accessToken, message: 'Kakao Login Success'});
   } catch (err) {
@@ -121,14 +120,14 @@ const googleLogin = async (req: Request, res: Response) => {
         Authorization: `Bearer ${accessToken}`
       }
     })
-    const { email, picture } = userInfoByGoogle.data;
+    const googleEmail = `${userInfoByGoogle.data.sub}@gmail.com`;
     
     // 가입여부 확인
-    const userInfo = await User.findOne({ where: { email }})
+    const userInfo = await User.findOne({ where: { email: googleEmail }})
     if (!userInfo) {
-      const name = email.split('@')[0];
+      const { name, picture } = userInfoByGoogle.data;
       const newGoogleUser = User.create({  
-        email,
+        email: googleEmail,
         image: picture,
         name,
         loginType: 'google',
@@ -156,7 +155,7 @@ const githubLogin = async (req: Request, res: Response) => {
   try {
 
     const getTokenUrl = 'https://github.com/login/oauth/access_token';
-    const getInfoUrl = '';
+    const getInfoUrl = 'https://api.github.com/user';
 
     const result = await axios.post(getTokenUrl, {
       client_id: process.env.GITHUB_CLIENT_ID,
@@ -165,13 +164,34 @@ const githubLogin = async (req: Request, res: Response) => {
     }, { headers: { accept: 'application/json' } })
 
     const accessToken = result.data.access_token;
-    // const refreshToken = result.data;
 
+    const userInfoByGithub = await axios.get(getInfoUrl, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`
+      }
+    })
+    const githubEmail = `${userInfoByGithub.data.id}@github.com`;
+    
+    // 가입여부 확인
+    const userInfo = await User.findOne({ where: { email: githubEmail }})
+    if (!userInfo) {
+      const name = userInfoByGithub.data.name;
+      const image = userInfoByGithub.data.avatar_url;
+      const newGithubUser = User.create({  
+        email: githubEmail,
+        image,
+        name,
+        loginType: 'github',
+        authorityId: 3,
+        verified: true,
+      })
+      await User.save(newGithubUser);
+    }
 
     return res.status(200).send({ accessToken, message: 'Github login Success' });
 
   } catch (err) {
-    // console.log(err);
+    console.log(err);
     return res.send(err.message);
   }
 }

@@ -3,7 +3,7 @@ import { access } from 'fs';
 import { verifyAccessToken } from '../controllers/jwt';
 import { User } from '../entity/User';
 
-const checkEmailUserInfo = async (accessToken: string) => {
+const checkEmailUser = async (accessToken: string) => {
   const tokenInfo: any = await verifyAccessToken(accessToken);
   
   if (!tokenInfo) {
@@ -18,7 +18,7 @@ const checkEmailUserInfo = async (accessToken: string) => {
   return tokenInfo.email;
 }
 
-const checkGithubUserInfo = async (accessToken: string) => {
+const checkGithubUser = async (accessToken: string) => {
   try {
     const url = 'https://api.github.com/user'
     const result = await axios.get(url, {
@@ -26,7 +26,7 @@ const checkGithubUserInfo = async (accessToken: string) => {
         Authorization: `Bearer ${accessToken}`
       }
     });
-    const githubEmail = `${result.data.login}@github.com`;
+    const githubEmail = `${result.data.id}@github.com`;
     return githubEmail;
 
   } catch (err) {
@@ -35,7 +35,7 @@ const checkGithubUserInfo = async (accessToken: string) => {
   }
 }
 
-const checkGoogleUserInfo = async (accessToken: string) => {
+const checkGoogleUser = async (accessToken: string) => {
   try {
     const url = 'https://www.googleapis.com/oauth2/v3/userinfo';
     const result = await axios.get(url, {
@@ -44,7 +44,7 @@ const checkGoogleUserInfo = async (accessToken: string) => {
       }
     })
 
-    const googleEmail = result.data.email;
+    const googleEmail = `${result.data.sub}@gmail.com`;
     return googleEmail;
 
   } catch (err) {
@@ -53,7 +53,7 @@ const checkGoogleUserInfo = async (accessToken: string) => {
   }
 }
 
-const checkKakaoUserInfo = async (accessToken: string) => {
+const checkKakaoUser = async (accessToken: string) => {
   try {
     const url = '';
     const result = await axios.get(url, {
@@ -62,7 +62,7 @@ const checkKakaoUserInfo = async (accessToken: string) => {
       }
     })
 
-    const kakaoEmail = result.data;
+    const kakaoEmail = `${result.data.id}@kakao.com`;
   } catch (err) {
     console.log(err);
     return null;
@@ -70,8 +70,8 @@ const checkKakaoUserInfo = async (accessToken: string) => {
 }
 
 export { 
-  checkEmailUserInfo,
-  checkGithubUserInfo,
-  checkGoogleUserInfo,
-  checkKakaoUserInfo
+  checkEmailUser,
+  checkGithubUser,
+  checkGoogleUser,
+  checkKakaoUser
  };
