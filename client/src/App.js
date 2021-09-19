@@ -7,8 +7,9 @@ import Signup from './components/basic/modal/Signup';
 import CodeInput from './pages/CodeInput';
 import CodeStorage from './pages/CodeStorage';
 import CodeReview from './pages/CodeReview';
-import UserWriteInfo from './components/mypage/UserWriteInfo';
+import Mypage from './pages/Mypage';
 import CodePost from './pages/CodePost';
+import NotFoundError from './components/basic/error/NotFoundError';
 
 function App () {
   // Oauth authorizationCode 요청
@@ -78,7 +79,10 @@ function App () {
           <CodePost />
         </Route>
         <Route path='/mypage'>
-          <UserWriteInfo />
+          <Mypage />
+        </Route>
+        <Route path='/notfound'>
+          <NotFoundError />
         </Route>
       </Switch>
     </>
