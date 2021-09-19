@@ -2,19 +2,14 @@ import React, { useEffect } from 'react';
 import axios from 'axios';
 import { Route, Switch } from 'react-router-dom';
 import Landing from './pages/Landing';
-import Signin from './components/basic/modal/SignIn';
+import SignIn from './components/basic/modal/SignIn';
 import Signup from './components/basic/modal/Signup';
 import CodeInput from './pages/CodeInput';
-import SideBar from './components/basic/navbar/SideBar';
-import NavBar from './components/basic/navbar/NavBar'
-import Tag from './components/basic/tag/Tag'
-import BlackFooter from './components/basic/footer/BlackFooter'
-import WhiteFooter from './components/basic/footer/WhiteFooter'
 import CodeStorage from './pages/CodeStorage';
 import CodeReview from './pages/CodeReview';
-
-import UserWriteInfo from './components/mypage/UserWriteInfo';
-import CodePost from './pages/CodePost'
+import Mypage from './pages/Mypage';
+import CodePost from './pages/CodePost';
+import NotFoundError from './components/basic/error/NotFoundError';
 
 function App () {
   // Oauth authorizationCode 요청
@@ -66,7 +61,7 @@ function App () {
           <Landing />
         </Route>
         <Route path='/login'>
-          <Signin />
+          <SignIn />
         </Route>
         <Route path='/signup'>
           <Signup />
@@ -84,7 +79,10 @@ function App () {
           <CodePost />
         </Route>
         <Route path='/mypage'>
-          <UserWriteInfo />
+          <Mypage />
+        </Route>
+        <Route path='/notfound'>
+          <NotFoundError />
         </Route>
       </Switch>
     </>
