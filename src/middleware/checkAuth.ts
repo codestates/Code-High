@@ -1,5 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
-import { checkEmailUserInfo, checkGithubUserInfo, checkGoogleUserInfo, checkKakaoUserInfo } from './checkUserInfo';
+import { User } from '../entity/User';
+import { checkEmailUser, checkGithubUser, checkGoogleUser, checkKakaoUser } from './checkUserInfo';
 
 export const checkAuth = async (req: Request, res: Response, next: NextFunction) => {
   const authorization = req.headers['authorization'];
@@ -13,19 +14,24 @@ export const checkAuth = async (req: Request, res: Response, next: NextFunction)
   const accessToken = authorization.split(' ')[1];
 
   if (loginType === 'email') {
-    req.body.authUser = await checkEmailUserInfo(accessToken);
+    req.body.authUser = await checkEmailUser(accessToken);
   } else if (loginType === 'google') {
-    req.body.authUser = await checkGoogleUserInfo(accessToken);
+    req.body.authUser = await checkGoogleUser(accessToken);
   } else if (loginType === 'kakao') {
-    req.body.authUser = await checkKakaoUserInfo(accessToken);
+    req.body.authUser = await checkKakaoUser(accessToken);
   } else if (loginType === 'github') {
-    req.body.authUser = await checkGithubUserInfo(accessToken);
+    req.body.authUser = await checkGithubUser(accessToken);
   } else {
     return res.status(404).send({ message: 'invalid login-type'});
   }
 
   if (!req.body.authUser) {
     return res.status(401).send({ message: 'unauthorized user'});
+  }
+
+  const user = User.findOne({ where: { email: req.body.authUser }});
+  if (!user) {
+    return res.status(404).send({ message: 'user not found' });
   }
   
   next();
