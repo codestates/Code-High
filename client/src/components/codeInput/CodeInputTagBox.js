@@ -93,7 +93,7 @@ function CodeInputTagBox () {
           <span>이해도</span>
           <div>
             {tagNameMock[3].map((item) => {
-              return <Tag content={item} onClickHandle={handleChangeColor} />;
+              return <Tag content={item} backgroundColor='#E1E1E1' onClickHandle={handleChangeColor} />;
             })}
           </div>
         </div>
