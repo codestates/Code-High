@@ -1,9 +1,10 @@
 import { Request, Response } from 'express';
+import { getRepository } from 'typeorm';
 import { Post } from '../entity/Post';
 
 const getPostList = async (req: Request, res: Response) => {
   const isSecret = [false]
-
+  //const postRepository = getRepository(Post);
   // // 관리자 권한이면 isSecret = [true, false]
 
   const result = await Post.createQueryBuilder()
