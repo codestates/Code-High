@@ -7,7 +7,7 @@ const getPostList = async (req: Request, res: Response) => {
   // 관리자 권한이면 isSecret = [true, false]
 
   const result = await Post.createQueryBuilder()
-  .where('secret In (:...isSecret)', { isSecret: false })
+  .where('secret In (:...isSecret)', { isSecret: [false] })
   .getMany();
   res.send({ postList: result });
 }
