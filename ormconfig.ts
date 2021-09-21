@@ -1,6 +1,7 @@
 import 'dotenv/config';
 
 export default {
+   name: "default",
    type: "mysql",
    host: process.env.DATABASE_HOST,
    port: process.env.DATABASE_PORT,
