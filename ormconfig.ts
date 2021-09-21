@@ -10,13 +10,13 @@ export default {
    synchronize: true,
    logging: false,
    entities: [
-      "dist/entity/**/*.js"
+      "src/entity/**/*.ts"
    ],
    migrations: [
-      "dist/migration/**/*.js"
+      "src/migration/**/*.ts"
    ],
    subscribers: [
-      "dist/subscriber/**/*.js"
+      "src/subscriber/**/*.ts"
    ],
    cli: {
       entitiesDir: "src/entity",
