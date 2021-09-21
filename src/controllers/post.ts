@@ -2,14 +2,15 @@ import { Request, Response } from 'express';
 import { Post } from '../entity/Post';
 
 const getPostList = async (req: Request, res: Response) => {
-  const isSecret = [false]
+  // const isSecret = [false]
 
-  // 관리자 권한이면 isSecret = [true, false]
+  // // 관리자 권한이면 isSecret = [true, false]
 
-  const result = await Post.createQueryBuilder()
-  .where('secret In (:...isSecret)', { isSecret: [false] })
-  .getMany();
-  res.send({ postList: result });
+  // const result = await Post.createQueryBuilder()
+  // .where('secret In (:...isSecret)', { isSecret })
+  // .getMany();
+  // res.send({ postList: result });
+  res.send('getPostList');
 }
 
 const getUserPostList = (req: Request, res: Response) => {
