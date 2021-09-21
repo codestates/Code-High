@@ -212,7 +212,7 @@ const signUpEmail = async (req: Request, res: Response) => {
 
   try {
     // 중복 이메일 확인
-    const userEmail = await User.findOne({ where: { email } })
+    const userEmail = await userRepository.findOne({ where: { email } })
     if (userEmail) {
       if (userEmail.verified) {
         return res.status(409).send({ message: 'Email Conflict' }); 
@@ -222,7 +222,7 @@ const signUpEmail = async (req: Request, res: Response) => {
     }
     
     const hashPwd = await bcrypt.hash(password, 10);
-    const userInfo = User.create({  
+    const userInfo = userRepository.create({  
       email,
       password: hashPwd,
       name,
@@ -231,7 +231,7 @@ const signUpEmail = async (req: Request, res: Response) => {
       authorityId: 3,
       verified: false,
     })
-    const result = await User.save(userInfo);
+    const result = await userRepository.save(userInfo);
 
     // send code to userEmail
     const code = generateEmailToken({ email, id: result.id });
