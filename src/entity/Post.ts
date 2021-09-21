@@ -1,20 +1,20 @@
 import { type } from "os";
-import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryColumn, UpdateDateColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryColumn, UpdateDateColumn, BaseEntity } from "typeorm";
 import { Posttag } from "./Posttag";
 import { User } from "./User";
 
 @Entity()
-export class Post {
+export class Post extends BaseEntity {
     @PrimaryColumn({ type: 'int' })
     id: number;
 
     @Column({ type: 'varchar' })
     title: string;
 
-    @Column({ type: 'varchar', nullable: true  })
+    @Column({ type: 'varchar', length: 5000, nullable: true  })
     textContent: string;
 
-    @Column({ type: 'varchar', nullable: true  })
+    @Column({ type: 'varchar', length: 5000, nullable: true  })
     codeContent: string;
 
     @Column({ type: 'boolean' })
