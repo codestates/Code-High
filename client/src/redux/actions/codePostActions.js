@@ -5,27 +5,29 @@ import {
   GET_CODEPOST,
   MODIFY_CODEPOST,
   DELETE_POST,
-  GET_COMMENT_POST,
+  GET_COMMENT,
   DELETE_COMMENT
 } from './types';
 import axios from 'axios';
+import { useSelector, useDispatch } from 'react-redux';
 
 axios.defaults.withCredentials = true;
-const serverUrl = 'https://localhost:4000';
+const serverUrl = 'https://api.codehigh.club';  
+const dispatch = useDispatch();
 
 //1.코드 저장소 내가 쓴 글들-------------------------------
-export async function getCodestoragePost(accessToken, logintype) {
+export async function getCodestoragePost(data) {
   axios
     .get(
       `${serverUrl}/user/post`,{
-        headers: { loginType: `${logintype}`, Authorization: `bearer ${accessToken}` },
+        headers: { login_type: `${data.logintype}`, Authorization: `bearer ${data.accessToken}` },
         withCredentials: true,
       })
     .then((res) => {
       return {
         type: GET_CODESTORAGE_POST,
         payload: {
-          message:res.data.message,
+          message: res.data.message,
           postList: res.data.postList
         },
       };
@@ -33,18 +35,19 @@ export async function getCodestoragePost(accessToken, logintype) {
 }
 
 //2.코드 리뷰 공개글만 가져오기-------------------------------
-export async function getCodestoragePost(accessToken, logintype) {
+export function getReviewPost(data) {
   axios
     .get(
       `${serverUrl}/post`,{
-        headers: { loginType: `${logintype}`, Authorization: `bearer ${accessToken}` },
+        headers: { login_type: `${data.logintype}`, Authorization: `bearer ${data.accessToken}` },
         withCredentials: true,
       })
     .then((res) => {
+      console.log('action', res.data.postList)
       return {
         type: GET_CODEREVIEW_POST,
         payload: {
-          message:res.data.message,
+          message: res.data.message,
           postList: res.data.postList
         },
       };
@@ -52,7 +55,7 @@ export async function getCodestoragePost(accessToken, logintype) {
 }
 
 //!3.검색 기능------------------------------
-export async function getCodestoragePost(accessToken, logintype, keyword) {
+export async function getReviewFilter(accessToken, logintype, keyword) {
   axios
     .get(
       `${serverUrl}/post`,{
@@ -75,7 +78,7 @@ export async function getCodestoragePost(accessToken, logintype, keyword) {
 }
 
 //4.코드 자세히 보기-------------------------------
-export async function getCodestoragePost(id, accessToken, logintype) {
+export async function getCodepost(id, accessToken, logintype) {
   axios
     .get(
       `${serverUrl}/post/:${id}`,{
@@ -84,7 +87,7 @@ export async function getCodestoragePost(id, accessToken, logintype) {
       })
     .then((res) => {
       return {
-        type: GET_CODEPOST,
+        type: GET_COMMENT,
         payload: {
           message:res.data.message,
           post: res.data.post
