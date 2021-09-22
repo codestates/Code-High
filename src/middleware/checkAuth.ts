@@ -4,7 +4,7 @@ import { checkEmailUser, checkGithubUser, checkGoogleUser, checkKakaoUser } from
 
 export const checkAuth = async (req: Request, res: Response, next: NextFunction) => {
   const authorization = req.headers['authorization'];
-  const loginType = req.headers['login-type'];
+  const loginType = req.headers['login_type'];
   
   if (!authorization) {
     console.log('authorization header not found');
