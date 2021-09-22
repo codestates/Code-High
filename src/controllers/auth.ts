@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { createQueryBuilder, getConnection, getConnectionManager, getRepository } from 'typeorm';
+import { Connection, getConnection, getRepository } from 'typeorm';
 import { User } from '../entity/User';
 import { sendEmail } from './mail';
 import * as bcrypt from 'bcrypt';
@@ -203,7 +203,7 @@ const logout = (req: Request, res: Response) => {
 
 const signUpEmail = async (req: Request, res: Response) => {
   const { email, password, name, phone } = req.body;
-  const userRepository = await getRepository(User);
+  const userRepository = getConnection('default').getRepository(User);
   
   // 필수 정보 확인
   if (!email || !password || !name) {
