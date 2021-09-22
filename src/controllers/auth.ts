@@ -213,29 +213,29 @@ const signUpEmail = async (req: Request, res: Response) => {
     }
     // 중복 이메일 확인
     const userEmail = await User.findOne({ where: { email } })
-    if (userEmail) {
-      if (userEmail.verified) {
-        return res.status(409).send({ message: 'Email Conflict' }); 
-      } else {
-        await userEmail.remove();
-      }
-    }
+    // if (userEmail) {
+    //   if (userEmail.verified) {
+    //     return res.status(409).send({ message: 'Email Conflict' }); 
+    //   } else {
+    //     await userEmail.remove();
+    //   }
+    // }
     
-    const hashPwd = await bcrypt.hash(password, 10);
-    const userInfo = User.create({  
-      email,
-      password: hashPwd,
-      name,
-      phone,
-      loginType: 'email',
-      authorityId: 3,
-      verified: false,
-    })
-    const result = await User.save(userInfo);
+    // const hashPwd = await bcrypt.hash(password, 10);
+    // const userInfo = User.create({  
+    //   email,
+    //   password: hashPwd,
+    //   name,
+    //   phone,
+    //   loginType: 'email',
+    //   authorityId: 3,
+    //   verified: false,
+    // })
+    // const result = await User.save(userInfo);
 
-    // send code to userEmail
-    const code = generateEmailToken({ email, id: result.id });
-    sendEmail(email, name, code);
+    // // send code to userEmail
+    // const code = generateEmailToken({ email, id: result.id });
+    // sendEmail(email, name, code);
     
     return res.status(200).send({ message: 'send email' });
 
