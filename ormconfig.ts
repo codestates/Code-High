@@ -10,18 +10,7 @@ const config: ConnectionOptions = {
    database: process.env.DATABASE_NAME,
    synchronize: true,
    logging: false,
-   // entities: [
-   //    "src/entity/**/*.ts"
-   // ],
-   // migrations: [
-   //    "src/migration/**/*.ts"
-   // ],
-   // subscribers: [
-   //    "src/subscriber/**/*.ts"
-   // ],
-   entities: [
-      "dist/src/entity/**/*{.js,.ts}"
-   ],
+   entities: process.env.NODE_ENV === 'dev' ? ["src/entity/**/*.ts"] : ["dist/src/entity/**/*{.js,.ts}"],
    migrations: [
       "src/migration/**/*.js"
    ],
