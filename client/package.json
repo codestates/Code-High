@@ -35,7 +35,6 @@
     "redux": "^4.1.1",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0",
-    "semistandard": "^16.0.1",
     "webpack-dev-server": "^4.1.1",
     "webpack-loader-s3": "^1.0.2"
   },
