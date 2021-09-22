@@ -6,19 +6,19 @@ export const GET_USER_INFO = 'GET_USER_INFO';
 export const DELETE_USER_INFO = 'DELETE_USER_INFO';
 export const GET_MENU = 'GET_MENU';
 
-// codepost
-// 공개된 게시물, 비공개 포함 개인 게시물, 코드 검색, 게시물 지우기, 게시물 개수, 댓글, 태그
+// codepost, codeComment
+// 코드 저장소, 코드 올리기(코드 올리는 페이지에서), 코드 리뷰 포스트, 코드 검색, 코드 자세히 보기, 코드 수정, 코드 지우기
+export const GET_CODESTORAGE_POST = 'GET_CODESTORAGE_POST';
 export const GET_CODEREVIEW_POST = 'GET_CODEREVIEW_POST';
 export const GET_CODEREVIEW_FILTER = 'GET_CODEREVIEW_FILTER';
-export const GET_CODESTORAGE_POST = 'GET_CODESTORAGE_POST';
+export const GET_CODEPOST = 'GET_CODEPOST';
+export const MODIFY_CODEPOST = 'MODIFY_CODEPOST';
 export const DELETE_POST = 'DELETE_POST';
-
-// codeComment
-// 댓글 게시, 댓글 삭제
-export const GET_COMMENT_POST = 'GET_COMMENT_POST';
+// 댓글 가져오기, 댓글 게시(댓글창에서), 댓글 삭제
+export const GET_COMMENT = 'GET_COMMENT_POST';
 export const DELETE_COMMENT = 'DELETE_COMMENT';
 
-// admin - 보류
+// admin
 export const GET_USERS_CHART = 'GET_USERS_CHART';
 export const GET_USERS_POST = 'GET_USERS_POST';
 export const GET_USERS_COMMENT = 'GET_USERS_COMMENT';

@@ -3,7 +3,7 @@ import {
   SIGNOUT_USER,
   GET_USER_INFO,
   DELETE_USER_INFO,
-  GET_MENU
+  GET_MENU,
 } from './types';
 import axios from 'axios';
 
