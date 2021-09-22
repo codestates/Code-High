@@ -19,13 +19,13 @@ export default {
    //    "src/subscriber/**/*.ts"
    // ],
    entities: [
-      "dist/src/entity/**/*.js"
+      "src/entity/**/*.js"
    ],
    migrations: [
-      "dist/src/migration/**/*.js"
+      "src/migration/**/*.js"
    ],
    subscribers: [
-      "dist/src/subscriber/**/*.js"
+      "src/subscriber/**/*.js"
    ],
    cli: {
       entitiesDir: "src/entity",
