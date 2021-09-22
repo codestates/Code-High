@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { Connection, getConnection, getRepository } from 'typeorm';
+import { Connection, createConnection, getConnection, getRepository } from 'typeorm';
 import { User } from '../entity/User';
 import { sendEmail } from './mail';
 import * as bcrypt from 'bcrypt';
@@ -206,8 +206,8 @@ const signUpEmail = async (req: Request, res: Response) => {
   
 
   try {
-
-    const userRepository = getConnection('default').getRepository(User);
+    const connection = await createConnection();
+    const userRepository = connection.getRepository(User);
   
     // 필수 정보 확인
     if (!email || !password || !name) {
