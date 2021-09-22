@@ -5,21 +5,19 @@ import * as cors from 'cors';
 import { createConnection } from 'typeorm';
 import router from './routes';
 import 'reflect-metadata';
-import {createTypeormConn} from './utils/typeormConnect'
 
 dotenv.config();
 const port = process.env.HTTP_PORT || 80;
 
 const app = express();
 
-// createConnection()
-// .then(() => {
-//   console.log("DB CONNECTION!");
-// })
-// .catch((error) => {
-//   console.log(error);
-// });
-createTypeormConn();
+createConnection()
+.then(() => {
+  console.log("DB CONNECTION!");
+})
+.catch((error) => {
+  console.log(error);
+});
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));

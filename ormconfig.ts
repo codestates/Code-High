@@ -1,7 +1,6 @@
 import 'dotenv/config';
 
 export default {
-   name: "default",
    type: "mysql",
    host: process.env.DATABASE_HOST,
    port: process.env.DATABASE_PORT,
@@ -20,13 +19,13 @@ export default {
    //    "src/subscriber/**/*.ts"
    // ],
    entities: [
-      "dist/entity/**/*.js"
+      "dist/src/entity/**/*.js"
    ],
    migrations: [
-      "dist/migration/**/*.js"
+      "dist/src/migration/**/*.js"
    ],
    subscribers: [
-      "dist/subscriber/**/*.js"
+      "dist/src/subscriber/**/*.js"
    ],
    cli: {
       entitiesDir: "src/entity",
