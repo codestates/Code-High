@@ -4,13 +4,14 @@ import * as cookieParser from 'cookie-parser';
 import * as cors from 'cors';
 import { createConnection } from 'typeorm';
 import router from './routes';
+import 'reflect-metadata';
 
 dotenv.config();
 const port = process.env.HTTP_PORT || 80;
 
 const app = express();
 
-createConnection('default')
+createConnection()
 .then(() => {
   console.log("DB CONNECTION!");
 })
