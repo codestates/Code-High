@@ -203,14 +203,16 @@ const logout = (req: Request, res: Response) => {
 
 const signUpEmail = async (req: Request, res: Response) => {
   const { email, password, name, phone } = req.body;
-  const userRepository = getConnection('default').getRepository(User);
   
-  // 필수 정보 확인
-  if (!email || !password || !name) {
-    return res.status(422).send({ message: 'Unprocessable Ent' });
-  }
 
   try {
+
+    const userRepository = getConnection('default').getRepository(User);
+  
+    // 필수 정보 확인
+    if (!email || !password || !name) {
+      return res.status(422).send({ message: 'Unprocessable Ent' });
+    }
     // 중복 이메일 확인
     const userEmail = await userRepository.findOne({ where: { email } })
     if (userEmail) {
