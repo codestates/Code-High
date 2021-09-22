@@ -4,7 +4,7 @@
   "description": "Code High",
   "main": "src/index.js",
   "scripts": {
-    "start": "tsc-watch --onSuccess \"ts-node dist/index.js\"",
+    "start": "tsc-watch --onSuccess \"ts-node dist/src/index.js\"",
     "start:dev": "tsc-watch --onSuccess \"ts-node src\"",
     "build": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -46,6 +46,7 @@
     "mysql": "^2.18.1",
     "nodemailer": "^6.6.3",
     "query-string": "^7.0.1",
+    "reflect-metadata": "^0.1.13",
     "typeorm": "^0.2.37"
   }
 }

@@ -1,22 +1,21 @@
 import 'dotenv/config';
+import { ConnectionOptions } from 'typeorm';
 
-export default {
+const config: ConnectionOptions = {
    type: "mysql",
    host: process.env.DATABASE_HOST,
-   port: process.env.DATABASE_PORT,
+   port: parseInt(process.env.DATABASE_PORT),
    username: process.env.DATABASE_USER,
    password: process.env.DATABASE_PASSWORD,
    database: process.env.DATABASE_NAME,
    synchronize: true,
    logging: false,
-   entities: [
-      "src/entity/**/*.ts"
-   ],
+   entities: process.env.NODE_ENV === 'dev' ? ["src/entity/**/*.ts"] : ["dist/src/entity/**/*{.js,.ts}"],
    migrations: [
-      "src/migration/**/*.ts"
+      "src/migration/**/*.js"
    ],
    subscribers: [
-      "src/subscriber/**/*.ts"
+      "src/subscriber/**/*.js"
    ],
    cli: {
       entitiesDir: "src/entity",
@@ -24,3 +23,5 @@ export default {
       subscribersDir: "src/subscriber"
    }
 }
+
+export default config;
