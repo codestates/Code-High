@@ -10,6 +10,13 @@ const port = process.env.HTTP_PORT || 80;
 
 const app = express();
 
+createConnection('default')
+.then(() => {
+  console.log("DB CONNECTION!");
+})
+.catch((error) => {
+  console.log(error);
+});
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -20,15 +27,7 @@ app.use(cors({
   methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS']
 }));
 
-createConnection()
-.then(() => {
-  console.log("DB CONNECTION!");
-  app.use('/', router);
-})
-.catch((error) => {
-  console.log(error);
-});
-
+app.use('/', router);
 
 app.get('/', (req: express.Request, res: express.Response) => {
   res.send('Hello World!');
