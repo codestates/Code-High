@@ -5,13 +5,14 @@ import * as cors from 'cors';
 import { createConnection } from 'typeorm';
 import router from './routes';
 import 'reflect-metadata';
+import config from '../ormconfig'
 
 dotenv.config();
 const port = process.env.HTTP_PORT || 80;
 
 const app = express();
 
-createConnection()
+createConnection(config)
 .then(() => {
   console.log("DB CONNECTION!");
 })
