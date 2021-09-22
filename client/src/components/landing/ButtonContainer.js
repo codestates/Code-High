@@ -8,7 +8,6 @@ function ButtonContainer () {
   const SignupTogglePopUp = () => {
     setShowSignupModal(!showSignupModal);
   };
-  console.log(showSignupModal);
 
   return (
     <div className='buttoncontainer'>

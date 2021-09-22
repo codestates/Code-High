@@ -9,11 +9,9 @@ import {
   DELETE_COMMENT
 } from './types';
 import axios from 'axios';
-import { useSelector, useDispatch } from 'react-redux';
 
 axios.defaults.withCredentials = true;
 const serverUrl = 'https://api.codehigh.club';  
-const dispatch = useDispatch();
 
 //1.코드 저장소 내가 쓴 글들-------------------------------
 export async function getCodestoragePost(data) {

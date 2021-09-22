@@ -95,19 +95,19 @@ function CodeReviewBoard () {
       code: 'if(now === morning){return `OMG`}'
     }
   ]; 
-  const state = useSelector(state => state.codePostReducer);
-  const { postList } = state;
-  const dispatch = useDispatch();
+  // const state = useSelector(state => state.codePostReducer);
+  // const { postList } = state;
+  // const dispatch = useDispatch();
 
-  useEffect(()=>{
-    const accessToken = `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJ0ZXN0MUB0ZXN0LmtyIiwiaWF0IjoxNjMyMjk4Nzk1LCJleHAiOjE2MzIzMDIzOTV9.RMx9_mzt_bGODI5uy6kcBhjZnBQrapW1IWO-UbxbBTk`
-    const data = {
-      accessToken: accessToken,
-      logintype: 'email'
-    }
-    dispatch(getReviewPost(data)).then((res) => console.log(res))
-  },[])
-  console.log('postList',postList)
+  // useEffect(()=>{
+  //   const accessToken = `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJ0ZXN0MUB0ZXN0LmtyIiwiaWF0IjoxNjMyMjk4Nzk1LCJleHAiOjE2MzIzMDIzOTV9.RMx9_mzt_bGODI5uy6kcBhjZnBQrapW1IWO-UbxbBTk`
+  //   const data = {
+  //     accessToken: accessToken,
+  //     logintype: 'email'
+  //   }
+  //   dispatch(getReviewPost(data)).then((res) => console.log(res))
+  // },[])
+  // console.log('postList',postList)
 
   return (
     <div className='codereviewboard'>
