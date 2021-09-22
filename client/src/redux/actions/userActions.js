@@ -3,14 +3,15 @@ import {
   SIGNOUT_USER,
   GET_USER_INFO,
   DELETE_USER_INFO,
+  GET_MENU
 } from './types';
 import axios from 'axios';
 
 axios.defaults.withCredentials = true;
 const serverUrl = 'https://localhost:4000';
 
-//로그인
-export async function signinUser(data) {
+//-------------------------------1.로그인-------------------------------
+export async function signinUser(email, password) {
   axios
     .post(
       `${serverUrl}/login`,
@@ -37,8 +38,8 @@ export async function signinUser(data) {
     });
 }
 
-//로그아웃
-export async function signoutUser(data) {
+//-------------------------------2.로그아웃-------------------------------
+export async function signoutUser() {
   axios
     .get(`${serverUrl}/logout`, {
       headers: { 'Content-Type': 'application/json' },
@@ -51,10 +52,10 @@ export async function signoutUser(data) {
     });
 }
 
-//유저 정보 가지고 오기
-export async function getUserInfo(data) {
+//-------------------------------3.유저 정보 가져오기-------------------------------
+export async function getUserInfo(accessToken) {
   axios
-    .post(`${serverUrl}/user/info`, {
+    .get(`${serverUrl}/user/info`, {
       headers: { Authorization: `bearer ${accessToken}` },
       withCredentials: true,
     })
@@ -77,8 +78,8 @@ export async function getUserInfo(data) {
     });
 }
 
-//회원탈퇴
-export async function deleteUserInfo(data) {
+//-------------------------------4.회원탈퇴-------------------------------
+export async function deleteUserInfo(accessToken) {
   axios
     .delete(`${serverUrl}/user`, {
       headers: { Authorization: `bearer ${accessToken}` },
@@ -88,6 +89,21 @@ export async function deleteUserInfo(data) {
       return {
         type: DELETE_USER_INFO,
         payload: res.data.message,
+      };
+    });
+}
+
+//------------------------------5.메뉴 가져오기-------------------------------
+export async function getMenu(accessToken) {
+  axios
+    .get(`${serverUrl}/menu`, {
+      headers: { Authorization: `bearer ${accessToken}` },
+      withCredentials: true,
+    })
+    .then((res) => {
+      return {
+        type: GET_MENU,
+        payload: res.data.menuList
       };
     });
 }
