@@ -21,4 +21,4 @@ export DATABASE_USER=$(aws ssm get-parameters --region ap-northeast-2 --names DA
 export DATABASE_USER=$(aws ssm get-parameters --region ap-northeast-2 --names DATABASE_USER --query Parameters[0].Value | sed 's/"//g')
 
 npm run build
-authbind --deep pm2 start dist/index.js
+authbind --deep pm2 start dist/src/index.js
