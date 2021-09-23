@@ -8,6 +8,8 @@ const userList = async (req: Request, res: Response) => {
   //   return res.status(403).send({ message: 'forbidden user'});
   // }
   const userList = await User.find();
+  //const userList = await User.createQueryBuilder().getMany()
+  
   res.status(200).send({ userList, message: 'ok'});
 }
 
@@ -18,6 +20,10 @@ const userInfo = async (req: Request, res: Response) => {
   }
   
   const loginUserInfo = await User.findOne({ where: { email: req.body.authUser } });
+  // const loginUserInfo = await User.createQueryBuilder()
+  // .where('id = :id', { id: req.body.authUserId })
+  // .getOne()
+  
   delete loginUserInfo.password;
   delete loginUserInfo.verified;
   res.status(200).send({ userInfo: loginUserInfo, message: 'ok'});

@@ -5,7 +5,7 @@
   "main": "src/index.js",
   "scripts": {
     "start": "tsc-watch --onSuccess \"ts-node dist/src/index.js\"",
-    "start:dev": "tsc-watch --onSuccess \"NODE_ENV=dev ts-node src\"",
+    "start:dev": "tsc-watch --onSuccess \"ts-node src\"",
     "build": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
