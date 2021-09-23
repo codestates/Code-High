@@ -33,7 +33,7 @@ export const checkAuth = async (req: Request, res: Response, next: NextFunction)
   if (!user) {
     return res.status(404).send({ message: 'user not found' });
   }
-  req.body.authUser.id = user.id;
+  req.body.authUserId = user.id;
   
   next();
 }

@@ -1,11 +1,12 @@
 import { type } from "os";
-import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryColumn, UpdateDateColumn, BaseEntity } from "typeorm";
+import { Column, CreateDateColumn, Entity, ManyToOne, OneToMany, PrimaryColumn, UpdateDateColumn, BaseEntity, PrimaryGeneratedColumn } from "typeorm";
+import { Tag } from './Tag';
 import { Posttag } from "./Posttag";
 import { User } from "./User";
 
 @Entity()
 export class Post extends BaseEntity {
-    @PrimaryColumn({ type: 'int' })
+    @PrimaryGeneratedColumn({ type: 'int' })
     id: number;
 
     @Column({ type: 'varchar' })
@@ -37,6 +38,5 @@ export class Post extends BaseEntity {
     // post <-> postTag 1:n
     @OneToMany((type) => Posttag, (postTag) => postTag.post, {onDelete: 'CASCADE'})
     postTags: Posttag[];
-
 
 }
