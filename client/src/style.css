@@ -616,7 +616,8 @@
       font-family: 'NanumGothic';
       font-size: 14px;
       font-weight: 600;
-      margin-bottom: 10px;
+      margin-top: 5px;
+      margin-bottom: 5px;
       padding: 5px 0; }
     .signup-left article input {
       border: solid 1px #E1E1E1;
@@ -773,7 +774,7 @@
   border-radius: 10px;
   border: 1px solid;
   position: absolute;
-  right: 0; }
+  right: 200px; }
 
 .menutab-container {
   margin: auto; }
@@ -1025,8 +1026,8 @@ ul {
   display: flex;
   justify-content: space-between;
   margin: 10px; }
-  .kanban-header span:nth-child(2) {
-    padding: 0px 40px; }
+  .kanban-header a span {
+    padding: 10px 40px; }
 
 .kanban-subject {
   display: grid;
@@ -1714,3 +1715,92 @@ a {
   color: #000;
   border: 1px solid #E1E1E1;
   align-items: center; }
+
+.mypage-container {
+  display: flex;
+  justify-content: center; }
+
+.mypage-left-container {
+  width: 250px;
+  height: 930px;
+  border: #E1E1E1 solid 1px;
+  padding-top: 70px;
+  border-radius: 25px; }
+  .mypage-left-container div {
+    font-size: 2rem;
+    text-align: center;
+    font-size: 2rem;
+    font-family: 'NanumGothic'; }
+    .mypage-left-container div img {
+      width: 150px; }
+
+.remaincodenotice {
+  background-color: #73B385;
+  width: 950px;
+  height: 70px;
+  line-height: 70px;
+  font-family: 'NanumGothic';
+  font-size: 1.5rem;
+  color: #fff;
+  padding-left: 10px;
+  margin-left: 20px;
+  border-radius: 10px; }
+
+.mypage-right-middle-box {
+  margin-top: 10px;
+  margin-left: 20px;
+  border: #E1E1E1 solid 1px;
+  width: 460px;
+  height: 300px;
+  align-items: center;
+  border-radius: 40px; }
+  .mypage-right-middle-box div {
+    display: flex;
+    width: 100%; }
+    .mypage-right-middle-box div span {
+      font-size: 3rem;
+      font-family: 'NanumGothic';
+      width: 225px;
+      height: 70px;
+      line-height: 70px;
+      text-align: center;
+      margin-top: 10px;
+      margin-bottom: 10px;
+      font-weight: 800; }
+
+.mypage-number {
+  color: #73B385;
+  font-weight: 1200;
+  font-size: 4rem; }
+
+.mypage-right-middle-box-2 {
+  margin-top: 10px;
+  margin-left: 35px;
+  border: #E1E1E1 solid 1px;
+  width: 460px;
+  height: 300px;
+  align-items: center;
+  border-radius: 40px;
+  background-color: #E1E1E1;
+  display: flex; }
+
+.mypage-move-codestorage {
+  width: 270px; }
+
+.mypage-move-codestorage-text {
+  font-size: 3rem;
+  color: white;
+  font-weight: 1500;
+  font-family: 'NanumGothic'; }
+
+.mypage-right-midlle-container {
+  display: flex; }
+
+.mypage-right-bottom-container {
+  margin-top: 20px;
+  margin-left: 20px;
+  margin-bottom: 40px;
+  width: 960px;
+  height: 600px;
+  border: #E1E1E1 solid 1px;
+  border-radius: 25px; }
