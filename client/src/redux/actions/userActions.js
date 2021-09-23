@@ -12,7 +12,7 @@ const serverUrl = 'https://api.codehigh.club';
 
 //-------------------------------1.로그인-------------------------------
 export function signinUser(loginInfo) {
-  const{ email, password } = loginInfo;
+  const { email, password } = loginInfo;
 
   const response = axios
     .post(
@@ -23,8 +23,8 @@ export function signinUser(loginInfo) {
       }
     )
     .then((res) => {
-      const { id, email, image, name, phone, authority } = res.data.userInfo;
-      console.log(res.data.userInfo)
+      const { id, email, image, name, phone, authorityId } = res.data.userInfo;
+      console.log('axios', res.data);
       return {
         message: res.data.message,
         accessToken: res.data.accessToken,
@@ -33,10 +33,11 @@ export function signinUser(loginInfo) {
         image: image,
         name: name,
         phone: phone,
-        authority: authority,
+        authority: authorityId,
       };
     });
-
+  console.log('response', response);
+  
   return {
     type: SIGNIN_USER,
     payload: response,
