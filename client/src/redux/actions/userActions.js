@@ -10,7 +10,7 @@ import axios from 'axios';
 axios.defaults.withCredentials = true;
 const serverUrl = 'https://api.codehigh.club';
 
-//-------------------------------1.로그인-------------------------------
+//-------------------------------1.로그인(완료)-------------------------------
 export function signinUser(loginInfo) {
   const { email, password } = loginInfo;
 
@@ -23,8 +23,7 @@ export function signinUser(loginInfo) {
       }
     )
     .then((res) => {
-      const { id, email, image, name, phone, authorityId } = res.data.userInfo;
-      console.log('axios', res.data);
+      const { id, email, image, name, phone, authorityId, loginType } = res.data.userInfo;
       return {
         message: res.data.message,
         accessToken: res.data.accessToken,
@@ -34,9 +33,9 @@ export function signinUser(loginInfo) {
         name: name,
         phone: phone,
         authority: authorityId,
+        loginType: loginType
       };
     });
-  console.log('response', response);
 
   return {
     type: SIGNIN_USER,
@@ -44,7 +43,7 @@ export function signinUser(loginInfo) {
   };
 }
 
-//-------------------------------2.로그아웃-------------------------------
+//-------------------------------2.로그아웃(완료)-------------------------------
 export async function signoutUser() {
   const response = axios
     .get(`${serverUrl}/auth/logout`, {
@@ -60,7 +59,7 @@ export async function signoutUser() {
   };
 }
 
-//-------------------------------3.유저 정보 가져오기-------------------------------
+//-------------------------------3.유저 정보 가져오기(없어도될듯)-------------------------------
 export async function getUserInfo(accessToken) {
   axios
     .get(`${serverUrl}/user/info`, {

@@ -86,7 +86,7 @@ function Signin({ togglePopUp, setShowLoginModal }) {
       setShowLoginModal(!togglePopUp);
     }
   };
-
+  
   //!회원정보 
   console.log('로그인 모달창에서의 유저 정보',userInfo)
 
