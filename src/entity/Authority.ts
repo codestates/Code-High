@@ -1,9 +1,9 @@
-import { Check, Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { BaseEntity, Check, Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { Menu } from "./Menu";
 import { User } from "./User";
 
 @Entity()
-export class Authority {
+export class Authority extends BaseEntity {
     @PrimaryGeneratedColumn({ type: 'int' })
     id: number;
 
