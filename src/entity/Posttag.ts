@@ -1,9 +1,9 @@
-import { Column, Entity, JoinColumn, ManyToOne, PrimaryColumn, PrimaryGeneratedColumn } from "typeorm";
+import { BaseEntity, Column, Entity, JoinColumn, ManyToOne, PrimaryColumn, PrimaryGeneratedColumn } from "typeorm";
 import { Post } from "./Post";
 import { Tag } from "./Tag";
 
 @Entity()
-export class Posttag {
+export class Posttag extends BaseEntity {
     @PrimaryGeneratedColumn({ type: 'int' })
     id: number;
 
