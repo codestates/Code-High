@@ -1,9 +1,9 @@
 import { type } from "os";
-import { Column, Entity, JoinColumn, ManyToOne, PrimaryColumn } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToOne, PrimaryColumn, BaseEntity } from "typeorm";
 import { Authority } from "./Authority";
 
 @Entity()
-export class Menu {
+export class Menu extends BaseEntity {
     @PrimaryColumn({ type: 'int' })
     id: number;
 
