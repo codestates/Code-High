@@ -8,51 +8,58 @@ import {
 import axios from 'axios';
 
 axios.defaults.withCredentials = true;
-const serverUrl = 'https://localhost:4000';
+const serverUrl = 'https://api.codehigh.club';
 
-//-------------------------------1.로그인-------------------------------
-export async function signinUser(email, password) {
-  axios
+//-------------------------------1.로그인(완료)-------------------------------
+export function signinUser(loginInfo) {
+  const { email, password } = loginInfo;
+
+  const response = axios
     .post(
-      `${serverUrl}/login`,
+      `${serverUrl}/auth/email`,
       { email, password },
       {
         headers: { 'Content-Type': 'application/json' },
       }
     )
     .then((res) => {
-      const { id, email, image, name, phone, authority } = res.data.userInfo;
+      const { id, email, image, name, phone, authorityId, loginType } = res.data.userInfo;
       return {
-        type: SIGNIN_USER,
-        payload: {
-          message: res.data.message,
-          accessToken: res.data.accessToken,
-          id: id,
-          email: email,
-          image: image,
-          name: name,
-          phone: phone,
-          authority: authority,
-        },
+        message: res.data.message,
+        accessToken: res.data.accessToken,
+        id: id,
+        email: email,
+        image: image,
+        name: name,
+        phone: phone,
+        authority: authorityId,
+        loginType: loginType
       };
     });
+
+  return {
+    type: SIGNIN_USER,
+    payload: response,
+  };
 }
 
-//-------------------------------2.로그아웃-------------------------------
+//-------------------------------2.로그아웃(완료)-------------------------------
 export async function signoutUser() {
-  axios
-    .get(`${serverUrl}/logout`, {
+  const response = axios
+    .get(`${serverUrl}/auth/logout`, {
       headers: { 'Content-Type': 'application/json' },
     })
     .then((res) => {
-      return {
-        type: SIGNOUT_USER,
-        payload: res.data.message,
-      };
+      res.data.message
     });
+
+  return {
+    type: SIGNOUT_USER,
+    payload: response,
+  };
 }
 
-//-------------------------------3.유저 정보 가져오기-------------------------------
+//-------------------------------3.유저 정보 가져오기(없어도될듯)-------------------------------
 export async function getUserInfo(accessToken) {
   axios
     .get(`${serverUrl}/user/info`, {
@@ -103,7 +110,7 @@ export async function getMenu(accessToken) {
     .then((res) => {
       return {
         type: GET_MENU,
-        payload: res.data.menuList
+        payload: res.data.menuList,
       };
     });
 }

@@ -7,7 +7,7 @@ import {
 } from '../actions/types';
 
 //객체 복사하기
-export default function (state = {}, action) {
+const adminReducer = (state = {}, action) => {
   switch (action.type) {
     case GET_USERS_CHART:
       return Object.assign({}, state, {
@@ -29,3 +29,5 @@ export default function (state = {}, action) {
       return state;
   }
 }
+
+export default adminReducer;

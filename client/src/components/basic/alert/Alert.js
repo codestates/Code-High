@@ -1,6 +1,8 @@
 import React from 'react';
 
-function Alert () {
+function Alert (props) {
+  const { content } = props;
+
   return (
     <div className='alert-modal'>
       <div className='alert-modal-overlay' />
@@ -8,7 +10,7 @@ function Alert () {
         <div className='alert-box'>
           <div className='alert-close'>&times;</div>
           <article>
-            <div>회원정보를 변경하시겠습니까?</div>
+            <div>{content}</div>
           </article>
           <div className='alert-button-container'>
             <button>확인</button>

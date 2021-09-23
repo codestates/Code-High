@@ -7,15 +7,15 @@ import {
   DELETE_POST,
 } from '../actions/types';
 
-export default function (state = {}, action) {
+const codePostReducer = (state = {}, action) => {
   switch (action.type) {
     case GET_CODESTORAGE_POST:
       return Object.assign({}, state, {
-        postList: [...state.postList, action.payload],
+        userPostList: [...state.userPostList, action.payload],
       });
     case GET_CODEREVIEW_POST:
       return Object.assign({}, state, {
-        postList: [...state.postList, action.payload],
+        postList: action.payload,
       });
     case GET_CODEREVIEW_FILTER:
       return Object.assign({}, state, {
@@ -35,3 +35,5 @@ export default function (state = {}, action) {
       return state;
   }
 }
+
+export default codePostReducer;

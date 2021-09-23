@@ -8,7 +8,7 @@ import {
 import axios from 'axios';
 
 axios.defaults.withCredentials = true;
-const serverUrl = 'https://localhost:4000';
+const serverUrl = 'https://api.codehigh.club';
 
 //1.유져 차트 정보 가져오기-------------------------------
 export async function getUsersChart(accessToken, logintype) {
@@ -90,11 +90,11 @@ export async function deleteUsersPost(accessToken, logintype, postList) {
 }
 
 //5.선택한 댓글 삭제하기-------------------------------
-export async function deleteUsersComment(accessToken, logintype) {
+export async function deleteUsersComment(accessToken, logintype, commentList) {
   axios
     .delete(`${serverUrl}/comment`, {
-      headers: { loginType: `${logintype}`, Authorization: `bearer ${accessToken}` },
       data: { commentList: `${commentList}`},
+      headers: { loginType: `${logintype}`, Authorization: `bearer ${accessToken}` },
       withCredentials: true,
     })
     .then((res) => {
