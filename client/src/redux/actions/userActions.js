@@ -11,10 +11,12 @@ axios.defaults.withCredentials = true;
 const serverUrl = 'https://api.codehigh.club';
 
 //-------------------------------1.로그인-------------------------------
-export async function signinUser(email, password) {
-  axios
+export function signinUser(loginInfo) {
+  const{ email, password } = loginInfo;
+
+  const response = axios
     .post(
-      `${serverUrl}/login`,
+      `${serverUrl}/auth/email`,
       { email, password },
       {
         headers: { 'Content-Type': 'application/json' },
@@ -22,20 +24,23 @@ export async function signinUser(email, password) {
     )
     .then((res) => {
       const { id, email, image, name, phone, authority } = res.data.userInfo;
+      console.log(res.data.userInfo)
       return {
-        type: SIGNIN_USER,
-        payload: {
-          message: res.data.message,
-          accessToken: res.data.accessToken,
-          id: id,
-          email: email,
-          image: image,
-          name: name,
-          phone: phone,
-          authority: authority,
-        },
+        message: res.data.message,
+        accessToken: res.data.accessToken,
+        id: id,
+        email: email,
+        image: image,
+        name: name,
+        phone: phone,
+        authority: authority,
       };
     });
+
+  return {
+    type: SIGNIN_USER,
+    payload: response,
+  };
 }
 
 //-------------------------------2.로그아웃-------------------------------
@@ -103,7 +108,7 @@ export async function getMenu(accessToken) {
     .then((res) => {
       return {
         type: GET_MENU,
-        payload: res.data.menuList
+        payload: res.data.menuList,
       };
     });
 }
