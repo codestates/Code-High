@@ -77,7 +77,11 @@ const addPost = async (req: Request, res: Response) => {
   res.send({ message: 'ok'});
 }
 
-const editPost = (req: Request, res: Response) => {
+const editPost = async (req: Request, res: Response) => {
+  const id = Number(req.params.id);
+  const { title, codeContent, textContent, secret } = req.body;
+
+  await Post.update({ id }, { title, codeContent, textContent, secret });
   res.send('editPost');
 }
 
