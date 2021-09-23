@@ -37,7 +37,7 @@ export function signinUser(loginInfo) {
       };
     });
   console.log('response', response);
-  
+
   return {
     type: SIGNIN_USER,
     payload: response,
@@ -46,16 +46,18 @@ export function signinUser(loginInfo) {
 
 //-------------------------------2.로그아웃-------------------------------
 export async function signoutUser() {
-  axios
-    .get(`${serverUrl}/logout`, {
+  const response = axios
+    .get(`${serverUrl}/auth/logout`, {
       headers: { 'Content-Type': 'application/json' },
     })
     .then((res) => {
-      return {
-        type: SIGNOUT_USER,
-        payload: res.data.message,
-      };
+      res.data.message
     });
+
+  return {
+    type: SIGNOUT_USER,
+    payload: response,
+  };
 }
 
 //-------------------------------3.유저 정보 가져오기-------------------------------
