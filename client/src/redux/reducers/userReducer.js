@@ -6,7 +6,7 @@ import {
   GET_MENU
 } from '../actions/types';
 
-export default function (state = {}, action) {
+const userReducer = (state = {}, action) => {
   switch (action.type) {
     case SIGNIN_USER:
       return Object.assign({}, state, {
@@ -28,3 +28,5 @@ export default function (state = {}, action) {
       return state;
   }
 }
+
+export default userReducer;
