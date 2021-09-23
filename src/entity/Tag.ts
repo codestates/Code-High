@@ -13,6 +13,9 @@ export class Tag {
     @Column({ type: 'varchar' })
     category: string;
 
+    @Column({ type: 'int' })
+    categoryId: number;
+
     // foreign key
     // tag <-> postTag 1:n
     @OneToMany((type) => Posttag, (postTag) => postTag.tag, {onDelete: 'CASCADE'})
