@@ -1,10 +1,10 @@
-import { Column, Entity, JoinColumn, ManyToOne, PrimaryColumn } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToOne, PrimaryColumn, PrimaryGeneratedColumn } from "typeorm";
 import { Post } from "./Post";
 import { Tag } from "./Tag";
 
 @Entity()
 export class Posttag {
-    @PrimaryColumn({ type: 'int' })
+    @PrimaryGeneratedColumn({ type: 'int' })
     id: number;
 
     @Column({ type: 'int' })

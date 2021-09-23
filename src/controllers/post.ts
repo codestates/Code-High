@@ -1,7 +1,6 @@
 import { Request, Response } from 'express';
-import { getManager, getRepository } from 'typeorm';
+import { getConnection, getManager, getRepository } from 'typeorm';
 import { Post } from '../entity/Post';
-import { Posttag } from '../entity/Posttag';
 
 const getPostList = async (req: Request, res: Response) => {
   const isSecret = [false]
@@ -57,12 +56,25 @@ const getPost = async (req: Request, res: Response) => {
   .where('post.id = :id', { id: req.params.id })
   .getOne();
 
+  result['userName'] = result.user.name;
+  delete result.user;
+
   res.status(200).send({ post: result });
 }
 
-const addPost = (req: Request, res: Response) => {
+const addPost = async (req: Request, res: Response) => {
+  const { title, codeContent, textContent, secret } = req.body
 
-  res.send('addPost');
+  const newPost = Post.create({  
+    title,
+    codeContent,
+    textContent,
+    secret,
+    userId: req.body.authUserId
+  })
+  const result = await Post.save(newPost);
+
+  res.send({ message: 'ok'});
 }
 
 const editPost = (req: Request, res: Response) => {
