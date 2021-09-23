@@ -13,6 +13,9 @@ export class Comment {
     @Column({ type: 'int' })
     userId: number;
 
+    @Column({ type: 'varchar'})
+    userName: string;
+
     @Column({ type: 'int' })
     postId: number;
 
