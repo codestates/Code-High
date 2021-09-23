@@ -1,5 +1,5 @@
 import { type } from "os";
-import { BaseEntity, Column, CreateDateColumn, Entity, ManyToOne,  PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { BaseEntity, Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryColumn, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 import { User } from "./User";
 
 @Entity()

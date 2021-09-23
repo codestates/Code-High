@@ -1,5 +1,5 @@
 import { type } from "os";
-import { Column, Entity, OneToMany, PrimaryColumn, BaseEntity } from "typeorm";
+import { BaseEntity, Column, Entity, OneToMany, PrimaryColumn } from "typeorm";
 import { Posttag } from "./Posttag";
 
 @Entity()

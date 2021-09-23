@@ -1,5 +1,5 @@
 import { type } from "os";
-import { Column, Entity, JoinColumn, ManyToOne, PrimaryColumn, BaseEntity } from "typeorm";
+import { BaseEntity, Column, Entity, JoinColumn, ManyToOne, PrimaryColumn } from "typeorm";
 import { Authority } from "./Authority";
 
 @Entity()

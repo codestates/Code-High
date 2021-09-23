@@ -1,4 +1,4 @@
-import { Check, Column, Entity, OneToMany, PrimaryGeneratedColumn, BaseEntity } from "typeorm";
+import { BaseEntity, Check, Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { Menu } from "./Menu";
 import { User } from "./User";
 
