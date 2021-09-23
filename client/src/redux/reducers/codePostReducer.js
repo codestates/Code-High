@@ -11,15 +11,15 @@ const codePostReducer = (state = {}, action) => {
   switch (action.type) {
     case GET_CODESTORAGE_POST:
       return Object.assign({}, state, {
-        postList: [...state.postList, action.payload.postList],
+        userPostList: [...state.userPostList, action.payload],
       });
     case GET_CODEREVIEW_POST:
       return Object.assign({}, state, {
-        postList: [...state.postList, action.payload.postList],
+        postList: action.payload,
       });
     case GET_CODEREVIEW_FILTER:
       return Object.assign({}, state, {
-        postList: [...state.postList, action.payload.postList],
+        postList: [...state.postList, action.payload],
       });
     case GET_CODEPOST:
       return Object.assign({}, state, {

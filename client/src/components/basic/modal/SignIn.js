@@ -1,5 +1,6 @@
 import React, { useRef, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import { signinUser } from '../../../redux/actions/userActions';
 import Signinimg from '../../../images/Signinimg.svg';
 import codehighlogo from '../../../images/codehighlogo.png';
@@ -9,11 +10,14 @@ import google from '../../../images/google.png';
 
 function Signin({ togglePopUp, setShowLoginModal }) {
   const SigninBackgroundEl = useRef(null);
+  const state = useSelector(state => state.userReducer);
+  const { userInfo } = state;
   const [loginInfo, setLoginInfo] = useState({
     email: '',
     password: '',
   });
   const dispatch = useDispatch();
+  const history = useHistory();
 
   //!모달 배경
   const SigninBackgroundClick = (e) => {
@@ -66,6 +70,7 @@ function Signin({ togglePopUp, setShowLoginModal }) {
     console.log(loginInfo)
 
     if (!isEmail(email)) {
+      //axios 연결 후 alter 띄우기
       console.log('이메일 확인');
       return;
     }
@@ -76,11 +81,15 @@ function Signin({ togglePopUp, setShowLoginModal }) {
     }
 
     dispatch(signinUser(loginInfo))
-      .then((res) => {
-        console.log(res)
-      })
-
+    
+    if(userInfo.message === 'login success') {
+      setShowLoginModal(!togglePopUp);
+    }
   };
+  
+  //!회원정보 
+  console.log('로그인 모달창에서의 유저 정보',userInfo)
+
   return (
     <div className='signin-modal'>
       <div

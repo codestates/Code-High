@@ -10,10 +10,10 @@ const userReducer = (state = {}, action) => {
   switch (action.type) {
     case SIGNIN_USER:
       return Object.assign({}, state, {
-        userInfo: [...state.userInfo, action.payload],
+        userInfo: action.payload,
       });
     case SIGNOUT_USER:
-      return Object.assign({}, state, {});
+      return Object.assign({});
     case GET_USER_INFO:
       return Object.assign({}, state, {
         userInfo: [...state.userInfo, action.payload],

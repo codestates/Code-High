@@ -4,8 +4,13 @@ import Logo from '../../../images/codehighlogo.png';
 import HamburgerMenubar from '../../../images/hamburger-menu-icon.jpeg';
 import SignIn from '../modal/SignIn';
 import SideBar from '../navbar/SideBar';
+import { useDispatch, useSelector } from 'react-redux';
+import { signoutUser } from '../../../redux/actions/userActions';
 
 const NavBar = () => {
+  const state = useSelector((state) => state.userReducer);
+  const { userInfo } = state;
+  const dispatch = useDispatch();
   const [openSidebar, setOpenSidebar] = useState(false);
   const showSidebar = () => setOpenSidebar(!openSidebar);
 
@@ -15,6 +20,12 @@ const NavBar = () => {
     setShowLoginModal(!showLoginModal);
   };
 
+  const handleLogout = () => {
+    dispatch(signoutUser())
+  }
+
+  console.log('네브바에서의 유저 정보',userInfo)
+  
   return (
     <>
       <div className='navbar'>
@@ -26,9 +37,15 @@ const NavBar = () => {
           </div>
 
           <ul className='navbar-right'>
-            <li className='login-tag' onClick={togglePopUp}>
-              Login
-            </li>
+            {userInfo ? (
+              <li className='login-tag' onClick={handleLogout}>
+                Logout
+              </li>
+            ) : (
+              <li className='login-tag' onClick={togglePopUp}>
+                Login
+              </li>
+            )}
             <li className='navbar-menubar-sidebar-container'>
               <img
                 className='hamburger-menubar'
@@ -36,20 +53,20 @@ const NavBar = () => {
                 alt='menubar'
                 onClick={showSidebar}
               />
-              <span className={openSidebar ? 'navbar-menu active' : 'navbar-menu'}>
+              <span
+                className={openSidebar ? 'navbar-menu active' : 'navbar-menu'}
+              >
                 <SideBar />
               </span>
             </li>
           </ul>
         </div>
-        {showLoginModal
-          ? (
-            <SignIn
-              togglePopUp={togglePopUp}
-              setShowLoginModal={setShowLoginModal}
-            />
-            )
-          : null}
+        {showLoginModal ? (
+          <SignIn
+            togglePopUp={togglePopUp}
+            setShowLoginModal={setShowLoginModal}
+          />
+        ) : null}
       </div>
     </>
   );

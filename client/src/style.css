@@ -1012,6 +1012,10 @@ ul {
     padding: 5px;
     height: 200px; }
 
+.codereviewboard-header {
+  margin-bottom: 5px;
+  margin-left: 5px; }
+
 .kanban {
   display: flex;
   align-items: center;

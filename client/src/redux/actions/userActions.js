@@ -10,9 +10,9 @@ import axios from 'axios';
 axios.defaults.withCredentials = true;
 const serverUrl = 'https://api.codehigh.club';
 
-//-------------------------------1.로그인-------------------------------
+//-------------------------------1.로그인(완료)-------------------------------
 export function signinUser(loginInfo) {
-  const{ email, password } = loginInfo;
+  const { email, password } = loginInfo;
 
   const response = axios
     .post(
@@ -23,8 +23,7 @@ export function signinUser(loginInfo) {
       }
     )
     .then((res) => {
-      const { id, email, image, name, phone, authority } = res.data.userInfo;
-      console.log(res.data.userInfo)
+      const { id, email, image, name, phone, authorityId, loginType } = res.data.userInfo;
       return {
         message: res.data.message,
         accessToken: res.data.accessToken,
@@ -33,7 +32,8 @@ export function signinUser(loginInfo) {
         image: image,
         name: name,
         phone: phone,
-        authority: authority,
+        authority: authorityId,
+        loginType: loginType
       };
     });
 
@@ -43,21 +43,23 @@ export function signinUser(loginInfo) {
   };
 }
 
-//-------------------------------2.로그아웃-------------------------------
+//-------------------------------2.로그아웃(완료)-------------------------------
 export async function signoutUser() {
-  axios
-    .get(`${serverUrl}/logout`, {
+  const response = axios
+    .get(`${serverUrl}/auth/logout`, {
       headers: { 'Content-Type': 'application/json' },
     })
     .then((res) => {
-      return {
-        type: SIGNOUT_USER,
-        payload: res.data.message,
-      };
+      res.data.message
     });
+
+  return {
+    type: SIGNOUT_USER,
+    payload: response,
+  };
 }
 
-//-------------------------------3.유저 정보 가져오기-------------------------------
+//-------------------------------3.유저 정보 가져오기(없어도될듯)-------------------------------
 export async function getUserInfo(accessToken) {
   axios
     .get(`${serverUrl}/user/info`, {

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Tag from '../basic/tag/Tag';
 
-function CodeInputTagBox () {
+function CodeInputTagBox() {
   const tagNameMock = [
     [
       'Hash',
@@ -13,11 +13,32 @@ function CodeInputTagBox () {
       'Stack/Queue',
       'Heap',
       'Greedy',
-      'BS'
+      'BS',
     ],
     ['Programmers', 'LeetCode', 'Beakjoon', 'HackerRank', 'etc'],
     ['⭐️', '⭐️⭐️', '⭐️⭐️⭐️', '⭐️⭐️⭐️⭐️', '⭐️⭐️⭐️⭐️⭐️'],
-    ['☹️', '😐', '🙂']
+    ['☹️', '😐', '🙂'],
+    [
+      'C',
+      'C#',
+      'C++',
+      'Clojure',
+      'Dart',
+      'Go',
+      'Java',
+      'JavaScript',
+      'Kotlin',
+      'Objective-C',
+      'PHP',
+      'Python',
+      'R',
+      'Ruby',
+      'Rust',
+      'Scala',
+      'SQL',
+      'Swift',
+      'TypeScript',
+    ],
   ];
 
   const [choiceTag, setChoiceTag] = useState([]);
@@ -44,6 +65,7 @@ function CodeInputTagBox () {
     }
   };
 
+  console.log(choiceTag)
   return (
     <div className='codeinputtagbox'>
       <div className='codeinputtagbox-container'>
@@ -51,6 +73,20 @@ function CodeInputTagBox () {
           <span>알고리즘</span>
           <div>
             {tagNameMock[0].map((item) => {
+              return (
+                <Tag
+                  content={item}
+                  backgroundColor='#E1E1E1'
+                  onClickHandle={handleChangeColor}
+                />
+              );
+            })}
+          </div>
+        </div>
+        <div className='codeinputtagbox-tagbox'>
+          <span>사용언어</span>
+          <div>
+            {tagNameMock[4].map((item) => {
               return (
                 <Tag
                   content={item}
@@ -93,7 +129,13 @@ function CodeInputTagBox () {
           <span>이해도</span>
           <div>
             {tagNameMock[3].map((item) => {
-              return <Tag content={item} backgroundColor='#E1E1E1' onClickHandle={handleChangeColor} />;
+              return (
+                <Tag
+                  content={item}
+                  backgroundColor='#E1E1E1'
+                  onClickHandle={handleChangeColor}
+                />
+              );
             })}
           </div>
         </div>
