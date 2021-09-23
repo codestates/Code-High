@@ -26,7 +26,7 @@ const emailLogin = async (req: Request, res: Response) => {
       return res.status(401).send({ message: 'unauthorized' });
     }
 
-    const tokenInfo = { id: userInfo.id, email: userInfo.email };
+    const tokenInfo = { email: userInfo.email };
     const accessToken: string = generateAccessToken(tokenInfo);
     const refreshToken: string = generateRefreshToken(tokenInfo);
 
