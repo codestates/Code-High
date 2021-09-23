@@ -1,10 +1,10 @@
 import { type } from "os";
-import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryColumn, UpdateDateColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryColumn, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 import { User } from "./User";
 
 @Entity()
 export class Comment {
-    @PrimaryColumn({ type: 'int' })
+    @PrimaryGeneratedColumn({ type: 'int' })
     id: number;
 
     @Column({ type: 'varchar' })

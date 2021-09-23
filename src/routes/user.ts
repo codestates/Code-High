@@ -10,7 +10,6 @@ userRouter.use('/', checkRole);
 
 userRouter.get('/info', userController.userInfo);
 userRouter.get('/post', postController.getUserPostList);
-userRouter.post('/post');
 userRouter.delete('/post');
 userRouter.get('/', userController.userList);
 userRouter.patch('/', userController.editUser);
