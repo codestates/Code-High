@@ -4,8 +4,8 @@ import { Post } from '../entity/Post';
 
 const getPostList = async (req: Request, res: Response) => {
   const isSecret = [false]
-  //const postRepository = getRepository(Post);
-  // // 관리자 권한이면 isSecret = [true, false]
+  
+  // 관리자 권한이면 isSecret = [true, false]
 
   const result = await Post.createQueryBuilder()
   .where('secret In (:...isSecret)', { isSecret })
@@ -31,6 +31,10 @@ const editPost = (req: Request, res: Response) => {
 
 const deletePost = (req: Request, res: Response) => {
   res.send('deletePost');
+}
+
+const deletePostList = (req: Request, res: Response) => {
+  res.send('')
 }
 
 export {
