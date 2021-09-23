@@ -1,9 +1,9 @@
 import { type } from "os";
-import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryColumn, UpdateDateColumn } from "typeorm";
+import { BaseEntity, Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryColumn, UpdateDateColumn } from "typeorm";
 import { User } from "./User";
 
 @Entity()
-export class Comment {
+export class Comment extends BaseEntity {
     @PrimaryColumn({ type: 'int' })
     id: number;
 
