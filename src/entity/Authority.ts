@@ -3,7 +3,7 @@ import { Menu } from "./Menu";
 import { User } from "./User";
 
 @Entity()
-export class Authority extends BaseEntity {
+export class Authority {
     @PrimaryGeneratedColumn({ type: 'int' })
     id: number;
 

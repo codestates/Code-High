@@ -1,9 +1,9 @@
 import { type } from "os";
-import { Column, Entity, OneToMany, PrimaryColumn, BaseEntity } from "typeorm";
+import { Column, Entity, OneToMany, PrimaryColumn } from "typeorm";
 import { Posttag } from "./Posttag";
 
 @Entity()
-export class Tag extends BaseEntity {
+export class Tag {
     @PrimaryColumn({ type: 'int' })
     id: number;
 
