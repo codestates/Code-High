@@ -1,9 +1,11 @@
 import React from 'react';
 import profileImg from '../../images/profileimg.png'
 import moveCodeStorageImg from '../../images/mypageimg.svg'
+import { Link } from 'react-router-dom'
 
 
-const MyPageSub = () => {
+const MyPageSub = (props) => {
+    const { onClickHandle } = props;
     return (
         <div className="mypage-container">
             <div className='mypage-left-container'>
@@ -20,33 +22,35 @@ const MyPageSub = () => {
                 </div>
                 <div className="mypage-right-midlle-container">
                     <div className="mypage-right-middle-box">
-                        <div>
-                            <span>
-                                작성한 코드
-                            </span>
-                            <span className='mypage-number'>
-                                11
-                            </span>
-                        </div>
-                        <div>
-                            <span>
-                                댓글
-                            </span>
-                            <span className='mypage-number'>
-                                3
-                            </span>
-                        </div>
-                        <div>
-                            <span>
-                                리뷰수
-                            </span>
-                            <span className='mypage-number'>
-                                1
-                            </span>
-                        </div>
+                            <div>
+                                <span>
+                                    작성한 코드
+                                </span>
+                                <span className='mypage-number'>
+                                    11
+                                </span>
+                            </div>
+                            <div>
+                                <span>
+                                    댓글
+                                </span>
+                                <span className='mypage-number'>
+                                    3
+                                </span>
+                            </div>
+                            <div>
+                                <span>
+                                    리뷰수
+                                </span>
+                                <span className='mypage-number'>
+                                    1
+                                </span>
+                            </div>
                     </div>
-                    <div className='mypage-right-middle-box-2'>
+                    <div className='mypage-right-middle-box-2' onClick={onClickHandle} >
+                    <Link to='/codestorage'>
                         <img className='mypage-move-codestorage' src={moveCodeStorageImg} alt='moveCodeStorage'/>
+                    </Link>
                         <div className='mypage-move-codestorage-text'>
                             코드 저장소 <br/> 이동하기
                         </div>
