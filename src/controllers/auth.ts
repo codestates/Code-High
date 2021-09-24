@@ -12,7 +12,7 @@ const emailLogin = async (req: Request, res: Response) => {
   try {
     const { email, password } = req.body;
     const userInfo = await User.findOne({ where: { email } });
-
+    
     if (!userInfo || !userInfo.verified) {
       return res.status(404).send({ message: 'undefined user' });
     }
