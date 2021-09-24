@@ -27,6 +27,10 @@ const userInfo = async (req: Request, res: Response) => {
 
 // [admin] get user profile by id
 const userInfoById = async (req: Request, res: Response) => {
+  if (req.body.userRole !== 1) {
+    return res.status(403).send({ message: 'forbidden user'});
+  }
+
   const loginUserInfo = await User.findOne({ where: { id: req.params.id } });
   if (!loginUserInfo) {
     return res.status(404).send({ message: 'user not found'});
