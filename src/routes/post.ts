@@ -12,6 +12,6 @@ postRouter.patch('/:id', postController.editPost);
 postRouter.delete('/:id', postController.deletePost);
 postRouter.get('/', postController.getPostList);
 postRouter.post('/', checkAuth, checkRole, postController.addPost);
-postRouter.get('/:id/comment', commentController.commentPostList)
+postRouter.get('/:id/comment', commentController.commentListByPostId)
 
 export default postRouter;
