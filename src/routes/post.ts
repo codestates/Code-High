@@ -10,7 +10,7 @@ const postRouter = Router();
 postRouter.get('/:id', postController.getPost);
 postRouter.get('/', postController.getPostList);
 postRouter.post('/', checkAuth, checkRole, postController.addPost);
-postRouter.get('/:id/comment', commentController.commentPostList)
+postRouter.get('/:id/comment', commentController.commentListByPostId)
 
 postRouter.use('/', checkAuth);
 postRouter.use('/', checkRole);
