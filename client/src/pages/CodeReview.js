@@ -6,7 +6,6 @@ import WhiteFooter from '../components/basic/footer/WhiteFooter';
 function CodeReview () {
   return (
     <>
-      <NavBar />
       <CodeReviewBoard />
       <WhiteFooter />
     </>
