@@ -3,9 +3,11 @@ import { getConnection, getManager, getRepository } from 'typeorm';
 import { Post } from '../entity/Post';
 
 const getPostList = async (req: Request, res: Response) => {
-  const isSecret = [false]
+  const isSecret = [false] //15, 6
   const page = req.query.page;
-  const pageOffset = (Number(page) - 1) * 15;
+  let pageCount = page === '1' ? 15 : 6;
+  let pageOffset = page === '1' ? 0 : (Number(page) - 2) * 6 + 15;
+  
   // 관리자 권한이면 isSecret = [true, false]
 
   if (!page) {
@@ -27,7 +29,7 @@ const getPostList = async (req: Request, res: Response) => {
     .leftJoin('post.user','user')
     .where('post.secret In (:...isSecret)', { isSecret })
     .offset(pageOffset)
-    .limit(15)
+    .limit(pageCount)
     .getRawMany();
 
     res.status(200).send({ postList: result });
