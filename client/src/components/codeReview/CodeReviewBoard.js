@@ -1,101 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { getReviewPost } from '../../redux/actions/codePostActions';
+import { resetCodereviewPost } from '../../redux/actions/codePostActions';
 import { useSelector, useDispatch } from 'react-redux';
 import SearchInput from '../basic/search/SearchInput';
 
 function CodeReviewBoard () {
-  const mockCode = [
-  {
-    subject: '알고리즘1',
-    date: '2021.09.14',
-    code: 'if(now === night){return `I have to go to bed.`}'
-  },
-  {
-    subject: '알고리즘2',
-    date: '2021.09.14',
-    code: 'if(now === night){return `I have to go to bed.`}'
-  },
-  {
-    subject: '알고리즘3',
-    date: '2021.09.14',
-    code: 'if(now === lunch){return `I wanna sleep`}'
-  },
-  {
-    subject: '알고리즘4',
-    date: '2021.09.14',
-    code: 'if(now === night){return `I have to go to bed.`}'
-  },
-  {
-    subject: '알고리즘5',
-    date: '2021.09.14',
-    code: 'if(now === morning){return `OMG`}'
-  },
-  {
-    subject: '알고리즘6',
-    date: '2021.09.14',
-    code: 'if(now === night){return `I have to go to bed.`}'
-  },
-  {
-    subject: '알고리즘7',
-    date: '2021.09.14',
-    code: 'if(now === richguy){return `I will run.!`}'
-  },
-  {
-    subject: '알고리즘8',
-    date: '2021.09.14',
-    code: 'if(now === night){return `I have to go to bed.`}'
-  },
-  {
-    subject: '알고리즘9',
-    date: '2021.09.14',
-    code: 'if(now === morning){return `OMG`}'
-  },
-  {
-    subject: '알고리즘10',
-    date: '2021.09.14',
-    code: 'if(now === night){return `I have to go to bed.`}'
-  },
-  {
-    subject: '알고리즘11',
-    date: '2021.09.14',
-    code: 'if(now === night){return `I have to go to bed.`}'
-  },
-  {
-    subject: '알고리즘12',
-    date: '2021.09.14',
-    code: 'if(now === lunch){return `I wanna sleep`}'
-  },
-  {
-    subject: '알고리즘13',
-    date: '2021.09.14',
-    code: 'if(now === night){return `I have to go to bed.`}'
-  },
-  {
-    subject: '알고리즘14',
-    date: '2021.09.14',
-    code: 'if(now === morning){return `OMG`}'
-  },
-  {
-    subject: '알고리즘15',
-    date: '2021.09.14',
-    code: 'if(now === night){return `I have to go to bed.`}'
-  },
-  {
-    subject: '알고리즘16',
-    date: '2021.09.14',
-    code: 'if(now === richguy){return `I will run.!`}'
-  },
-  {
-    subject: '알고리즘17',
-    date: '2021.09.14',
-    code: 'if(now === night){return `I have to go to bed.`}'
-  },
-  {
-    subject: '알고리즘18',
-    date: '2021.09.14',
-    code: 'if(now === morning){return `OMG`}'
-  }
-]; 
   const state = useSelector(state => state.codePostReducer);
   const userState = useSelector(state => state.userReducer);
   const { postList } = state;
@@ -103,10 +12,30 @@ function CodeReviewBoard () {
 
   const dispatch = useDispatch();
 
+  //!새로고침하면 첫 15개만 나타남
   useEffect(()=>{
-    dispatch(getReviewPost())
+    dispatch(resetCodereviewPost())
   },[])
   console.log('코드리뷰보드에서의 코드리스트', postList)
+
+  const onScroll = (e) => {
+    //window.innerHeight=1006 , window.scrollY=1, document.body.offsetHeight=1007
+    console.log(window.innerHeight , window.scrollY, document.body.offsetHeight)
+    if((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+      setTimeout(() => {
+        let count = 1;
+        const addContent = document.createElement("div");
+        addContent.classList.add("codereviewboard-card")
+        // dispatch(getReviewPost(count+1))
+        addContent.innerHTML = `{postList.map((item) => {
+          return (<h1>item.title</h1>
+              <div>item.codeContent</div>);
+      })}`
+        document.querySelector('section').appendChild(addContent);
+      },1000)
+    }
+  }
+
 
   return (
     <div className='codereviewboard'>
@@ -114,18 +43,14 @@ function CodeReviewBoard () {
         <div className='codereviewboard-header'>
           <SearchInput />
         </div>
-        <div className='codereviewboard-cardbox'>
+        <section className='codereviewboard-cardbox' onScroll={onScroll}>
           {postList.map((item) => {
-            if(item.secret === false) {
-              return (
-                <div className='codereviewboard-card'>
+              return (<div className='codereviewboard-card'>
                   <h1>{item.title}</h1>
                   <div>{item.codeContent}</div>
-                </div>
-              );
-            }
+                </div>);
           })}
-        </div>
+        </section>
       </div>
     </div>
   );
