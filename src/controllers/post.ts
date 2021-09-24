@@ -78,19 +78,57 @@ const addPost = async (req: Request, res: Response) => {
 }
 
 const editPost = async (req: Request, res: Response) => {
+
   const id = Number(req.params.id);
+  const selectPost = await Post.findOne(id)
+  if (!selectPost) {
+    return res.status(404).send({ message: 'post not found'});
+  }
+
+  if (selectPost.userId !== req.body.authUserId) {
+    return res.status(403).send({ message: 'forbidden'});
+  }
+
   const { title, codeContent, textContent, secret } = req.body;
+  if (!title || secret === undefined) {
+    return res.status(422).send({ message: 'title or secret value is null'});
+  }
 
   await Post.update({ id }, { title, codeContent, textContent, secret });
-  res.send('editPost');
+  res.status(201).send({ message: 'editPost'});
 }
 
-const deletePost = (req: Request, res: Response) => {
-  res.send('deletePost');
+const deletePost = async (req: Request, res: Response) => {
+  const id = Number(req.params.id);
+  const selectPost = await Post.findOne(id)
+
+  if (!selectPost) {
+    return res.status(404).send({ message: 'post not found'});
+  }
+
+  if (req.body.userRole !== 1 && selectPost.userId !== req.body.authUserId) {
+    return res.status(403).send({ message: 'forbidden'});
+  }
+  await Post.remove(selectPost);
+
+  res.status(200).send({ message: 'delete post successfully'});
 }
 
-const deletePostList = (req: Request, res: Response) => {
-  res.send('')
+const deletePostList = async (req: Request, res: Response) => {
+  const postList = req.body.postList;
+  let selectPostList;
+
+  // TODO: count확인
+
+  if (req.body.userRole !== 1) {
+    selectPostList = await Post.findByIds(postList, { where: { userId: req.body.authUserId } })
+    
+  } else {
+    selectPostList = await Post.findByIds(postList);
+  }
+  
+  await Post.remove(selectPostList);
+  res.status(200).send({ message: 'delete posts successfully'})
 }
 
 export {
@@ -99,5 +137,6 @@ export {
   getPost,
   addPost,
   editPost,
-  deletePost
+  deletePost,
+  deletePostList
 }
