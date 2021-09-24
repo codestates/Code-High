@@ -6,9 +6,13 @@ import { checkRole } from '../middleware/checkRole';
 const postRouter = Router();
 
 postRouter.get('/:id', postController.getPost);
+postRouter.get('/', postController.getPostList);
+
+postRouter.use('/', checkAuth);
+postRouter.use('/', checkRole);
+
 postRouter.patch('/:id', postController.editPost);
 postRouter.delete('/:id', postController.deletePost);
-postRouter.get('/', postController.getPostList);
-postRouter.post('/', checkAuth, checkRole, postController.addPost);
-
+postRouter.post('/', postController.addPost);
+postRouter.delete('/', postController.deletePostList)
 export default postRouter;
