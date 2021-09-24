@@ -38,7 +38,7 @@ export async function getCodestoragePost(data) {
 //2.코드 리뷰 공개글만 가져오기(완료)-------------------------------
 export function getReviewPost(page) {
   const response = axios
-    .get(`${serverUrl}/post/?page=${page}`, {
+    .get(`${serverUrl}/post?page=${page}`, {
       headers: { 'Content-Type': 'application/json' },
     })
     .then((res) => {
@@ -53,13 +53,13 @@ export function getReviewPost(page) {
 
 export function resetCodereviewPost() {
   const response = axios
-    .get(`${serverUrl}/post/?page=1`, {
+    .get(`${serverUrl}/post?page=1 `, {
       headers: { 'Content-Type': 'application/json' },
     })
     .then((res) => {
       return res.data.postList;
     });
-    console.log(response)
+
   return {
     type: RESET_CODEREVIEW_POST,
     payload: response,
