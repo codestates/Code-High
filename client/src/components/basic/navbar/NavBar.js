@@ -6,6 +6,7 @@ import SignIn from '../modal/SignIn';
 import SideBar from '../navbar/SideBar';
 import { useDispatch, useSelector } from 'react-redux';
 import { signoutUser } from '../../../redux/actions/userActions';
+// import { resetCodereviewPost } from '../../../redux/actions/codePostActions';
 
 const NavBar = () => {
   const state = useSelector((state) => state.userReducer);
@@ -22,6 +23,7 @@ const NavBar = () => {
 
   const handleLogout = () => {
     dispatch(signoutUser())
+    // dispatch(resetCodereviewPost())
   }
 
   console.log('네브바에서의 유저 정보',userInfo)

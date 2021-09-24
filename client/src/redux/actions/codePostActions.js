@@ -1,6 +1,7 @@
 import {
   GET_CODESTORAGE_POST,
   GET_CODEREVIEW_POST,
+  RESET_CODEREVIEW_POST,
   GET_CODEREVIEW_FILTER,
   GET_CODEPOST,
   MODIFY_CODEPOST,
@@ -35,9 +36,9 @@ export async function getCodestoragePost(data) {
 }
 
 //2.코드 리뷰 공개글만 가져오기(완료)-------------------------------
-export function getReviewPost() {
+export function getReviewPost(page) {
   const response = axios
-    .get(`${serverUrl}/post/?page=1`, {
+    .get(`${serverUrl}/post/?page=${page}`, {
       headers: { 'Content-Type': 'application/json' },
     })
     .then((res) => {
@@ -45,7 +46,22 @@ export function getReviewPost() {
     });
 
   return {
-    type: GET_CODEREVIEW_FILTER,
+    type: GET_CODEREVIEW_POST,
+    payload: response,
+  };
+}
+
+export function resetCodereviewPost() {
+  const response = axios
+    .get(`${serverUrl}/post/?page=1`, {
+      headers: { 'Content-Type': 'application/json' },
+    })
+    .then((res) => {
+      return res.data.postList;
+    });
+    console.log(response)
+  return {
+    type: RESET_CODEREVIEW_POST,
     payload: response,
   };
 }

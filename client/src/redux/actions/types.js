@@ -10,6 +10,7 @@ export const GET_MENU = 'GET_MENU';
 // 코드 저장소, 코드 올리기(코드 올리는 페이지에서), 코드 리뷰 포스트, 코드 검색, 코드 자세히 보기, 코드 수정, 코드 지우기
 export const GET_CODESTORAGE_POST = 'GET_CODESTORAGE_POST';
 export const GET_CODEREVIEW_POST = 'GET_CODEREVIEW_POST';
+export const RESET_CODEREVIEW_POST = 'RESET_CODEREVIEW_POST';
 export const GET_CODEREVIEW_FILTER = 'GET_CODEREVIEW_FILTER';
 export const GET_CODEPOST = 'GET_CODEPOST';
 export const MODIFY_CODEPOST = 'MODIFY_CODEPOST';
