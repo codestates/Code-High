@@ -61,6 +61,10 @@ const kakaoLogin = async (req: Request, res: Response) => {
       }
     })
 
+    if (!result) {
+      return res.status(401).send({ message: 'unauthorized' })
+    }
+
     const accessToken = result.data.access_token;
     const refreshToken = result.data.refresh_token;
 
@@ -112,6 +116,10 @@ const googleLogin = async (req: Request, res: Response) => {
       redirect_uri: 'http://localhost:3000'
     })
 
+    if (!result) {
+      return res.status(401).send({ message: 'unauthorized' })
+    }
+
     const accessToken = result.data.access_token;
     const refreshToken = result.data.refresh_token
     
@@ -162,6 +170,10 @@ const githubLogin = async (req: Request, res: Response) => {
       client_secret: process.env.GITHUB_CLIENT_SECRET,
       code: req.body.authorizationCode
     }, { headers: { accept: 'application/json' } })
+
+    if (!result) {
+      return res.status(401).send({ message: 'unauthorized' })
+    }
 
     const accessToken = result.data.access_token;
 

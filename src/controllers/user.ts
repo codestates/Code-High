@@ -4,11 +4,10 @@ import * as bcrypt from 'bcrypt'
 
 // [admin] get userList
 const userList = async (req: Request, res: Response) => {
-  // if (req.body.userRole !== 1) {
-  //   return res.status(403).send({ message: 'forbidden user'});
-  // }
+  if (req.body.userRole !== 1) {
+    return res.status(403).send({ message: 'forbidden user'});
+  }
   const userList = await User.find();
-  //const userList = await User.createQueryBuilder().getMany()
   
   res.status(200).send({ userList, message: 'ok'});
 }
@@ -20,9 +19,6 @@ const userInfo = async (req: Request, res: Response) => {
   }
   
   const loginUserInfo = await User.findOne({ where: { email: req.body.authUser } });
-  // const loginUserInfo = await User.createQueryBuilder()
-  // .where('id = :id', { id: req.body.authUserId })
-  // .getOne()
   
   delete loginUserInfo.password;
   delete loginUserInfo.verified;
@@ -31,6 +27,10 @@ const userInfo = async (req: Request, res: Response) => {
 
 // [admin] get user profile by id
 const userInfoById = async (req: Request, res: Response) => {
+  if (req.body.userRole !== 1) {
+    return res.status(403).send({ message: 'forbidden user'});
+  }
+
   const loginUserInfo = await User.findOne({ where: { id: req.params.id } });
   if (!loginUserInfo) {
     return res.status(404).send({ message: 'user not found'});
@@ -45,16 +45,19 @@ const editUser = async (req: Request, res: Response) => {
   if (req.body.userRole > 3 ) {
     return res.status(403).send({ message: 'forbidden user'})
   }
-
+  
   const loginType = req.headers['login-type'];
   const { name, image, phone } = req.body;
   let password = req.body.password;
-
+  
   if (loginType === 'email' && password !== undefined) {
     password = await bcrypt.hash(password, 10);
   }
-  await User.update({ email: req.body.authUser }, { name, password, image, phone });
-  const updateInfo = await User.findOne({ where: { email: req.body.authUser } });
+  
+  const updateInfo = await User.findOne(req.body.authUserId);
+  User.merge(updateInfo, { name, password, image, phone });
+  await User.save(updateInfo);
+  
   delete updateInfo.password;
   delete updateInfo.verified;
   res.status(200).send({ userInfo: updateInfo, message: 'update success' })
@@ -66,8 +69,8 @@ const deleteUser = async (req: Request, res: Response) => {
     return res.status(403).send({ message: 'forbidden user'})
   }
 
-  const userInfo = await User.findOne({ where: { email: req.body.authUser } });
-  await userInfo.remove();
+  const userInfo = await User.findOne(req.body.authUserId);
+  await User.remove(userInfo);
   res.status(200).send({ message: 'delete account successfully'});
 }
 
