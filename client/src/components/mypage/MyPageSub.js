@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom'
 const MyPageSub = (props) => {
     const { onClickHandle } = props;
     return (
+        <div className="mypage">
         <div className="mypage-container">
             <div className='mypage-left-container'>
                 <div>
@@ -21,7 +22,7 @@ const MyPageSub = (props) => {
                     현재 복습하셔야 할 코드가 남았습니다.        
                 </div>
                 <div className="mypage-right-midlle-container">
-                    <div className="mypage-right-middle-box">
+                    <div className="mypage-right-middle-box-1">
                             <div>
                                 <span>
                                     작성한 코드
@@ -59,6 +60,7 @@ const MyPageSub = (props) => {
                 <div className='mypage-right-bottom-container'>
                 </div>
             </div>
+        </div>
         </div>
     );
 };
