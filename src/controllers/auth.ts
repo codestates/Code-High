@@ -12,7 +12,7 @@ const emailLogin = async (req: Request, res: Response) => {
   try {
     const { email, password } = req.body;
     const userInfo = await User.findOne({ where: { email } });
-
+    
     if (!userInfo || !userInfo.verified) {
       return res.status(404).send({ message: 'undefined user' });
     }
@@ -60,6 +60,10 @@ const kakaoLogin = async (req: Request, res: Response) => {
         'Content-type': 'application/x-www-form-urlencoded;charset=utf-8'
       }
     })
+
+    if (!result) {
+      return res.status(401).send({ message: 'unauthorized' })
+    }
 
     const accessToken = result.data.access_token;
     const refreshToken = result.data.refresh_token;
@@ -112,6 +116,10 @@ const googleLogin = async (req: Request, res: Response) => {
       redirect_uri: 'http://localhost:3000'
     })
 
+    if (!result) {
+      return res.status(401).send({ message: 'unauthorized' })
+    }
+
     const accessToken = result.data.access_token;
     const refreshToken = result.data.refresh_token
     
@@ -162,6 +170,10 @@ const githubLogin = async (req: Request, res: Response) => {
       client_secret: process.env.GITHUB_CLIENT_SECRET,
       code: req.body.authorizationCode
     }, { headers: { accept: 'application/json' } })
+
+    if (!result) {
+      return res.status(401).send({ message: 'unauthorized' })
+    }
 
     const accessToken = result.data.access_token;
 
