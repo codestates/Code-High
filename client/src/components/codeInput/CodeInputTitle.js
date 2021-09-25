@@ -6,7 +6,7 @@ function CodeInputTitle () {
     <div className='codeinputtitle'>
       <div className='codeinputtitle-container'>
         <span>제목</span>
-        <input type='text' autofocus='true' />
+        <input type='text' autoFocus={true} />
       </div>
     </div>
   );

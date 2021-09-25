@@ -7,7 +7,6 @@ import PostMain from '../components/CodePost/PostMainView';
 const CodePost = () => {
     return (
         <>
-        <NavBar/>
         <PostMain/>
         <PostComment/>
         <WhiteFooter/>

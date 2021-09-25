@@ -6,7 +6,6 @@ import NavBar from '../components/basic/navbar/NavBar';
 function CodeStorage () {
   return (
     <>
-      <NavBar />
       <Kanban />
       <WhiteFooter />
     </>

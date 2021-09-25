@@ -9,7 +9,6 @@ import NavBar from '../components/basic/navbar/NavBar';
 function CodeInput () {
   return (
     <>
-      <NavBar />
       <CodeInputTitle />
       <CodeInputTagBox />
       <CodeInputMain />

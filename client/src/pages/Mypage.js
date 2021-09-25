@@ -6,7 +6,6 @@ import NavBar from '../components/basic/navbar/NavBar';
 function Mypage () {
   return (
     <>
-    <NavBar/>
     <MyPageSub/>
     <WhiteFooter/>
     </>
