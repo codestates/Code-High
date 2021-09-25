@@ -1,10 +1,10 @@
 import React from 'react';
 
 const Tag = (props) => {
-  const { content, onClickHandle, backgroundColor } = props;
+  const { content, onClickHandle, backgroundColor, className} = props;
   return (
     <div
-      className='tag-button'
+      className={`tag-button ${className}`}
       style={{
         backgroundColor
       }}
