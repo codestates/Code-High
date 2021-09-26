@@ -1,14 +1,13 @@
 import { Request, Response } from 'express';
-import { getConnection, getManager, getRepository } from 'typeorm';
+import { getConnection, getManager, getRepository, Tree } from 'typeorm';
 import { Post } from '../entity/Post';
 
 const getPostList = async (req: Request, res: Response) => {
-  const isSecret = [false] //15, 6
+
+  const isSecret = req.body.userRole === 1 ? [true, false] : [false];
   const page = req.query.page;
   let pageCount = page === '1' ? 15 : 6;
   let pageOffset = page === '1' ? 0 : (Number(page) - 2) * 6 + 15;
-  
-  // 관리자 권한이면 isSecret = [true, false]
 
   if (!page) {
     const result = await getRepository(Post).createQueryBuilder('post')
@@ -48,7 +47,7 @@ const getUserPostList = async (req: Request, res: Response) => {
   res.status(200).send({ postList: result, message: 'getUserPostList'});
 }
 
-const getPost = async (req: Request, res: Response) => {
+const getPostById = async (req: Request, res: Response) => {
 
   const result = await Post.createQueryBuilder('post')
   .select(['post', 'user.name', 'postTag.tagId', 'tag.name', 'tag.category'])
@@ -57,6 +56,12 @@ const getPost = async (req: Request, res: Response) => {
   .leftJoin('postTag.tag', 'tag')
   .where('post.id = :id', { id: req.params.id })
   .getOne();
+
+  if (result.secret) {
+    if (req.body.userRole !== 1 && req.body.authUserId !== result.userId) {
+      return res.status(403).send({ message: 'forbidden user'});
+    }
+  }
 
   result['userName'] = result.user.name;
   delete result.user;
@@ -136,7 +141,7 @@ const deletePostList = async (req: Request, res: Response) => {
 export {
   getPostList,
   getUserPostList,
-  getPost,
+  getPostById,
   addPost,
   editPost,
   deletePost,
