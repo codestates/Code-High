@@ -6,8 +6,8 @@ const getPostList = async (req: Request, res: Response) => {
 
   const isSecret = req.body.userRole === 1 ? [true, false] : [false];
   const page = req.query.page;
-  let pageCount = page === '1' ? 15 : 6;
-  let pageOffset = page === '1' ? 0 : (Number(page) - 2) * 6 + 15;
+  const pageCount = (page === '1') ? 15 : 6;
+  const pageOffset = (page === '1') ? 0 : (Number(page) - 2) * 6 + 15;
 
   if (!page) {
     const result = await getRepository(Post).createQueryBuilder('post')
