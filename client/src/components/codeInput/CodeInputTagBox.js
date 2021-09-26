@@ -123,7 +123,7 @@ function CodeInputTagBox() {
           </div>
         </div>
         <div className='codeinputtagbox-tagbox'>
-          <span>사용언어</span>
+          <span>언어</span>
           <div>
             {tagNameData.map((item, index) => {
               if (item.category === 'language') {

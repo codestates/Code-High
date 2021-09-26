@@ -31,7 +31,7 @@ const tagNameData = [
   { id: 30, name: 'Java', category: 'language' },
   { id: 31, name: 'JavaScript', category: 'language' },
   { id: 32, name: 'Kotlin', category: 'language' },
-  { id: 33, name: 'Objective-C', category: 'language' },
+  { id: 33, name: 'ObjectiveC', category: 'language' },
   { id: 34, name: 'PHP', category: 'language' },
   { id: 35, name: 'Python', category: 'language' },
   { id: 36, name: 'R', category: 'language' },
