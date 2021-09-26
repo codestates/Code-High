@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-function CodeInputMain () {
+function CodeInputMain ({ codeInputInfo, setCodeInputInfo }) {
   const [userCodeCard, setUserCodeCard] = useState({
     codeContent: '',
     textContent: ''
@@ -9,6 +9,11 @@ function CodeInputMain () {
   const handleInputValue = (key) => (e) => {
     setUserCodeCard({ ...userCodeCard, [key]: e.target.value });
   };
+
+  useEffect(()=>{
+    setCodeInputInfo({ ...codeInputInfo, codeContent: userCodeCard.codeContent, textContent: userCodeCard.textContent});
+  },[userCodeCard])
+  // console.log(codeInputInfo)
 
   return (
     <div className='codeinputmain'>

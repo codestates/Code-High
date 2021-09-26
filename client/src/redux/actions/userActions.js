@@ -2,8 +2,7 @@ import {
   SIGNIN_USER,
   SIGNOUT_USER,
   GET_USER_INFO,
-  DELETE_USER_INFO,
-  GET_MENU,
+  DELETE_USER_INFO
 } from './types';
 import axios from 'axios';
 
@@ -96,21 +95,6 @@ export async function deleteUserInfo(accessToken) {
       return {
         type: DELETE_USER_INFO,
         payload: res.data.message,
-      };
-    });
-}
-
-//------------------------------5.메뉴 가져오기-------------------------------
-export async function getMenu(accessToken) {
-  axios
-    .get(`${serverUrl}/menu`, {
-      headers: { Authorization: `bearer ${accessToken}` },
-      withCredentials: true,
-    })
-    .then((res) => {
-      return {
-        type: GET_MENU,
-        payload: res.data.menuList,
       };
     });
 }

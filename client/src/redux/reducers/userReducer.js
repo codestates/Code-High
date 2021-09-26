@@ -3,7 +3,6 @@ import {
   SIGNOUT_USER,
   GET_USER_INFO,
   DELETE_USER_INFO,
-  GET_MENU
 } from '../actions/types';
 
 const userReducer = (state = {}, action) => {
@@ -20,10 +19,6 @@ const userReducer = (state = {}, action) => {
       });
     case DELETE_USER_INFO:
       return Object.assign({}, state, {});
-    case GET_MENU:
-      return Object.assign({}, state, {
-        menu: [...state.menu, action.payload],
-      });
     default:
       return state;
   }

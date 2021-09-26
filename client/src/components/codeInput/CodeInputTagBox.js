@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Tag from '../basic/tag/Tag';
 import tagNameData from './TagNameData';
 
-function CodeInputTagBox() {
+function CodeInputTagBox({ codeInputInfo, setCodeInputInfo }) {
   const [choiceTag, setChoiceTag] = useState({
     algorithm: [],
     language: [],
@@ -10,7 +10,11 @@ function CodeInputTagBox() {
     difficulty: [],
     understanding: [],
   });
-  console.log(choiceTag);
+
+  useEffect(()=>{
+    setCodeInputInfo({ ...codeInputInfo, tag: choiceTag });
+  },[choiceTag])
+  // console.log(choiceTag, codeInputInfo);
 
   const handleChangeColor = (e) => {
     const currentTagName = e.target.innerHTML;
