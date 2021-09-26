@@ -1,4 +1,5 @@
 import { Request, Response } from "express"
+import { getRepository } from "typeorm";
 import { Comment } from "../entity/Comment"
 import { User } from "../entity/User";
 
@@ -47,10 +48,20 @@ export const deleteCommentList = async (req: Request, res: Response) => {
 export const commentListByPostId = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
-    const commentInfo = await Comment.find({ where: { postId: id }});
-    
-    return res.status(200).send({ commentList: commentInfo, message: 'ok' });
+    const page = req.query.page;
+    const pageOffset = (Number(page) - 2) * 6 + 15;
 
+    if (!page) {
+      const commentInfo = await Comment.find({ where: { postId: id }});    
+      return res.status(200).send({ commentList: commentInfo, message: 'ok' });
+    } else {
+      const result = await getRepository(Comment).createQueryBuilder('comment')
+      .select(['comment.id AS id', 'comment.content AS content', 'comment.userName AS UserName'])
+      .where('comment.postId', { id })
+      .offset(pageOffset)
+      .getMany();
+      return res.status(200).send({ commentList: result, message: 'ok' });
+    }   
   } catch (err) {
     return res.status(400).send({ message: err.message });
   }
