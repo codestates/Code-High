@@ -35,7 +35,6 @@ function Landing () {
 
   return (
     <>
-      <NavBar />
       <Mainbanner />
       <Subbanner />
       <GettingStart />

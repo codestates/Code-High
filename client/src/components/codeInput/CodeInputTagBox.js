@@ -1,141 +1,196 @@
 import React, { useState } from 'react';
 import Tag from '../basic/tag/Tag';
+import tagNameData from './TagNameData';
 
 function CodeInputTagBox() {
-  const tagNameMock = [
-    [
-      'Hash',
-      'BFS/DFS',
-      'DP',
-      'Tree',
-      'Graph',
-      'Sort',
-      'Stack/Queue',
-      'Heap',
-      'Greedy',
-      'BS',
-    ],
-    ['Programmers', 'LeetCode', 'Beakjoon', 'HackerRank', 'etc'],
-    ['⭐️', '⭐️⭐️', '⭐️⭐️⭐️', '⭐️⭐️⭐️⭐️', '⭐️⭐️⭐️⭐️⭐️'],
-    ['☹️', '😐', '🙂'],
-    [
-      'C',
-      'C#',
-      'C++',
-      'Clojure',
-      'Dart',
-      'Go',
-      'Java',
-      'JavaScript',
-      'Kotlin',
-      'Objective-C',
-      'PHP',
-      'Python',
-      'R',
-      'Ruby',
-      'Rust',
-      'Scala',
-      'SQL',
-      'Swift',
-      'TypeScript',
-    ],
-  ];
-
-  const [choiceTag, setChoiceTag] = useState([]);
+  const [choiceTag, setChoiceTag] = useState({
+    algorithm: [],
+    language: [],
+    platform: [],
+    difficulty: [],
+    understanding: [],
+  });
+  console.log(choiceTag);
 
   const handleChangeColor = (e) => {
-    // 빈 배열이면 클릭한 정보를 배열에 넣습니다. 색 바꾸기
-    // 빈 배열이 아니라면, 배열을 필터해 있는지 없는지 살피고,
-    // 없다면 추가하고, 색을 바꿉니다.
-    // 있다면 색을 회색으로 바꾸고 tag를 뺍니다.
-
-    const currentTag = e.target.innerHTML;
-    const fillterTag = choiceTag.filter((ele) => ele === currentTag);
-    const removeTag = choiceTag.filter((ele) => ele !== currentTag);
-
-    if (choiceTag.length === 0) {
-      setChoiceTag([currentTag]);
-      e.target.style.backgroundColor = '#2F8C4C';
-    } else if (fillterTag.length === 0) {
-      setChoiceTag([...choiceTag, currentTag]);
-      e.target.style.backgroundColor = '#2F8C4C';
-    } else if (fillterTag.length !== 0) {
-      setChoiceTag(removeTag);
-      e.target.style.backgroundColor = '#E1E1E1';
+    const currentTagName = e.target.innerHTML;
+    const currentTag = tagNameData.filter((ele) => ele.name === currentTagName);
+    if (currentTag[0].category === 'algorithm') {
+      const algorithmFillterTag = choiceTag.algorithm.filter(
+        (ele) => ele.name === currentTagName
+        );
+        const algorithmRemoveTag = choiceTag.algorithm.filter(
+          (ele) => ele.name !== currentTagName
+          );
+      if (choiceTag.algorithm.length === 0) {
+        setChoiceTag({ ...choiceTag, algorithm: [...currentTag] });
+        e.target.style.backgroundColor = '#2F8C4C';
+      } else if (algorithmFillterTag.length === 0) {
+        setChoiceTag({
+          ...choiceTag,
+          algorithm: [...choiceTag.algorithm, ...currentTag],
+        });
+        e.target.style.backgroundColor = '#2F8C4C';
+      } else if (algorithmFillterTag.length !== 0) {
+        setChoiceTag({
+          ...choiceTag,
+          algorithm: [...algorithmRemoveTag],
+        });
+        e.target.style.backgroundColor = '#E1E1E1';
+      }
+    } else if (currentTag[0].category === 'language') {
+      if (choiceTag.language.length === 0) {
+        setChoiceTag({ ...choiceTag, language: [currentTag] });
+        e.target.style.backgroundColor = '#2F8C4C';
+      } else if (choiceTag.language.length === 1) {
+        const languageButton = document.querySelectorAll(
+          'div.tag-button.language'
+        );
+        const arr = [...languageButton];
+        arr.map((ele) => {
+          ele.style.backgroundColor = '#E1E1E1';
+        });
+        setChoiceTag({ ...choiceTag, language: [currentTag] });
+        e.target.style.backgroundColor = '#2F8C4C';
+      }
+    } else if (currentTag[0].category === 'platform') {
+      if (choiceTag.platform.length === 0) {
+        setChoiceTag({ ...choiceTag, platform: [currentTag] });
+        e.target.style.backgroundColor = '#2F8C4C';
+      } else if (choiceTag.platform.length === 1) {
+        const platformButton = document.querySelectorAll(
+          'div.tag-button.platform'
+        );
+        const arr = [...platformButton];
+        arr.map((ele) => {
+          ele.style.backgroundColor = '#E1E1E1';
+        });
+        setChoiceTag({ ...choiceTag, platform: [currentTag] });
+        e.target.style.backgroundColor = '#2F8C4C';
+      }
+    } else if (currentTag[0].category === 'difficulty') {
+      if (choiceTag.difficulty.length === 0) {
+        setChoiceTag({ ...choiceTag, difficulty: [currentTag] });
+        e.target.style.backgroundColor = '#2F8C4C';
+      } else if (choiceTag.difficulty.length === 1) {
+        const difficultyButton = document.querySelectorAll(
+          'div.tag-button.difficulty'
+        );
+        const arr = [...difficultyButton];
+        arr.map((ele) => {
+          ele.style.backgroundColor = '#E1E1E1';
+        });
+        setChoiceTag({ ...choiceTag, difficulty: [currentTag] });
+        e.target.style.backgroundColor = '#2F8C4C';
+      }
+    } else if (currentTag[0].category === 'understanding') {
+      if (choiceTag.understanding.length === 0) {
+        setChoiceTag({ ...choiceTag, understanding: [currentTag] });
+        e.target.style.backgroundColor = '#2F8C4C';
+      } else if (choiceTag.understanding.length === 1) {
+        const understandingButton = document.querySelectorAll(
+          'div.tag-button.understanding'
+        );
+        const arr = [...understandingButton];
+        arr.map((ele) => {
+          ele.style.backgroundColor = '#E1E1E1';
+        });
+        setChoiceTag({ ...choiceTag, understanding: [currentTag] });
+        e.target.style.backgroundColor = '#2F8C4C';
+      }
     }
   };
 
-  console.log(choiceTag)
   return (
     <div className='codeinputtagbox'>
       <div className='codeinputtagbox-container'>
         <div className='codeinputtagbox-tagbox'>
           <span>알고리즘</span>
           <div>
-            {tagNameMock[0].map((item) => {
-              return (
-                <Tag
-                  content={item}
-                  backgroundColor='#E1E1E1'
-                  onClickHandle={handleChangeColor}
-                />
-              );
+            {tagNameData.map((item, index) => {
+              if (item.category === 'algorithm') {
+                return (
+                  <Tag
+                    className='algorithm'
+                    key={index}
+                    content={item.name}
+                    backgroundColor='#E1E1E1'
+                    onClickHandle={handleChangeColor}
+                  />
+                );
+              }
             })}
           </div>
         </div>
         <div className='codeinputtagbox-tagbox'>
-          <span>사용언어</span>
+          <span>언어</span>
           <div>
-            {tagNameMock[4].map((item) => {
-              return (
-                <Tag
-                  content={item}
-                  backgroundColor='#E1E1E1'
-                  onClickHandle={handleChangeColor}
-                />
-              );
+            {tagNameData.map((item, index) => {
+              if (item.category === 'language') {
+                return (
+                  <Tag
+                    className='language'
+                    key={index}
+                    content={item.name}
+                    backgroundColor='#E1E1E1'
+                    onClickHandle={handleChangeColor}
+                  />
+                );
+              }
             })}
           </div>
         </div>
         <div className='codeinputtagbox-tagbox'>
           <span>플랫폼</span>
           <div>
-            {tagNameMock[1].map((item) => {
-              return (
-                <Tag
-                  content={item}
-                  backgroundColor='#E1E1E1'
-                  onClickHandle={handleChangeColor}
-                />
-              );
+            {tagNameData.map((item, index) => {
+              if (item.category === 'platform') {
+                return (
+                  <Tag
+                    className='platform'
+                    key={index}
+                    content={item.name}
+                    backgroundColor='#E1E1E1'
+                    onClickHandle={handleChangeColor}
+                  />
+                );
+              }
             })}
           </div>
         </div>
         <div className='codeinputtagbox-tagbox'>
           <span>난이도</span>
           <div>
-            {tagNameMock[2].map((item) => {
-              return (
-                <Tag
-                  content={item}
-                  backgroundColor='#E1E1E1'
-                  onClickHandle={handleChangeColor}
-                />
-              );
+            {tagNameData.map((item, index) => {
+              if (item.category === 'difficulty') {
+                return (
+                  <Tag
+                    className='difficulty'
+                    key={index}
+                    content={item.name}
+                    backgroundColor='#E1E1E1'
+                    onClickHandle={handleChangeColor}
+                  />
+                );
+              }
             })}
           </div>
         </div>
         <div className='codeinputtagbox-tagbox'>
           <span>이해도</span>
           <div>
-            {tagNameMock[3].map((item) => {
-              return (
-                <Tag
-                  content={item}
-                  backgroundColor='#E1E1E1'
-                  onClickHandle={handleChangeColor}
-                />
-              );
+            {tagNameData.map((item, index) => {
+              if (item.category === 'understanding') {
+                return (
+                  <Tag
+                    className='understanding'
+                    key={index}
+                    content={item.name}
+                    backgroundColor='#E1E1E1'
+                    onClickHandle={handleChangeColor}
+                  />
+                );
+              }
             })}
           </div>
         </div>

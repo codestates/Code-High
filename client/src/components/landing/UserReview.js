@@ -39,16 +39,16 @@ function UserReview () {
         </div>
         <div className='userreview-reverse up-on-scroll'>
           <div className='userreview-box-container up-on-scroll'>
-            {mockReview.map((info) => {
+            {mockReview.map((info, index) => {
               return (
                 <span>
-                  <img src={info.img} alt='userimage' />
+                  <img src={info.img} alt='userimage'/>
                   <h5>{info.username}</h5>
                   <div>
                     {Array(info.score)
                       .fill()
                       .map(() => (
-                        <img src={star} alt='star' />
+                        <img src={star} alt='star'/>
                       ))}
                   </div>
                   <p>{info.review}</p>

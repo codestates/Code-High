@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, Suspense } from 'react';
 import axios from 'axios';
 import { Route, Switch } from 'react-router-dom';
 import Landing from './pages/Landing';
@@ -11,8 +11,9 @@ import Mypage from './pages/Mypage';
 import CodePost from './pages/CodePost';
 import NotFoundError from './components/basic/error/NotFoundError';
 import Loading from './components/basic/loading/Loading';
+import NavBar from './components/basic/navbar/NavBar';
 
-function App () {
+function App() {
   // Oauth authorizationCode 요청
   // TODO: 추후 클라이언트 내 다른 페이지로 리다이렉트 되도록 변경해야함
   useEffect(() => {
@@ -55,49 +56,59 @@ function App () {
     }
   };
 
+  const Landing = React.lazy(
+    () =>
+      new Promise((resolve, reject) =>
+        setTimeout(() => resolve(import('./pages/Landing')), 1000)
+      )
+  );
+
   return (
     <>
-      <Switch>
-        <Route exact path='/'>
-          <Landing />
-        </Route>
-        <Route path='/login'>
-          <SignIn />
-        </Route>
-        <Route path='/signup'>
-          <Signup />
-        </Route>
-        <Route path='/codestorage'>
-          <CodeStorage />
-        </Route>
-        <Route path='/codeinput'>
-          <CodeInput />
-        </Route>
-        <Route path='/codereview'>
-          <CodeReview />
-        </Route>
-        <Route path='/post'>
-          <CodePost />
-        </Route>
-        <Route path='/mypage'>
-          <Mypage />
-        </Route>
-        <Route path='/notfound'>
-          <NotFoundError />
-        </Route>
-        <Route path='/loading'>
-          <Loading />
-        </Route>
-        <Route path='/github'>
-          <Loading />
-        </Route>
-        <Route path='/kakao'>
-          <Loading />
-        </Route>
-        <Route path='/google'>
-          <Loading />
-        </Route>
-      </Switch>
+      <Suspense fallback={<Loading />}>
+        <NavBar />
+        <Switch>
+          <Route exact path='/'>
+            <Landing />
+          </Route>
+          <Route path='/login'>
+            <SignIn />
+          </Route>
+          <Route path='/signup'>
+            <Signup />
+          </Route>
+          <Route path='/codestorage'>
+            <CodeStorage />
+          </Route>
+          <Route path='/codeinput'>
+            <CodeInput />
+          </Route>
+          <Route path='/codereview'>
+            <CodeReview />
+          </Route>
+          <Route path='/post'>
+            <CodePost />
+          </Route>
+          <Route path='/mypage'>
+            <Mypage />
+          </Route>
+          <Route path='/notfound'>
+            <NotFoundError />
+          </Route>
+          <Route path='/loading'>
+            <Loading />
+          </Route>
+          <Route path='/github'>
+            <Loading />
+          </Route>
+          <Route path='/kakao'>
+            <Loading />
+          </Route>
+          <Route path='/google'>
+            <Loading />
+          </Route>
+        </Switch>
+      </Suspense>
     </>
   );
 }
