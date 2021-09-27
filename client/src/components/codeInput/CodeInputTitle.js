@@ -1,12 +1,19 @@
 import React from 'react';
 
-function CodeInputTitle () {
-  // 리덕스 후 같이 보내줘야함.
+function CodeInputTitle({ codeInputInfo, setCodeInputInfo }) {
+  const handleInputValue = (key) => (e) => {
+    setCodeInputInfo({ ...codeInputInfo, [key]: e.target.value });
+  };
+
   return (
     <div className='codeinputtitle'>
       <div className='codeinputtitle-container'>
         <span>제목</span>
-        <input type='text' autoFocus={true} />
+        <input
+          type='text'
+          autoFocus={true}
+          onChange={handleInputValue('title')}
+        />
       </div>
     </div>
   );

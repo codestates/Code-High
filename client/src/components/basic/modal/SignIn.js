@@ -8,7 +8,7 @@ import github from '../../../images/github.png';
 import kakao from '../../../images/kakao.png';
 import google from '../../../images/google.png';
 
-function Signin({ togglePopUp, setShowLoginModal }) {
+function Signin({ togglePopUp, showLoginModal, setShowLoginModal }) {
   const SigninBackgroundEl = useRef(null);
   const state = useSelector(state => state.userReducer);
   const { userInfo } = state;
@@ -22,7 +22,7 @@ function Signin({ togglePopUp, setShowLoginModal }) {
   //!모달 배경
   const SigninBackgroundClick = (e) => {
     if (e.target === SigninBackgroundEl.current) {
-      setShowLoginModal(!togglePopUp);
+      togglePopUp();
     }
   };
 
@@ -66,7 +66,6 @@ function Signin({ togglePopUp, setShowLoginModal }) {
   //!email 로그인
   const handleLogin = () => {
     const { email, password } = loginInfo;
-    console.log(loginInfo)
 
     if (!isEmail(email)) {
       //axios 연결 후 alter 띄우기
@@ -81,13 +80,10 @@ function Signin({ togglePopUp, setShowLoginModal }) {
 
     dispatch(signinUser(loginInfo))
     
-    if(userInfo.message === 'login success') {
-      setShowLoginModal(!togglePopUp);
+    if(userInfo) {
+      setShowLoginModal(false);
     }
   };
-  
-  //!회원정보 
-  console.log('로그인 모달창에서의 유저 정보',userInfo)
 
   return (
     <div className='signin-modal'>
