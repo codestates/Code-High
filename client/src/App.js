@@ -18,12 +18,19 @@ function App() {
   // TODO: 추후 클라이언트 내 다른 페이지로 리다이렉트 되도록 변경해야함
   useEffect(() => {
     const url = new URL(window.location.href);
+    const loginType = url.searchParams.get('login');
     const authorizationCode = url.searchParams.get('code');
     if (authorizationCode) {
       console.log(authorizationCode);
-      // getGithubAccessToken(authorizationCode);
-      // getKakaoAccessToken(authorizationCode);
-      // getGoogleAccessToken(authorizationCode);
+      console.log(loginType);
+
+      if (loginType === 'github') {
+        getGithubAccessToken(authorizationCode);
+      } else if (loginType === 'kakao') {
+        getKakaoAccessToken(authorizationCode);
+      } else if (loginType === 'google') {
+        getGoogleAccessToken(authorizationCode);
+      }
     }
   });
 
@@ -41,6 +48,7 @@ function App() {
     try {
       const serverUrl = 'http://localhost:4000/auth/kakao';
       const token = await axios.post(serverUrl, { authorizationCode });
+      console.log(token.data);
     } catch (err) {
       throw new Error(err);
     }
