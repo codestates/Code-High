@@ -124,6 +124,7 @@ export async function deleteUsersPost(id, accessToken, logintype) {
     });
 }
 
+//!댓글
 //7.댓글 가져오기-------------------------------
 export async function getCommentPost(id, accessToken, logintype) {
   axios

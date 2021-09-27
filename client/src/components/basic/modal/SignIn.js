@@ -7,9 +7,8 @@ import codehighlogo from '../../../images/codehighlogo.png';
 import github from '../../../images/github.png';
 import kakao from '../../../images/kakao.png';
 import google from '../../../images/google.png';
-import 'dotenv/config';
 
-function Signin({ togglePopUp, setShowLoginModal }) {
+function Signin({ togglePopUp, showLoginModal, setShowLoginModal }) {
   const SigninBackgroundEl = useRef(null);
   const state = useSelector(state => state.userReducer);
   const { userInfo } = state;
@@ -23,13 +22,13 @@ function Signin({ togglePopUp, setShowLoginModal }) {
   //!모달 배경
   const SigninBackgroundClick = (e) => {
     if (e.target === SigninBackgroundEl.current) {
-      setShowLoginModal(!togglePopUp);
+      togglePopUp();
     }
   };
 
   const githubLoginHandler = () => {
-    const client_id = process.env.NODE_ENV.includes('GITHUB_CLIENT_ID');
-    const client_secret = process.env.NODE_ENV.includes('GITHUB_CLIENT_SECRET');
+    const client_id = process.env.GITHUB_CLIENT_ID;
+    const client_secret = process.env.GITHUB_CLIENT_SECRET;
     const redirect_uri = 'http://localhost:3000?login=github';
     const scope = 'user';
     const githubLoginUrl = `https://github.com/login/oauth/authorize?client_id=${client_id}&redirect_uri=${redirect_uri}&scope=${scope}`;
@@ -37,14 +36,14 @@ function Signin({ togglePopUp, setShowLoginModal }) {
   };
 
   const kakaoLoginHandler = () => {
-    const client_id = process.env.NODE_ENV.includes('KAKAO_CLIENT_ID');
+    const client_id = process.env.KAKAO_CLIENT_ID;
     const redirect_uri = 'http://localhost:3000?login=kakao';
     const kakaoLoginUrl = `https://kauth.kakao.com/oauth/authorize?client_id=${client_id}&redirect_uri=${redirect_uri}&response_type=code`;
     window.location.assign(kakaoLoginUrl);
   };
 
   const GoogleLoginHandler = () => {
-    const client_id = process.env.NODE_ENV.includes('GOOGLE_CLIENT_ID');
+    const client_id = process.env.GOOGLE_CLIENT_ID;
     const redirect_uri = 'http://localhost:3000?login=google';
     const response_type = 'code';
     const scope = 'https://www.googleapis.com/auth/userinfo.profile';
@@ -67,7 +66,6 @@ function Signin({ togglePopUp, setShowLoginModal }) {
   //!email 로그인
   const handleLogin = () => {
     const { email, password } = loginInfo;
-    console.log(loginInfo)
 
     if (!isEmail(email)) {
       //axios 연결 후 alter 띄우기
@@ -82,13 +80,10 @@ function Signin({ togglePopUp, setShowLoginModal }) {
 
     dispatch(signinUser(loginInfo))
     
-    if(userInfo.message === 'login success') {
-      setShowLoginModal(!togglePopUp);
+    if(userInfo) {
+      setShowLoginModal(false);
     }
   };
-  
-  //!회원정보 
-  console.log('로그인 모달창에서의 유저 정보',userInfo)
 
   return (
     <div className='signin-modal'>

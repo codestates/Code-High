@@ -1,5 +1,5 @@
 import React, { useState, useEffect }from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import CodeInputMain from '../components/codeInput/CodeInputMain';
 import CodeInputSecretButton from '../components/codeInput/CodeInputSecretButton';
 import CodeInputTitle from '../components/codeInput/CodeInputTitle';
@@ -20,7 +20,11 @@ function CodeInput () {
   });
 
   useEffect(()=>{
-    setCodeInputInfo({...codeInputInfo, userId: userInfo.id})
+    if(userInfo) {
+      setCodeInputInfo({...codeInputInfo, userId: userInfo.id})
+    } else {
+      setCodeInputInfo({...codeInputInfo, userId: 0})
+    }
   },[])
 
   return (

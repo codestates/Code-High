@@ -20,7 +20,7 @@ const NavBar = () => {
   const togglePopUp = () => {
     setShowLoginModal(!showLoginModal);
   };
-
+console.log(showLoginModal)
   const handleLogout = () => {
     dispatch(signoutUser())
     // dispatch(resetCodereviewPost())
@@ -66,6 +66,7 @@ const NavBar = () => {
         {showLoginModal ? (
           <SignIn
             togglePopUp={togglePopUp}
+            showLoginModal={showLoginModal}
             setShowLoginModal={setShowLoginModal}
           />
         ) : null}
