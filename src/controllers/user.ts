@@ -28,7 +28,7 @@ const userInfoById = async (req: Request, res: Response) => {
     return res.status(403).send({ message: 'forbidden user'});
   }
 
-  const loginUserInfo = await User.findOne({ where: { id: req.params.id } });
+  const loginUserInfo = await User.findOne(req.params.id);
   if (!loginUserInfo) {
     return res.status(404).send({ message: 'user not found'});
   }

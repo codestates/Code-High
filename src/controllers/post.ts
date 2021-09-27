@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import { getConnection, getManager, getRepository, Tree } from 'typeorm';
 import { Post } from '../entity/Post';
+import { Posttag } from '../entity/Posttag';
 
 const getPostList = async (req: Request, res: Response) => {
 
@@ -70,7 +71,7 @@ const getPostById = async (req: Request, res: Response) => {
 }
 
 const addPost = async (req: Request, res: Response) => {
-  const { title, codeContent, textContent, secret } = req.body
+  const { title, codeContent, textContent, secret, tagList } = req.body
 
   const newPost = Post.create({  
     title,
@@ -80,8 +81,9 @@ const addPost = async (req: Request, res: Response) => {
     userId: req.body.authUserId
   })
   const result = await Post.save(newPost);
+  const postId = result.id;
 
-  res.send({ message: 'ok'});
+  res.send({ postId, message: 'ok'});
 }
 
 const editPost = async (req: Request, res: Response) => {
@@ -102,6 +104,10 @@ const editPost = async (req: Request, res: Response) => {
   }
 
   await Post.update({ id }, { title, codeContent, textContent, secret });
+
+  // 태그
+  const tagList = await Posttag.find({ postId: id });
+
   res.status(201).send({ message: 'editPost'});
 }
 
