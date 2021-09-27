@@ -90,7 +90,7 @@ const addPost = async (req: Request, res: Response) => {
   })
   await Posttag.save(postTagList);
 
-  res.send({ postId, message: 'ok'});
+  res.send({ postId });
 }
 
 const editPost = async (req: Request, res: Response) => {
