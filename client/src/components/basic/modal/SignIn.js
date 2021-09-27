@@ -7,6 +7,7 @@ import codehighlogo from '../../../images/codehighlogo.png';
 import github from '../../../images/github.png';
 import kakao from '../../../images/kakao.png';
 import google from '../../../images/google.png';
+import 'dotenv/config';
 
 function Signin({ togglePopUp, setShowLoginModal }) {
   const SigninBackgroundEl = useRef(null);
@@ -27,8 +28,8 @@ function Signin({ togglePopUp, setShowLoginModal }) {
   };
 
   const githubLoginHandler = () => {
-    const client_id = 'b312e50618463e185ac7';
-    const client_secret = 'e772fe03abd53b7d788b0d93cc1908e9e7f572ad';
+    const client_id = process.env.GITHUB_CLIENT_ID;
+    const client_secret = process.env.GITHUB_CLIENT_SECRET;
     const redirect_uri = 'http://localhost:3000?login=github';
     const scope = 'user';
     const githubLoginUrl = `https://github.com/login/oauth/authorize?client_id=${client_id}&redirect_uri=${redirect_uri}&scope=${scope}`;
@@ -36,14 +37,14 @@ function Signin({ togglePopUp, setShowLoginModal }) {
   };
 
   const kakaoLoginHandler = () => {
-    const client_id = 'b0af4994d1021581404c650cae659716';
+    const client_id = process.env.KAKAO_CLIENT_ID;
     const redirect_uri = 'http://localhost:3000?login=kakao';
     const kakaoLoginUrl = `https://kauth.kakao.com/oauth/authorize?client_id=${client_id}&redirect_uri=${redirect_uri}&response_type=code`;
     window.location.assign(kakaoLoginUrl);
   };
 
   const GoogleLoginHandler = () => {
-    const client_id = '180842982829-e9aq2ak9nsagmmp20cnls25s0sstcpg6.apps.googleusercontent.com';
+    const client_id = process.env.GOOGLE_CLIENT_ID;
     const redirect_uri = 'http://localhost:3000?login=google';
     const response_type = 'code';
     const scope = 'https://www.googleapis.com/auth/userinfo.profile';
