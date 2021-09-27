@@ -98,7 +98,7 @@ const kakaoLogin = async (req: Request, res: Response) => {
 
     return res.status(200).send({ accessToken, message: 'Kakao Login Success'});
   } catch (err) {
-    console.log(err);
+    console.log(err.message);
   }
 }
 
@@ -175,6 +175,7 @@ const githubLogin = async (req: Request, res: Response) => {
     }
 
     const accessToken = result.data.access_token;
+    return res.status(200).send({ accessToken, message: 'Github login Success' });
 
     const userInfoByGithub = await axios.get(getInfoUrl, {
       headers: {
