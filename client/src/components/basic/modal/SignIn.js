@@ -7,6 +7,7 @@ import codehighlogo from '../../../images/codehighlogo.png';
 import github from '../../../images/github.png';
 import kakao from '../../../images/kakao.png';
 import google from '../../../images/google.png';
+import 'dotenv/config';
 
 function Signin({ togglePopUp, setShowLoginModal }) {
   const SigninBackgroundEl = useRef(null);
@@ -26,28 +27,27 @@ function Signin({ togglePopUp, setShowLoginModal }) {
     }
   };
 
-  //!Oauth 로그인
   const githubLoginHandler = () => {
-    const client_id = '';
-    const client_secret = '';
-    const redirect_uri = 'http://localhost:3000';
+    const client_id = process.env.GITHUB_CLIENT_ID;
+    const client_secret = process.env.GITHUB_CLIENT_SECRET;
+    const redirect_uri = 'http://localhost:3000?login=github';
     const scope = 'user';
     const githubLoginUrl = `https://github.com/login/oauth/authorize?client_id=${client_id}&redirect_uri=${redirect_uri}&scope=${scope}`;
     window.location.assign(githubLoginUrl);
   };
 
   const kakaoLoginHandler = () => {
-    const client_id = '';
-    const redirect_uri = 'http://localhost:3000/';
+    const client_id = process.env.KAKAO_CLIENT_ID;
+    const redirect_uri = 'http://localhost:3000?login=kakao';
     const kakaoLoginUrl = `https://kauth.kakao.com/oauth/authorize?client_id=${client_id}&redirect_uri=${redirect_uri}&response_type=code`;
     window.location.assign(kakaoLoginUrl);
   };
 
   const GoogleLoginHandler = () => {
-    const client_id = '';
-    const redirect_uri = 'http://localhost:3000';
+    const client_id = process.env.GOOGLE_CLIENT_ID;
+    const redirect_uri = 'http://localhost:3000?login=google';
     const response_type = 'code';
-    const scope = 'https://www.googleapis.com/auth/userinfo.email';
+    const scope = 'https://www.googleapis.com/auth/userinfo.profile';
     const googleLoginUrl = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${client_id}&redirect_uri=${redirect_uri}&response_type=${response_type}&scope=${scope}&access_type=offline`;
     window.location.assign(googleLoginUrl);
   };
