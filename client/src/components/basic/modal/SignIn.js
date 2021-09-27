@@ -1,5 +1,6 @@
 import React, { useRef, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import { signinUser } from '../../../redux/actions/userActions';
 import Signinimg from '../../../images/Signinimg.svg';
 import codehighlogo from '../../../images/codehighlogo.png';
@@ -9,11 +10,14 @@ import google from '../../../images/google.png';
 
 function Signin({ togglePopUp, setShowLoginModal }) {
   const SigninBackgroundEl = useRef(null);
+  const state = useSelector(state => state.userReducer);
+  const { userInfo } = state;
   const [loginInfo, setLoginInfo] = useState({
     email: '',
     password: '',
   });
   const dispatch = useDispatch();
+  const history = useHistory();
 
   //!모달 배경
   const SigninBackgroundClick = (e) => {
@@ -25,7 +29,7 @@ function Signin({ togglePopUp, setShowLoginModal }) {
   const githubLoginHandler = () => {
     const client_id = 'b312e50618463e185ac7';
     const client_secret = 'e772fe03abd53b7d788b0d93cc1908e9e7f572ad';
-    const redirect_uri = 'http://localhost:3000/github';
+    const redirect_uri = 'http://localhost:3000?login=github';
     const scope = 'user';
     const githubLoginUrl = `https://github.com/login/oauth/authorize?client_id=${client_id}&redirect_uri=${redirect_uri}&scope=${scope}`;
     window.location.assign(githubLoginUrl);
@@ -33,14 +37,14 @@ function Signin({ togglePopUp, setShowLoginModal }) {
 
   const kakaoLoginHandler = () => {
     const client_id = 'b0af4994d1021581404c650cae659716';
-    const redirect_uri = 'http://localhost:3000/kakao';
+    const redirect_uri = 'http://localhost:3000?login=kakao';
     const kakaoLoginUrl = `https://kauth.kakao.com/oauth/authorize?client_id=${client_id}&redirect_uri=${redirect_uri}&response_type=code`;
     window.location.assign(kakaoLoginUrl);
   };
 
   const GoogleLoginHandler = () => {
     const client_id = '180842982829-e9aq2ak9nsagmmp20cnls25s0sstcpg6.apps.googleusercontent.com';
-    const redirect_uri = 'http://localhost:3000';
+    const redirect_uri = 'http://localhost:3000?login=google';
     const response_type = 'code';
     const scope = 'https://www.googleapis.com/auth/userinfo.profile';
     const googleLoginUrl = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${client_id}&redirect_uri=${redirect_uri}&response_type=${response_type}&scope=${scope}&access_type=offline`;
@@ -65,6 +69,7 @@ function Signin({ togglePopUp, setShowLoginModal }) {
     console.log(loginInfo)
 
     if (!isEmail(email)) {
+      //axios 연결 후 alter 띄우기
       console.log('이메일 확인');
       return;
     }
@@ -74,8 +79,16 @@ function Signin({ togglePopUp, setShowLoginModal }) {
       return;
     }
 
-    dispatch(signinUser(loginInfo));
+    dispatch(signinUser(loginInfo))
+    
+    if(userInfo.message === 'login success') {
+      setShowLoginModal(!togglePopUp);
+    }
   };
+  
+  //!회원정보 
+  console.log('로그인 모달창에서의 유저 정보',userInfo)
+
   return (
     <div className='signin-modal'>
       <div

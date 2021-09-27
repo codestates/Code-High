@@ -32,3 +32,17 @@
      height: 200px;
    }
 }
+
+.codereviewboard-header{
+  margin-bottom: 5px;
+  margin-left: 5px;
+}
+
+.codereviewboard-loding{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  img{
+    height: 100px;
+  }
+}

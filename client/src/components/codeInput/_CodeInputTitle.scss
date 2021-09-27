@@ -31,3 +31,22 @@
       }
    }
 }
+
+
+@include tablet{
+  .codeinputtitle-container{
+    justify-content: flex-start;
+     input {
+       width: 80vw;
+     }
+  }
+}
+
+@include mobile{
+  .codeinputtitle-container{
+    justify-content: flex-start;
+     input {
+       width: 80vw;
+     }
+  }
+}

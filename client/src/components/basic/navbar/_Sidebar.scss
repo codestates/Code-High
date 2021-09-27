@@ -1,4 +1,14 @@
+.sidebar{
+    display: flex;
+    position: relative;
+    right: -200px;
+    z-index: 100;
+}
 .sidebar-container{
+    width: 1200px;
+    display: flex;
+}
+.menutab-container{
     margin-top: 20px;
     padding-top: 20px;
     height : 230px;
@@ -6,12 +16,7 @@
     background-color: rgba(255, 250, 250, 0.8);
     border-radius: 10px;
     border: 1px solid;
-    position: absolute;
-    right: 200px;
-    
-}
-.menutab-container{
-    margin:auto;
+    right: -200px;
 }
 ul{
     font-size: 14px;

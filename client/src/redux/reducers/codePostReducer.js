@@ -1,6 +1,7 @@
 import {
   GET_CODESTORAGE_POST,
   GET_CODEREVIEW_POST,
+  RESET_CODEREVIEW_POST,
   GET_CODEREVIEW_FILTER,
   GET_CODEPOST,
   MODIFY_CODEPOST,
@@ -11,15 +12,19 @@ const codePostReducer = (state = {}, action) => {
   switch (action.type) {
     case GET_CODESTORAGE_POST:
       return Object.assign({}, state, {
-        postList: [...state.postList, action.payload.postList],
+        userPostList: [...state.userPostList, action.payload],
       });
     case GET_CODEREVIEW_POST:
       return Object.assign({}, state, {
-        postList: [...state.postList, action.payload.postList],
+        postList: [...state.postList, ...action.payload]
+      });
+    case RESET_CODEREVIEW_POST:
+      return Object.assign({}, state, {
+        postList: action.payload
       });
     case GET_CODEREVIEW_FILTER:
       return Object.assign({}, state, {
-        postList: [...state.postList, action.payload.postList],
+        postList: [...state.postList, action.payload],
       });
     case GET_CODEPOST:
       return Object.assign({}, state, {
@@ -34,6 +39,6 @@ const codePostReducer = (state = {}, action) => {
     default:
       return state;
   }
-}
+};
 
 export default codePostReducer;

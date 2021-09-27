@@ -2,6 +2,7 @@ const webpack = require('webpack');
 const path = require('path');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { SourceMapDevToolPlugin } = require("webpack");
 
 module.exports = {
   mode: 'development',
@@ -15,6 +16,11 @@ module.exports = {
   },
   module: {
     rules: [
+      {
+        test: /\.js$/,
+        enforce: 'pre',
+        use: ['source-map-loader'],
+      },
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
@@ -69,6 +75,9 @@ module.exports = {
     ]
   },
   plugins: [
+    new SourceMapDevToolPlugin({
+      filename: "[file].map"
+    }),
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       template: './public/index.html'
