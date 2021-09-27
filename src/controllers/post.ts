@@ -129,7 +129,6 @@ const deletePostList = async (req: Request, res: Response) => {
 
   if (req.body.userRole !== 1) {
     selectPostList = await Post.findByIds(postList, { where: { userId: req.body.authUserId } })
-    
   } else {
     selectPostList = await Post.findByIds(postList);
   }

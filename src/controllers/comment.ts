@@ -5,22 +5,20 @@ import { User } from "../entity/User";
 
 // Comment list
 export const commentList = async (req: Request, res: Response) => {
-  try {
-    const commentList = await Comment.find();
-    
-    if (!commentList) {
-      return res.status(404).send({ message: 'not found' });
-    } else {
-    return res.status(200).send({ commentList, message: 'ok'});
-    }
-
-  } catch (err) {
-    return res.status(400).send({ message: err.message });
+  if (req.body.userRole !== 1) {
+    return res.status(403).send({ message: 'forbidden user'});
   }
+
+  const commentList = await Comment.find();
+  return res.status(200).send({ commentList, message: 'ok'})
 }
 
 // [admin] delete many comment 
 export const deleteCommentList = async (req: Request, res: Response) => {
+  if (req.body.userRole !== 1) {
+    return res.status(403).send({ message: 'forbidden user'});
+  }
+
   try {
     const commentInfo = req.body.commentList;
     const commentDB = await Comment.findByIds(commentInfo);
@@ -49,12 +47,12 @@ export const commentListByPostId = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
     const page = req.query.page;
-    const pageOffset = page === '1' ? 0 : (Number(page) - 2) * 15;
+    const pageOffset = (Number(page) - 1) * 15;
     const pageCount = 15;
 
     if (!page) {
       const commentInfo = await Comment.find({ where : {postId: id} });
-      return res.status(404).send({ commentList: commentInfo, message: 'not found' });
+      return res.status(200).send({ commentList: commentInfo, message: 'ok' });
     } else {
       const result = await getRepository(Comment).createQueryBuilder('comment')
       .where('comment.postId = :id', { id })
@@ -71,15 +69,17 @@ export const commentListByPostId = async (req: Request, res: Response) => {
 
 // add comment
 export const addComment = async (req: Request, res: Response) => {
+  if (req.body.userRole > 3) {
+    return res.status(403).send({ message: 'forbidden user'});
+  }
+
   try {
     const { content, postId, authUser } = req.body;
     const userInfo = await User.findOne({ where: { email: authUser }});
-    const { name, id } = userInfo;
     const newComment = Comment.create({
       content,
       postId,
-      userId: id,
-      userName: name
+      userId: userInfo.id,
     });
 
     await Comment.save(newComment);
@@ -95,13 +95,18 @@ export const deleteComment = async(req:Request, res:Response) => {
   try {
     const { id } = req.params;
     const commentInfo = await Comment.findOne({ where: { id }});
-
+    
     if (!commentInfo) {
       return res.status(404).send({ message: 'not found' });
-    } else {
-      await commentInfo.remove();
-      return res.status(200).send({ message: 'delete comment successfully'});
+    } 
+
+    if (req.body.userRole !== 1 && commentInfo.userId !== req.body.authUserId) {
+      return res.status(403).send({ message: 'forbidden'});
     }
+
+    await commentInfo.remove();
+    return res.status(200).send({ message: 'delete comment successfully'});
+
 
   } catch (err) {
     return res.status(400).send({ message: err.message });
