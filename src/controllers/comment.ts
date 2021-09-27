@@ -49,7 +49,7 @@ export const commentListByPostId = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
     const page = req.query.page;
-    const pageOffset = page === '1' ? 0 : (Number(page) - 2) * 6 + 15;
+    const pageOffset = page === '1' ? 0 : (Number(page) - 2) * 15;
     const pageCount = 15;
 
     if (!page) {
