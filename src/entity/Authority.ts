@@ -1,5 +1,4 @@
 import { BaseEntity, Check, Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
-import { Menu } from "./Menu";
 import { User } from "./User";
 
 @Entity()
@@ -14,8 +13,4 @@ export class Authority extends BaseEntity {
     // authoritys <-> user 1:n
     @OneToMany((type) => User, (user) => user.authority, {onDelete: 'CASCADE'})
     users: User[];
-
-    // authoritys <-> menu 1:n
-    @OneToMany((type) => Menu, (menu) => menu.authority, {onDelete: 'CASCADE'})
-    menus: Menu[];
 }
