@@ -14,9 +14,6 @@ const userList = async (req: Request, res: Response) => {
 
 // get login user profile
 const userInfo = async (req: Request, res: Response) => {
-  if (req.body.userRole > 3 ) {
-    return res.status(403).send({ message: 'forbidden user'})
-  }
   
   const loginUserInfo = await User.findOne({ where: { email: req.body.authUser } });
   

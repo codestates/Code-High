@@ -13,9 +13,6 @@ export class Comment extends BaseEntity {
     @Column({ type: 'int' })
     userId: number;
 
-    @Column({ type: 'varchar'})
-    userName: string;
-
     @Column({ type: 'int' })
     postId: number;
 
