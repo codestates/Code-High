@@ -21,7 +21,6 @@
     "@fortawesome/free-solid-svg-icons": "^5.15.4",
     "@fortawesome/react-fontawesome": "^0.1.15",
     "axios": "^0.21.4",
-    "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "js-loader": "^0.1.1",
     "jsx-loader": "^0.13.2",
@@ -51,15 +50,17 @@
     "babel-loader": "^8.2.2",
     "clean-webpack-plugin": "^4.0.0",
     "css-loader": "^6.2.0",
+    "dotenv": "^10.0.0",
+    "dotenv-webpack": "^7.0.3",
     "file-loader": "^6.2.0",
     "html-loader": "^2.1.2",
     "html-webpack-plugin": "^5.3.2",
     "nodemon": "^2.0.12",
     "sass-loader": "^12.1.0",
+    "source-map-loader": "^1.0.0",
     "style-loader": "^3.2.1",
     "url-loader": "^4.1.1",
     "webpack": "^5.52.0",
-    "webpack-cli": "^4.8.0",
-    "source-map-loader": "^1.0.0"
+    "webpack-cli": "^4.8.0"
   }
 }

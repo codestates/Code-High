@@ -7,7 +7,6 @@ import codehighlogo from '../../../images/codehighlogo.png';
 import github from '../../../images/github.png';
 import kakao from '../../../images/kakao.png';
 import google from '../../../images/google.png';
-import 'dotenv/config';
 
 function Signin({ togglePopUp, setShowLoginModal }) {
   const SigninBackgroundEl = useRef(null);
