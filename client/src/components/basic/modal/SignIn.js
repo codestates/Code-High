@@ -22,30 +22,18 @@ function Signin({ togglePopUp, setShowLoginModal }) {
     }
   };
 
-<<<<<<< HEAD
-    const githubLoginHandler = () => {
-      const client_id = 'b312e50618463e185ac7';
-      const client_secret = 'e772fe03abd53b7d788b0d93cc1908e9e7f572ad';
-      const redirect_uri = 'http://localhost:3000';
-      const scope = 'user';
-      const githubLoginUrl = `https://github.com/login/oauth/authorize?client_id=${client_id}&redirect_uri=${redirect_uri}&scope=${scope}`;
-      window.location.assign(githubLoginUrl);
-    };
-=======
-  //!Oauth 로그인
   const githubLoginHandler = () => {
-    const client_id = '';
-    const client_secret = '';
-    const redirect_uri = 'http://localhost:3000';
+    const client_id = 'b312e50618463e185ac7';
+    const client_secret = 'e772fe03abd53b7d788b0d93cc1908e9e7f572ad';
+    const redirect_uri = 'http://localhost:3000/github';
     const scope = 'user';
     const githubLoginUrl = `https://github.com/login/oauth/authorize?client_id=${client_id}&redirect_uri=${redirect_uri}&scope=${scope}`;
     window.location.assign(githubLoginUrl);
   };
->>>>>>> 0446f9118878168f54298a653e4e433f671bd75e
 
   const kakaoLoginHandler = () => {
     const client_id = 'b0af4994d1021581404c650cae659716';
-    const redirect_uri = 'http://localhost:3000';
+    const redirect_uri = 'http://localhost:3000/kakao';
     const kakaoLoginUrl = `https://kauth.kakao.com/oauth/authorize?client_id=${client_id}&redirect_uri=${redirect_uri}&response_type=code`;
     window.location.assign(kakaoLoginUrl);
   };
@@ -86,11 +74,7 @@ function Signin({ togglePopUp, setShowLoginModal }) {
       return;
     }
 
-    dispatch(signinUser(loginInfo))
-      .then((res) => {
-        console.log(res)
-      })
-
+    dispatch(signinUser(loginInfo));
   };
   return (
     <div className='signin-modal'>
