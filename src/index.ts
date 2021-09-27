@@ -22,7 +22,7 @@ createConnection(config)
 });
 
 // node-scheduler
-test();
+// test();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));

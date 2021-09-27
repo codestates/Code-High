@@ -71,7 +71,8 @@ const getPostById = async (req: Request, res: Response) => {
 }
 
 const addPost = async (req: Request, res: Response) => {
-  const { title, codeContent, textContent, secret, tagList } = req.body
+  const { title, codeContent, textContent } = req.body
+  const secret = req.body.secret || true;
 
   const newPost = Post.create({  
     title,
@@ -81,7 +82,13 @@ const addPost = async (req: Request, res: Response) => {
     userId: req.body.authUserId
   })
   const result = await Post.save(newPost);
+  
+  const tagList = Object.values(req.body.tagList).flat();
   const postId = result.id;
+  const postTagList: Posttag[] = tagList.map((el: any) => {
+    return Posttag.create({ postId, tagId: el.id })
+  })
+  await Posttag.save(postTagList);
 
   res.send({ postId, message: 'ok'});
 }
@@ -106,7 +113,15 @@ const editPost = async (req: Request, res: Response) => {
   await Post.update({ id }, { title, codeContent, textContent, secret });
 
   // 태그
-  const tagList = await Posttag.find({ postId: id });
+  const deleteTagList = await Posttag.find({ postId: id });
+  await Posttag.remove(deleteTagList);
+
+  const tagList = Object.values(req.body.tagList).flat();
+  const postId = id;
+  const postTagList: Posttag[] = tagList.map((el: any) => {
+    return Posttag.create({ postId, tagId: el.id })
+  })
+  await Posttag.save(postTagList);
 
   res.status(201).send({ message: 'editPost'});
 }
