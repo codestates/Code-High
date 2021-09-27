@@ -15,16 +15,12 @@ export const commentList = async (req: Request, res: Response) => {
 
 // [admin] delete many comment 
 export const deleteCommentList = async (req: Request, res: Response) => {
-  if (req.body.userRole !== 1) {
-    return res.status(403).send({ message: 'forbidden user'});
-  }
-
   try {
-    const commentInfo = req.body.commentList;
-    const commentDB = await Comment.findByIds(commentInfo);
+    const commentList = req.body.commentList;
+    const commentDB = await Comment.findByIds(commentList);
     
-    if (!commentInfo) {
-      return res.status(404).send({ message: 'comment not found' });
+    if (!commentList) {
+      return res.status(422).send({ message: 'select comment' });
     } else {
       
       if (commentDB.length === 0) {
@@ -100,6 +96,7 @@ export const deleteComment = async(req:Request, res:Response) => {
       return res.status(404).send({ message: 'not found' });
     } 
 
+    // 글 작성자도 처리
     if (req.body.userRole !== 1 && commentInfo.userId !== req.body.authUserId) {
       return res.status(403).send({ message: 'forbidden'});
     }
