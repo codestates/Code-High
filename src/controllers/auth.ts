@@ -168,11 +168,7 @@ const githubLogin = async (req: Request, res: Response) => {
       client_id: process.env.GITHUB_CLIENT_ID,
       client_secret: process.env.GITHUB_CLIENT_SECRET,
       code: req.body.authorizationCode
-    }, { headers: {
-      accept: 'application/json',
-      'Content-Type': 'application/json' 
-    } 
-    })
+    }, { headers: { accept: 'application/json', 'Content-Type': 'application/json', } })
 
     if (!result) {
       return res.status(401).send({ message: 'unauthorized' })
@@ -181,30 +177,30 @@ const githubLogin = async (req: Request, res: Response) => {
     const accessToken = result.data.access_token;
     return res.status(200).send({ accessToken, message: 'Github login Success' });
 
-    const userInfoByGithub = await axios.get(getInfoUrl, {
-      headers: {
-        Authorization: `Bearer ${accessToken}`
-      }
-    })
-    const githubEmail = `${userInfoByGithub.data.id}@github.com`;
+    // const userInfoByGithub = await axios.get(getInfoUrl, {
+    //   headers: {
+    //     Authorization: `Bearer ${accessToken}`
+    //   }
+    // })
+    // const githubEmail = `${userInfoByGithub.data.id}@github.com`;
     
-    // 가입여부 확인
-    const userInfo = await User.findOne({ where: { email: githubEmail }})
-    if (!userInfo) {
-      const name = userInfoByGithub.data.name;
-      const image = userInfoByGithub.data.avatar_url;
-      const newGithubUser = User.create({  
-        email: githubEmail,
-        image,
-        name,
-        loginType: 'github',
-        authorityId: 3,
-        verified: true,
-      })
-      await User.save(newGithubUser);
-    }
+    // // 가입여부 확인
+    // const userInfo = await User.findOne({ where: { email: githubEmail }})
+    // if (!userInfo) {
+    //   const name = userInfoByGithub.data.name;
+    //   const image = userInfoByGithub.data.avatar_url;
+    //   const newGithubUser = User.create({  
+    //     email: githubEmail,
+    //     image,
+    //     name,
+    //     loginType: 'github',
+    //     authorityId: 3,
+    //     verified: true,
+    //   })
+    //   await User.save(newGithubUser);
+    // }
 
-    return res.status(200).send({ accessToken, message: 'Github login Success' });
+    // return res.status(200).send({ accessToken, message: 'Github login Success' });
 
   } catch (err) {
     console.log(err);
