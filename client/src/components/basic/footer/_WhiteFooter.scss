@@ -3,6 +3,7 @@
 }
 
 .white-footer-container{
+    position: absolute;
     padding: 10px 10px;
     background-color: white;
     color: black;
@@ -10,4 +11,5 @@
     font-family: 'NanumGothic';
     font-size: 13px;
     font-weight: 500;
+    bottom: 0;
 }

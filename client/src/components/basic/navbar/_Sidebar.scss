@@ -1,11 +1,8 @@
 .sidebar{
     display: flex;
-    position: relative;
-    right: -200px;
-    z-index: 100;
+    position: absolute;
 }
 .sidebar-container{
-    width: 1200px;
     display: flex;
 }
 .menutab-container{
@@ -16,7 +13,6 @@
     background-color: rgba(255, 250, 250, 0.8);
     border-radius: 10px;
     border: 1px solid;
-    right: -200px;
 }
 ul{
     font-size: 14px;
