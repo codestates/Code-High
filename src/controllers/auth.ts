@@ -75,7 +75,7 @@ const kakaoLogin = async (req: Request, res: Response) => {
     const kakaoEmail = `${userInfoBykakao.data.id}@kakao.com`;
     
     // 가입여부 확인
-    const userInfo = await User.findOne({ where: { email: kakaoEmail }})
+    let userInfo = await User.findOne({ where: { email: kakaoEmail }})
     if (!userInfo) {
       const name = userInfoBykakao.data.kakao_account.profile.nickname;
       const image = userInfoBykakao.data.kakao_account.profile.profile_image_url;
@@ -88,17 +88,18 @@ const kakaoLogin = async (req: Request, res: Response) => {
         verified: true,
       })
       await User.save(newKakaoUser);
+      userInfo = newKakaoUser;
     }
-    
+
     res.cookie('refreshToken', refreshToken, {
       maxAge: 1000 * 60 * 60 * 24, // 1d
       httpOnly: true,
       secure: true,
     },)
 
-    return res.status(200).send({ accessToken, message: 'Kakao Login Success'});
+    return res.status(200).send({ accessToken, userInfo, message: 'Kakao Login Success'});
   } catch (err) {
-    console.log(err.message);
+    console.log(err.response.data);
   }
 }
 
@@ -130,7 +131,7 @@ const googleLogin = async (req: Request, res: Response) => {
     const googleEmail = `${userInfoByGoogle.data.sub}@gmail.com`;
     
     // 가입여부 확인
-    const userInfo = await User.findOne({ where: { email: googleEmail }})
+    let userInfo = await User.findOne({ where: { email: googleEmail }})
     if (!userInfo) {
       const { name, picture } = userInfoByGoogle.data;
       const newGoogleUser = User.create({  
@@ -142,6 +143,7 @@ const googleLogin = async (req: Request, res: Response) => {
         verified: true,
       })
       await User.save(newGoogleUser);
+      userInfo = newGoogleUser;
     }
     
     res.cookie('refreshToken', refreshToken, {
@@ -149,11 +151,11 @@ const googleLogin = async (req: Request, res: Response) => {
       httpOnly: true,
       secure: true,
     },)
-    return res.status(200).send({ accessToken, message: 'Google login Success' });
+    return res.status(200).send({ accessToken, userInfo, message: 'Google login Success' });
 
   } catch (err) {
     console.log(err);
-    return res.send(err.message);
+    return res.send(err.response.data);
   }
 }
 
@@ -185,7 +187,7 @@ const githubLogin = async (req: Request, res: Response) => {
     const githubEmail = `${userInfoByGithub.data.id}@github.com`;
     
     // 가입여부 확인
-    const userInfo = await User.findOne({ where: { email: githubEmail }})
+    let userInfo = await User.findOne({ where: { email: githubEmail }})
     if (!userInfo) {
       const name = userInfoByGithub.data.name;
       const image = userInfoByGithub.data.avatar_url;
@@ -198,9 +200,10 @@ const githubLogin = async (req: Request, res: Response) => {
         verified: true,
       })
       await User.save(newGithubUser);
+      userInfo = newGithubUser;
     }
 
-    return res.status(200).send({ accessToken, message: 'Github login Success' });
+    return res.status(200).send({ accessToken, userInfo, message: 'Github login Success' });
 
   } catch (err) {
     console.log(err);
