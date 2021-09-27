@@ -6,7 +6,7 @@ import { createConnection } from 'typeorm';
 import router from './routes';
 import 'reflect-metadata';
 import config from '../ormconfig'
-import { test } from './utils/scheduler'
+import { checkVerifiedUser, test } from './utils/scheduler'
 
 dotenv.config();
 const port = process.env.HTTP_PORT || 80;
@@ -22,7 +22,8 @@ createConnection(config)
 });
 
 // node-scheduler
-// test();
+checkVerifiedUser();
+//test();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
