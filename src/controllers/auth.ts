@@ -1,5 +1,4 @@
 import { Request, Response } from 'express';
-import { getConnection, getRepository } from 'typeorm';
 import { User } from '../entity/User';
 import { sendEmail } from './mail';
 import * as bcrypt from 'bcrypt';
@@ -54,7 +53,7 @@ const kakaoLogin = async (req: Request, res: Response) => {
       client_secret: process.env.KAKAO_CLIENT_SECRET,
       code: req.body.authorizationCode,
       grant_type: 'authorization_code',
-      redirect_uri: 'http://localhost:3000'
+      redirect_uri: 'http://localhost:3000?login=kakao'
     }), {
       headers: {
         'Content-type': 'application/x-www-form-urlencoded;charset=utf-8'
@@ -113,7 +112,7 @@ const googleLogin = async (req: Request, res: Response) => {
       client_secret: process.env.GOOGLE_CLIENT_SECRET,
       code: req.body.authorizationCode,
       grant_type: 'authorization_code',
-      redirect_uri: 'http://localhost:3000'
+      redirect_uri: 'http://localhost:3000?login=google'
     })
 
     if (!result) {
@@ -164,7 +163,7 @@ const githubLogin = async (req: Request, res: Response) => {
 
     const getTokenUrl = 'https://github.com/login/oauth/access_token';
     const getInfoUrl = 'https://api.github.com/user';
-
+    
     const result = await axios.post(getTokenUrl, {
       client_id: process.env.GITHUB_CLIENT_ID,
       client_secret: process.env.GITHUB_CLIENT_SECRET,
