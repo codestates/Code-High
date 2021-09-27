@@ -170,9 +170,11 @@ const githubLogin = async (req: Request, res: Response) => {
       code: req.body.authorizationCode
     }, { headers: { accept: 'application/json', 'Content-Type': 'application/json', } })
 
+    
     if (!result) {
       return res.status(401).send({ message: 'unauthorized' })
     }
+    return res.send({ result: result.data });
 
     const accessToken = result.data.access_token;
     return res.status(200).send({ accessToken, message: 'Github login Success' });
