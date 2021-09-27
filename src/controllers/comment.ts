@@ -49,21 +49,23 @@ export const commentListByPostId = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
     const page = req.query.page;
-    const pageOffset = (Number(page) - 2) * 6 + 15;
+    const pageOffset = page === '1' ? 0 : (Number(page) - 2) * 15;
+    const pageCount = 15;
 
     if (!page) {
-      const commentInfo = await Comment.find({ where: { postId: id }});    
-      return res.status(200).send({ commentList: commentInfo, message: 'ok' });
+      const commentInfo = await Comment.find({ where : {postId: id} });
+      return res.status(404).send({ commentList: commentInfo, message: 'not found' });
     } else {
       const result = await getRepository(Comment).createQueryBuilder('comment')
-      .select(['comment.id AS id', 'comment.content AS content', 'comment.userName AS UserName'])
-      .where('comment.postId', { id })
+      .where('comment.postId = :id', { id })
       .offset(pageOffset)
+      .limit(pageCount)
       .getMany();
       return res.status(200).send({ commentList: result, message: 'ok' });
-    }   
+    }
+
   } catch (err) {
-    return res.status(400).send({ message: err.message });
+    res.status(400).send({ message: err.message });
   }
 }
 
