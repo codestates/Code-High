@@ -168,7 +168,11 @@ const githubLogin = async (req: Request, res: Response) => {
       client_id: process.env.GITHUB_CLIENT_ID,
       client_secret: process.env.GITHUB_CLIENT_SECRET,
       code: req.body.authorizationCode
-    }, { headers: { accept: 'application/json' } })
+    }, { headers: {
+      accept: 'application/json',
+      'Content-Type': 'application/json' 
+    } 
+    })
 
     if (!result) {
       return res.status(401).send({ message: 'unauthorized' })
