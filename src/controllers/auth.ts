@@ -206,7 +206,7 @@ const githubLogin = async (req: Request, res: Response) => {
 
   } catch (err) {
     console.log(err);
-    return res.send(err.message);
+    return res.send(err.response.data);
   }
 }
 
