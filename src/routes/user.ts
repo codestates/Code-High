@@ -11,7 +11,7 @@ userRouter.use('/', checkRole);
 
 userRouter.get('/info', userController.userInfo);
 userRouter.get('/post', postController.getUserPostList);
-userRouter.get('/active', dashboardController.userActive);
+userRouter.get('/active', dashboardController.userActiveStat);
 userRouter.get('/:id', userController.userInfoById);
 userRouter.get('/', userController.userList);
 userRouter.patch('/', userController.editUser);

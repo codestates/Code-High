@@ -8,31 +8,33 @@ export const commentList = async (req: Request, res: Response) => {
   if (req.body.userRole !== 1) {
     return res.status(403).send({ message: 'forbidden user'});
   }
-
-  const commentList = await Comment.find();
-  return res.status(200).send({ commentList, message: 'ok'})
+  const commentList = await getRepository(Comment)
+  .createQueryBuilder('comment')
+  .select(['comment.id AS id', 'comment.content AS content', 'comment.userId AS userId', 'comment.postId AS postId', 'comment.createdAt AS createdAt', 'comment.updatedAt AS updatedAt'])
+  .addSelect('user.name', 'userName')
+  .leftJoin('comment.user', 'user')
+  .getRawMany();
+  res.status(200).send({ commentList, message: 'ok'})
 }
 
-// [admin] delete many comment 
+// [admin] delete many comment
 export const deleteCommentList = async (req: Request, res: Response) => {
   try {
     const commentList = req.body.commentList;
-    const commentDB = await Comment.findByIds(commentList);
+    let deleteList;
     
-    if (!commentList) {
-      return res.status(422).send({ message: 'select comment' });
+    if (req.body.userRole !== 1) {
+      deleteList = await Comment.findByIds(commentList, {where: { userId: req.body.authUserId}})
     } else {
-      
-      if (commentDB.length === 0) {
-        return res.status(400).send({ message: 'bad request' });
-      } else {
-        for (let i: number = 0; i < commentDB.length; i++) {
-          await commentDB[i].remove();
-        }
-        return res.status(200).send({ message: 'ok'});
-      }
+      deleteList = await Comment.findByIds(commentList);
     }
 
+    if (deleteList.length === 0) {
+      return res.status(422).send({ message: 'select comment' });
+    } else {
+      await Comment.remove(deleteList);
+      return res.status(200).send({ message: 'ok'});
+    }
   } catch (err) {
     return res.status(400).send({ message: err.message });
   }
@@ -47,14 +49,25 @@ export const commentListByPostId = async (req: Request, res: Response) => {
     const pageCount = 15;
 
     if (!page) {
-      const commentInfo = await Comment.find({ where : {postId: id} });
-      return res.status(200).send({ commentList: commentInfo, message: 'ok' });
+      // const commentInfo = await Comment.find({ where : {postId: id} });
+      const commentList = await getRepository(Comment)
+      .createQueryBuilder('comment')
+      .select(['comment.id AS id', 'comment.content AS content', 'comment.userId AS userId', 'comment.postId AS postId', 'comment.createdAt AS createdAt', 'comment.updatedAt AS updatedAt'])
+      .addSelect('user.name', 'userName')
+      .leftJoin('comment.user', 'user')
+      .where('comment.postId = :id', { id })
+      .getRawMany();
+      return res.status(200).send({ commentList, message: 'ok' });
     } else {
-      const result = await getRepository(Comment).createQueryBuilder('comment')
+      const result = await getRepository(Comment)
+      .createQueryBuilder('comment')
+      .select(['comment.id AS id', 'comment.content AS content', 'comment.userId AS userId', 'comment.postId AS postId', 'comment.createdAt AS createdAt', 'comment.updatedAt AS updatedAt'])
+      .addSelect('user.name', 'userName')
+      .leftJoin('comment.user', 'user')
       .where('comment.postId = :id', { id })
       .offset(pageOffset)
       .limit(pageCount)
-      .getMany();
+      .getRawMany();
       return res.status(200).send({ commentList: result, message: 'ok' });
     }
 
