@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { getConnection, getManager, getRepository, Tree } from 'typeorm';
+import { getConnection, getManager, getRepository, In, Tree } from 'typeorm';
 import { Comment } from '../entity/Comment';
 import { Post } from '../entity/Post';
 import { Posttag } from '../entity/Posttag';
@@ -153,6 +153,34 @@ const editPost = async (req: Request, res: Response) => {
   res.status(201).send({ message: 'editPost'});
 }
 
+const editUnderstandLevel = async (req: Request, res: Response) => {
+  const { postId, understanding } = req.body;
+
+  if (!postId || !understanding) {
+    return res.status(422).send({ message: 'cannot find postId or tagId in body'});
+  }
+
+  const selectPost = await Post.findOne(postId, { select: ['userId']})
+  if (!selectPost) {
+    return res.status(404).send({ message: 'post not found'})
+  }
+
+  if (selectPost.userId !== req.body.authUserId) {
+    return res.status(403).send({ message: 'forbidden user'});
+  }
+
+  const postUnderstandingTag = await Posttag.findOne({ postId, tagId: In([21, 22, 23]) })
+  if (!postUnderstandingTag) {
+    const tag = Posttag.create({ postId, tagId: understanding });
+    await Posttag.save(tag);
+  } else {
+    Posttag.merge(postUnderstandingTag, { tagId: understanding })
+    await Posttag.save(postUnderstandingTag);
+  }
+
+  res.status(201).send({ message: 'edit understand level'});
+}
+
 const deletePost = async (req: Request, res: Response) => {
   const id = Number(req.params.id);
   const selectPost = await Post.findOne(id)
@@ -194,6 +222,7 @@ export {
   getPostById,
   addPost,
   editPost,
+  editUnderstandLevel,
   deletePost,
   deletePostList
 }

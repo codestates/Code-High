@@ -60,6 +60,10 @@ const editUser = async (req: Request, res: Response) => {
   res.status(200).send({ userInfo: updateInfo, message: 'update success' })
 }
 
+const findPassword = (req: Request, res: Response) => {
+  res.status(201).send({ message: 'set new password'});
+}
+
 // delete login user account
 const deleteUser = async (req: Request, res: Response) => {
   if (req.body.userRole > 3 ) {
