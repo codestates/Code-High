@@ -100,12 +100,12 @@ const addPost = async (req: Request, res: Response) => {
   if (!tagList || !tagList.understanding || tagList.understanding.length === 0) {
     tagList.understanding = [{"id": "21", "name": "🙁", "category": "이해도"}];
   }
-
-  return res.send({ tagList });
   
   const addTagList = Object.values(tagList);
   const list = [];
   addTagList.map((el: Object[]) => list.push(...el));
+
+  return res.send({ list });
 
   const postTagList: Posttag[] = list.map((el: any) => {
     return Posttag.create({ postId, tagId: el.id })
