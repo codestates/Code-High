@@ -3,7 +3,7 @@ import { getRepository } from "typeorm";
 import { Comment } from "../entity/Comment"
 import { User } from "../entity/User";
 
-// Comment list
+// [admin] Comment list
 export const commentList = async (req: Request, res: Response) => {
   if (req.body.userRole !== 1) {
     return res.status(403).send({ message: 'forbidden user'});
@@ -17,36 +17,13 @@ export const commentList = async (req: Request, res: Response) => {
   res.status(200).send({ commentList, message: 'ok'})
 }
 
-// [admin] delete many comment
-export const deleteCommentList = async (req: Request, res: Response) => {
-  try {
-    const commentList = req.body.commentList;
-    let deleteList;
-    
-    if (req.body.userRole !== 1) {
-      deleteList = await Comment.findByIds(commentList, {where: { userId: req.body.authUserId}})
-    } else {
-      deleteList = await Comment.findByIds(commentList);
-    }
-
-    if (deleteList.length === 0) {
-      return res.status(422).send({ message: 'select comment' });
-    } else {
-      await Comment.remove(deleteList);
-      return res.status(200).send({ message: 'ok'});
-    }
-  } catch (err) {
-    return res.status(400).send({ message: err.message });
-  }
-}
-
 // get post comment
 export const commentListByPostId = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
     const page = req.query.page;
-    const pageOffset = (Number(page) - 1) * 15;
-    const pageCount = 15;
+    const pageOffset = (Number(page) - 1) * 6;
+    const pageCount = 6;
 
     if (!page) {
       // const commentInfo = await Comment.find({ where : {postId: id} });
@@ -77,6 +54,7 @@ export const commentListByPostId = async (req: Request, res: Response) => {
 }
 
 // add comment
+// 공백 확인
 export const addComment = async (req: Request, res: Response) => {
   if (req.body.userRole > 3) {
     return res.status(403).send({ message: 'forbidden user'});
@@ -91,12 +69,66 @@ export const addComment = async (req: Request, res: Response) => {
       userId: userInfo.id,
     });
 
+    if (newComment.content.length === 0) {
+      return res.status(400).send({ message: 'bad request' });
+    } 
+
     await Comment.save(newComment);
     return res.status(200).send({ message: 'ok' });
 
   } catch (err) {
     return res.status(400).send({ message: err.message });
   } 
+}
+
+//edit comment
+export const editComment = async (req: Request, res: Response) => {
+  try {
+
+  
+  const id = Number(req.params.id);
+  const commentById = await Comment.findOne(id);
+
+  if (!commentById) {
+    return res.status(404).send({ message: 'comment not found' });
+  } 
+  if (commentById.userId !== req.body.authUserId) {
+    return res.status(403).send({ message: 'forbidden' });
+  }
+
+  const { content } = req.body;
+  if (content.length === 0) {
+    return res.status(400).send({ message: 'bad request' });
+  }
+  await Comment.update({ id }, { content });
+  res.status(200).send({ message: 'ok' });
+  
+  } catch (err) {
+    return res.status(400).send({ message: err.message });
+  }
+}
+
+// [admin] delete many comment
+export const deleteCommentList = async (req: Request, res: Response) => {
+  try {
+    const commentList = req.body.commentList;
+    let deleteList;
+    
+    if (req.body.userRole !== 1) {
+      deleteList = await Comment.findByIds(commentList, {where: { userId: req.body.authUserId}})
+    } else {
+      deleteList = await Comment.findByIds(commentList);
+    }
+
+    if (deleteList.length === 0) {
+      return res.status(422).send({ message: 'select comment' });
+    } else {
+      await Comment.remove(deleteList);
+      return res.status(200).send({ message: 'ok'});
+    }
+  } catch (err) {
+    return res.status(400).send({ message: err.message });
+  }
 }
 
 // [user] delete comment
@@ -122,4 +154,3 @@ export const deleteComment = async(req:Request, res:Response) => {
     return res.status(400).send({ message: err.message });
   }
 }
-
