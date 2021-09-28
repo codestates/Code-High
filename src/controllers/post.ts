@@ -81,7 +81,7 @@ const getPostById = async (req: Request, res: Response) => {
 
 const addPost = async (req: Request, res: Response) => {
   const { title, codeContent, textContent, tagList } = req.body
-  const secret = !(req.body.secret);
+  const secret = req.body.secret;
 
   if (!title || !codeContent) {
     return res.status(422).send('fill in the title box');
@@ -130,7 +130,7 @@ const editPost = async (req: Request, res: Response) => {
     return res.status(422).send({ message: 'title, codeContent, secret value is null'});
   }
 
-  await Post.update({ id }, { title, codeContent, textContent, secret: !secret });
+  await Post.update({ id }, { title, codeContent, textContent, secret });
 
   // 태그
   const deleteTagList = await Posttag.find({ postId: id });
