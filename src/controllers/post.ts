@@ -100,6 +100,8 @@ const addPost = async (req: Request, res: Response) => {
   if (!tagList || !tagList.understanding || tagList.understanding.length === 0) {
     tagList.understanding = [{"id": "21", "name": "🙁", "category": "이해도"}];
   }
+
+  return res.send({ tagList });
   
   const addTagList = Object.values(tagList);
   const list = [];
