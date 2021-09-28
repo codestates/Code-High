@@ -1,5 +1,5 @@
 import React, { useEffect, Suspense } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { githubSigninUser, kakaoSigninUser, googleSigninUser } from './redux/actions/userActions';
 import { Route, Switch } from 'react-router-dom';
 import Landing from './pages/Landing';
@@ -16,6 +16,8 @@ import NavBar from './components/basic/navbar/NavBar';
 
 function App() {
   const dispatch = useDispatch();
+  const state = useSelector(state => state.userReducer);
+  const { userInfo } = state;
 
   useEffect(() => {
     const url = new URL(window.location.href);

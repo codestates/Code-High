@@ -12,7 +12,7 @@ function CodeReviewBoard() {
   const { postList } = state;
   const dispatch = useDispatch();
   const history = useHistory();
-  // console.log('코드리뷰보드에서의 코드리스트', count, postList);
+  console.log('코드리뷰보드에서의 코드리스트', count, postList);
 
   //!새로고침 시, 스크롤 상단
   window.onload = function () {
@@ -24,7 +24,7 @@ function CodeReviewBoard() {
   //!새로고침하면 첫 15개만 나타남
   useEffect(() => {
     dispatch(resetCodereviewPost());
-  }, []);
+  },[]);
 
   const getMorePost = () => {
     setTimeout(() => {

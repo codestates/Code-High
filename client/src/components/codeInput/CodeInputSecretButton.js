@@ -47,8 +47,8 @@ console.log(codeInputInfo)
         withCredentials: true,
       }
     ).then((res) => {
-      console.log('메세지를 찾아보자',res.status)
-      if(res.status) {
+      console.log('메세지를 찾아보자',res)
+      if(res.status === 201 || res.status === 200) {
         history.push('/post')
       }
     })

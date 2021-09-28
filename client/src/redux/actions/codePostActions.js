@@ -53,7 +53,7 @@ export function getReviewPost(page) {
 
 export function resetCodereviewPost() {
   const response = axios
-    .get(`${serverUrl}/post?page=1 `, {
+    .get(`${serverUrl}/post?page=1`, {
       headers: { 'Content-Type': 'application/json' },
     })
     .then((res) => {
