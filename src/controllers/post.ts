@@ -137,6 +137,9 @@ const deletePost = async (req: Request, res: Response) => {
   if (req.body.userRole !== 1 && selectPost.userId !== req.body.authUserId) {
     return res.status(403).send({ message: 'forbidden'});
   }
+
+  const deleteTagList = await Posttag.find({ postId: id });
+  await Posttag.remove(deleteTagList);
   await Post.remove(selectPost);
 
   res.status(200).send({ message: 'delete post successfully'});
