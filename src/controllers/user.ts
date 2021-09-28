@@ -16,6 +16,8 @@ const userList = async (req: Request, res: Response) => {
 const userInfo = async (req: Request, res: Response) => {
   
   const loginUserInfo = await User.findOne({ where: { email: req.body.authUser } });
+  delete loginUserInfo.password;
+  delete loginUserInfo.verified;
   
   res.status(200).send({ userInfo: loginUserInfo, message: 'ok'});
 }
@@ -30,6 +32,8 @@ const userInfoById = async (req: Request, res: Response) => {
   if (!loginUserInfo) {
     return res.status(404).send({ message: 'user not found'});
   }
+  delete loginUserInfo.password;
+  delete loginUserInfo.verified;
   res.status(200).send({ userInfo: loginUserInfo, message: 'ok'});
 }
 
@@ -50,7 +54,9 @@ const editUser = async (req: Request, res: Response) => {
   const updateInfo = await User.findOne(req.body.authUserId);
   User.merge(updateInfo, { name, password, image, phone });
   await User.save(updateInfo);
-  
+
+  delete updateInfo.password;
+  delete updateInfo.verified;
   res.status(200).send({ userInfo: updateInfo, message: 'update success' })
 }
 
