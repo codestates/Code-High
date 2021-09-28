@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import { getConnection, getManager, getRepository, Tree } from 'typeorm';
+import { Comment } from '../entity/Comment';
 import { Post } from '../entity/Post';
 import { Posttag } from '../entity/Posttag';
 
@@ -41,39 +42,19 @@ const getUserPostList = async (req: Request, res: Response) => {
   const id = req.body.authUserId;
   const search = req.query.search;
 
-  // const result = await Post.createQueryBuilder('post')
-  // .addSelect(subQuery => {
-  //     return subQuery
-  //     .select('posttag.tagId')
-  //     .from(Posttag, 'posttag')
-  //     .where('posttag.postId = :postId', { postId: 'post.id'})
-  //     //.andWhere('posttag.tagId In (:...understandId)', { understandId: [21, 22, 23] })
-  //     .limit(1)
-  //   },
-  //   'understanding'
-  // )
-  // .where('post.userId = :id', { id })
-  // .getRawMany();
-  try {
-    const result = await Post.createQueryBuilder('post')
-    .select([
-      'post.id AS id',
-      'post.title AS title',
-      'post.codeContent AS codeContent',
-      'post.secret AS secret',
-      'count(post.comments) AS commentCnt',
-      'postTag.id AS understand'
-    ])
-    .leftJoin('post.postTags', 'postTag', 'postTag.tagId In (:understand)', { understand: [21, 22, 23]})
-    .leftJoin('post.comments', 'comment')
-    .where('post.userId = :id', { id })
-    .getRawMany()
-    
-    res.status(200).send({ postList: result, message: 'getUserPostList'});
-  } catch (err) {
-    console.log(err)
-  }
+  const result = await Post.createQueryBuilder('post')
+  .select([
+    'post.id AS id',
+    'post.title AS title',
+    'post.codeContent AS codeContent',
+    'post.secret AS secret',
+    'postTag.tagId AS understanding',
+  ])
+  .leftJoin('post.postTags', 'postTag', 'postTag.tagId In (:understand)', { understand: [21, 22, 23]})
+  .where('post.userId = :id', { id })
+  .getRawMany()
 
+  res.status(200).send({ postList: result});
 }
 
 const getPostById = async (req: Request, res: Response) => {
@@ -99,7 +80,7 @@ const getPostById = async (req: Request, res: Response) => {
 }
 
 const addPost = async (req: Request, res: Response) => {
-  const { title, codeContent, textContent } = req.body
+  const { title, codeContent, textContent, tagList } = req.body
   const secret = req.body.secret || true;
 
   if (!title || !codeContent) {
@@ -116,13 +97,13 @@ const addPost = async (req: Request, res: Response) => {
   const result = await Post.save(newPost);
   const postId = result.id;
 
-  if (!req.body.tagList) {
-    return res.status(201).send({ postId });
+  if (!tagList || !tagList.understanding || tagList.understanding.length === 0) {
+    req.body.tagList.understanding = [{"id": "21", "name": "🙁", "category": "이해도"}];
   }
   
-  const tagList = Object.values(req.body.tagList);
+  const addTagList = Object.values(req.body.tagList);
   const list = [];
-  tagList.map((el: Object[]) => list.push(...el));
+  addTagList.map((el: Object[]) => list.push(...el));
 
   const postTagList: Posttag[] = list.map((el: any) => {
     return Posttag.create({ postId, tagId: el.id })
@@ -144,7 +125,7 @@ const editPost = async (req: Request, res: Response) => {
     return res.status(403).send({ message: 'forbidden'});
   }
 
-  const { title, codeContent, textContent, secret } = req.body;
+  const { title, codeContent, textContent, secret, tagList } = req.body;
   if (!title || !codeContent || secret === undefined) {
     return res.status(422).send({ message: 'title, codeContent, secret value is null'});
   }
@@ -155,13 +136,13 @@ const editPost = async (req: Request, res: Response) => {
   const deleteTagList = await Posttag.find({ postId: id });
   await Posttag.remove(deleteTagList);
 
-  if (!req.body.tagList) {
-    return res.status(201).send({ message: 'editPost'});
+  if (!tagList || !tagList.understanding || tagList.understanding.length === 0) {
+    req.body.tagList.understanding = [{"id": "21", "name": "🙁", "category": "이해도"}];
   }
 
-  const tagList = Object.values(req.body.tagList);
+  const addTagList = Object.values(req.body.tagList);
   const list = [];
-  tagList.map((el: Object[]) => list.push(...el));
+  addTagList.map((el: Object[]) => list.push(...el));
   
   const postId = id;
   const postTagList: Posttag[] = list.map((el: any) => {
