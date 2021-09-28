@@ -71,31 +71,29 @@ const getPostById = async (req: Request, res: Response) => {
 }
 
 const addPost = async (req: Request, res: Response) => {
-  try {
-    const { title, codeContent, textContent } = req.body
-    const secret = req.body.secret || true;
-  
-    const newPost = Post.create({  
-      title,
-      codeContent,
-      textContent,
-      secret,
-      userId: req.body.authUserId
-    })
-    const result = await Post.save(newPost);
-    
-    const tagList = Object.values(req.body.tagList).flat();
-    const postId = result.id;
-    const postTagList: Posttag[] = tagList.map((el: any) => {
-      return Posttag.create({ postId, tagId: el.id })
-    })
-    await Posttag.save(postTagList);
-  
-    res.status(201).send({ postId });
+  const { title, codeContent, textContent } = req.body
+  const secret = req.body.secret || true;
 
-  } catch (err) {
-    res.send(err.message);
-  }
+  const newPost = Post.create({  
+    title,
+    codeContent,
+    textContent,
+    secret,
+    userId: req.body.authUserId
+  })
+  const result = await Post.save(newPost);
+  
+  const tagList = Object.values(req.body.tagList);
+  const list = [];
+  tagList.map((el: Object[]) => list.push(...el));
+
+  const postId = result.id;
+  const postTagList: Posttag[] = list.map((el: any) => {
+    return Posttag.create({ postId, tagId: el.id })
+  })
+  await Posttag.save(postTagList);
+
+  res.status(201).send({ postId });
 }
 
 const editPost = async (req: Request, res: Response) => {
