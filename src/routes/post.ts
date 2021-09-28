@@ -14,6 +14,7 @@ postRouter.get('/', checkRole, postController.getPostList);
 postRouter.use('/', checkAuth);
 postRouter.use('/', checkRole);
 
+postRouter.patch('/tag', postController.editUnderstandLevel);
 postRouter.patch('/:id', postController.editPost);
 postRouter.delete('/:id', postController.deletePost);
 postRouter.post('/', postController.addPost);

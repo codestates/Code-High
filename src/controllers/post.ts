@@ -1,6 +1,8 @@
 import { Request, Response } from 'express';
-import { getConnection, getManager, getRepository, Tree } from 'typeorm';
+import { getConnection, getManager, getRepository, In, Tree } from 'typeorm';
+import { Comment } from '../entity/Comment';
 import { Post } from '../entity/Post';
+import { Posttag } from '../entity/Posttag';
 
 const getPostList = async (req: Request, res: Response) => {
 
@@ -40,11 +42,19 @@ const getUserPostList = async (req: Request, res: Response) => {
   const id = req.body.authUserId;
   const search = req.query.search;
 
-  const result = await Post.createQueryBuilder()
-  .where('userId = :id', { id })
-  .getMany();
+  const result = await Post.createQueryBuilder('post')
+  .select([
+    'post.id AS id',
+    'post.title AS title',
+    'post.codeContent AS codeContent',
+    'post.secret AS secret',
+    'postTag.tagId AS understanding',
+  ])
+  .leftJoin('post.postTags', 'postTag', 'postTag.tagId In (:understand)', { understand: [21, 22, 23]})
+  .where('post.userId = :id', { id })
+  .getRawMany()
 
-  res.status(200).send({ postList: result, message: 'getUserPostList'});
+  res.status(200).send({ postList: result});
 }
 
 const getPostById = async (req: Request, res: Response) => {
@@ -70,7 +80,12 @@ const getPostById = async (req: Request, res: Response) => {
 }
 
 const addPost = async (req: Request, res: Response) => {
-  const { title, codeContent, textContent, secret } = req.body
+  const { title, codeContent, textContent, tagList } = req.body
+  const secret = req.body.secret;
+
+  if (!title || !codeContent) {
+    return res.status(422).send('fill in the title box');
+  }
 
   const newPost = Post.create({  
     title,
@@ -80,8 +95,22 @@ const addPost = async (req: Request, res: Response) => {
     userId: req.body.authUserId
   })
   const result = await Post.save(newPost);
+  const postId = result.id;
 
-  res.send({ message: 'ok'});
+  if (!tagList || !tagList.understanding || tagList.understanding.length === 0) {
+    tagList.understanding = [{"id": "21", "name": "🙁", "category": "이해도"}];
+  }
+  
+  const addTagList = Object.values(tagList);
+  const list = [];
+  addTagList.map((el: Object[]) => list.push(...el));
+
+  const postTagList: Posttag[] = list.map((el: any) => {
+    return Posttag.create({ postId, tagId: el.id })
+  })
+  
+  await Posttag.save(postTagList);
+  res.status(201).send({ postId });
 }
 
 const editPost = async (req: Request, res: Response) => {
@@ -96,13 +125,60 @@ const editPost = async (req: Request, res: Response) => {
     return res.status(403).send({ message: 'forbidden'});
   }
 
-  const { title, codeContent, textContent, secret } = req.body;
-  if (!title || secret === undefined) {
-    return res.status(422).send({ message: 'title or secret value is null'});
+  const { title, codeContent, textContent, secret, tagList } = req.body;
+  if (!title || !codeContent || secret === undefined) {
+    return res.status(422).send({ message: 'title, codeContent, secret value is null'});
   }
 
   await Post.update({ id }, { title, codeContent, textContent, secret });
+
+  // 태그
+  const deleteTagList = await Posttag.find({ postId: id });
+  await Posttag.remove(deleteTagList);
+
+  if (!tagList || !tagList.understanding || tagList.understanding.length === 0) {
+    tagList.understanding = [{"id": "21", "name": "🙁", "category": "이해도"}];
+  }
+
+  const addTagList = Object.values(tagList);
+  const list = [];
+  addTagList.map((el: Object[]) => list.push(...el));
+  
+  const postId = id;
+  const postTagList: Posttag[] = list.map((el: any) => {
+    return Posttag.create({ postId, tagId: el.id })
+  })
+  await Posttag.save(postTagList);
+
   res.status(201).send({ message: 'editPost'});
+}
+
+const editUnderstandLevel = async (req: Request, res: Response) => {
+  const { postId, understanding } = req.body;
+
+  if (!postId || !understanding) {
+    return res.status(422).send({ message: 'cannot find postId or tagId in body'});
+  }
+
+  const selectPost = await Post.findOne(postId, { select: ['userId']})
+  if (!selectPost) {
+    return res.status(404).send({ message: 'post not found'})
+  }
+
+  if (selectPost.userId !== req.body.authUserId) {
+    return res.status(403).send({ message: 'forbidden user'});
+  }
+
+  const postUnderstandingTag = await Posttag.findOne({ postId, tagId: In([21, 22, 23]) })
+  if (!postUnderstandingTag) {
+    const tag = Posttag.create({ postId, tagId: understanding });
+    await Posttag.save(tag);
+  } else {
+    Posttag.merge(postUnderstandingTag, { tagId: understanding })
+    await Posttag.save(postUnderstandingTag);
+  }
+
+  res.status(201).send({ message: 'edit understand level'});
 }
 
 const deletePost = async (req: Request, res: Response) => {
@@ -116,6 +192,9 @@ const deletePost = async (req: Request, res: Response) => {
   if (req.body.userRole !== 1 && selectPost.userId !== req.body.authUserId) {
     return res.status(403).send({ message: 'forbidden'});
   }
+
+  const deleteTagList = await Posttag.find({ postId: id });
+  await Posttag.remove(deleteTagList);
   await Post.remove(selectPost);
 
   res.status(200).send({ message: 'delete post successfully'});
@@ -143,6 +222,7 @@ export {
   getPostById,
   addPost,
   editPost,
+  editUnderstandLevel,
   deletePost,
   deletePostList
 }

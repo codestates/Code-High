@@ -16,9 +16,9 @@ const userList = async (req: Request, res: Response) => {
 const userInfo = async (req: Request, res: Response) => {
   
   const loginUserInfo = await User.findOne({ where: { email: req.body.authUser } });
-  
   delete loginUserInfo.password;
   delete loginUserInfo.verified;
+  
   res.status(200).send({ userInfo: loginUserInfo, message: 'ok'});
 }
 
@@ -28,7 +28,7 @@ const userInfoById = async (req: Request, res: Response) => {
     return res.status(403).send({ message: 'forbidden user'});
   }
 
-  const loginUserInfo = await User.findOne({ where: { id: req.params.id } });
+  const loginUserInfo = await User.findOne(req.params.id);
   if (!loginUserInfo) {
     return res.status(404).send({ message: 'user not found'});
   }
@@ -54,10 +54,14 @@ const editUser = async (req: Request, res: Response) => {
   const updateInfo = await User.findOne(req.body.authUserId);
   User.merge(updateInfo, { name, password, image, phone });
   await User.save(updateInfo);
-  
+
   delete updateInfo.password;
   delete updateInfo.verified;
   res.status(200).send({ userInfo: updateInfo, message: 'update success' })
+}
+
+const findPassword = (req: Request, res: Response) => {
+  res.status(201).send({ message: 'set new password'});
 }
 
 // delete login user account

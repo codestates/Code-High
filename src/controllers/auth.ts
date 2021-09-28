@@ -10,7 +10,7 @@ import 'dotenv/config';
 const emailLogin = async (req: Request, res: Response) => {
   try {
     const { email, password } = req.body;
-    const userInfo = await User.findOne({ where: { email } });
+    const userInfo = await User.findOne({ email });
     
     if (!userInfo || !userInfo.verified) {
       return res.status(404).send({ message: 'undefined user' });
@@ -75,7 +75,7 @@ const kakaoLogin = async (req: Request, res: Response) => {
     const kakaoEmail = `${userInfoBykakao.data.id}@kakao.com`;
     
     // 가입여부 확인
-    const userInfo = await User.findOne({ where: { email: kakaoEmail }})
+    let userInfo = await User.findOne({ email: kakaoEmail })
     if (!userInfo) {
       const name = userInfoBykakao.data.kakao_account.profile.nickname;
       const image = userInfoBykakao.data.kakao_account.profile.profile_image_url;
@@ -87,18 +87,18 @@ const kakaoLogin = async (req: Request, res: Response) => {
         authorityId: 3,
         verified: true,
       })
-      await User.save(newKakaoUser);
+      userInfo = await User.save(newKakaoUser);
     }
-    
+
     res.cookie('refreshToken', refreshToken, {
       maxAge: 1000 * 60 * 60 * 24, // 1d
       httpOnly: true,
       secure: true,
     },)
 
-    return res.status(200).send({ accessToken, message: 'Kakao Login Success'});
+    return res.status(200).send({ accessToken, userInfo, message: 'Kakao Login Success'});
   } catch (err) {
-    console.log(err);
+    console.log(err.response.data);
   }
 }
 
@@ -130,7 +130,7 @@ const googleLogin = async (req: Request, res: Response) => {
     const googleEmail = `${userInfoByGoogle.data.sub}@gmail.com`;
     
     // 가입여부 확인
-    const userInfo = await User.findOne({ where: { email: googleEmail }})
+    let userInfo = await User.findOne({ email: googleEmail })
     if (!userInfo) {
       const { name, picture } = userInfoByGoogle.data;
       const newGoogleUser = User.create({  
@@ -141,7 +141,7 @@ const googleLogin = async (req: Request, res: Response) => {
         authorityId: 3,
         verified: true,
       })
-      await User.save(newGoogleUser);
+      userInfo = await User.save(newGoogleUser);
     }
     
     res.cookie('refreshToken', refreshToken, {
@@ -149,11 +149,11 @@ const googleLogin = async (req: Request, res: Response) => {
       httpOnly: true,
       secure: true,
     },)
-    return res.status(200).send({ accessToken, message: 'Google login Success' });
+    return res.status(200).send({ accessToken, userInfo, message: 'Google login Success' });
 
   } catch (err) {
     console.log(err);
-    return res.send(err.message);
+    return res.send(err.response.data);
   }
 }
 
@@ -170,6 +170,7 @@ const githubLogin = async (req: Request, res: Response) => {
       code: req.body.authorizationCode
     }, { headers: { accept: 'application/json' } })
 
+    
     if (!result) {
       return res.status(401).send({ message: 'unauthorized' })
     }
@@ -184,7 +185,7 @@ const githubLogin = async (req: Request, res: Response) => {
     const githubEmail = `${userInfoByGithub.data.id}@github.com`;
     
     // 가입여부 확인
-    const userInfo = await User.findOne({ where: { email: githubEmail }})
+    let userInfo = await User.findOne({ email: githubEmail })
     if (!userInfo) {
       const name = userInfoByGithub.data.name;
       const image = userInfoByGithub.data.avatar_url;
@@ -196,14 +197,14 @@ const githubLogin = async (req: Request, res: Response) => {
         authorityId: 3,
         verified: true,
       })
-      await User.save(newGithubUser);
+      userInfo = await User.save(newGithubUser);
     }
 
-    return res.status(200).send({ accessToken, message: 'Github login Success' });
+    return res.status(200).send({ accessToken, userInfo, message: 'Github login Success' });
 
   } catch (err) {
     console.log(err);
-    return res.send(err.message);
+    return res.send(err.response.data);
   }
 }
 
@@ -223,7 +224,7 @@ const signUpEmail = async (req: Request, res: Response) => {
       return res.status(422).send({ message: 'Unprocessable Ent' });
     }
     // 중복 이메일 확인
-    const userEmail = await User.findOne({ where: { email } })
+    const userEmail = await User.findOne({ email })
     if (userEmail) {
       if (userEmail.verified) {
         return res.status(409).send({ message: 'Email Conflict' }); 

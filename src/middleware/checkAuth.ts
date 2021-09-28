@@ -29,7 +29,7 @@ export const checkAuth = async (req: Request, res: Response, next: NextFunction)
     return res.status(401).send({ message: 'unauthorized user'});
   }
 
-  const user = await User.findOne({ where: { email: req.body.authUser }});
+  const user = await User.findOne({ email: req.body.authUser });
   if (!user) {
     return res.status(404).send({ message: 'user not found' });
   }
