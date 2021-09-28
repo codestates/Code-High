@@ -41,11 +41,39 @@ const getUserPostList = async (req: Request, res: Response) => {
   const id = req.body.authUserId;
   const search = req.query.search;
 
-  const result = await Post.createQueryBuilder()
-  .where('userId = :id', { id })
-  .getMany();
+  // const result = await Post.createQueryBuilder('post')
+  // .addSelect(subQuery => {
+  //     return subQuery
+  //     .select('posttag.tagId')
+  //     .from(Posttag, 'posttag')
+  //     .where('posttag.postId = :postId', { postId: 'post.id'})
+  //     //.andWhere('posttag.tagId In (:...understandId)', { understandId: [21, 22, 23] })
+  //     .limit(1)
+  //   },
+  //   'understanding'
+  // )
+  // .where('post.userId = :id', { id })
+  // .getRawMany();
+  try {
+    const result = await Post.createQueryBuilder('post')
+    .select([
+      'post.id AS id',
+      'post.title AS title',
+      'post.codeContent AS codeContent',
+      'post.secret AS secret',
+      'count(post.comments) AS commentCnt',
+      'postTag.id AS understand'
+    ])
+    .leftJoin('post.postTags', 'postTag', 'postTag.tagId In (:understand)', { understand: [21, 22, 23]})
+    .leftJoin('post.comments', 'comment')
+    .where('post.userId = :id', { id })
+    .getRawMany()
+    
+    res.status(200).send({ postList: result, message: 'getUserPostList'});
+  } catch (err) {
+    console.log(err)
+  }
 
-  res.status(200).send({ postList: result, message: 'getUserPostList'});
 }
 
 const getPostById = async (req: Request, res: Response) => {

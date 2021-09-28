@@ -3,6 +3,7 @@ import { Column, CreateDateColumn, Entity, ManyToOne, OneToMany, PrimaryColumn, 
 import { Tag } from './Tag';
 import { Posttag } from "./Posttag";
 import { User } from "./User";
+import { Comment } from './Comment';
 
 @Entity()
 export class Post extends BaseEntity {
@@ -38,5 +39,9 @@ export class Post extends BaseEntity {
     // post <-> postTag 1:n
     @OneToMany((type) => Posttag, (postTag) => postTag.post, {onDelete: 'CASCADE'})
     postTags: Posttag[];
+
+    @OneToMany((type) => Comment, (comment) => comment.post, {onDelete: 'CASCADE'})
+    comments: Comment[];
+
 
 }
