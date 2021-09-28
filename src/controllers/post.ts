@@ -101,14 +101,22 @@ const addPost = async (req: Request, res: Response) => {
     tagList.understanding = [{"id": "21", "name": "🙁", "category": "이해도"}];
   }
   
-  const addTagList = Object.values(tagList);
   const list = [];
-  addTagList.map((el: Object[]) => list.push(...el));
+  for (let el in tagList) {
+    list.push(...tagList[el])
+  }
 
-  const postTagList: Posttag[] = list.map((el: any) => {
-    return Posttag.create({ postId, tagId: el.id })
+  const postTagList: Posttag[] = list.map((el) => {
+    return Posttag.create({
+      postId, tagId: el.id
+    })
   })
-  return res.send({addTagList, list, postTagList });
+
+  // console.log(postTagList);
+  // const postTagList: Posttag[] = list.map((el: any) => {
+  //   return Posttag.create({ postId, tagId: el.id })
+  // })
+  //return res.send({addTagList, list, postTagList });
 
   await Posttag.save(postTagList);
 
