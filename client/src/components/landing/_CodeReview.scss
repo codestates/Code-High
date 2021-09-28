@@ -14,7 +14,7 @@
   align-items: center;
   justify-content: center;
   img{
-    width: 450px;
+    width: 350px;
     position: relative;
   }
 }
@@ -53,6 +53,7 @@
    }
    a{
     span {
+      margin: 0;
       font-family: 'NanumGothic';
       padding: 15px 20px;
     }

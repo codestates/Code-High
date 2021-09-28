@@ -46,3 +46,15 @@
     height: 100px;
   }
 }
+
+@include tablet{
+  .codereviewboard-cardbox{
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@include mobile{
+  .codereviewboard-cardbox{
+    grid-template-columns: repeat(1, 1fr);
+  }
+}

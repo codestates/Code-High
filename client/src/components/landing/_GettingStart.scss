@@ -25,7 +25,7 @@
     position: relative;
     top:100px;
     left: -100px;
-    width: 650px;
+    width: 600px;
     height: 450px;
     background-color: white;
   }
@@ -33,27 +33,28 @@
 
 .gettingstart-box {
   position: relative;
-  top:400px;
-  left: -220px;
-  width: 500px;
-  height: 170px;
+  top:420px;
+  left: -200px;
+  width: 650px;
+  height: 180px;
   background-color: white;
   padding: 30px;
    h1 {
      color: #{$green};
-     font-size: 2.5rem;
-     margin-bottom: 35px;
+     font-size: 2.4rem;
+     margin-bottom: 25px;
      font-family: 'NanumGothic';
    }
    p {
      font-size: 1.6rem;
-     margin-bottom: 35px;
+     margin-bottom: 25px;
      line-height: 1.9rem;
      font-family: 'NanumGothic';
    }
    span {
      padding: 10px 40px;
      font-size: 1.5rem;
+     margin-left: 0px;
      font-family: 'NanumGothic';
    }
 }
@@ -68,7 +69,7 @@
     }
   }
   .gettingstart-box {
-    left: -350px;
+    left: -200px;
   }
 }
 

@@ -120,10 +120,10 @@ function Signin({ togglePopUp, showLoginModal, setShowLoginModal }) {
           </div>
           <ul>
             <li>
-              <a href=''>비밀번호 찾기</a>
+              <span>비밀번호 찾기</span>
             </li>
             <li>
-              <a href=''>회원가입</a>
+              <span>회원가입</span>
             </li>
           </ul>
           <div className='signin-oauth-container'>

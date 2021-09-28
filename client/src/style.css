@@ -483,7 +483,7 @@
     .signin-left ul li {
       list-style: none;
       padding: 0 40px; }
-      .signin-left ul li a {
+      .signin-left ul li span {
         text-decoration: none;
         color: black;
         font-family: 'NanumGothic';
@@ -1062,6 +1062,14 @@ ul {
   .codereviewboard-loding img {
     height: 100px; }
 
+@media (min-width: 769px) and (max-width: 1199px) {
+  .codereviewboard-cardbox {
+    grid-template-columns: repeat(2, 1fr); } }
+
+@media (min-width: 335px) and (max-width: 768px) {
+  .codereviewboard-cardbox {
+    grid-template-columns: repeat(1, 1fr); } }
+
 .kanban {
   display: flex;
   align-items: center;
@@ -1122,6 +1130,12 @@ ul {
 .kanban-list .kanban-list-item {
   transition: all 0.2s linear; }
 
+@media (min-width: 335px) and (max-width: 768px) {
+  .kanban-list-item {
+    height: 70px; }
+    .kanban-list-item div:nth-child(3) {
+      display: none; } }
+
 .buttoncontainer {
   display: flex;
   align-items: center;
@@ -1157,7 +1171,7 @@ ul {
   align-items: center;
   justify-content: center; }
   .codereview-left img {
-    width: 450px;
+    width: 350px;
     position: relative; }
 
 .codereview-img-box {
@@ -1190,6 +1204,7 @@ ul {
     margin-bottom: 40px;
     font-family: 'NanumGothic'; }
   .codereview-right a span {
+    margin: 0;
     font-family: 'NanumGothic';
     padding: 15px 20px; }
 
@@ -1278,31 +1293,32 @@ ul {
   position: relative;
   top: 100px;
   left: -100px;
-  width: 650px;
+  width: 600px;
   height: 450px;
   background-color: white; }
 
 .gettingstart-box {
   position: relative;
-  top: 400px;
-  left: -220px;
-  width: 500px;
-  height: 170px;
+  top: 420px;
+  left: -200px;
+  width: 650px;
+  height: 180px;
   background-color: white;
   padding: 30px; }
   .gettingstart-box h1 {
     color: #2F8C4C;
-    font-size: 2.5rem;
-    margin-bottom: 35px;
+    font-size: 2.4rem;
+    margin-bottom: 25px;
     font-family: 'NanumGothic'; }
   .gettingstart-box p {
     font-size: 1.6rem;
-    margin-bottom: 35px;
+    margin-bottom: 25px;
     line-height: 1.9rem;
     font-family: 'NanumGothic'; }
   .gettingstart-box span {
     padding: 10px 40px;
     font-size: 1.5rem;
+    margin-left: 0px;
     font-family: 'NanumGothic'; }
 
 @media (min-width: 769px) and (max-width: 1199px) {
@@ -1311,7 +1327,7 @@ ul {
   .gettingstart-img-container img {
     left: 30px; }
   .gettingstart-box {
-    left: -350px; } }
+    left: -200px; } }
 
 @media (min-width: 335px) and (max-width: 768px) {
   .gettingstart {

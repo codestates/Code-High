@@ -73,3 +73,12 @@
 .kanban-list .kanban-list-item {
   transition: all 0.2s linear;
 }
+
+@include mobile{
+  .kanban-list-item{
+    height: 70px;
+    div:nth-child(3) {
+      display: none;
+    }
+  }
+}
