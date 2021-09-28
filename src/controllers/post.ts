@@ -108,6 +108,7 @@ const addPost = async (req: Request, res: Response) => {
   const postTagList: Posttag[] = list.map((el: any) => {
     return Posttag.create({ postId, tagId: el.id })
   })
+  return res.send({ postTagList });
   await Posttag.save(postTagList);
 
   res.status(201).send({ postId });
