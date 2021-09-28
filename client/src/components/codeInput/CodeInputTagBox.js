@@ -11,9 +11,9 @@ function CodeInputTagBox({ codeInputInfo, setCodeInputInfo }) {
     understanding: [],
   });
 
-  useEffect(()=>{
+  useEffect(() => {
     setCodeInputInfo({ ...codeInputInfo, tag: choiceTag });
-  },[choiceTag])
+  }, [choiceTag]);
   // console.log(choiceTag, codeInputInfo);
 
   const handleChangeColor = (e) => {
@@ -22,10 +22,10 @@ function CodeInputTagBox({ codeInputInfo, setCodeInputInfo }) {
     if (currentTag[0].category === 'algorithm') {
       const algorithmFillterTag = choiceTag.algorithm.filter(
         (ele) => ele.name === currentTagName
-        );
-        const algorithmRemoveTag = choiceTag.algorithm.filter(
-          (ele) => ele.name !== currentTagName
-          );
+      );
+      const algorithmRemoveTag = choiceTag.algorithm.filter(
+        (ele) => ele.name !== currentTagName
+      );
       if (choiceTag.algorithm.length === 0) {
         setChoiceTag({ ...choiceTag, algorithm: [...currentTag] });
         e.target.style.backgroundColor = '#2F8C4C';

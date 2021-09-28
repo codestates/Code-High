@@ -1,52 +1,17 @@
 import React, { useEffect } from 'react';
 import SearchInput from '../basic/search/SearchInput';
 import Button from '../basic/button/Button';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { getCodestoragePost } from '../../redux/actions/codePostActions';
 
 function Kanban () {
-  // Redux 사용 후 상태 유지, 데이터 전송 관리하기
-  const mockCode = [
-    {
-      subject: '알고리즘1',
-      date: '2021.09.14',
-      code: 'if(now === night){return `I have to go to bed.`}'
-    },
-    {
-      subject: '알고리즘2',
-      date: '2021.09.14',
-      code: 'if(now === night){return `I have to go to bed.`}'
-    },
-    {
-      subject: '알고리즘3',
-      date: '2021.09.14',
-      code: 'if(now === lunch){return `I wanna sleep`}'
-    },
-    {
-      subject: '알고리즘4',
-      date: '2021.09.14',
-      code: 'if(now === night){return `I have to go to bed.`}'
-    },
-    {
-      subject: '알고리즘5',
-      date: '2021.09.14',
-      code: 'if(now === morning){return `OMG`}'
-    },
-    {
-      subject: '알고리즘6',
-      date: '2021.09.14',
-      code: 'if(now === night){return `I have to go to bed.`}'
-    },
-    {
-      subject: '알고리즘7',
-      date: '2021.09.14',
-      code: 'if(now === richguy){return `I will run.!`}'
-    },
-    {
-      subject: '알고리즘8',
-      date: '2021.09.14',
-      code: 'if(now === night){return `I have to go to bed.`}'
-    }
-  ];
+  const dispatch = useDispatch();
+  const postState = useSelector((state) => state.codePostReducer);
+  const userState = useSelector(state => state.userReducer);
+  const { userPostList } = postState;
+  const { userInfo } = userState;
+  const history = useHistory();
 
   useEffect(() => {
     const list_items = document.querySelectorAll('.kanban-list-item');
@@ -94,6 +59,20 @@ function Kanban () {
     }
   }, []);
 
+  useEffect(()=>{
+    const data = {
+      logintype:userInfo.loginType,
+      accessToken:userInfo.accessToken
+    }
+    dispatch(getCodestoragePost(data))
+    console.log('userPostList',userPostList)
+  },[])  
+
+  const handleClickPost = () => {
+    //완성되면 리덕스 맞춰서 불러오는것도 같이하기
+    history.push('/post')
+  }
+
   return (
     <div className='kanban'>
       <div className='kanban-container'>
@@ -109,12 +88,12 @@ function Kanban () {
         </div>
         <div className='kanban-list-container'>
           <section className='kanban-list'>
-            {mockCode.map((item) => {
+            {userPostList.map((item, index) => {
               return (
-                <div className='kanban-list-item' draggable='true'>
-                  <h1>[ {item.subject} ]</h1>
-                  <div>{item.date}</div>
-                  <div>{item.code}</div>
+                <div className='kanban-list-item' draggable='true' key={index} onDoubleClick={handleClickPost}>
+                  <h1>{item.title}</h1>
+                  <div>{item.createdAt}</div>
+                  <div>{item.codeContent}</div>
                 </div>
               );
             })}

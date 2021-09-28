@@ -4,12 +4,14 @@ import { resetCodereviewPost } from '../../redux/actions/codePostActions';
 import { useSelector, useDispatch } from 'react-redux';
 import SearchInput from '../basic/search/SearchInput';
 import scrollImg from '../../images/scrollImg.gif'
+import { useHistory } from 'react-router-dom';
 
 function CodeReviewBoard() {
   const [count, setCount] = useState(2);
   const state = useSelector((state) => state.codePostReducer);
   const { postList } = state;
   const dispatch = useDispatch();
+  const history = useHistory();
   // console.log('코드리뷰보드에서의 코드리스트', count, postList);
 
   //!새로고침 시, 스크롤 상단
@@ -38,6 +40,11 @@ function CodeReviewBoard() {
     } 
   };
 
+  const handleClickPost = () => {
+    //완성되면 리덕스 맞춰서 불러오는것도 같이하기
+    history.push('/post')
+  }
+
   return (
     <div className='codereviewboard'>
       <div className='codereviewboard-container'>
@@ -47,7 +54,7 @@ function CodeReviewBoard() {
         <section className='codereviewboard-cardbox' onScroll={onScroll}>
           {postList.map((item, index) => {
             return (
-              <div className='codereviewboard-card' key={index}>
+              <div className='codereviewboard-card' key={index} onClick={handleClickPost}>
                 <h1>{item.title}</h1>
                 <div>{item.codeContent}</div>
               </div>

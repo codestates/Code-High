@@ -155,10 +155,13 @@ export async function signoutUser() {
 }
 
 //6.회원탈퇴(마이페이지 구현 후)
-export async function deleteUserInfo(accessToken) {
+export async function deleteUserInfo(data) {
   axios
     .delete(`${serverUrl}/user`, {
-      headers: { Authorization: `bearer ${accessToken}` },
+      headers: {
+        login_type: `${data.logintype}`,
+        Authorization: `bearer ${data.accessToken}`,
+      },
       withCredentials: true,
     })
     .then((res) => {

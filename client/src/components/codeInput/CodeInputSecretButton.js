@@ -32,20 +32,25 @@ console.log(codeInputInfo)
   },[isChecked])
 
   const handleSaveButton = () => {
-    //서버에 정보 보내주기 => codeInputInfo
-    const { logintype, accessToken } = userInfo;
+    const { loginType, accessToken } = userInfo;
+    console.log('codeInputInfo',codeInputInfo)
+    
     axios.post(
       `${serverUrl}/post`,
-      { codeInputInfo },
+      codeInputInfo,
       {
         headers: {
-          loginType: `${logintype}`,
+          login_type: `${loginType}`,
           Authorization: `bearer ${accessToken}`,
         },
+        'Content-Type': 'application/json',
         withCredentials: true,
       }
     ).then((res) => {
-      console.log('메세지를 찾아보자',res)
+      console.log('메세지를 찾아보자',res.status)
+      if(res.status) {
+        history.push('/post')
+      }
     })
   }
 
@@ -61,7 +66,7 @@ console.log(codeInputInfo)
           <span>코드 리뷰 공개</span>
         </div>
         <div className='codeinputsecretbutton-button'>
-          <Button content='SAVE' backgroundColor='#2F8C4C' color='#fff' />
+          <Button content='SAVE' backgroundColor='#2F8C4C' color='#fff' onClickHandle={handleSaveButton}/>
           <Button content='CANCEL' backgroundColor='#E1E1E1' color='#fff' onClickHandle={handleCancelButton}/>
         </div>
       </div>
