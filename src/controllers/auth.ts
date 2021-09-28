@@ -1,8 +1,8 @@
 import { Request, Response } from 'express';
 import { User } from '../entity/User';
-import { sendEmail } from './mail';
+import { sendSignUpEmail } from '../utils/mail';
 import * as bcrypt from 'bcrypt';
-import { generateAccessToken, generateRefreshToken, generateEmailToken, verifyEmailToken } from './jwt';
+import { generateAccessToken, generateRefreshToken, generateEmailToken, verifyEmailToken } from '../utils/jwt';
 import { stringify } from 'query-string';
 import axios from 'axios';
 import 'dotenv/config';
@@ -247,7 +247,7 @@ const signUpEmail = async (req: Request, res: Response) => {
 
     // send code to userEmail
     const code = generateEmailToken({ email, id: result.id });
-    sendEmail(email, name, code);
+    sendSignUpEmail(email, name, code);
     
     return res.status(200).send({ message: 'send email' });
 
