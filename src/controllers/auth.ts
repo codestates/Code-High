@@ -13,6 +13,7 @@ const emailLogin = async (req: Request, res: Response) => {
     const userInfo = await User.findOne({ email });
     
     if (!userInfo || !userInfo.verified) {
+      console.log(userInfo.verified)
       return res.status(404).send({ message: 'undefined user' });
     }
 

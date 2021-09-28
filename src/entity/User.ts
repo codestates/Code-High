@@ -21,7 +21,7 @@ export class User extends BaseEntity {
   @Column({ type: 'varchar'})
   email: string;
 
-  @Column({ type: 'varchar', nullable: true, select: false })
+  @Column({ type: 'varchar', nullable: true})
   password: string;
 
   @Column({ type: 'varchar', nullable: true })
@@ -33,7 +33,7 @@ export class User extends BaseEntity {
   @Column({ type: 'int'})
   authorityId: number;
 
-  @Column({ type: 'boolean',  select: false})
+  @Column({ type: 'boolean'})
   verified: boolean;
 
   @CreateDateColumn()
