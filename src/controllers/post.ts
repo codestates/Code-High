@@ -98,10 +98,10 @@ const addPost = async (req: Request, res: Response) => {
   const postId = result.id;
 
   if (!tagList || !tagList.understanding || tagList.understanding.length === 0) {
-    req.body.tagList.understanding = [{"id": "21", "name": "🙁", "category": "이해도"}];
+    tagList.understanding = [{"id": "21", "name": "🙁", "category": "이해도"}];
   }
   
-  const addTagList = Object.values(req.body.tagList);
+  const addTagList = Object.values(tagList);
   const list = [];
   addTagList.map((el: Object[]) => list.push(...el));
 
@@ -137,10 +137,10 @@ const editPost = async (req: Request, res: Response) => {
   await Posttag.remove(deleteTagList);
 
   if (!tagList || !tagList.understanding || tagList.understanding.length === 0) {
-    req.body.tagList.understanding = [{"id": "21", "name": "🙁", "category": "이해도"}];
+    tagList.understanding = [{"id": "21", "name": "🙁", "category": "이해도"}];
   }
 
-  const addTagList = Object.values(req.body.tagList);
+  const addTagList = Object.values(tagList);
   const list = [];
   addTagList.map((el: Object[]) => list.push(...el));
   
