@@ -81,7 +81,7 @@ const getPostById = async (req: Request, res: Response) => {
 
 const addPost = async (req: Request, res: Response) => {
   const { title, codeContent, textContent, tagList } = req.body
-  const secret = !(req.body.secret) || true;
+  const secret = !(req.body.secret);
 
   if (!title || !codeContent) {
     return res.status(422).send('fill in the title box');
