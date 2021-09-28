@@ -119,9 +119,12 @@ const editPost = async (req: Request, res: Response) => {
   const deleteTagList = await Posttag.find({ postId: id });
   await Posttag.remove(deleteTagList);
 
-  const tagList = Object.values(req.body.tagList).flat();
+  const tagList = Object.values(req.body.tagList);
+  const list = [];
+  tagList.map((el: Object[]) => list.push(...el));
+  
   const postId = id;
-  const postTagList: Posttag[] = tagList.map((el: any) => {
+  const postTagList: Posttag[] = list.map((el: any) => {
     return Posttag.create({ postId, tagId: el.id })
   })
   await Posttag.save(postTagList);
