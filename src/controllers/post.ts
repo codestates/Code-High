@@ -105,8 +105,6 @@ const addPost = async (req: Request, res: Response) => {
   const list = [];
   addTagList.map((el: Object[]) => list.push(...el));
 
-  return res.send({ list });
-
   const postTagList: Posttag[] = list.map((el: any) => {
     return Posttag.create({ postId, tagId: el.id })
   })
