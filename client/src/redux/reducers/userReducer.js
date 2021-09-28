@@ -15,7 +15,7 @@ const userReducer = (state = {}, action) => {
       });
     case GITHUB_SIGNIN_USER:
       return Object.assign({}, state, {
-        userInfo: action.payload,
+        userInfo: action.payload
       });
     case KAKAO_SIGNIN_USER:
       return Object.assign({}, state, {

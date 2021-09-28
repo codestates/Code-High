@@ -5,10 +5,10 @@ import { Link, useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { getCodestoragePost } from '../../redux/actions/codePostActions';
 
-function Kanban () {
+function Kanban() {
   const dispatch = useDispatch();
   const postState = useSelector((state) => state.codePostReducer);
-  const userState = useSelector(state => state.userReducer);
+  const userState = useSelector((state) => state.userReducer);
   const { userPostList } = postState;
   const { userInfo } = userState;
   const history = useHistory();
@@ -59,19 +59,19 @@ function Kanban () {
     }
   }, []);
 
-  useEffect(()=>{
+  useEffect(() => {
     const data = {
-      logintype:userInfo.loginType,
-      accessToken:userInfo.accessToken
-    }
-    dispatch(getCodestoragePost(data))
-    console.log('userPostList',userPostList)
-  },[])  
+      logintype: userInfo.loginType,
+      accessToken: userInfo.accessToken,
+    };
+    dispatch(getCodestoragePost(data));
+    console.log('userPostList', userPostList);
+  }, []);
 
   const handleClickPost = () => {
     //완성되면 리덕스 맞춰서 불러오는것도 같이하기
-    history.push('/post')
-  }
+    history.push('/post');
+  };
 
   return (
     <div className='kanban'>
@@ -79,7 +79,9 @@ function Kanban () {
         {/* 헤더 */}
         <div className='kanban-header'>
           <SearchInput />
-          <Link to='/codeinput'><Button content='NEW' backgroundColor='#2F8C4C' color='#fff' /></Link>
+          <Link to='/codeinput'>
+            <Button content='NEW' backgroundColor='#2F8C4C' color='#fff' />
+          </Link>
         </div>
         <div className='kanban-subject'>
           <div>이해도 (하)</div>
@@ -89,17 +91,58 @@ function Kanban () {
         <div className='kanban-list-container'>
           <section className='kanban-list'>
             {userPostList.map((item, index) => {
+              if(item.understanding === 21 || item.understanding === null) {
               return (
-                <div className='kanban-list-item' draggable='true' key={index} onDoubleClick={handleClickPost}>
+                <div
+                  className='kanban-list-item'
+                  draggable='true'
+                  key={index}
+                  onDoubleClick={handleClickPost}
+                >
                   <h1>{item.title}</h1>
                   <div>{item.createdAt}</div>
                   <div>{item.codeContent}</div>
                 </div>
               );
+              }
             })}
           </section>
-          <section className='kanban-list' />
-          <section className='kanban-list' />
+          <section className='kanban-list'>
+            {userPostList.map((item, index) => {
+              if(item.understanding === 22) {
+              return (
+                <div
+                  className='kanban-list-item'
+                  draggable='true'
+                  key={index}
+                  onDoubleClick={handleClickPost}
+                >
+                  <h1>{item.title}</h1>
+                  <div>{item.createdAt}</div>
+                  <div>{item.codeContent}</div>
+                </div>
+              );
+              }
+            })}
+          </section>
+          <section className='kanban-list'>
+            {userPostList.map((item, index) => {
+              if(item.understanding === 23) {
+              return (
+                <div
+                  className='kanban-list-item'
+                  draggable='true'
+                  key={index}
+                  onDoubleClick={handleClickPost}
+                >
+                  <h1>{item.title}</h1>
+                  <div>{item.createdAt}</div>
+                  <div>{item.codeContent}</div>
+                </div>
+              );
+              }
+            })}
+          </section>
         </div>
         {/* 푸터 */}
       </div>

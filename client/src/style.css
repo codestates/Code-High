@@ -138,15 +138,14 @@
   margin: 0; }
 
 .white-footer-container {
-  position: absolute;
   padding: 10px 10px;
   background-color: white;
   color: black;
   text-align: center;
+  justify-content: center;
   font-family: 'NanumGothic';
   font-size: 13px;
-  font-weight: 500;
-  bottom: 0; }
+  font-weight: 500; }
 
 .loading-container {
   position: fixed;
@@ -495,21 +494,26 @@
 .signin-button-container {
   display: flex;
   justify-content: center;
-  align-items: center; }
+  align-items: center;
+  flex-direction: column; }
   .signin-button-container button {
     background-color: #2F8C4C;
     color: white;
     padding: 10px;
     border: none;
     border-radius: 5px;
-    margin-top: 20px;
-    margin-bottom: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
     font-family: 'NanumGothic';
     cursor: pointer; }
+  .signin-button-container button:nth-child(1) {
+    margin-bottom: 0px;
+    background-color: #E1E1E1;
+    color: black; }
 
 .signin-oauth-container {
   display: flex;
-  margin-top: 30px;
+  margin-top: 20px;
   margin-bottom: 60px; }
 
 @media (min-width: 1200px) {
@@ -716,23 +720,38 @@
   align-items: center;
   justify-content: right;
   margin: 0;
-  text-align: center; }
+  text-align: center;
+  height: 70px; }
   .navbar-right li {
     display: flex;
     align-items: center;
     color: #263238;
     font-family: 'NanumGothic';
     text-decoration: none;
-    font-size: 17px;
-    font-weight: 500; }
-    .navbar-right li img {
-      width: 25px; }
+    font-size: 18px;
+    font-weight: 600; }
+
+.hamburger-menubar {
+  width: 25px;
+  height: 25px; }
+
+.navbar-userimg {
+  width: 40px;
+  border-radius: 50px; }
 
 .navbar-menu {
   display: none; }
 
 .navbar-menu.active {
   display: block; }
+
+.navbar-default-userimg {
+  font-size: 20px;
+  border: solid 1px #E1E1E1;
+  border-radius: 50px;
+  padding: 5px;
+  background-color: #E1E1E1;
+  color: white; }
 
 @media (min-width: 1200px) {
   .navbar {
@@ -744,7 +763,7 @@
     width: 200px;
     padding: 15px 0; }
   .navbar-right li {
-    margin-left: 30px; } }
+    margin-left: 20px; } }
 
 @media (min-width: 769px) and (max-width: 1199px) {
   .navbar {
@@ -756,7 +775,7 @@
     width: 200px;
     padding: 15px 0; }
   .navbar-right li {
-    margin-left: 30px; } }
+    margin-left: 20px; } }
 
 @media (min-width: 335px) and (max-width: 768px) {
   .navbar-container {

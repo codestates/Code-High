@@ -3,6 +3,11 @@ import modifyimg from '../../../images/modifyimg.png';
 import codehighlogo from '../../../images/codehighlogo.png';
 
 function ModifyUser () {
+  const enterKePress = (e) => {
+    // if(e.key === 'Enter') {
+      
+    // }
+  }
   return (
     <div className='modifyuser-modal'>
       <div className='modifyuser-modal-overlay' />
@@ -17,11 +22,11 @@ function ModifyUser () {
             <div>이메일</div>
             <input placeholder='kimcoding@gmail.com' disabled />
             <div>비밀번호</div>
-            <input placeholder='변경할 비밀번호를 입력해주세요.' />
+            <input placeholder='변경할 비밀번호를 입력해주세요.' onKeyPress={enterKePress}/>
             <div>비밀번호 확인</div>
-            <input placeholder='변경할 비밀번호를 확인해주세요.' />
+            <input placeholder='변경할 비밀번호를 확인해주세요.' onKeyPress={enterKePress}/>
             <div>닉네임</div>
-            <input placeholder='변경할 닉네임을 입력해주세요.' />
+            <input placeholder='변경할 닉네임을 입력해주세요.' onKeyPress={enterKePress}/>
           </article>
           <div className='modifyuser-button-container'>
             <button>회원정보 수정</button>

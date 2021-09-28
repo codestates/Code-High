@@ -8,11 +8,11 @@ function CodeInputTagBox({ codeInputInfo, setCodeInputInfo }) {
     language: [],
     platform: [],
     difficulty: [],
-    understanding: [],
+    understanding: [{ id: 21, name: '☹️', category: 'understanding' }],
   });
 
   useEffect(() => {
-    setCodeInputInfo({ ...codeInputInfo, tag: choiceTag });
+    setCodeInputInfo({ ...codeInputInfo, tagList: choiceTag });
   }, [choiceTag]);
   // console.log(choiceTag, codeInputInfo);
 
@@ -44,7 +44,7 @@ function CodeInputTagBox({ codeInputInfo, setCodeInputInfo }) {
       }
     } else if (currentTag[0].category === 'language') {
       if (choiceTag.language.length === 0) {
-        setChoiceTag({ ...choiceTag, language: [currentTag] });
+        setChoiceTag({ ...choiceTag, language: [...currentTag] });
         e.target.style.backgroundColor = '#2F8C4C';
       } else if (choiceTag.language.length === 1) {
         const languageButton = document.querySelectorAll(
@@ -54,12 +54,12 @@ function CodeInputTagBox({ codeInputInfo, setCodeInputInfo }) {
         arr.map((ele) => {
           ele.style.backgroundColor = '#E1E1E1';
         });
-        setChoiceTag({ ...choiceTag, language: [currentTag] });
+        setChoiceTag({ ...choiceTag, language: [...currentTag] });
         e.target.style.backgroundColor = '#2F8C4C';
       }
     } else if (currentTag[0].category === 'platform') {
       if (choiceTag.platform.length === 0) {
-        setChoiceTag({ ...choiceTag, platform: [currentTag] });
+        setChoiceTag({ ...choiceTag, platform: [...currentTag] });
         e.target.style.backgroundColor = '#2F8C4C';
       } else if (choiceTag.platform.length === 1) {
         const platformButton = document.querySelectorAll(
@@ -69,12 +69,12 @@ function CodeInputTagBox({ codeInputInfo, setCodeInputInfo }) {
         arr.map((ele) => {
           ele.style.backgroundColor = '#E1E1E1';
         });
-        setChoiceTag({ ...choiceTag, platform: [currentTag] });
+        setChoiceTag({ ...choiceTag, platform: [...currentTag] });
         e.target.style.backgroundColor = '#2F8C4C';
       }
     } else if (currentTag[0].category === 'difficulty') {
       if (choiceTag.difficulty.length === 0) {
-        setChoiceTag({ ...choiceTag, difficulty: [currentTag] });
+        setChoiceTag({ ...choiceTag, difficulty: [...currentTag] });
         e.target.style.backgroundColor = '#2F8C4C';
       } else if (choiceTag.difficulty.length === 1) {
         const difficultyButton = document.querySelectorAll(
@@ -84,12 +84,12 @@ function CodeInputTagBox({ codeInputInfo, setCodeInputInfo }) {
         arr.map((ele) => {
           ele.style.backgroundColor = '#E1E1E1';
         });
-        setChoiceTag({ ...choiceTag, difficulty: [currentTag] });
+        setChoiceTag({ ...choiceTag, difficulty: [...currentTag] });
         e.target.style.backgroundColor = '#2F8C4C';
       }
     } else if (currentTag[0].category === 'understanding') {
       if (choiceTag.understanding.length === 0) {
-        setChoiceTag({ ...choiceTag, understanding: [currentTag] });
+        setChoiceTag({ ...choiceTag, understanding: [...currentTag] });
         e.target.style.backgroundColor = '#2F8C4C';
       } else if (choiceTag.understanding.length === 1) {
         const understandingButton = document.querySelectorAll(
@@ -99,7 +99,7 @@ function CodeInputTagBox({ codeInputInfo, setCodeInputInfo }) {
         arr.map((ele) => {
           ele.style.backgroundColor = '#E1E1E1';
         });
-        setChoiceTag({ ...choiceTag, understanding: [currentTag] });
+        setChoiceTag({ ...choiceTag, understanding: [...currentTag] });
         e.target.style.backgroundColor = '#2F8C4C';
       }
     }
