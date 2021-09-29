@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import { User } from '../entity/User';
 import { sendSignUpEmail } from '../utils/mail';
 import * as bcrypt from 'bcrypt';
-import { generateAccessToken, generateRefreshToken, generateEmailToken, verifyEmailToken } from '../utils/jwt';
+import { generateloginToken, generateEmailToken, verifyEmailToken } from '../utils/jwt';
 import { stringify } from 'query-string';
 import axios from 'axios';
 import 'dotenv/config';
@@ -25,16 +25,17 @@ const emailLogin = async (req: Request, res: Response) => {
       return res.status(401).send({ message: 'unauthorized' });
     }
 
-    const tokenInfo = { email: userInfo.email };
-    const accessToken: string = generateAccessToken(tokenInfo);
-    const refreshToken: string = generateRefreshToken(tokenInfo);
-
+    const { accessToken, refreshToken } = await generateloginToken(userInfo);
     res.cookie('refreshToken', refreshToken, {
         maxAge: 1000 * 60 * 60 * 24, // 1d
         httpOnly: true,
         secure: true,
     })
+
     delete userInfo.password;
+    delete userInfo.verified;
+    delete userInfo.refreshToken;
+    
     return res.status(200).send({ accessToken, userInfo, message: 'login success'});
 
   } catch (err) {
@@ -64,12 +65,10 @@ const kakaoLogin = async (req: Request, res: Response) => {
       return res.status(401).send({ message: 'unauthorized' })
     }
 
-    const accessToken = result.data.access_token;
-    const refreshToken = result.data.refresh_token;
-
+    const kakaoAccessToken = result.data.access_token;
     const userInfoBykakao = await axios.get(getInfoUrl, {
       headers: {
-        Authorization: `Bearer ${accessToken}`
+        Authorization: `Bearer ${kakaoAccessToken}`
       }
     })
     const kakaoEmail = `${userInfoBykakao.data.id}@kakao.com`;
@@ -90,11 +89,16 @@ const kakaoLogin = async (req: Request, res: Response) => {
       userInfo = await User.save(newKakaoUser);
     }
 
+    const { accessToken, refreshToken } = await generateloginToken(userInfo);
     res.cookie('refreshToken', refreshToken, {
       maxAge: 1000 * 60 * 60 * 24, // 1d
       httpOnly: true,
       secure: true,
     },)
+
+    delete userInfo.password;
+    delete userInfo.verified;
+    delete userInfo.refreshToken;
 
     return res.status(200).send({ accessToken, userInfo, message: 'Kakao Login Success'});
   } catch (err) {
@@ -119,12 +123,11 @@ const googleLogin = async (req: Request, res: Response) => {
       return res.status(401).send({ message: 'unauthorized' })
     }
 
-    const accessToken = result.data.access_token;
-    const refreshToken = result.data.refresh_token
+    const googleAccessToken = result.data.access_token;
     
     const userInfoByGoogle = await axios.get(getInfoUrl, {
       headers: {
-        Authorization: `Bearer ${accessToken}`
+        Authorization: `Bearer ${googleAccessToken}`
       }
     })
     const googleEmail = `${userInfoByGoogle.data.sub}@gmail.com`;
@@ -143,12 +146,18 @@ const googleLogin = async (req: Request, res: Response) => {
       })
       userInfo = await User.save(newGoogleUser);
     }
-    
+
+    const { accessToken, refreshToken } = await generateloginToken(userInfo);
     res.cookie('refreshToken', refreshToken, {
       maxAge: 1000 * 60 * 60 * 24, // 1d
       httpOnly: true,
       secure: true,
     },)
+
+    delete userInfo.password;
+    delete userInfo.verified;
+    delete userInfo.refreshToken;
+
     return res.status(200).send({ accessToken, userInfo, message: 'Google login Success' });
 
   } catch (err) {
@@ -175,11 +184,11 @@ const githubLogin = async (req: Request, res: Response) => {
       return res.status(401).send({ message: 'unauthorized' })
     }
 
-    const accessToken = result.data.access_token;
+    const githubAccessToken = result.data.access_token;
 
     const userInfoByGithub = await axios.get(getInfoUrl, {
       headers: {
-        Authorization: `Bearer ${accessToken}`
+        Authorization: `Bearer ${githubAccessToken}`
       }
     })
     const githubEmail = `${userInfoByGithub.data.id}@github.com`;
@@ -200,6 +209,17 @@ const githubLogin = async (req: Request, res: Response) => {
       userInfo = await User.save(newGithubUser);
     }
 
+    const { accessToken, refreshToken } = await generateloginToken(userInfo);
+    res.cookie('refreshToken', refreshToken, {
+      maxAge: 1000 * 60 * 60 * 24, // 1d
+      httpOnly: true,
+      secure: true,
+    },)
+
+    delete userInfo.password;
+    delete userInfo.verified;
+    delete userInfo.refreshToken;
+
     return res.status(200).send({ accessToken, userInfo, message: 'Github login Success' });
 
   } catch (err) {
@@ -210,13 +230,12 @@ const githubLogin = async (req: Request, res: Response) => {
 
 const logout = (req: Request, res: Response) => {
   res.clearCookie('refreshToken');
+  // TODO: db에서 refreshToken 제거
   res.send({ message: 'logout success'});
 }
 
 const signUpEmail = async (req: Request, res: Response) => {
   const { email, password, name, phone } = req.body;
-  
-
   try {
   
     // 필수 정보 확인

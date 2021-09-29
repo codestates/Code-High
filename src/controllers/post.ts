@@ -80,6 +80,10 @@ const getPostById = async (req: Request, res: Response) => {
 }
 
 const addPost = async (req: Request, res: Response) => {
+  if (req.body.userRole > 3 ) {
+    return res.status(403).send({ message: 'forbidden user'})
+  }
+
   const { title, codeContent, textContent, tagList } = req.body
   const secret = req.body.secret;
 
@@ -121,8 +125,8 @@ const editPost = async (req: Request, res: Response) => {
     return res.status(404).send({ message: 'post not found'});
   }
 
-  if (selectPost.userId !== req.body.authUserId) {
-    return res.status(403).send({ message: 'forbidden'});
+  if (req.body.userRole > 3 || selectPost.userId !== req.body.authUserId) {
+    return res.status(403).send({ message: 'forbidden user'});
   }
 
   const { title, codeContent, textContent, secret, tagList } = req.body;
@@ -154,6 +158,10 @@ const editPost = async (req: Request, res: Response) => {
 }
 
 const editUnderstandLevel = async (req: Request, res: Response) => {
+  if (req.body.userRole > 4 ) {
+    return res.status(403).send({ message: 'forbidden user'})
+  }
+
   const { postId, understanding } = req.body;
 
   if (!postId || !understanding) {
@@ -201,6 +209,10 @@ const deletePost = async (req: Request, res: Response) => {
 }
 
 const deletePostList = async (req: Request, res: Response) => {
+  if (req.body.userRole > 3 ) {
+    return res.status(403).send({ message: 'forbidden user'})
+  }
+
   const postList = req.body.postList;
   let selectPostList;
 
