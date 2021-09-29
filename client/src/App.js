@@ -1,6 +1,10 @@
-import React, { useEffect, Suspense } from 'react';
+import React, { useEffect, Suspense, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { githubSigninUser, kakaoSigninUser, googleSigninUser } from './redux/actions/userActions';
+import {
+  githubSigninUser,
+  kakaoSigninUser,
+  googleSigninUser,
+} from './redux/actions/userActions';
 import { Route, Switch } from 'react-router-dom';
 import Landing from './pages/Landing';
 import SignIn from './components/basic/modal/SignIn';
@@ -16,16 +20,17 @@ import NavBar from './components/basic/navbar/NavBar';
 
 function App() {
   const dispatch = useDispatch();
-  const state = useSelector(state => state.userReducer);
+  const state = useSelector((state) => state.userReducer);
   const { userInfo } = state;
+  // const [choosePostId, setChoosePostId] = useState(0);
 
   useEffect(() => {
     const url = new URL(window.location.href);
     const loginType = url.searchParams.get('login');
     const authorizationCode = url.searchParams.get('code');
     if (authorizationCode) {
-      console.log('authorizationCode',authorizationCode);
-      console.log('loginType',loginType);
+      console.log('authorizationCode', authorizationCode);
+      console.log('loginType', loginType);
 
       if (loginType === 'github') {
         getGithubAccessToken(authorizationCode);
@@ -35,24 +40,38 @@ function App() {
         getGoogleAccessToken(authorizationCode);
       }
     }
-  },[]);
+  }, []);
 
   const getGithubAccessToken = (authorizationCode) => {
-      dispatch(githubSigninUser(authorizationCode))
+    dispatch(githubSigninUser(authorizationCode));
   };
 
   const getKakaoAccessToken = (authorizationCode) => {
-      dispatch(kakaoSigninUser(authorizationCode))
+    dispatch(kakaoSigninUser(authorizationCode));
   };
 
-  const getGoogleAccessToken =  (authorizationCode) => {
-      dispatch(googleSigninUser(authorizationCode))
+  const getGoogleAccessToken = (authorizationCode) => {
+    dispatch(googleSigninUser(authorizationCode));
   };
 
   const Landing = React.lazy(
     () =>
       new Promise((resolve, reject) =>
         setTimeout(() => resolve(import('./pages/Landing')), 1000)
+      )
+  );
+  const CodeStorage = React.lazy(
+    () =>
+      new Promise((resolve, reject) =>
+        setTimeout(() => {
+          resolve(import('./pages/CodeStorage'));
+        }, 1000)
+      )
+  );
+  const CodeReview = React.lazy(
+    () =>
+      new Promise((resolve, reject) =>
+        setTimeout(() => resolve(import('./pages/CodeReview')), 1000)
       )
   );
 
