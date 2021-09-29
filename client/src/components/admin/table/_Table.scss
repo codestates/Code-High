@@ -5,19 +5,20 @@
     flex-direction: column;
     font-size: 2rem;
 }
-.admin-subject-container{
-    display: flex;
-    justify-content: left;
-    align-items: center;
-    width: 1200px;
-}
+
 .admin-table-subject{
     margin-top: 20px;
     padding-left: 30px;
     text-align: left;
-    width: 100%;
     font-size: 2rem;
     font-weight: 800;
+}
+
+.admin-table-sub{
+    width: 1200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .admin-table-container{
@@ -66,10 +67,16 @@
     .admin-table-container{
         flex-direction: column;
     }
+    .admin-table-sub{
+        width: 100%;
+    }
 }
 
 @include mobile {
     .admin-table-container{
         flex-direction: column;
+    }
+    .admin-table-sub{
+        width: 100%;
     }
 }

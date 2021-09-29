@@ -50,19 +50,18 @@
   flex-direction: column;
   font-size: 2rem; }
 
-.admin-subject-container {
-  display: flex;
-  justify-content: left;
-  align-items: center;
-  width: 1200px; }
-
 .admin-table-subject {
   margin-top: 20px;
   padding-left: 30px;
   text-align: left;
-  width: 100%;
   font-size: 2rem;
   font-weight: 800; }
+
+.admin-table-sub {
+  width: 1200px;
+  display: flex;
+  justify-content: center;
+  align-items: center; }
 
 .admin-table-container {
   margin-top: 10px;
@@ -101,11 +100,15 @@
 
 @media (min-width: 769px) and (max-width: 1199px) {
   .admin-table-container {
-    flex-direction: column; } }
+    flex-direction: column; }
+  .admin-table-sub {
+    width: 100%; } }
 
 @media (min-width: 335px) and (max-width: 768px) {
   .admin-table-container {
-    flex-direction: column; } }
+    flex-direction: column; }
+  .admin-table-sub {
+    width: 100%; } }
 
 .alert-modal {
   position: fixed;
@@ -1972,48 +1975,6 @@ a {
   padding: 2px;
   border: 0px; }
 
-.posttagset {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 10px 0; }
-
-.posttagset-container {
-  width: 1200px;
-  align-items: center;
-  justify-content: flex-start;
-  display: flex;
-  margin-left: 10px; }
-
-.posttitle {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 10px 0; }
-
-.posttitle-container {
-  max-width: 1200px;
-  align-items: center;
-  justify-content: flex-start;
-  display: flex; }
-  .posttitle-container span {
-    font-size: 1.3rem;
-    margin: 0 10px;
-    width: 35px;
-    min-width: 35px;
-    font-family: 'NanumGothic';
-    font-weight: 600; }
-  .posttitle-container div {
-    width: 90vw;
-    height: 2vh;
-    padding: 0 5px;
-    font-size: 1.3rem;
-    border-radius: 3px;
-    border: solid 1px #E1E1E1;
-    font-family: 'NanumGothic';
-    align-items: center;
-    display: flex; }
-
 .mypage {
   display: flex;
   justify-content: center;
@@ -2234,19 +2195,18 @@ a {
   flex-direction: column;
   font-size: 2rem; }
 
-.admin-subject-container {
-  display: flex;
-  justify-content: left;
-  align-items: center;
-  width: 1200px; }
-
 .admin-table-subject {
   margin-top: 20px;
   padding-left: 30px;
   text-align: left;
-  width: 100%;
   font-size: 2rem;
   font-weight: 800; }
+
+.admin-table-sub {
+  width: 1200px;
+  display: flex;
+  justify-content: center;
+  align-items: center; }
 
 .admin-table-container {
   margin-top: 10px;
@@ -2285,8 +2245,225 @@ a {
 
 @media (min-width: 769px) and (max-width: 1199px) {
   .admin-table-container {
-    flex-direction: column; } }
+    flex-direction: column; }
+  .admin-table-sub {
+    width: 100%; } }
 
 @media (min-width: 335px) and (max-width: 768px) {
   .admin-table-container {
-    flex-direction: column; } }
+    flex-direction: column; }
+  .admin-table-sub {
+    width: 100%; } }
+
+.posttagset {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px 0; }
+
+.posttagset-container {
+  width: 1200px;
+  align-items: center;
+  justify-content: flex-start;
+  display: flex;
+  margin-left: 10px; }
+
+.posttitle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px 0; }
+
+.posttitle-container {
+  max-width: 1200px;
+  align-items: center;
+  justify-content: flex-start;
+  display: flex; }
+  .posttitle-container span {
+    font-size: 1.3rem;
+    margin: 0 10px;
+    width: 35px;
+    min-width: 35px;
+    font-family: 'NanumGothic';
+    font-weight: 600; }
+  .posttitle-container div {
+    width: 90vw;
+    height: 2vh;
+    padding: 0 5px;
+    font-size: 1.3rem;
+    border-radius: 3px;
+    border: solid 1px #E1E1E1;
+    font-family: 'NanumGothic';
+    align-items: center;
+    display: flex; }
+
+.mypage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative; }
+
+.mypage-container {
+  width: 1200px;
+  height: 750px;
+  display: flex;
+  padding-top: 10px; }
+
+.mypage-left-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+  height: 695px;
+  border: #E1E1E1 solid 1px;
+  border-radius: 25px;
+  padding-top: 50px;
+  margin-left: 10px; }
+  .mypage-left-container div {
+    font-size: 1.5rem;
+    font-family: 'NanumGothic'; }
+    .mypage-left-container div img {
+      width: 150px; }
+
+.mypage-right-container {
+  height: auto;
+  flex-wrap: wrap; }
+
+.remaincodenotice {
+  background-color: #73B385;
+  flex-grow: 1;
+  border-radius: 25px;
+  padding-bottom: 0px;
+  line-height: 70px;
+  font-family: 'NanumGothic';
+  font-size: 1.5rem;
+  color: #fff;
+  padding-left: 20px;
+  margin-left: 10px;
+  margin-right: 10px;
+  border-radius: 10px; }
+
+.mypage-right-midlle-container {
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+  .mypage-right-midlle-container div {
+    flex: 1;
+    margin: 10px;
+    height: 300px;
+    border-radius: 40px; }
+
+.mypage-right-middle-box-1 {
+  border: #E1E1E1 solid 1px;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  flex-direction: column; }
+  .mypage-right-middle-box-1 div {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center; }
+    .mypage-right-middle-box-1 div span {
+      width: 100%;
+      text-align: center;
+      font-size: 2.5rem;
+      font-family: 'NanumGothic';
+      font-weight: 1500; }
+
+.mypage-number {
+  color: #73B385;
+  font-weight: 1200; }
+
+.mypage-right-middle-box-2 {
+  align-items: center;
+  border-radius: 40px;
+  background-color: #E1E1E1;
+  height: 50px;
+  display: flex;
+  justify-content: center; }
+  .mypage-right-middle-box-2 img {
+    margin: 10px;
+    width: 200px; }
+  .mypage-right-middle-box-2 div {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3rem;
+    color: white;
+    font-weight: 1500;
+    font-family: 'NanumGothic'; }
+
+.modify-userinfo {
+  margin-top: 15px;
+  font-weight: 1000;
+  text-decoration: underline; }
+
+.modify-userinfo-img {
+  width: auto;
+  height: auto;
+  max-width: 25px;
+  max-height: 25px; }
+
+.userinfo-name {
+  margin-top: 5px; }
+
+.mypage-right-bottom-container {
+  margin: 10px;
+  flex-grow: 1;
+  height: 340px;
+  border: #E1E1E1 solid 1px;
+  border-radius: 25px; }
+
+@media (min-width: 1200px) {
+  .mypage-left-container {
+    width: 250px; }
+  .mypage-right-container {
+    width: 80%; } }
+
+@media (min-width: 769px) and (max-width: 1199px) {
+  .mypage-left-container {
+    width: 250px; }
+  .mypage-right-container {
+    width: 80%; } }
+
+@media (min-width: 769px) and (max-width: 1199px) {
+  .mypage-right-middle-box-1 div span {
+    font-size: 2rem;
+    font-family: 'NanumGothic';
+    font-weight: 1500; }
+  .mypage-right-middle-box-2 {
+    flex-direction: column; }
+    .mypage-right-middle-box-2 img {
+      width: 150px; }
+    .mypage-right-middle-box-2 div {
+      font-size: 2.5rem; } }
+
+@media (min-width: 335px) and (max-width: 768px) {
+  .mypage-container {
+    display: flex;
+    flex-direction: column; }
+  .mypage-left-container {
+    justify-content: center;
+    align-items: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    display: flex; }
+    .mypage-left-container div {
+      display: flex; }
+    .mypage-left-container div:nth-child(1) {
+      flex-direction: column; }
+  .mypage-left-container {
+    flex: 1;
+    margin: 10px; }
+  .mypage-right-middle-box-1 div span {
+    font-size: 2rem;
+    font-family: 'NanumGothic';
+    font-weight: 1500; }
+  .mypage-right-middle-box-2 {
+    flex-direction: column; }
+    .mypage-right-middle-box-2 img {
+      width: 150px; }
+    .mypage-right-middle-box-2 div {
+      font-size: 2rem; } }
