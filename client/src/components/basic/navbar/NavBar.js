@@ -8,7 +8,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { signoutUser } from '../../../redux/actions/userActions';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser } from '@fortawesome/free-regular-svg-icons';
-import profileImg from '../../../images/profileimg.png'
+import profileImg from '../../../images/profileimg.png';
+import { faBars } from '@fortawesome/free-solid-svg-icons';
 // import { resetCodereviewPost } from '../../../redux/actions/codePostActions';
 
 const NavBar = () => {
@@ -26,16 +27,16 @@ const NavBar = () => {
   };
 
   const handleLogout = () => {
-    dispatch(signoutUser())
+    dispatch(signoutUser());
     // dispatch(resetCodereviewPost())
-  }
+  };
 
   const handleGoMypage = () => {
-    history.push('/mypage')
-  }
+    history.push('/mypage');
+  };
 
-  console.log('네브바에서의 유저 정보',userInfo)
-  
+  console.log('네브바에서의 유저 정보', userInfo);
+
   return (
     <>
       <div className='navbar'>
@@ -48,29 +49,42 @@ const NavBar = () => {
 
           <ul className='navbar-right'>
             {userInfo ? (
-              userInfo.image === null ? (<>
-              <li className='login-tag'>
-                <FontAwesomeIcon icon={faUser} className='navbar-default-userimg' onClick={handleGoMypage}/>
-              </li>
-              <li className='login-tag' onClick={handleLogout}>
-                Logout
-              </li>
-              </>)
-              :(<>
-              <li className='login-tag'>
-                <img src={userInfo.image} alt='userImage' onClick={handleGoMypage} className='navbar-userimg'/>
-              </li>
-              <li className='login-tag' onClick={handleLogout}>
-                Logout
-              </li>
-              </>)
+              userInfo.image === null ? (
+                <>
+                  <li className='login-tag'>
+                    <FontAwesomeIcon
+                      icon={faUser}
+                      className='navbar-default-userimg'
+                      onClick={handleGoMypage}
+                    />
+                  </li>
+                  <li className='login-tag' onClick={handleLogout}>
+                    LOGOUT
+                  </li>
+                </>
+              ) : (
+                <>
+                  <li className='login-tag'>
+                    <img
+                      src={userInfo.image}
+                      alt='userImage'
+                      onClick={handleGoMypage}
+                      className='navbar-userimg'
+                    />
+                  </li>
+                  <li className='login-tag' onClick={handleLogout}>
+                    LOGOUT
+                  </li>
+                </>
+              )
             ) : (
               <li className='login-tag' onClick={togglePopUp}>
-                Login
+                LOGIN
               </li>
             )}
             <li className='navbar-menubar-sidebar-container'>
-              <img
+              <FontAwesomeIcon
+                icon={faBars}
                 className='hamburger-menubar'
                 src={HamburgerMenubar}
                 alt='menubar'
