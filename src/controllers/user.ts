@@ -16,11 +16,11 @@ const userList = async (req: Request, res: Response) => {
 
 // get login user profile
 const userInfo = async (req: Request, res: Response) => {
+  if (req.body.userRole > 3) {
+    return res.status(403).send({ message: 'forbidden user'});
+  }
   
-  const loginUserInfo = await User.findOne({ where: { email: req.body.authUser } });
-  delete loginUserInfo.password;
-  delete loginUserInfo.refreshToken;
-  delete loginUserInfo.verified;
+  const loginUserInfo = await User.findOne({ email: req.body.authUser }, { select: ['id', 'name', 'phone', 'email', 'image', 'loginType', 'authorityId', 'createdAt', 'updatedAt']});
   
   res.status(200).send({ userInfo: loginUserInfo, message: 'ok'});
 }

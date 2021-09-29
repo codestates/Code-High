@@ -83,25 +83,27 @@ export const addComment = async (req: Request, res: Response) => {
 
 //edit comment
 export const editComment = async (req: Request, res: Response) => {
-  try {
-
+  if (req.body.userRole > 3 ) {
+    return res.status(403).send({ message: 'forbidden user'})
+  }
   
-  const id = Number(req.params.id);
-  const commentById = await Comment.findOne(id);
+  try {
+    const id = Number(req.params.id);
+    const commentById = await Comment.findOne(id);
 
-  if (!commentById) {
-    return res.status(404).send({ message: 'comment not found' });
-  } 
-  if (commentById.userId !== req.body.authUserId) {
-    return res.status(403).send({ message: 'forbidden' });
-  }
+    if (!commentById) {
+      return res.status(404).send({ message: 'comment not found' });
+    } 
+    if (commentById.userId !== req.body.authUserId) {
+      return res.status(403).send({ message: 'forbidden' });
+    }
 
-  const { content } = req.body;
-  if (content.length === 0) {
-    return res.status(400).send({ message: 'bad request' });
-  }
-  await Comment.update({ id }, { content });
-  res.status(200).send({ message: 'ok' });
+    const { content } = req.body;
+    if (content.length === 0) {
+      return res.status(400).send({ message: 'bad request' });
+    }
+    await Comment.update({ id }, { content });
+    res.status(200).send({ message: 'ok' });
   
   } catch (err) {
     return res.status(400).send({ message: err.message });
@@ -110,6 +112,10 @@ export const editComment = async (req: Request, res: Response) => {
 
 // [admin] delete many comment
 export const deleteCommentList = async (req: Request, res: Response) => {
+  if (req.body.userRole > 3 ) {
+    return res.status(403).send({ message: 'forbidden user'})
+  }
+
   try {
     const commentList = req.body.commentList;
     let deleteList;

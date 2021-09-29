@@ -6,14 +6,12 @@ import * as commentController from '../controllers/comment';
 
 const postRouter = Router();
 
-
-postRouter.get('/:id/comment', commentController.commentListByPostId)
-postRouter.get('/:id', postController.getPostById);
-
 postRouter.use('/', checkAuth);
 postRouter.use('/', checkRole);
 
 postRouter.patch('/tag', postController.editUnderstandLevel);
+postRouter.get('/:id/comment', commentController.commentListByPostId)
+postRouter.get('/:id', postController.getPostById);
 postRouter.patch('/:id', postController.editPost);
 postRouter.delete('/:id', postController.deletePost);
 postRouter.get('/', postController.getPostList);

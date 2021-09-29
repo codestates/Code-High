@@ -3,6 +3,10 @@ import { Comment } from '../entity/Comment'
 import { Post } from '../entity/Post'
 
 const userActiveStat = async (req: Request, res: Response) => {
+  if (req.body.userRole > 4 ) {
+    return res.status(403).send({ message: 'forbidden user'})
+  }
+
   const postCnt = await Post.count({ userId: req.body.authUserId })
   const commentCnt = await Comment.count({ userId: req.body.authUserId });
   const highCompCnt = await Post.createQueryBuilder('post')
