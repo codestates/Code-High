@@ -1,33 +1,111 @@
 .postcomment{
-    padding :10px;
-    margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px 0;
+}
+.postcomment-container{
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: column;
+}
+.postcomment-button-container{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  span:nth-child(1){
+    font-size: 1.3rem;
+    margin: 0 10px;
+    font-family: 'NanumGothic';
+    font-weight: 600;
+  }
+  span:nth-child(2){
+    font-size: 1.4rem;
+    padding: 0 30px;
+    font-family: 'NanumGothic';
+    font-weight: 600;
+    color: white;
+  }
 }
 
-.postcomment-input-container-text{
-    width: 1200px;
+.postcomment-input-container{
+  width: 1200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 10px;
+  margin-top: 10px;
+  textarea{
+    font-size: 1.4rem;
+    width: 80vw;
+    height: 2vh;
+    resize: none;
     display: flex;
-    margin: auto;
-}
-
-.postcomment-input-message{
-    width: 1070px;
-    height: 50px;
-    color: #{$black};
-    background-color: #{$gray};
-}
-
-.postcomment-button{
-    margin-left: 30px;
-    width: 100px;
+    padding: 10px;
+    &:focus{
+      outline: none;
+    }
+  }
+  span{
+    font-size: 1.4rem;
+    padding: 0 25px;
+    font-family: 'NanumGothic';
+    font-weight: 600;
+  }
 }
 
 .postcomment-output-container{
-    margin: auto;
-    margin-top: 15px;
-    display: flex;
     width: 1200px;
-    height: 50px;
-    color: #{$black};
-    border: 1px solid #{$gray};
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
+    margin-left: 10px;
+    margin-top: 10px;
+    overflow-y: scroll;
+    li{
+        list-style: none;
+    }
+}
+
+.postcomment-userInfo{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.postcomment-comment{
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    background-color: #{$gray};
+    border-radius: 10px;
+    padding: 10px;
+    margin:3px 0px;
+    width: 98%;
+}
+.postcomment-message{
+    display: flex;
+}
+.postcomment-username{
+    margin-right: 10px;
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+.postcomment-createdAt{
+    font-size: 1.2rem;
+    color: gray;
+    font-weight: 100;
+}
+.postcomment-deleteButton-container{
+    button{
+        font-size: 1.5rem;
+        margin-left: 5px;
+        border-radius: 20px;
+        background-color: white;
+        padding: 2px;
+        border: 0px;
+    }
 }

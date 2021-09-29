@@ -10,7 +10,7 @@
     display: flex;
     span:nth-child(1){
         width :70%;
-        height :65vh;
+        height :40vh;
         background-color: #{$black};
         margin: 5px;
         overflow-y: scroll;
@@ -23,7 +23,7 @@
     }
     span:nth-child(2){
         width: 30%;
-        height: 65vh;
+        height: 40vh;
         background-color: #{$gray};
         margin: 5px;
         overflow-y: scroll;

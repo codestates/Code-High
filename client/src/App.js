@@ -1,4 +1,4 @@
-import React, { useEffect, Suspense } from 'react';
+import React, { useEffect, Suspense, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   githubSigninUser,
@@ -22,6 +22,7 @@ function App() {
   const dispatch = useDispatch();
   const state = useSelector((state) => state.userReducer);
   const { userInfo } = state;
+  // const [choosePostId, setChoosePostId] = useState(0);
 
   useEffect(() => {
     const url = new URL(window.location.href);
