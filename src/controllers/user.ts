@@ -9,7 +9,7 @@ const userList = async (req: Request, res: Response) => {
   if (req.body.userRole !== 1) {
     return res.status(403).send({ message: 'forbidden user'});
   }
-  const userList = await User.find();
+  const userList = await User.find({ select: ['id', 'name', 'phone', 'email', 'image', 'loginType', 'authorityId', 'createdAt', 'updatedAt']});
   
   res.status(200).send({ userList, message: 'ok'});
 }
@@ -19,6 +19,7 @@ const userInfo = async (req: Request, res: Response) => {
   
   const loginUserInfo = await User.findOne({ where: { email: req.body.authUser } });
   delete loginUserInfo.password;
+  delete loginUserInfo.refreshToken;
   delete loginUserInfo.verified;
   
   res.status(200).send({ userInfo: loginUserInfo, message: 'ok'});
@@ -30,12 +31,12 @@ const userInfoById = async (req: Request, res: Response) => {
     return res.status(403).send({ message: 'forbidden user'});
   }
 
-  const loginUserInfo = await User.findOne(req.params.id);
+  const loginUserInfo = await User.findOne(req.params.id, { select: ['id', 'name', 'phone', 'email', 'image', 'loginType', 'authorityId', 'createdAt', 'updatedAt']});
+
   if (!loginUserInfo) {
     return res.status(404).send({ message: 'user not found'});
   }
-  delete loginUserInfo.password;
-  delete loginUserInfo.verified;
+  
   res.status(200).send({ userInfo: loginUserInfo, message: 'ok'});
 }
 
@@ -59,6 +60,7 @@ const editUser = async (req: Request, res: Response) => {
 
   delete updateInfo.password;
   delete updateInfo.verified;
+  delete updateInfo.refreshToken;
   res.status(200).send({ userInfo: updateInfo, message: 'update success' })
 }
 
@@ -100,6 +102,7 @@ const deleteUser = async (req: Request, res: Response) => {
   }
 
   const userInfo = await User.findOne(req.body.authUserId);
+
   await User.remove(userInfo);
   res.status(200).send({ message: 'delete account successfully'});
 }

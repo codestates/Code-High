@@ -36,6 +36,9 @@ export class User extends BaseEntity {
   @Column({ type: 'boolean'})
   verified: boolean;
 
+  @Column({ type: 'varchar' })
+  refreshToken: string;
+
   @CreateDateColumn()
   createdAt: Date;
 
