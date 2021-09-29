@@ -27,7 +27,7 @@ const emailLogin = async (req: Request, res: Response) => {
 
     const { accessToken, refreshToken } = await generateloginToken(userInfo);
     res.cookie('refreshToken', refreshToken, {
-        maxAge: 1000 * 60 * 60 * 24, // 1d
+        maxAge: 1000 * 60 * 60 * 24 * 14, // 14d
         httpOnly: true,
         secure: true,
     })
@@ -91,7 +91,7 @@ const kakaoLogin = async (req: Request, res: Response) => {
 
     const { accessToken, refreshToken } = await generateloginToken(userInfo);
     res.cookie('refreshToken', refreshToken, {
-      maxAge: 1000 * 60 * 60 * 24, // 1d
+      maxAge: 1000 * 60 * 60 * 24 * 14, // 14d
       httpOnly: true,
       secure: true,
     },)
@@ -149,7 +149,7 @@ const googleLogin = async (req: Request, res: Response) => {
 
     const { accessToken, refreshToken } = await generateloginToken(userInfo);
     res.cookie('refreshToken', refreshToken, {
-      maxAge: 1000 * 60 * 60 * 24, // 1d
+      maxAge: 1000 * 60 * 60 * 24 * 14, // 14d
       httpOnly: true,
       secure: true,
     },)
@@ -211,7 +211,7 @@ const githubLogin = async (req: Request, res: Response) => {
 
     const { accessToken, refreshToken } = await generateloginToken(userInfo);
     res.cookie('refreshToken', refreshToken, {
-      maxAge: 1000 * 60 * 60 * 24, // 1d
+      maxAge: 1000 * 60 * 60 * 24 * 14, // 14d
       httpOnly: true,
       secure: true,
     },)
@@ -228,9 +228,14 @@ const githubLogin = async (req: Request, res: Response) => {
   }
 }
 
-const logout = (req: Request, res: Response) => {
+const logout = async (req: Request, res: Response) => {
+  if (req.body.userRole === 5 ) {
+    return res.status(403).send({ message: 'not login yet'});
+  }
+
   res.clearCookie('refreshToken');
-  // TODO: db에서 refreshToken 제거
+  await User.update(req.body.authUserId, { refreshToken: '' });
+
   res.send({ message: 'logout success'});
 }
 

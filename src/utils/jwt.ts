@@ -7,7 +7,7 @@ const generateAccessToken = (data: object) => {
 }
 
 const generateRefreshToken = (data: object) => {
-  return sign(data, process.env.REFRESH_SECRET, { expiresIn: '3d' });
+  return sign(data, process.env.REFRESH_SECRET, { expiresIn: '14d' });
 }
 
 const generateEmailToken = (data: object) => {
