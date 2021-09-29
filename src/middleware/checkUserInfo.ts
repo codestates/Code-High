@@ -15,7 +15,7 @@ const checkEmailUser = async (accessToken: string) => {
     return null;
   }
   
-  return tokenInfo.email;
+  return tokenInfo.email; // 이메일이랑 아이디 다 주면 안되나
 }
 
 const checkGithubUser = async (accessToken: string) => {
