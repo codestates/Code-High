@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { access } from 'fs';
-import { verifyAccessToken } from '../utils/jwt';
+import { generateAccessToken, generateRefreshToken, verifyAccessToken, verifyRefreshToken } from '../utils/jwt';
 import { User } from '../entity/User';
 
 const checkEmailUser = async (accessToken: string) => {
@@ -10,7 +10,7 @@ const checkEmailUser = async (accessToken: string) => {
     return null;
   }
 
-  const result = await User.findOne({ where: { email: tokenInfo.email }});
+  const result = await User.findOne({ email: tokenInfo.email });
   if (!result) {
     return null;
   }
@@ -69,9 +69,28 @@ const checkKakaoUser = async (accessToken: string) => {
   }
 }
 
+const checkToRegenerate = async (token: string) => {
+  const tokenInfo: any = verifyRefreshToken(token);
+  if (!tokenInfo) {
+    return null;
+  }
+
+  const result = await User.findOne({ email: tokenInfo.email })
+  if (!result || result.refreshToken !== token) {
+    return null;
+  }
+
+  // 토큰 발급
+  const { id, email } = result;
+  const accessToken = generateAccessToken({ id, email });
+  const refreshToken = generateRefreshToken({ email });
+  return { accessToken, refreshToken, id, email };
+}
+
 export { 
   checkEmailUser,
   checkGithubUser,
   checkGoogleUser,
-  checkKakaoUser
+  checkKakaoUser,
+  checkToRegenerate
  };

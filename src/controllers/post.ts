@@ -39,6 +39,10 @@ const getPostList = async (req: Request, res: Response) => {
 }
 
 const getUserPostList = async (req: Request, res: Response) => {
+  if (req.body.userRole > 4 ) {
+    return res.status(403).send({ message: 'forbidden user'})
+  }
+
   const id = req.body.authUserId;
   const search = req.query.search;
 

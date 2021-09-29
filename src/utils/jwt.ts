@@ -3,7 +3,7 @@ import { User } from '../entity/User';
 import 'dotenv/config';
 
 const generateAccessToken = (data: object) => {
-  return sign(data, process.env.ACCESS_SECRET, { expiresIn: '1h' });
+  return sign(data, process.env.ACCESS_SECRET, { expiresIn: '1d' });
 }
 
 const generateRefreshToken = (data: object) => {
