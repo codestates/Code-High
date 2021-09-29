@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { getReviewPost } from '../../redux/actions/codePostActions';
+import { getReviewPost, getCodepost} from '../../redux/actions/codePostActions';
 import { resetCodereviewPost } from '../../redux/actions/codePostActions';
 import { useSelector, useDispatch } from 'react-redux';
 import SearchInput from '../basic/search/SearchInput';
@@ -8,8 +8,10 @@ import { useHistory } from 'react-router-dom';
 
 function CodeReviewBoard() {
   const [count, setCount] = useState(2);
-  const state = useSelector((state) => state.codePostReducer);
-  const { postList } = state;
+  const userState = useSelector((state) => state.userReducer);
+  const { userInfo } = userState;
+  const postState = useSelector((state) => state.codePostReducer);
+  const { postList } = postState;
   const dispatch = useDispatch();
   const history = useHistory();
   console.log('코드리뷰보드에서의 코드리스트', count, postList);
@@ -40,9 +42,12 @@ function CodeReviewBoard() {
     } 
   };
 
-  const handleClickPost = () => {
-    //완성되면 리덕스 맞춰서 불러오는것도 같이하기
-    history.push('/post')
+  const handleClickPost = (e) => {
+    const postId = e.target.id
+    dispatch(getCodepost(postId))
+    setTimeout(()=>{
+      history.push('/post')
+    },1000)
   }
 
   return (
@@ -54,9 +59,9 @@ function CodeReviewBoard() {
         <section className='codereviewboard-cardbox' onScroll={onScroll}>
           {postList.map((item, index) => {
             return (
-              <div className='codereviewboard-card' key={index} onClick={handleClickPost}>
-                <h1>{item.title}</h1>
-                <div>{item.codeContent}</div>
+              <div id={item.id} className='codereviewboard-card' key={index} onClick={(e)=>handleClickPost(e)}>
+                <h1 id={item.id}>{item.title}</h1>
+                <div id={item.id}>{item.codeContent}</div>
               </div>
             );
           })}

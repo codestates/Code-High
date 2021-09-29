@@ -7,8 +7,8 @@ import AdminTable from '../components/admin/table/Table';
 const Admin = () => {
     return (
         <div>
-            {/* <AdminGraph/> */}
-            <AdminTable/>
+            <AdminGraph/>
+            {/* <AdminTable/> */}
             <WhiteFooter/>           
         </div>
     );

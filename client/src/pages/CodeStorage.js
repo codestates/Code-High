@@ -3,11 +3,14 @@ import Kanban from '../components/codeStorage/Kanban';
 import WhiteFooter from '../components/basic/footer/WhiteFooter';
 import NavBar from '../components/basic/navbar/NavBar';
 
-function CodeStorage () {
+function CodeStorage() {
+
   return (
     <>
-      <Kanban />
-      <WhiteFooter />
+
+        <Kanban />
+        <WhiteFooter />
+
     </>
   );
 }

@@ -6,21 +6,23 @@ import {
   GET_CODEPOST,
   MODIFY_CODEPOST,
   DELETE_POST,
+  GET_COMMENT,
+  RESET_GET_COMMENT
 } from '../actions/types';
 
 const codePostReducer = (state = {}, action) => {
   switch (action.type) {
     case GET_CODESTORAGE_POST:
       return Object.assign({}, state, {
-        userPostList: action.payload
+        userPostList: action.payload,
       });
     case GET_CODEREVIEW_POST:
       return Object.assign({}, state, {
-        postList: [...state.postList, ...action.payload]
+        postList: [...state.postList, ...action.payload],
       });
     case RESET_CODEREVIEW_POST:
       return Object.assign({}, state, {
-        postList: action.payload
+        postList: action.payload,
       });
     case GET_CODEREVIEW_FILTER:
       return Object.assign({}, state, {
@@ -28,14 +30,24 @@ const codePostReducer = (state = {}, action) => {
       });
     case GET_CODEPOST:
       return Object.assign({}, state, {
-        codePost: [...state.codePost, action.payload],
+        codePost: action.payload,
       });
     case MODIFY_CODEPOST:
       return Object.assign({}, state, {
         codePost: [...state.codePost, action.payload],
       });
     case DELETE_POST:
-      return Object.assign({}, state, {});
+      return Object.assign({}, state, {
+        postComment: [...state.postComment, ...action.payload],
+      });
+    case GET_COMMENT:
+      return Object.assign({}, state, {
+        postComment: [...state.postComment, ...action.payload],
+      });
+    case RESET_GET_COMMENT:
+      return Object.assign({}, state, {
+        postComment: action.payload,
+      });
     default:
       return state;
   }
