@@ -24,6 +24,12 @@ function Signup({ SignupTogglePopUp, setShowSignupModal }) {
     }
   };
 
+  useEffect(() => {
+    if(userInfo) {
+      setShowSignupModal(false);
+    }
+  })
+
   //!회원가입 정보 모으기
   const handleInputValue = (key) => (e) => {
     setUserInfo({ ...userInfo, [key]: e.target.value });
@@ -68,6 +74,11 @@ function Signup({ SignupTogglePopUp, setShowSignupModal }) {
       })
   };
 
+  const enterKeyPress = (e) => {
+    if(e.key === 'Enter') {
+      handleSignup()
+    }
+  }
 
   return (
     <div className='signup-modal'>
@@ -91,24 +102,28 @@ function Signup({ SignupTogglePopUp, setShowSignupModal }) {
               placeholder='이메일을 입력해주세요.'
               type='email'
               onChange={handleInputValue('email')}
+              onKeyPress={enterKeyPress}
             />
             <div>비밀번호</div>
             <input
               placeholder='비밀번호를 입력해주세요.'
               type='password'
               onChange={handleInputValue('password')}
+              onKeyPress={enterKeyPress}
             />
             <div>비밀번호 확인</div>
             <input
               placeholder='비밀번호를 확인해주세요.'
               type='password'
               onChange={handleInputValue('password')}
+              onKeyPress={enterKeyPress}
             />
             <div>닉네임</div>
             <input
               placeholder='닉네임을 입력해주세요.'
               type='name'
               onChange={handleInputValue('name')}
+              onKeyPress={enterKeyPress}
             />
           </article>
           <div className='signup-button-container'>

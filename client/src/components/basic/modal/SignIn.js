@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { signinUser } from '../../../redux/actions/userActions';
@@ -8,7 +8,7 @@ import github from '../../../images/github.png';
 import kakao from '../../../images/kakao.png';
 import google from '../../../images/google.png';
 
-function Signin({ togglePopUp, setShowLoginModal }) {
+function Signin({ togglePopUp, showLoginModal, setShowLoginModal }) {
   const SigninBackgroundEl = useRef(null);
   const state = useSelector(state => state.userReducer);
   const { userInfo } = state;
@@ -22,7 +22,7 @@ function Signin({ togglePopUp, setShowLoginModal }) {
   //!모달 배경
   const SigninBackgroundClick = (e) => {
     if (e.target === SigninBackgroundEl.current) {
-      setShowLoginModal(!togglePopUp);
+      togglePopUp();
     }
   };
 
@@ -66,7 +66,6 @@ function Signin({ togglePopUp, setShowLoginModal }) {
   //!email 로그인
   const handleLogin = () => {
     const { email, password } = loginInfo;
-    console.log(loginInfo)
 
     if (!isEmail(email)) {
       //axios 연결 후 alter 띄우기
@@ -80,14 +79,29 @@ function Signin({ togglePopUp, setShowLoginModal }) {
     }
 
     dispatch(signinUser(loginInfo))
-    
-    if(userInfo.message === 'login success') {
-      setShowLoginModal(!togglePopUp);
-    }
   };
-  
-  //!회원정보 
-  console.log('로그인 모달창에서의 유저 정보',userInfo)
+
+  const enterKeyPress = (e) => {
+    if(e.key === 'Enter') {
+      handleLogin()
+    }
+  }
+
+  //!guest login
+  const handleGuestLogin = () => {
+    const geustInfo = {
+      email : 'guest12@codehigh.club',
+      password: 'guest'
+    }
+
+    dispatch(signinUser(geustInfo))
+  }
+
+  useEffect(() => {
+    if(userInfo) {
+      setShowLoginModal(false);
+    }
+  })
 
   return (
     <div className='signin-modal'>
@@ -110,24 +124,29 @@ function Signin({ togglePopUp, setShowLoginModal }) {
               placeholder='Email'
               type='email'
               onChange={handleInputValue('email')}
+              onKeyPress={enterKeyPress}
             />
             <input
               placeholder='Password'
               type='password'
               onChange={handleInputValue('password')}
+              onKeyPress={enterKeyPress}
             />
           </article>
           <div className='signin-button-container'>
-            <button type='submit' onClick={handleLogin}>
+          <button type='submit' onClick={handleLogin}>
               로그인
+            </button>
+            <button type='submit' onClick={handleGuestLogin}>
+              게스트 로그인
             </button>
           </div>
           <ul>
             <li>
-              <a href=''>비밀번호 찾기</a>
+              <span>비밀번호 찾기</span>
             </li>
             <li>
-              <a href=''>회원가입</a>
+              <span>회원가입</span>
             </li>
           </ul>
           <div className='signin-oauth-container'>

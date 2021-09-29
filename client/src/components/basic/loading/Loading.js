@@ -3,8 +3,8 @@ import React from 'react';
 function Loading () {
   return (
     <div className='loading-container'>
-      <div class='loadingio-spinner-spin-536paybpd9n'>
-        <div class='ldio-fjikxf1d8mn'>
+      <div className='loadingio-spinner-spin-536paybpd9n'>
+        <div className='ldio-fjikxf1d8mn'>
           <div>
             <div>C</div>
           </div>

@@ -41,14 +41,14 @@ function UserReview () {
           <div className='userreview-box-container up-on-scroll'>
             {mockReview.map((info, index) => {
               return (
-                <span>
+                <span key={index}>
                   <img src={info.img} alt='userimage'/>
                   <h5>{info.username}</h5>
                   <div>
                     {Array(info.score)
                       .fill()
-                      .map(() => (
-                        <img src={star} alt='star'/>
+                      .map((item, idx) => (
+                        <img src={star} alt='star' key={idx}/>
                       ))}
                   </div>
                   <p>{info.review}</p>

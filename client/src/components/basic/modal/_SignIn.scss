@@ -80,7 +80,7 @@
     li {
       list-style: none;
       padding: 0 40px;
-      a{
+      span{
         text-decoration: none;
         color: black;
         font-family: 'NanumGothic';
@@ -98,22 +98,28 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
     button {
     background-color: #{$green};
     color: white;
     padding: 10px;
     border: none;
     border-radius: 5px;
-    margin-top: 20px;
-    margin-bottom: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
     font-family: 'NanumGothic';
     cursor: pointer;
+    }
+    button:nth-child(1) {
+      margin-bottom: 0px;
+      background-color: #{$gray};
+      color: black;
     }
 }
 
 .signin-oauth-container {
   display: flex;
-  margin-top: 30px;
+  margin-top: 20px;
   margin-bottom: 60px;
 }
 

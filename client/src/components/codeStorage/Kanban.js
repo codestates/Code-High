@@ -1,52 +1,62 @@
 import React, { useEffect } from 'react';
 import SearchInput from '../basic/search/SearchInput';
 import Button from '../basic/button/Button';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { getCodestoragePost } from '../../redux/actions/codePostActions';
+import axios from 'axios';
+import { Children } from 'react';
 
-function Kanban () {
-  // Redux 사용 후 상태 유지, 데이터 전송 관리하기
-  const mockCode = [
-    {
-      subject: '알고리즘1',
-      date: '2021.09.14',
-      code: 'if(now === night){return `I have to go to bed.`}'
-    },
-    {
-      subject: '알고리즘2',
-      date: '2021.09.14',
-      code: 'if(now === night){return `I have to go to bed.`}'
-    },
-    {
-      subject: '알고리즘3',
-      date: '2021.09.14',
-      code: 'if(now === lunch){return `I wanna sleep`}'
-    },
-    {
-      subject: '알고리즘4',
-      date: '2021.09.14',
-      code: 'if(now === night){return `I have to go to bed.`}'
-    },
-    {
-      subject: '알고리즘5',
-      date: '2021.09.14',
-      code: 'if(now === morning){return `OMG`}'
-    },
-    {
-      subject: '알고리즘6',
-      date: '2021.09.14',
-      code: 'if(now === night){return `I have to go to bed.`}'
-    },
-    {
-      subject: '알고리즘7',
-      date: '2021.09.14',
-      code: 'if(now === richguy){return `I will run.!`}'
-    },
-    {
-      subject: '알고리즘8',
-      date: '2021.09.14',
-      code: 'if(now === night){return `I have to go to bed.`}'
+function Kanban() {
+  const dispatch = useDispatch();
+  const postState = useSelector((state) => state.codePostReducer);
+  const userState = useSelector((state) => state.userReducer);
+  const { userPostList } = postState;
+  const { userInfo } = userState;
+  const history = useHistory();
+
+  const handleChangeTag = async (e) => {
+    try {
+      const { loginType, accessToken } = userInfo;
+      //포스트 번호를 찾아야함
+    console.log('postId', e.target.id);
+    console.log(
+      '길',
+      e.path[0].className.substring(e.path[0].className.length - 4)
+    );
+    const postId = await e.target.id;
+    const understanding = await e.path[0].className.substring(
+      e.path[0].className.length - 4
+    );
+    let understandingId = 21;
+
+    // if(understanding === 'poor') understandingId = 21
+    // if(understanding === 'fair') understandingId = 22
+    // if(understanding === 'good') understandingId = 23
+
+    // axios
+    //   .patch(
+    //     'https://api.codehigh.club/post/tag',
+    //     {
+    //       postId : `${postId}`,
+    //       understanding : `${understandingId}`,
+    //     },
+    //     {
+    //       headers: {
+    //         login_type: `${loginType}`,
+    //         Authorization: `bearer ${accessToken}`,
+    //       },
+    //       withCredentials: true,
+    //     }
+    //   )
+    //   .then((res) => {
+    //     console.log(res);
+    //   });
     }
-  ];
+    catch (err){
+      console.log(err);
+    }
+  };
 
   useEffect(() => {
     const list_items = document.querySelectorAll('.kanban-list-item');
@@ -89,10 +99,25 @@ function Kanban () {
           console.log('drop');
           list.append(draggedItem);
           list.style.backgroundColor = 'rgba(0, 0, 0, 0.1)';
+          handleChangeTag(e);
         });
       }
     }
   }, []);
+
+  useEffect(() => {
+    const data = {
+      logintype: userInfo.loginType,
+      accessToken: userInfo.accessToken,
+    };
+    dispatch(getCodestoragePost(data));
+    console.log('userPostList', userPostList);
+  }, []);
+
+  const handleClickPost = () => {
+    //완성되면 리덕스 맞춰서 불러오는것도 같이하기
+    history.push('/post');
+  };
 
   return (
     <div className='kanban'>
@@ -100,7 +125,9 @@ function Kanban () {
         {/* 헤더 */}
         <div className='kanban-header'>
           <SearchInput />
-          <Link to='/codeinput'><Button content='NEW' backgroundColor='#2F8C4C' color='#fff' /></Link>
+          <Link to='/codeinput'>
+            <Button content='NEW' backgroundColor='#2F8C4C' color='#fff' />
+          </Link>
         </div>
         <div className='kanban-subject'>
           <div>이해도 (하)</div>
@@ -109,18 +136,62 @@ function Kanban () {
         </div>
         <div className='kanban-list-container'>
           <section className='kanban-list'>
-            {mockCode.map((item) => {
-              return (
-                <div className='kanban-list-item' draggable='true'>
-                  <h1>[ {item.subject} ]</h1>
-                  <div>{item.date}</div>
-                  <div>{item.code}</div>
-                </div>
-              );
+            {userPostList.map((item, index) => {
+              if (item.understanding === 21 || item.understanding === null) {
+                return (
+                  <div
+                    className='kanban-list-item poor'
+                    draggable='true'
+                    key={index}
+                    onDoubleClick={handleClickPost}
+                    id={item.id}
+                  >
+                    <h1>{item.title}</h1>
+                    <div>{item.createdAt}</div>
+                    <div>{item.codeContent}</div>
+                  </div>
+                );
+              }
             })}
           </section>
-          <section className='kanban-list' />
-          <section className='kanban-list' />
+          <section className='kanban-list'>
+            {userPostList.map((item, index) => {
+              if (item.understanding === 22) {
+                return (
+                  <div
+                    className='kanban-list-item fair'
+                    draggable='true'
+                    key={index}
+                    onDoubleClick={handleClickPost}
+                    id={item.id}
+                  >
+                    <h1>{item.title}</h1>
+                    <div>{item.createdAt}</div>
+                    <div>{item.codeContent}</div>
+                  </div>
+                );
+              }
+            })}
+          </section>
+          <section className='kanban-list'>
+            {userPostList.map((item, index) => {
+              if (item.understanding === 23) {
+                return (
+                  <div
+                    className='kanban-list-item good'
+                    draggable='true'
+                    key={index}
+                    onDoubleClick={handleClickPost}
+                    id={item.id}
+                  >
+                    <h1>{item.title}</h1>
+                    <div>{item.createdAt}</div>
+                    <div>{item.codeContent}</div>
+                  </div>
+                );
+              }
+            })}
+          </section>
         </div>
         {/* 푸터 */}
       </div>

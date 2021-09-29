@@ -1,16 +1,20 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Tag from '../basic/tag/Tag';
 import tagNameData from './TagNameData';
 
-function CodeInputTagBox() {
+function CodeInputTagBox({ codeInputInfo, setCodeInputInfo }) {
   const [choiceTag, setChoiceTag] = useState({
     algorithm: [],
     language: [],
     platform: [],
     difficulty: [],
-    understanding: [],
+    understanding: [{ id: 21, name: '☹️', category: 'understanding' }],
   });
-  console.log(choiceTag);
+
+  useEffect(() => {
+    setCodeInputInfo({ ...codeInputInfo, tagList: choiceTag });
+  }, [choiceTag]);
+  // console.log(choiceTag, codeInputInfo);
 
   const handleChangeColor = (e) => {
     const currentTagName = e.target.innerHTML;
@@ -18,10 +22,10 @@ function CodeInputTagBox() {
     if (currentTag[0].category === 'algorithm') {
       const algorithmFillterTag = choiceTag.algorithm.filter(
         (ele) => ele.name === currentTagName
-        );
-        const algorithmRemoveTag = choiceTag.algorithm.filter(
-          (ele) => ele.name !== currentTagName
-          );
+      );
+      const algorithmRemoveTag = choiceTag.algorithm.filter(
+        (ele) => ele.name !== currentTagName
+      );
       if (choiceTag.algorithm.length === 0) {
         setChoiceTag({ ...choiceTag, algorithm: [...currentTag] });
         e.target.style.backgroundColor = '#2F8C4C';
@@ -40,7 +44,7 @@ function CodeInputTagBox() {
       }
     } else if (currentTag[0].category === 'language') {
       if (choiceTag.language.length === 0) {
-        setChoiceTag({ ...choiceTag, language: [currentTag] });
+        setChoiceTag({ ...choiceTag, language: [...currentTag] });
         e.target.style.backgroundColor = '#2F8C4C';
       } else if (choiceTag.language.length === 1) {
         const languageButton = document.querySelectorAll(
@@ -50,12 +54,12 @@ function CodeInputTagBox() {
         arr.map((ele) => {
           ele.style.backgroundColor = '#E1E1E1';
         });
-        setChoiceTag({ ...choiceTag, language: [currentTag] });
+        setChoiceTag({ ...choiceTag, language: [...currentTag] });
         e.target.style.backgroundColor = '#2F8C4C';
       }
     } else if (currentTag[0].category === 'platform') {
       if (choiceTag.platform.length === 0) {
-        setChoiceTag({ ...choiceTag, platform: [currentTag] });
+        setChoiceTag({ ...choiceTag, platform: [...currentTag] });
         e.target.style.backgroundColor = '#2F8C4C';
       } else if (choiceTag.platform.length === 1) {
         const platformButton = document.querySelectorAll(
@@ -65,12 +69,12 @@ function CodeInputTagBox() {
         arr.map((ele) => {
           ele.style.backgroundColor = '#E1E1E1';
         });
-        setChoiceTag({ ...choiceTag, platform: [currentTag] });
+        setChoiceTag({ ...choiceTag, platform: [...currentTag] });
         e.target.style.backgroundColor = '#2F8C4C';
       }
     } else if (currentTag[0].category === 'difficulty') {
       if (choiceTag.difficulty.length === 0) {
-        setChoiceTag({ ...choiceTag, difficulty: [currentTag] });
+        setChoiceTag({ ...choiceTag, difficulty: [...currentTag] });
         e.target.style.backgroundColor = '#2F8C4C';
       } else if (choiceTag.difficulty.length === 1) {
         const difficultyButton = document.querySelectorAll(
@@ -80,12 +84,12 @@ function CodeInputTagBox() {
         arr.map((ele) => {
           ele.style.backgroundColor = '#E1E1E1';
         });
-        setChoiceTag({ ...choiceTag, difficulty: [currentTag] });
+        setChoiceTag({ ...choiceTag, difficulty: [...currentTag] });
         e.target.style.backgroundColor = '#2F8C4C';
       }
     } else if (currentTag[0].category === 'understanding') {
       if (choiceTag.understanding.length === 0) {
-        setChoiceTag({ ...choiceTag, understanding: [currentTag] });
+        setChoiceTag({ ...choiceTag, understanding: [...currentTag] });
         e.target.style.backgroundColor = '#2F8C4C';
       } else if (choiceTag.understanding.length === 1) {
         const understandingButton = document.querySelectorAll(
@@ -95,7 +99,7 @@ function CodeInputTagBox() {
         arr.map((ele) => {
           ele.style.backgroundColor = '#E1E1E1';
         });
-        setChoiceTag({ ...choiceTag, understanding: [currentTag] });
+        setChoiceTag({ ...choiceTag, understanding: [...currentTag] });
         e.target.style.backgroundColor = '#2F8C4C';
       }
     }

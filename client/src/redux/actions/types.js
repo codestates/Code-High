@@ -1,11 +1,13 @@
 // action types
 // user
 export const SIGNIN_USER = 'SIGNIN_USER';
+export const GITHUB_SIGNIN_USER = 'GITHUB_SIGNIN_USER';
+export const KAKAO_SIGNIN_USER = 'KAKAO_SIGNIN_USER';
+export const GOOGLE_SIGNIN_USER = 'GOOGLE_SIGNIN_USER';
 export const SIGNOUT_USER = 'SIGNOUT_USER';
 export const GET_USER_INFO = 'GET_USER_INFO';
 export const MODIFY_USER_INFO = 'MODIFY_USER_INFO';
 export const DELETE_USER_INFO = 'DELETE_USER_INFO';
-export const GET_MENU = 'GET_MENU';
 
 // codepost, codeComment
 // 코드 저장소, 코드 올리기(코드 올리는 페이지에서), 코드 리뷰 포스트, 코드 검색, 코드 자세히 보기, 코드 수정, 코드 지우기
@@ -26,5 +28,3 @@ export const GET_USERS_POST = 'GET_USERS_POST';
 export const GET_USERS_COMMENT = 'GET_USERS_COMMENT';
 export const DELETE_USERS_POST = 'DELETE_USERS_POST';
 export const DELETE_USERS_COMMENT = 'DELETE_USERS_COMMENT';
-
-//메뉴 가져오기

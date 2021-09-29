@@ -1,5 +1,6 @@
 import React, { useEffect, Suspense } from 'react';
-import axios from 'axios';
+import { useDispatch, useSelector } from 'react-redux';
+import { githubSigninUser, kakaoSigninUser, googleSigninUser } from './redux/actions/userActions';
 import { Route, Switch } from 'react-router-dom';
 import Landing from './pages/Landing';
 import SignIn from './components/basic/modal/SignIn';
@@ -15,15 +16,17 @@ import NavBar from './components/basic/navbar/NavBar';
 import Admin from './pages/Admin';
 
 function App() {
-  // Oauth authorizationCode 요청
-  // TODO: 추후 클라이언트 내 다른 페이지로 리다이렉트 되도록 변경해야함
+  const dispatch = useDispatch();
+  const state = useSelector(state => state.userReducer);
+  const { userInfo } = state;
+
   useEffect(() => {
     const url = new URL(window.location.href);
     const loginType = url.searchParams.get('login');
     const authorizationCode = url.searchParams.get('code');
     if (authorizationCode) {
-      console.log(authorizationCode);
-      console.log(loginType);
+      console.log('authorizationCode',authorizationCode);
+      console.log('loginType',loginType);
 
       if (loginType === 'github') {
         getGithubAccessToken(authorizationCode);
@@ -33,36 +36,18 @@ function App() {
         getGoogleAccessToken(authorizationCode);
       }
     }
-  });
+  },[]);
 
-  const getGithubAccessToken = async (authorizationCode) => {
-    try {
-      const serverUrl = 'http://localhost:4000/auth/github';
-      const token = await axios.post(serverUrl, { authorizationCode });
-      console.log(token.data);
-    } catch (err) {
-      console.log(err);
-    }
+  const getGithubAccessToken = (authorizationCode) => {
+      dispatch(githubSigninUser(authorizationCode))
   };
 
-  const getKakaoAccessToken = async (authorizationCode) => {
-    try {
-      const serverUrl = 'http://localhost:4000/auth/kakao';
-      const token = await axios.post(serverUrl, { authorizationCode });
-      console.log(token.data);
-    } catch (err) {
-      throw new Error(err);
-    }
+  const getKakaoAccessToken = (authorizationCode) => {
+      dispatch(kakaoSigninUser(authorizationCode))
   };
 
-  const getGoogleAccessToken = async (authorizationCode) => {
-    try {
-      const serverUrl = 'http://localhost:4000/auth/google';
-      const token = await axios.post(serverUrl, { authorizationCode });
-      console.log(token.data);
-    } catch (err) {
-      console.log(err);
-    }
+  const getGoogleAccessToken =  (authorizationCode) => {
+      dispatch(googleSigninUser(authorizationCode))
   };
 
   const Landing = React.lazy(

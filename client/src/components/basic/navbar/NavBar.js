@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import Logo from '../../../images/codehighlogo.png';
 import HamburgerMenubar from '../../../images/hamburger-menu-icon.jpeg';
 import SignIn from '../modal/SignIn';
 import SideBar from '../navbar/SideBar';
 import { useDispatch, useSelector } from 'react-redux';
 import { signoutUser } from '../../../redux/actions/userActions';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUser } from '@fortawesome/free-regular-svg-icons';
+import profileImg from '../../../images/profileimg.png'
 // import { resetCodereviewPost } from '../../../redux/actions/codePostActions';
 
 const NavBar = () => {
@@ -14,6 +17,7 @@ const NavBar = () => {
   const dispatch = useDispatch();
   const [openSidebar, setOpenSidebar] = useState(false);
   const showSidebar = () => setOpenSidebar(!openSidebar);
+  const history = useHistory();
 
   //! modal
   const [showLoginModal, setShowLoginModal] = useState(false);
@@ -24,6 +28,10 @@ const NavBar = () => {
   const handleLogout = () => {
     dispatch(signoutUser())
     // dispatch(resetCodereviewPost())
+  }
+
+  const handleGoMypage = () => {
+    history.push('/mypage')
   }
 
   console.log('네브바에서의 유저 정보',userInfo)
@@ -40,9 +48,22 @@ const NavBar = () => {
 
           <ul className='navbar-right'>
             {userInfo ? (
+              userInfo.image === null ? (<>
+              <li className='login-tag'>
+                <FontAwesomeIcon icon={faUser} className='navbar-default-userimg' onClick={handleGoMypage}/>
+              </li>
               <li className='login-tag' onClick={handleLogout}>
                 Logout
               </li>
+              </>)
+              :(<>
+              <li className='login-tag'>
+                <img src={userInfo.image} alt='userImage' onClick={handleGoMypage} className='navbar-userimg'/>
+              </li>
+              <li className='login-tag' onClick={handleLogout}>
+                Logout
+              </li>
+              </>)
             ) : (
               <li className='login-tag' onClick={togglePopUp}>
                 Login
@@ -66,6 +87,7 @@ const NavBar = () => {
         {showLoginModal ? (
           <SignIn
             togglePopUp={togglePopUp}
+            showLoginModal={showLoginModal}
             setShowLoginModal={setShowLoginModal}
           />
         ) : null}

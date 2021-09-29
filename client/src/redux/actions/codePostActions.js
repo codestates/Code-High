@@ -14,9 +14,9 @@ import axios from 'axios';
 axios.defaults.withCredentials = true;
 const serverUrl = 'https://api.codehigh.club';
 
-//1.코드 저장소 내가 쓴 글들-------------------------------
+//1.코드 저장소(완료)
 export async function getCodestoragePost(data) {
-  axios
+  const response = axios
     .get(`${serverUrl}/user/post`, {
       headers: {
         login_type: `${data.logintype}`,
@@ -25,17 +25,17 @@ export async function getCodestoragePost(data) {
       withCredentials: true,
     })
     .then((res) => {
-      return {
-        type: GET_CODESTORAGE_POST,
-        payload: {
-          message: res.data.message,
-          postList: res.data.postList,
-        },
-      };
+      console.log('res.data.postList',res.data.postList)
+      return res.data.postList
     });
+console.log('response',response)
+    return {
+      type: GET_CODESTORAGE_POST,
+      payload: response
 }
+};
 
-//2.코드 리뷰 공개글만 가져오기(완료)-------------------------------
+//2.코드 리뷰 공개글만 가져오기(완료)
 export function getReviewPost(page) {
   const response = axios
     .get(`${serverUrl}/post?page=${page}`, {
@@ -53,7 +53,7 @@ export function getReviewPost(page) {
 
 export function resetCodereviewPost() {
   const response = axios
-    .get(`${serverUrl}/post?page=1 `, {
+    .get(`${serverUrl}/post?page=1`, {
       headers: { 'Content-Type': 'application/json' },
     })
     .then((res) => {
@@ -66,7 +66,7 @@ export function resetCodereviewPost() {
   };
 }
 
-//!3.검색 기능------------------------------
+//!3.검색 기능
 export async function getReviewFilter(keyword) {
   const response = axios
     .get(`${serverUrl}/post`, {
@@ -83,7 +83,7 @@ export async function getReviewFilter(keyword) {
   };
 }
 
-//4.코드 자세히 보기-------------------------------
+//4.코드 자세히 보기
 export async function getCodepost(id, accessToken, logintype) {
   axios
     .get(`${serverUrl}/post/:${id}`, {
@@ -104,9 +104,9 @@ export async function getCodepost(id, accessToken, logintype) {
     });
 }
 
-//!5.게시글 수정-------------------------------
+//!5.게시글 수정
 
-//6.게시글 삭제-------------------------------
+//6.게시글 삭제
 export async function deleteUsersPost(id, accessToken, logintype) {
   axios
     .delete(`${serverUrl}/post/:${id}`, {
@@ -124,7 +124,8 @@ export async function deleteUsersPost(id, accessToken, logintype) {
     });
 }
 
-//7.댓글 가져오기-------------------------------
+//!댓글
+//7.댓글 가져오기
 export async function getCommentPost(id, accessToken, logintype) {
   axios
     .get(`${serverUrl}/post/:${id}/comment`, {
@@ -145,7 +146,7 @@ export async function getCommentPost(id, accessToken, logintype) {
     });
 }
 
-//8.댓글 삭제-------------------------------
+//8.댓글 삭제
 export async function deleteComment(id, accessToken, logintype) {
   axios
     .delete(`${serverUrl}/comment/:${id}`, {
