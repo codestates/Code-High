@@ -33,6 +33,7 @@ export const commentListByPostId = async (req: Request, res: Response) => {
       .addSelect('user.name', 'userName')
       .leftJoin('comment.user', 'user')
       .where('comment.postId = :id', { id })
+      .orderBy('createdAt', 'DESC')
       .getRawMany();
       return res.status(200).send({ commentList, message: 'ok' });
     } else {
@@ -42,6 +43,7 @@ export const commentListByPostId = async (req: Request, res: Response) => {
       .addSelect('user.name', 'userName')
       .leftJoin('comment.user', 'user')
       .where('comment.postId = :id', { id })
+      .orderBy('comment.createdAt', 'DESC')
       .offset(pageOffset)
       .limit(pageCount)
       .getRawMany();
@@ -54,7 +56,6 @@ export const commentListByPostId = async (req: Request, res: Response) => {
 }
 
 // add comment
-// 공백 확인
 export const addComment = async (req: Request, res: Response) => {
   if (req.body.userRole > 3) {
     return res.status(403).send({ message: 'forbidden user'});
