@@ -4,6 +4,8 @@ import {
   KAKAO_SIGNIN_USER,
   GOOGLE_SIGNIN_USER,
   SIGNOUT_USER,
+  GET_USER_INFO,
+  MODIFY_USER_INFO,
   DELETE_USER_INFO,
 } from '../actions/types';
 
