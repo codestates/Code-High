@@ -877,7 +877,7 @@ ul {
     height: 65vh;
     background-color: #000;
     margin: 5px;
-    overflow-y: scroll;
+    overflow-y: auto;
     padding: 10px;
     font-size: 1.5rem;
     color: white;
@@ -891,7 +891,7 @@ ul {
     height: 65vh;
     background-color: #E1E1E1;
     margin: 5px;
-    overflow-y: scroll;
+    overflow-y: auto;
     padding: 10px;
     font-size: 1.5rem;
     resize: none;
@@ -1752,7 +1752,7 @@ a {
     height: 40vh;
     background-color: #000;
     margin: 5px;
-    overflow-y: scroll;
+    overflow-y: auto;
     padding: 10px;
     font-size: 1.5rem;
     color: white;
@@ -1764,7 +1764,7 @@ a {
     height: 40vh;
     background-color: #E1E1E1;
     margin: 5px;
-    overflow-y: scroll;
+    overflow-y: auto;
     padding: 10px;
     font: 1.5rem;
     resize: none;
@@ -1824,14 +1824,12 @@ a {
 
 .postcomment-output-container {
   width: 1200px;
-  height: 200px;
+  height: 20vh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
   margin-left: 10px;
   margin-top: 10px;
-  overflow-y: scroll; }
+  overflow-y: auto; }
   .postcomment-output-container li {
     list-style: none; }
 
@@ -1841,8 +1839,6 @@ a {
   align-items: center; }
 
 .postcomment-comment {
-  display: grid;
-  grid-template-columns: repeat(1, 1fr);
   background-color: #E1E1E1;
   border-radius: 10px;
   padding: 10px;

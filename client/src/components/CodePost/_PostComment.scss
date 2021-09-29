@@ -58,14 +58,12 @@
 
 .postcomment-output-container{
     width: 1200px;
-    height: 200px;
+    height: 20vh;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
     margin-left: 10px;
     margin-top: 10px;
-    overflow-y: scroll;
+    overflow-y: auto;
     li{
         list-style: none;
     }
@@ -78,8 +76,6 @@
 }
 
 .postcomment-comment{
-    display: grid;
-    grid-template-columns: repeat(1, 1fr);
     background-color: #{$gray};
     border-radius: 10px;
     padding: 10px;

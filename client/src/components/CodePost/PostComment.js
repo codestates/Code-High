@@ -7,11 +7,13 @@ import { useSelector, useDispatch } from 'react-redux';
 import {
   getCommentPost,
   resetGetCommentPost,
+  deleteComment
 } from '../../redux/actions/codePostActions';
 import axios from 'axios';
 
 function PostComment() {
   const [count, setCount] = useState(2);
+  const [checkToSetId, setCheckToSetId] = useState(false);
   const dispatch = useDispatch();
   const postState = useSelector((state) => state.codePostReducer);
   const userState = useSelector((state) => state.userReducer);
@@ -21,16 +23,18 @@ function PostComment() {
     content: '',
     postId: '',
   });
-console.log(userComment)
+  console.log(postComment)
+// slice(0).reverse()
+
   window.onload = function () {
     setTimeout(() => {
       scrollTo(0, 0);
     }, 100);
   };
+
   useEffect(() => {
-    const postId = codePost.id;
-    dispatch(resetGetCommentPost(postId));
-    setUserComment({ ...userComment, postId: postId });
+    dispatch(resetGetCommentPost(codePost.id))
+    setUserComment({ ...userComment, postId: codePost.id });
   }, []);
 
   const getMorecomment = () => {
@@ -57,7 +61,6 @@ console.log(userComment)
 
   const handleButtonClick = () => {
     const { loginType, accessToken } = userInfo;
-    console.log('userComment',userComment)
     
     axios.post(
       `https://api.codehigh.club/comment`,
@@ -73,8 +76,7 @@ console.log(userComment)
     ).then((res) => {
       console.log('메세지를 찾아보자',res)
       if(res.status === 201 || res.status === 200) {
-        // history.push('/post')
-        console.log('되나?')
+        window.location.reload()
       }
     })
   }
@@ -83,8 +85,16 @@ console.log(userComment)
     console.log('handlemodifyComment');
   };
 
-  const handleDeleteComment = () => {
-    console.log('handleDeleteComment');
+  const handleDeleteComment = (id) => {
+    console.log(id)
+    const { loginType, accessToken } = userInfo;
+    const data = {
+      id: id,
+      logintype:loginType,
+      accessToken:accessToken
+    }
+    dispatch(deleteComment(data))
+  
   };
 
   return (
@@ -125,7 +135,7 @@ console.log(userComment)
                       </button>
                       <button
                         className='postcomment-deleteButton'
-                        //   onClick={() => handleDeleteComment(item.username, idx)}
+                        onClick={() => handleDeleteComment(item.id)}
                       >
                         <FontAwesomeIcon icon={faTrashAlt} />
                       </button>
@@ -136,8 +146,8 @@ console.log(userComment)
               );
             })}
           </ul>
+          </div>
         </div>
-      </div>
     </>
   );
 }

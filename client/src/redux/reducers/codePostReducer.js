@@ -37,7 +37,9 @@ const codePostReducer = (state = {}, action) => {
         codePost: [...state.codePost, action.payload],
       });
     case DELETE_POST:
-      return Object.assign({}, state, {});
+      return Object.assign({}, state, {
+        postComment: [...state.postComment, ...action.payload],
+      });
     case GET_COMMENT:
       return Object.assign({}, state, {
         postComment: [...state.postComment, ...action.payload],

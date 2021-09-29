@@ -161,19 +161,21 @@ export async function resetGetCommentPost(postId) {
 }
 
 //8.댓글 삭제
-export async function deleteComment(id, accessToken, logintype) {
-  axios
-    .delete(`${serverUrl}/comment/:${id}`, {
+export async function deleteComment(data) {
+  const response = axios
+    .delete(`${serverUrl}/comment/${data.id}`, {
       headers: {
-        loginType: `${logintype}`,
-        Authorization: `bearer ${accessToken}`,
+        login_type: `${data.logintype}`,
+        Authorization: `bearer ${data.accessToken}`,
       },
       withCredentials: true,
     })
     .then((res) => {
-      return {
-        type: DELETE_COMMENT,
-        payload: res.data.message,
-      };
+      console.log(res)
     });
+
+    return {
+      type: DELETE_COMMENT,
+      payload: response
+    };
 }

@@ -43,10 +43,11 @@ function CodeReviewBoard() {
   };
 
   const handleClickPost = (e) => {
-    //완성되면 리덕스 맞춰서 불러오는것도 같이하기
     const postId = e.target.id
     dispatch(getCodepost(postId))
-    history.push('/post')
+    setTimeout(()=>{
+      history.push('/post')
+    },1000)
   }
 
   return (
