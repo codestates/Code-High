@@ -1,8 +1,8 @@
 import { Request, Response } from 'express';
 import { User } from '../entity/User';
-import { sendEmail } from './mail';
+import { sendSignUpEmail } from '../utils/mail';
 import * as bcrypt from 'bcrypt';
-import { generateAccessToken, generateRefreshToken, generateEmailToken, verifyEmailToken } from './jwt';
+import { generateloginToken, generateEmailToken, verifyEmailToken } from '../utils/jwt';
 import { stringify } from 'query-string';
 import axios from 'axios';
 import 'dotenv/config';
@@ -10,7 +10,7 @@ import 'dotenv/config';
 const emailLogin = async (req: Request, res: Response) => {
   try {
     const { email, password } = req.body;
-    const userInfo = await User.findOne({ where: { email } });
+    const userInfo = await User.findOne({ email });
     
     if (!userInfo || !userInfo.verified) {
       return res.status(404).send({ message: 'undefined user' });
@@ -25,16 +25,17 @@ const emailLogin = async (req: Request, res: Response) => {
       return res.status(401).send({ message: 'unauthorized' });
     }
 
-    const tokenInfo = { email: userInfo.email };
-    const accessToken: string = generateAccessToken(tokenInfo);
-    const refreshToken: string = generateRefreshToken(tokenInfo);
-
+    const { accessToken, refreshToken } = await generateloginToken(userInfo);
     res.cookie('refreshToken', refreshToken, {
-        maxAge: 1000 * 60 * 60 * 24, // 1d
+        maxAge: 1000 * 60 * 60 * 24 * 14, // 14d
         httpOnly: true,
         secure: true,
     })
+
     delete userInfo.password;
+    delete userInfo.verified;
+    delete userInfo.refreshToken;
+    
     return res.status(200).send({ accessToken, userInfo, message: 'login success'});
 
   } catch (err) {
@@ -64,18 +65,16 @@ const kakaoLogin = async (req: Request, res: Response) => {
       return res.status(401).send({ message: 'unauthorized' })
     }
 
-    const accessToken = result.data.access_token;
-    const refreshToken = result.data.refresh_token;
-
+    const kakaoAccessToken = result.data.access_token;
     const userInfoBykakao = await axios.get(getInfoUrl, {
       headers: {
-        Authorization: `Bearer ${accessToken}`
+        Authorization: `Bearer ${kakaoAccessToken}`
       }
     })
     const kakaoEmail = `${userInfoBykakao.data.id}@kakao.com`;
     
     // 가입여부 확인
-    const userInfo = await User.findOne({ where: { email: kakaoEmail }})
+    let userInfo = await User.findOne({ email: kakaoEmail })
     if (!userInfo) {
       const name = userInfoBykakao.data.kakao_account.profile.nickname;
       const image = userInfoBykakao.data.kakao_account.profile.profile_image_url;
@@ -87,18 +86,23 @@ const kakaoLogin = async (req: Request, res: Response) => {
         authorityId: 3,
         verified: true,
       })
-      await User.save(newKakaoUser);
+      userInfo = await User.save(newKakaoUser);
     }
-    
+
+    const { accessToken, refreshToken } = await generateloginToken(userInfo);
     res.cookie('refreshToken', refreshToken, {
-      maxAge: 1000 * 60 * 60 * 24, // 1d
+      maxAge: 1000 * 60 * 60 * 24 * 14, // 14d
       httpOnly: true,
       secure: true,
     },)
 
-    return res.status(200).send({ accessToken, message: 'Kakao Login Success'});
+    delete userInfo.password;
+    delete userInfo.verified;
+    delete userInfo.refreshToken;
+
+    return res.status(200).send({ accessToken, userInfo, message: 'Kakao Login Success'});
   } catch (err) {
-    console.log(err);
+    console.log(err.response.data);
   }
 }
 
@@ -119,18 +123,17 @@ const googleLogin = async (req: Request, res: Response) => {
       return res.status(401).send({ message: 'unauthorized' })
     }
 
-    const accessToken = result.data.access_token;
-    const refreshToken = result.data.refresh_token
+    const googleAccessToken = result.data.access_token;
     
     const userInfoByGoogle = await axios.get(getInfoUrl, {
       headers: {
-        Authorization: `Bearer ${accessToken}`
+        Authorization: `Bearer ${googleAccessToken}`
       }
     })
     const googleEmail = `${userInfoByGoogle.data.sub}@gmail.com`;
     
     // 가입여부 확인
-    const userInfo = await User.findOne({ where: { email: googleEmail }})
+    let userInfo = await User.findOne({ email: googleEmail })
     if (!userInfo) {
       const { name, picture } = userInfoByGoogle.data;
       const newGoogleUser = User.create({  
@@ -141,19 +144,25 @@ const googleLogin = async (req: Request, res: Response) => {
         authorityId: 3,
         verified: true,
       })
-      await User.save(newGoogleUser);
+      userInfo = await User.save(newGoogleUser);
     }
-    
+
+    const { accessToken, refreshToken } = await generateloginToken(userInfo);
     res.cookie('refreshToken', refreshToken, {
-      maxAge: 1000 * 60 * 60 * 24, // 1d
+      maxAge: 1000 * 60 * 60 * 24 * 14, // 14d
       httpOnly: true,
       secure: true,
     },)
-    return res.status(200).send({ accessToken, message: 'Google login Success' });
+
+    delete userInfo.password;
+    delete userInfo.verified;
+    delete userInfo.refreshToken;
+
+    return res.status(200).send({ accessToken, userInfo, message: 'Google login Success' });
 
   } catch (err) {
     console.log(err);
-    return res.send(err.message);
+    return res.send(err.response.data);
   }
 }
 
@@ -170,21 +179,22 @@ const githubLogin = async (req: Request, res: Response) => {
       code: req.body.authorizationCode
     }, { headers: { accept: 'application/json' } })
 
+    
     if (!result) {
       return res.status(401).send({ message: 'unauthorized' })
     }
 
-    const accessToken = result.data.access_token;
+    const githubAccessToken = result.data.access_token;
 
     const userInfoByGithub = await axios.get(getInfoUrl, {
       headers: {
-        Authorization: `Bearer ${accessToken}`
+        Authorization: `Bearer ${githubAccessToken}`
       }
     })
     const githubEmail = `${userInfoByGithub.data.id}@github.com`;
     
     // 가입여부 확인
-    const userInfo = await User.findOne({ where: { email: githubEmail }})
+    let userInfo = await User.findOne({ email: githubEmail })
     if (!userInfo) {
       const name = userInfoByGithub.data.name;
       const image = userInfoByGithub.data.avatar_url;
@@ -196,26 +206,41 @@ const githubLogin = async (req: Request, res: Response) => {
         authorityId: 3,
         verified: true,
       })
-      await User.save(newGithubUser);
+      userInfo = await User.save(newGithubUser);
     }
 
-    return res.status(200).send({ accessToken, message: 'Github login Success' });
+    const { accessToken, refreshToken } = await generateloginToken(userInfo);
+    res.cookie('refreshToken', refreshToken, {
+      maxAge: 1000 * 60 * 60 * 24 * 14, // 14d
+      httpOnly: true,
+      secure: true,
+    },)
+
+    delete userInfo.password;
+    delete userInfo.verified;
+    delete userInfo.refreshToken;
+
+    return res.status(200).send({ accessToken, userInfo, message: 'Github login Success' });
 
   } catch (err) {
     console.log(err);
-    return res.send(err.message);
+    return res.send(err.response.data);
   }
 }
 
-const logout = (req: Request, res: Response) => {
+const logout = async (req: Request, res: Response) => {
+  if (req.body.userRole === 5 ) {
+    return res.status(403).send({ message: 'not login yet'});
+  }
+
   res.clearCookie('refreshToken');
+  await User.update(req.body.authUserId, { refreshToken: '' });
+
   res.send({ message: 'logout success'});
 }
 
 const signUpEmail = async (req: Request, res: Response) => {
   const { email, password, name, phone } = req.body;
-  
-
   try {
   
     // 필수 정보 확인
@@ -223,7 +248,7 @@ const signUpEmail = async (req: Request, res: Response) => {
       return res.status(422).send({ message: 'Unprocessable Ent' });
     }
     // 중복 이메일 확인
-    const userEmail = await User.findOne({ where: { email } })
+    const userEmail = await User.findOne({ email })
     if (userEmail) {
       if (userEmail.verified) {
         return res.status(409).send({ message: 'Email Conflict' }); 
@@ -246,7 +271,7 @@ const signUpEmail = async (req: Request, res: Response) => {
 
     // send code to userEmail
     const code = generateEmailToken({ email, id: result.id });
-    sendEmail(email, name, code);
+    sendSignUpEmail(email, name, code);
     
     return res.status(200).send({ message: 'send email' });
 

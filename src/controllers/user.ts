@@ -1,24 +1,27 @@
 import { Request, Response } from 'express'
 import { User } from '../entity/User';
 import * as bcrypt from 'bcrypt'
+import { generateEmailToken, verifyEmailToken } from '../utils/jwt';
+import { sendPasswordEmail } from '../utils/mail';
 
 // [admin] get userList
 const userList = async (req: Request, res: Response) => {
   if (req.body.userRole !== 1) {
     return res.status(403).send({ message: 'forbidden user'});
   }
-  const userList = await User.find();
+  const userList = await User.find({ select: ['id', 'name', 'phone', 'email', 'image', 'loginType', 'authorityId', 'createdAt', 'updatedAt']});
   
   res.status(200).send({ userList, message: 'ok'});
 }
 
 // get login user profile
 const userInfo = async (req: Request, res: Response) => {
+  if (req.body.userRole > 3) {
+    return res.status(403).send({ message: 'forbidden user'});
+  }
   
-  const loginUserInfo = await User.findOne({ where: { email: req.body.authUser } });
+  const loginUserInfo = await User.findOne({ email: req.body.authUser }, { select: ['id', 'name', 'phone', 'email', 'image', 'loginType', 'authorityId', 'createdAt', 'updatedAt']});
   
-  delete loginUserInfo.password;
-  delete loginUserInfo.verified;
   res.status(200).send({ userInfo: loginUserInfo, message: 'ok'});
 }
 
@@ -28,12 +31,12 @@ const userInfoById = async (req: Request, res: Response) => {
     return res.status(403).send({ message: 'forbidden user'});
   }
 
-  const loginUserInfo = await User.findOne({ where: { id: req.params.id } });
+  const loginUserInfo = await User.findOne(req.params.id, { select: ['id', 'name', 'phone', 'email', 'image', 'loginType', 'authorityId', 'createdAt', 'updatedAt']});
+
   if (!loginUserInfo) {
     return res.status(404).send({ message: 'user not found'});
   }
-  delete loginUserInfo.password;
-  delete loginUserInfo.verified;
+  
   res.status(200).send({ userInfo: loginUserInfo, message: 'ok'});
 }
 
@@ -54,10 +57,42 @@ const editUser = async (req: Request, res: Response) => {
   const updateInfo = await User.findOne(req.body.authUserId);
   User.merge(updateInfo, { name, password, image, phone });
   await User.save(updateInfo);
-  
+
   delete updateInfo.password;
   delete updateInfo.verified;
+  delete updateInfo.refreshToken;
   res.status(200).send({ userInfo: updateInfo, message: 'update success' })
+}
+
+const resetPassword = async (req: Request, res: Response) => {
+  let password = req.body.password;
+  if (!req.body.code || !password) {
+    return res.status(422).send({ message: 'cannot find password or code'});
+  }
+  
+  const user: any = verifyEmailToken(req.body.code);
+  if (!user) {
+    return res.status(401).send({ message: 'unauthorized code'});
+  }
+
+  password = await bcrypt.hash(password, 10);
+  await User.update({ id: user.id }, { password });
+
+  res.status(201).send({ message: 'set new password'});
+}
+
+const passwordEmail = async (req: Request, res: Response) => {
+  const email = req.body.email;
+  const user = await User.findOne({ email }, { select: ['id']});
+  if (!user) {
+    return res.status(200).send({ message: 'send email' })
+  }
+
+  const code = generateEmailToken({ email, id: user.id });
+  // 메일 전송
+  sendPasswordEmail(email, code);
+
+  res.status(200).send({ message: 'send email' })
 }
 
 // delete login user account
@@ -67,6 +102,7 @@ const deleteUser = async (req: Request, res: Response) => {
   }
 
   const userInfo = await User.findOne(req.body.authUserId);
+
   await User.remove(userInfo);
   res.status(200).send({ message: 'delete account successfully'});
 }

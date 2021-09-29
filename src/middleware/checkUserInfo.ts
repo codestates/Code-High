@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { access } from 'fs';
-import { verifyAccessToken } from '../controllers/jwt';
+import { verifyAccessToken } from '../utils/jwt';
 import { User } from '../entity/User';
 
 const checkEmailUser = async (accessToken: string) => {
