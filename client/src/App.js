@@ -12,6 +12,7 @@ import CodePost from './pages/CodePost';
 import NotFoundError from './components/basic/error/NotFoundError';
 import Loading from './components/basic/loading/Loading';
 import NavBar from './components/basic/navbar/NavBar';
+import Admin from './pages/Admin';
 
 function App() {
   // Oauth authorizationCode 요청
@@ -114,6 +115,9 @@ function App() {
           </Route>
           <Route path='/google'>
             <Loading />
+          </Route>
+          <Route path='/admin'>
+            <Admin />
           </Route>
         </Switch>
       </Suspense>

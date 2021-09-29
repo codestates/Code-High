@@ -2,6 +2,7 @@ import {
   SIGNIN_USER,
   SIGNOUT_USER,
   GET_USER_INFO,
+  MODIFY_USER_INFO,
   DELETE_USER_INFO,
   GET_MENU,
 } from './types';
@@ -114,3 +115,26 @@ export async function getMenu(accessToken) {
       };
     });
 }
+
+//------------------------------5.유저 정보 수정하기-------------------------------
+
+export function modifyUser(loginInfo) {
+  const { email, password, name } = loginInfo;
+
+  const response = axios
+    .put(
+      `${serverUrl}/user/info`,
+      { password, name },
+      {
+        headers: { Authorization: `bearer ${accessToken}` },
+        withCredentials: true,
+      })
+    .then((res) => {
+      const { name, password } = res.data.userInfo;
+      return {
+        name: name,
+        email: email,
+        password: password,
+      };
+    });
+  }

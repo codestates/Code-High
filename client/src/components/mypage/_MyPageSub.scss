@@ -113,6 +113,21 @@
     }
 }
 
+.modify-userinfo{
+    margin-top: 15px;
+    font-weight: 1000;
+    text-decoration: underline;
+}
+.modify-userinfo-img{
+    width: auto;
+    height: auto;
+    max-width: 25px;
+    max-height: 25px;
+}
+.userinfo-name{
+    margin-top: 5px;    
+}
+
 .mypage-right-bottom-container{
     margin: 10px;
     flex-grow: 1;

@@ -2,6 +2,7 @@ import {
   SIGNIN_USER,
   SIGNOUT_USER,
   GET_USER_INFO,
+  MODIFY_USER_INFO,
   DELETE_USER_INFO,
   GET_MENU
 } from '../actions/types';
@@ -17,6 +18,10 @@ const userReducer = (state = {}, action) => {
     case GET_USER_INFO:
       return Object.assign({}, state, {
         userInfo: [...state.userInfo, action.payload],
+      });
+    case MODIFY_USER_INFO:
+      return Object.assign({}, state, {
+        userInfo: [...state.userInfo, action.payload]
       });
     case DELETE_USER_INFO:
       return Object.assign({}, state, {});
