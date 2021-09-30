@@ -48,6 +48,24 @@ const verifyEmailToken = (emailToken: string) => {
   }
 }
 
+const checkToRegenerate = async (token: string) => {
+  const tokenInfo: any = verifyRefreshToken(token);
+  if (!tokenInfo) {
+    return null;
+  }
+
+  const result = await User.findOne({ email: tokenInfo.email })
+  if (!result || result.refreshToken !== token) {
+    return null;
+  }
+
+  // 토큰 발급
+  const { id, email } = result;
+  const accessToken = generateAccessToken({ id, email });
+  const refreshToken = generateRefreshToken({ email });
+  return { accessToken, refreshToken };
+}
+
 export { 
   generateAccessToken, 
   generateRefreshToken, 
@@ -55,5 +73,6 @@ export {
   generateloginToken,
   verifyAccessToken, 
   verifyRefreshToken, 
-  verifyEmailToken
+  verifyEmailToken,
+  checkToRegenerate
 };

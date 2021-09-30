@@ -62,7 +62,7 @@ const kakaoLogin = async (req: Request, res: Response) => {
     })
 
     if (!result) {
-      return res.status(401).send({ message: 'unauthorized' })
+      return res.status(401).send({ message: 'unauthorized kakao token' })
     }
 
     const kakaoAccessToken = result.data.access_token;
@@ -120,7 +120,7 @@ const googleLogin = async (req: Request, res: Response) => {
     })
 
     if (!result) {
-      return res.status(401).send({ message: 'unauthorized' })
+      return res.status(401).send({ message: 'unauthorized google token' })
     }
 
     const googleAccessToken = result.data.access_token;
@@ -181,7 +181,7 @@ const githubLogin = async (req: Request, res: Response) => {
 
     
     if (!result) {
-      return res.status(401).send({ message: 'unauthorized' })
+      return res.status(401).send({ message: 'unauthorized github token' })
     }
 
     const githubAccessToken = result.data.access_token;
@@ -288,7 +288,7 @@ const checkEmailCode = async (req: Request, res: Response) => {
     const code = req.query.code as string;
     const user: any = verifyEmailToken(code);
     if (!user) {
-      return res.status(401).send({ message: 'unauthorized code'});
+      return res.status(401).send({ message: 'unauthorized email code'});
     }
    
     await User.update({ id: user.id }, { verified: true });

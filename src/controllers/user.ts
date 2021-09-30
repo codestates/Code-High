@@ -72,7 +72,7 @@ const resetPassword = async (req: Request, res: Response) => {
   
   const user: any = verifyEmailToken(req.body.code);
   if (!user) {
-    return res.status(401).send({ message: 'unauthorized code'});
+    return res.status(401).send({ message: 'unauthorized email code'});
   }
 
   password = await bcrypt.hash(password, 10);
