@@ -40,8 +40,11 @@ function PostComment() {
   };
   //로딩 시
   useEffect(() => {
-    const postId = codePost.id
-    dispatch(resetGetCommentPost(postId));
+    const data = {
+      postId : codePost.id,
+      accessToken : userInfo.accessToken
+    }
+    dispatch(resetGetCommentPost(data));
     setUserComment({ ...userComment, postId: codePost.id });
   }, []);
   //무한 스크롤 댓글 더 불러오기
@@ -49,6 +52,7 @@ function PostComment() {
     const data = {
       postId: codePost.id,
       count: count,
+      accessToken : userInfo.accessToken
     };
     setTimeout(() => {
       dispatch(getCommentPost(data));

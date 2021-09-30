@@ -54,7 +54,9 @@ export function getReviewPost(page) {
 export function resetCodereviewPost() {
   const response = axios
     .get(`${serverUrl}/post?page=1`, {
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 
+        'Content-Type': 'application/json' 
+      },
     })
     .then((res) => {
       return res.data.postList;
@@ -70,7 +72,10 @@ export function resetCodereviewPost() {
 export async function getReviewFilter(keyword) {
   const response = axios
     .get(`${serverUrl}/post`, {
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 
+       Authorization: `bearer ${data.accessToken}`,
+      'Content-Type': 'application/json' 
+    },
     })
     .then((res) => {
       const filter = res.data.postList.filter((el) => el.title === `${keyword}` || el.codeContent === `${keyword}` || el.textcontent === `${keyword}`)
@@ -154,7 +159,10 @@ export async function deleteUsersPost(id, accessToken, logintype) {
 export async function getCommentPost(data) {
   const response = axios
     .get(`${serverUrl}/post/${data.postId}/comment?page=${data.count}`, {
-      headers: {'Content-Type': 'application/json'},
+      headers: {
+        Authorization: `bearer ${data.accessToken}`,
+        'Content-Type': 'application/json'
+      },
       withCredentials: true,
     })
     .then((res) => {
@@ -167,10 +175,13 @@ export async function getCommentPost(data) {
     };
 }
 
-export async function resetGetCommentPost(postId) {
+export async function resetGetCommentPost(data) {
   const response = axios
-    .get(`${serverUrl}/post/${postId}/comment?page=1`, {
-      headers: {'Content-Type': 'application/json'},
+    .get(`${serverUrl}/post/${data.postId}/comment?page=1`, {
+      headers: {
+        Authorization: `bearer ${data.accessToken}`,
+        'Content-Type': 'application/json'
+      },
       withCredentials: true,
     })
     .then((res) => {
