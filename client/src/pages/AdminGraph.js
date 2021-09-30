@@ -6,10 +6,10 @@ import AdminTable from '../components/admin/table/Table';
 
 const AdminGraph = () => {
     return (
-        <div>
+        <>
             <Graph/>
             <WhiteFooter/>           
-        </div>
+        </>
     );
 };
 
