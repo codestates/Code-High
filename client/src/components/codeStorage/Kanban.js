@@ -116,7 +116,7 @@ console.log(userInfo)
   const handleClickPost = (e) => {
     const data = {
       postId: e.target.id,
-      accessToken: userInfo.accessToken,
+      accessToken: userInfo ? userInfo.accessToken : undefined
     } 
     dispatch(getCodepost(data));
     setTimeout(() => {

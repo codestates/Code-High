@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 function CodeEditTagBox({ codeEditInfo, setCodeEditInfo }) {
   const postState = useSelector((state) => state.codePostReducer);
   const { codePost } = postState;
-console.log(codePost.postTags)
+
   const [choiceTag, setChoiceTag] = useState({
     algorithm: [],
     language: [],
@@ -16,10 +16,11 @@ console.log(codePost.postTags)
   });
 
   useState(()=>{
-
+    const defaultTag = [];
     codePost.postTags.map((item,index) => {
-      item.tagId
+      defaultTag.push(item.tag.name)
     })
+    console.log(defaultTag)
   },[])
 
   useEffect(() => {
