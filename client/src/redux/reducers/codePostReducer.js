@@ -30,7 +30,7 @@ const codePostReducer = (state = {userPostList: [], postList:[], codePost:[], po
       });
     case GET_CODEPOST:
       return Object.assign({}, state, {
-        codePost: [...action.payload]
+        codePost: action.payload
       });
     case MODIFY_CODEPOST:
       return Object.assign({}, state, {
