@@ -7,6 +7,7 @@ import router from './routes';
 import 'reflect-metadata';
 import config from '../ormconfig'
 import { checkVerifiedUser, test } from './utils/scheduler'
+import { errorHandler } from './middleware/errorHandler';
 
 dotenv.config();
 const port = process.env.HTTP_PORT || 80;
@@ -39,6 +40,8 @@ app.use('/', router);
 app.get('/', (req: express.Request, res: express.Response) => {
   res.send('Hello World!');
 })
+
+app.use(errorHandler);
 
 app.listen(port, () => {
   console.log(`listening on port ${port}`);
