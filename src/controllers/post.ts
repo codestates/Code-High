@@ -18,6 +18,7 @@ const getPostList = async (req: Request, res: Response) => {
     .addSelect('user.name', 'userName')
     .leftJoin('post.user','user')
     .where('post.secret In (:...isSecret)', { isSecret })
+    .orderBy('post.createdAt', 'DESC')
     .getRawMany();
     
     res.send({ postList: result });
@@ -31,6 +32,7 @@ const getPostList = async (req: Request, res: Response) => {
     .where('post.secret In (:...isSecret)', { isSecret })
     .offset(pageOffset)
     .limit(pageCount)
+    .orderBy('post.createdAt', 'DESC')
     .getRawMany();
 
     res.status(200).send({ postList: result });
@@ -39,6 +41,10 @@ const getPostList = async (req: Request, res: Response) => {
 }
 
 const getUserPostList = async (req: Request, res: Response) => {
+  if (req.body.userRole > 4 ) {
+    return res.status(403).send({ message: 'forbidden user'})
+  }
+
   const id = req.body.authUserId;
   const search = req.query.search;
 
@@ -52,6 +58,7 @@ const getUserPostList = async (req: Request, res: Response) => {
   ])
   .leftJoin('post.postTags', 'postTag', 'postTag.tagId In (:understand)', { understand: [21, 22, 23]})
   .where('post.userId = :id', { id })
+  .orderBy('post.createdAt', 'DESC')
   .getRawMany()
 
   res.status(200).send({ postList: result});

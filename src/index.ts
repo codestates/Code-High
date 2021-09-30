@@ -6,7 +6,8 @@ import { createConnection } from 'typeorm';
 import router from './routes';
 import 'reflect-metadata';
 import config from '../ormconfig'
-import { checkVerifiedUser, test } from './utils/scheduler'
+import { checkVerifiedUser, test, weekStat } from './utils/scheduler'
+import { errorHandler } from './middleware/errorHandler';
 
 dotenv.config();
 const port = process.env.HTTP_PORT || 80;
@@ -23,7 +24,8 @@ createConnection(config)
 
 // node-scheduler
 checkVerifiedUser();
-//test();
+// weekStat();
+// test();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -39,6 +41,8 @@ app.use('/', router);
 app.get('/', (req: express.Request, res: express.Response) => {
   res.send('Hello World!');
 })
+
+app.use(errorHandler);
 
 app.listen(port, () => {
   console.log(`listening on port ${port}`);
