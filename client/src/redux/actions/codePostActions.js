@@ -26,10 +26,9 @@ export async function getCodestoragePost(data) {
       withCredentials: true,
     })
     .then((res) => {
-      console.log('res.data.postList',res.data.postList)
       return res.data.postList
     });
-console.log('response',response)
+
     return {
       type: GET_CODESTORAGE_POST,
       payload: response

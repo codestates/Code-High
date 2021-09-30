@@ -9,9 +9,9 @@ function ButtonContainer () {
   const { userInfo } = state;
   const history = useHistory();
   //! modal
-  const [showSignupModal, setShowSignupModal] = useState(false);
-  const SignupTogglePopUp = () => {
-    setShowSignupModal(!showSignupModal);
+  // const [showSignupModal, setShowSignupModal] = useState(false);
+  const handleGoMypageSignup = () => {
+    history.push('/signup')
   };
   const handleGoMypage = () => {
     history.push('/mypage')
@@ -29,19 +29,19 @@ function ButtonContainer () {
           :<Button
             content='가입하기'
             backgroundColor='#E1E1E1'
-            onClickHandle={SignupTogglePopUp}
+            onClickHandle={handleGoMypageSignup}
           />
           } 
         </div>
       </div>
-      {showSignupModal
+      {/* {showSignupModal
         ? (
           <Signup
             SignupTogglePopUp={SignupTogglePopUp}
             setShowSignupModal={setShowSignupModal}
           />
           )
-        : null}
+        : null} */}
     </div>
   );
 }

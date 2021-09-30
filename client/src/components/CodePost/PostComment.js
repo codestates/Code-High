@@ -1,100 +1,110 @@
 import React, { useEffect, useState } from 'react';
-import Button from '../basic/button/Button';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrashAlt } from '@fortawesome/free-regular-svg-icons';
-import { faWrench } from '@fortawesome/free-solid-svg-icons';
 import { useSelector, useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+import axios from 'axios';
+
 import {
   getCommentPost,
   resetGetCommentPost,
-  deleteComment
+  deleteComment,
 } from '../../redux/actions/codePostActions';
-import axios from 'axios';
+
+import Button from '../basic/button/Button';
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrashAlt } from '@fortawesome/free-regular-svg-icons';
+import { faWrench } from '@fortawesome/free-solid-svg-icons';
 
 function PostComment() {
+  const userState = useSelector((state) => state.userReducer);
+  const { userInfo } = userState;
+  const postState = useSelector((state) => state.codePostReducer);
+  const { codePost, postComment } = postState;
+
   const [count, setCount] = useState(2);
   const [checkToSetId, setCheckToSetId] = useState(false);
-  const dispatch = useDispatch();
-  const postState = useSelector((state) => state.codePostReducer);
-  const userState = useSelector((state) => state.userReducer);
-  const { codePost, postComment } = postState;
-  const { userInfo } = userState;
   const [userComment, setUserComment] = useState({
     content: '',
     postId: '',
   });
-  console.log(postComment)
-// slice(0).reverse()
 
+  const dispatch = useDispatch();
+  const history = useHistory();
+  console.log(postComment);
+
+  //새로고침 시, 스크롤 가장 상단
   window.onload = function () {
     setTimeout(() => {
       scrollTo(0, 0);
     }, 100);
   };
-
+  //로딩 시
   useEffect(() => {
-    dispatch(resetGetCommentPost(codePost.id))
+    dispatch(resetGetCommentPost(codePost.id));
     setUserComment({ ...userComment, postId: codePost.id });
   }, []);
-
+  //무한 스크롤 댓글 더 불러오기
   const getMorecomment = () => {
     const data = {
       postId: codePost.id,
-      count:count
-    }
+      count: count,
+    };
     setTimeout(() => {
       dispatch(getCommentPost(data));
       setCount(count + 1);
     }, 1000);
   };
-
+  //무한스크롤
   const onScroll = (e) => {
     const { clientHeight, scrollTop, scrollHeight } = e.target;
     if (clientHeight + scrollTop === scrollHeight) {
       getMorecomment();
-    } 
+    }
   };
 
   const handleInputValue = (key) => (e) => {
     setUserComment({ ...userComment, [key]: e.target.value });
   };
-
+  //글 수정
+  const handleEditPost = () => {
+    setTimeout(() => {
+      history.push('/codeedit');
+    }, 1000);
+  };
+  //댓글 등록
   const handleButtonClick = () => {
     const { loginType, accessToken } = userInfo;
-    
-    axios.post(
-      `https://api.codehigh.club/comment`,
-      userComment,
-      {
+
+    axios
+      .post(`https://api.codehigh.club/comment`, userComment, {
         headers: {
           login_type: `${loginType}`,
           Authorization: `bearer ${accessToken}`,
         },
         'Content-Type': 'application/json',
         withCredentials: true,
-      }
-    ).then((res) => {
-      console.log('메세지를 찾아보자',res)
-      if(res.status === 201 || res.status === 200) {
-        window.location.reload()
-      }
-    })
-  }
-
+      })
+      .then((res) => {
+        console.log('메세지를 찾아보자', res);
+        if (res.status === 201 || res.status === 200) {
+          window.location.reload();
+        }
+      });
+  };
+  //댓글 수정
   const handlemodifyComment = () => {
     console.log('handlemodifyComment');
   };
-
+  //댓글 삭제
   const handleDeleteComment = (id) => {
-    console.log(id)
+    console.log(id);
     const { loginType, accessToken } = userInfo;
     const data = {
       id: id,
-      logintype:loginType,
-      accessToken:accessToken
-    }
-    dispatch(deleteComment(data))
-  
+      logintype: loginType,
+      accessToken: accessToken,
+    };
+    dispatch(deleteComment(data));
   };
 
   return (
@@ -103,7 +113,13 @@ function PostComment() {
         <div className='postcomment-container'>
           <div className='postcomment-button-container'>
             <span>댓글</span>
-            <Button content={'Edit'} backgroundColor='#2F8C4C' />
+            {userInfo.id === codePost.userId 
+              ? <Button
+              content={'Edit'}
+              backgroundColor='#2F8C4C'
+              onClickHandle={handleEditPost}
+              />
+              :null}
           </div>
           <div className='postcomment-input-container'>
             <textarea
@@ -111,10 +127,14 @@ function PostComment() {
               autoFocus={true}
               onChange={handleInputValue('content')}
             />
-            <Button content={'Enter'} backgroundColor='#E1E1E1' onClickHandle={handleButtonClick}/>
+            <Button
+              content={'Enter'}
+              backgroundColor='#E1E1E1'
+              onClickHandle={handleButtonClick}
+            />
           </div>
           <ul className='postcomment-output-container' onScroll={onScroll}>
-            {postComment.map((item, index) => {
+            {postComment ? postComment.map((item, index) => {
               return (
                 <li className='postcomment-comment' key={index}>
                   <div className='postcomment-userInfo'>
@@ -144,10 +164,12 @@ function PostComment() {
                   <div className='postcomment-message'>{item.content}</div>
                 </li>
               );
-            })}
+            })
+            : <div>로딩중입니다.</div>
+          }
           </ul>
-          </div>
         </div>
+      </div>
     </>
   );
 }
