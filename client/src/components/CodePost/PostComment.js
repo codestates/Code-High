@@ -40,7 +40,8 @@ function PostComment() {
   };
   //로딩 시
   useEffect(() => {
-    dispatch(resetGetCommentPost(codePost.id));
+    const postId = codePost.id
+    dispatch(resetGetCommentPost(postId));
     setUserComment({ ...userComment, postId: codePost.id });
   }, []);
   //무한 스크롤 댓글 더 불러오기

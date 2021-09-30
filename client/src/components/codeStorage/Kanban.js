@@ -13,7 +13,7 @@ function Kanban() {
   const { userPostList } = postState;
   const { userInfo } = userState;
   const history = useHistory();
-
+console.log(userInfo)
   // const noUserMock = {
 
   // };
@@ -114,8 +114,11 @@ function Kanban() {
   };
   //!글 불러오기
   const handleClickPost = (e) => {
-    const postId = e.target.id
-    dispatch(getCodepost(postId));
+    const data = {
+      postId: e.target.id,
+      accessToken: userInfo.accessToken,
+    } 
+    dispatch(getCodepost(data));
     setTimeout(() => {
       history.push('/post');
     }, 1000);

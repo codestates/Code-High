@@ -15,19 +15,21 @@ import { faBars } from '@fortawesome/free-solid-svg-icons';
 const NavBar = () => {
   const state = useSelector((state) => state.userReducer);
   const { userInfo } = state;
-  const dispatch = useDispatch();
-  const [openSidebar, setOpenSidebar] = useState(false);
-  const showSidebar = () => setOpenSidebar(!openSidebar);
-  const history = useHistory();
 
-  //! modal
   const [showLoginModal, setShowLoginModal] = useState(false);
+  const [openSidebar, setOpenSidebar] = useState(false);
+  
+  const history = useHistory();
+  const dispatch = useDispatch();
+  
+  const showSidebar = () => setOpenSidebar(!openSidebar);
+
   const togglePopUp = () => {
     setShowLoginModal(!showLoginModal);
   };
 
   const handleLogout = () => {
-    dispatch(signoutUser());
+    dispatch(signoutUser(userInfo.accessToken));
     // dispatch(resetCodereviewPost())
     history.push('/')
   };
@@ -94,7 +96,7 @@ const NavBar = () => {
               <span
                 className={openSidebar ? 'navbar-menu active' : 'navbar-menu'}
               >
-                <SideBar />
+                <SideBar setOpenSidebar={setOpenSidebar}/>
               </span>
             </li>
           </ul>
