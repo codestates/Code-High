@@ -3,7 +3,7 @@ import SearchInput from '../basic/search/SearchInput';
 import Button from '../basic/button/Button';
 import { Link, useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { getCodestoragePost,getCodepost } from '../../redux/actions/codePostActions';
+import { getCodestoragePost, getCodepost } from '../../redux/actions/codePostActions';
 import axios from 'axios';
 
 function Kanban() {
@@ -13,7 +13,6 @@ function Kanban() {
   const { userPostList } = postState;
   const { userInfo } = userState;
   const history = useHistory();
-  const [postId, setPostId] = useState('');
 
   // const noUserMock = {
 
@@ -35,7 +34,7 @@ function Kanban() {
     const lists = document.querySelectorAll('.kanban-list');
 
     let draggedItem = null;
-
+   
     for (let i = 0; i < list_items.length; i++) {
       const item = list_items[i];
 
@@ -69,7 +68,6 @@ function Kanban() {
         list.addEventListener('drop', function (e) {
           list.append(draggedItem);
           list.style.backgroundColor = 'rgba(0, 0, 0, 0.1)';
-          setPostId(draggedItem.id)
           handleChangeTag(
             list.className.substring(e.path[0].className.length - 4),
             draggedItem.id
@@ -78,7 +76,7 @@ function Kanban() {
       }
     }
   }, []);
-console.log(postId)
+
   //!태그 수정
   const handleChangeTag = async (understanding, id) => {
     try {
@@ -115,7 +113,8 @@ console.log(postId)
     }
   };
   //!글 불러오기
-  const handleClickPost = () => {
+  const handleClickPost = (e) => {
+    const postId = e.target.id
     dispatch(getCodepost(postId));
     setTimeout(() => {
       history.push('/post');
@@ -145,7 +144,7 @@ console.log(postId)
                     className='kanban-list-item'
                     draggable='true'
                     key={index}
-                    onDoubleClick={handleClickPost}
+                    onDoubleClick={(e) => handleClickPost(e)}
                     id={item.id}
                   >
                     <h1>{item.title}</h1>
@@ -164,7 +163,7 @@ console.log(postId)
                     className='kanban-list-item'
                     draggable='true'
                     key={index}
-                    onDoubleClick={handleClickPost}
+                    onDoubleClick={(e) => handleClickPost(e)}
                     id={item.id}
                   >
                     <h1>{item.title}</h1>
@@ -183,7 +182,7 @@ console.log(postId)
                     className='kanban-list-item'
                     draggable='true'
                     key={index}
-                    onDoubleClick={handleClickPost}
+                    onDoubleClick={(e) => handleClickPost(e)}
                     id={item.id}
                   >
                     <h1>{item.title}</h1>
