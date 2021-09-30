@@ -141,10 +141,13 @@ export function googleSigninUser(authorizationCode) {
 }
 
 //5.로그아웃(완료)
-export async function signoutUser() {
+export async function signoutUser(accessToken) {
   const response = axios
-    .get(`${serverUrl}/auth/logout`, {
-      headers: { 'Content-Type': 'application/json' },
+    .get(`${serverUrl}/auth/logout`, { 
+      headers: { 
+        Authorization: `bearer ${accessToken}`,
+        'Content-Type': 'application/json' 
+      },
     })
     .then((res) => {
       res.data.message;

@@ -47,10 +47,13 @@ function CodeReviewBoard() {
       getMorePost();
     }
   };
-
+  //!글 불러오기
   const handleClickPost = (e) => {
-    const postId = e.target.id;
-    dispatch(getCodepost(postId));
+    const data = {
+      postId: e.target.id,
+      accessToken: userInfo.accessToken,
+    } 
+    dispatch(getCodepost(data));
     setTimeout(() => {
       history.push('/post');
     }, 1000);

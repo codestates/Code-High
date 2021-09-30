@@ -1,26 +1,28 @@
 import React from 'react';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 
 const SideBar = () => {
   return (
     <div className='sidebar'>
       <div className='sidebar-container'>
-        <div className='menutab-container'>
-          <Link to='codestorage'>
-          <ul>코드 저장소</ul>
-          </Link>
-          <Link to='codereview'>
-          <ul>코드 리뷰</ul>
-          </Link>
-          <Link to='mypage'>
-          <ul>마이 페이지</ul>
-          </Link>
-          <Link to='userinfo'>
-          <ul>사용자 현황</ul>
-          </Link>
-          <Link to='postmanagement'>
-          <ul>게시글 현황 및 관리</ul>
-          </Link>
+        <div className='sidebar-main'>
+          <ul className='sidebar-menutab-container'>
+            <li>
+              <Link to='codestorage'>코드 저장소</Link>
+            </li>
+            <li>
+              <Link to='codereview'>코드 리뷰</Link>
+            </li>
+            <li>
+              <Link to='mypage'>마이 페이지</Link>
+            </li>
+            <li>
+              <Link to='userinfo'>사용자 현황</Link>
+            </li>
+            <li>
+              <Link to='postmanagement'>게시글 현황 및 관리</Link>
+            </li>
+          </ul>
         </div>
       </div>
     </div>

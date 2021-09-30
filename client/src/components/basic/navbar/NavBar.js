@@ -27,7 +27,7 @@ const NavBar = () => {
   };
 
   const handleLogout = () => {
-    dispatch(signoutUser());
+    dispatch(signoutUser(userInfo.accessToken));
     // dispatch(resetCodereviewPost())
     history.push('/')
   };

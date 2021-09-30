@@ -84,18 +84,18 @@ export async function getReviewFilter(keyword) {
 }
 
 //4.코드 자세히 보기(완료)
-export async function getCodepost(postId) {
-  console.log('들어오나?1')
+export async function getCodepost(data) {
   const response = axios
-    .get(`${serverUrl}/post/${postId}`, {
-      headers: {'Content-Type': 'application/json'},
+    .get(`${serverUrl}/post/${data.postId}`, {
+      headers: {
+        Authorization: `bearer ${data.accessToken}`,
+        'Content-Type': 'application/json'
+      },
       withCredentials: true,
     })
     .then((res) => {
-      console.log('들어오나?2')
       return res.data.post
     });
-    console.log('들어오나?3')
     return {
       type: GET_CODEPOST,
       payload: response,
