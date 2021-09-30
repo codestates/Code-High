@@ -715,23 +715,16 @@
   height: 100%;
   display: flex;
   justify-content: center;
-  align-items: center; }
-
-.signup-modal-overlay {
-  background-color: rgba(0, 0, 0, 0.379);
-  width: 100%;
-  height: 100%;
-  position: absolute; }
+  align-items: center;
+  background-color: #E1E1E1;
+  flex-direction: column; }
 
 .signup-container {
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgda(0, 0, 0, 0.23);
   position: relative;
   top: 0;
-  display: grid;
-  background-color: white; }
+  display: grid; }
 
 .signup-right {
-  background-color: #E1E1E1;
   display: flex;
   justify-content: center;
   align-items: center; }
@@ -739,19 +732,13 @@
 .signup-left {
   display: flex;
   flex-direction: column;
-  background-color: white;
   justify-content: center;
   align-items: center; }
-  .signup-left .signup-close {
-    width: 90%;
-    text-align: end;
-    margin-bottom: 30px;
-    padding: 5px; }
-    .signup-left .signup-close span {
-      font-size: 30px; }
-  .signup-left img {
-    width: 250px;
-    padding: 0px 20px; }
+  .signup-left h1 {
+    font-size: 17px;
+    font-family: 'NanumGothic';
+    font-weight: 800;
+    margin-bottom: 20px; }
   .signup-left article {
     align-items: flex-start; }
     .signup-left article div {
@@ -780,7 +767,7 @@
     border: none;
     border-radius: 5px;
     margin-top: 20px;
-    margin-bottom: 60px;
+    margin-bottom: 30px;
     font-family: 'NanumGothic';
     cursor: pointer; }
 
@@ -1885,12 +1872,10 @@ a {
   .codepostview-container span:nth-child(1) {
     width: 70%;
     height: 40vh;
-    background-color: #000;
     margin: 5px;
     overflow-y: auto;
     padding: 10px;
-    font-size: 1.5rem;
-    color: white;
+    font-size: auto;
     resize: none;
     border: none;
     font-family: 'NanumGothic'; }

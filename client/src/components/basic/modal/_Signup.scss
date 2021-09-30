@@ -7,26 +7,17 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: #{$gray};
+  flex-direction: column;
 }
-
-.signup-modal-overlay {
-  background-color: rgba(0, 0, 0, 0.379);
-  width: 100%;
-  height: 100%;
-  position: absolute;
-}
-
 
 .signup-container {
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgda(0, 0, 0, 0.23);
   position: relative;
   top: 0;
   display: grid;
-  background-color: white;
 }
 
 .signup-right{
-  background-color: #{$gray};
   display: flex;
   justify-content: center;
   align-items: center;
@@ -35,21 +26,13 @@
 .signup-left {
   display: flex;
   flex-direction: column;
-  background-color: white;
   justify-content: center;
   align-items: center;
-  .signup-close {
-    width: 90%;
-    text-align: end;
-    margin-bottom: 30px;
-    padding: 5px;
-    span{
-      font-size: 30px;
-    }
-  }
-  img {
-    width: 250px;
-    padding: 0px 20px;
+  h1{
+    font-size: 17px;
+    font-family: 'NanumGothic';
+    font-weight: 800;
+    margin-bottom: 20px;
   }
   article {
     align-items: flex-start;
@@ -84,7 +67,7 @@
   border: none;
   border-radius: 5px;
   margin-top: 20px;
-  margin-bottom: 60px;
+  margin-bottom: 30px;
   font-family: 'NanumGothic';
   cursor: pointer;
   }

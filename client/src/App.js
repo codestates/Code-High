@@ -19,12 +19,12 @@ import Loading from './components/basic/loading/Loading';
 import NavBar from './components/basic/navbar/NavBar';
 import AdminGraph from './pages/AdminGraph';
 import AdminTable from './pages/AdiminTable';
+import CodeEdit from './pages/CodeEdit';
 
 function App() {
   const dispatch = useDispatch();
   const state = useSelector((state) => state.userReducer);
   const { userInfo } = state;
-  // const [choosePostId, setChoosePostId] = useState(0);
 
   useEffect(() => {
     const url = new URL(window.location.href);
@@ -65,9 +65,7 @@ function App() {
   const CodeStorage = React.lazy(
     () =>
       new Promise((resolve, reject) =>
-        setTimeout(() => {
-          resolve(import('./pages/CodeStorage'));
-        }, 1000)
+        setTimeout(() => resolve(import('./pages/CodeStorage')), 1000)
       )
   );
   const CodeReview = React.lazy(
@@ -96,6 +94,9 @@ function App() {
           </Route>
           <Route path='/codeinput'>
             <CodeInput />
+          </Route>
+          <Route path='/codeedit'>
+            <CodeEdit />
           </Route>
           <Route path='/codereview'>
             <CodeReview />

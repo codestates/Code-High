@@ -29,13 +29,14 @@ const NavBar = () => {
   const handleLogout = () => {
     dispatch(signoutUser());
     // dispatch(resetCodereviewPost())
+    history.push('/')
   };
 
   const handleGoMypage = () => {
     history.push('/mypage');
   };
 
-  console.log('네브바에서의 유저 정보', userInfo);
+  // console.log('네브바에서의 유저 정보', userInfo);
 
   return (
     <>
@@ -49,7 +50,7 @@ const NavBar = () => {
 
           <ul className='navbar-right'>
             {userInfo ? (
-              userInfo.image === null ? (
+              userInfo.image === null || userInfo.image === '' ? (
                 <>
                   <li className='login-tag'>
                     <FontAwesomeIcon
