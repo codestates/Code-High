@@ -34,7 +34,7 @@ const codePostReducer = (state = {userPostList: [], postList:[], codePost:[], po
       });
     case MODIFY_CODEPOST:
       return Object.assign({}, state, {
-        codePost: [...state.codePost, action.payload],
+        codePost: [...state.codePost]
       });
     case DELETE_POST:
       return Object.assign({}, state, {
