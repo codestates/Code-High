@@ -17,7 +17,8 @@ import CodePost from './pages/CodePost';
 import NotFoundError from './components/basic/error/NotFoundError';
 import Loading from './components/basic/loading/Loading';
 import NavBar from './components/basic/navbar/NavBar';
-import Admin from './pages/Admin';
+import AdminGraph from './pages/AdminGraph';
+import AdminTable from './pages/AdiminTable';
 import CodeEdit from './pages/CodeEdit';
 
 function App() {
@@ -112,8 +113,20 @@ function App() {
           <Route path='/loading'>
             <Loading />
           </Route>
-          <Route path='/admin'>
-            <Admin />
+          <Route path='/github'>
+            <Loading />
+          </Route>
+          <Route path='/kakao'>
+            <Loading />
+          </Route>
+          <Route path='/google'>
+            <Loading />
+          </Route>
+          <Route path='/admingraph'>
+            <AdminGraph />
+          </Route>
+          <Route path='/admintable'>
+            <AdminTable />
           </Route>
         </Switch>
       </Suspense>

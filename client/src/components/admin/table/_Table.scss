@@ -1,23 +1,26 @@
 .admin-table-main{
+    padding: 0;
     display: flex;
+    height: 850px;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     font-size: 2rem;
 }
-.admin-subject-container{
-    display: flex;
-    justify-content: left;
-    align-items: center;
-    width: 1200px;
-}
+
 .admin-table-subject{
     margin-top: 20px;
     padding-left: 30px;
     text-align: left;
-    width: 100%;
     font-size: 2rem;
     font-weight: 800;
+}
+
+.admin-table-sub{
+    width: 1200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .admin-table-container{
@@ -34,18 +37,44 @@
 
 .admin-table-post-data{
     display: grid;
-    grid-template-columns: repeat(4,1fr);
+    grid-template-columns: repeat(1,1fr);
     border: 1px solid $gray;
     height: 80%;
+    overflow-y: auto;
     div{
         font-size: 1.5rem;
+    }
+    tr{
+        display: grid;
+        grid-template-columns: 0.5fr 2fr 3fr 1fr;
+        text-align: center;
+        height: 20px;
+        td{
+            font-size: 1.5rem;
+        }
+        th{
+            font-size: 1.5rem;
+        }
     }
 }
 .admin-table-comment-box{
     border: 1px solid $gray;
     height: 80%;
+    overflow-y: auto;
     div{
         font-size: 1.5rem;
+    }
+    tr{
+        display: grid;
+        grid-template-columns: 0.5fr 0.5fr 3fr 5fr;
+        text-align: center;
+        height: 20px;
+        td{
+            font-size: 1.5rem;
+        }
+        th{
+            font-size: 1.5rem;
+        }
     }
 }
 .admin-button{
@@ -66,10 +95,16 @@
     .admin-table-container{
         flex-direction: column;
     }
+    .admin-table-sub{
+        width: 100%;
+    }
 }
 
 @include mobile {
     .admin-table-container{
         flex-direction: column;
+    }
+    .admin-table-sub{
+        width: 100%;
     }
 }
