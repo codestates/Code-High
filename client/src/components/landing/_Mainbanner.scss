@@ -8,6 +8,12 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  //드래그 금지
+  -ms-user-select:none;
+  -moz-user-select:-moz-none;
+  -khtml-user-select:none;
+  -webkit-user-select:none;
+  user-select:none;
 }
 
 .mainbanner-container {

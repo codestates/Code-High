@@ -4,6 +4,11 @@
   align-items: center;
   background-color: #{$gray};
   padding: 70px 0;
+  -ms-user-select:none;
+  -moz-user-select:-moz-none;
+  -khtml-user-select:none;
+  -webkit-user-select:none;
+  user-select:none;
 }
 
 .userreview-container {

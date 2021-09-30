@@ -7,16 +7,22 @@
     display: flex;
     justify-content: center;
     margin-top: 70px;
+    -ms-user-select:none;
+    -moz-user-select:-moz-none;
+    -khtml-user-select:none;
+    -webkit-user-select:none;
+    user-select:none;
 }
 .sidebar-container{
   width: 1200px;
-  height: 400px;
+  height: 200px;
   display: flex;
   justify-content: flex-end;
 }
 
 .sidebar-main {
     display: flex;
+    justify-content: right;
     align-items: center;
     width: 200px;
     background-color: white;
@@ -24,12 +30,22 @@
     border-radius: 10px;
     border: solid 1px #{$gray};
       li{
-        a{
+          display: flex;
+          justify-content: right;
+          margin-right: 23px;
+          a{
           color: black;
           font-size: 1.5rem;
-          margin-bottom: 20px;
+          margin-top: 10px;
+          margin-bottom: 10px;
           font-family: 'NanumGothic';
           text-align:left;
         }
+      }
+      li:nth-child(3){
+        border-top: solid 1px #{$gray};
+      }
+      li:nth-child(4){
+        border-top: solid 1px #{$gray};
       }
 }
