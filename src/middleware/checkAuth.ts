@@ -3,16 +3,15 @@ import { User } from '../entity/User';
 import { checkEmailUser, checkGithubUser, checkGoogleUser, checkKakaoUser } from './checkUserInfo';
 
 export const checkAuth = async (req: Request, res: Response, next: NextFunction) => {
-  const authorization = req.headers['authorization'];
+  const accessToken = req.headers['authorization'].split(' ')[1];
   // const loginType = req.headers['login_type'];
   
-  if (!authorization) {
+  if (accessToken === 'undefined') {
     return next();
     // console.log('authorization header not found');
     // return res.status(404).send({ message: 'authorization header not found'});
   }
 
-  const accessToken = authorization.split(' ')[1];
 
   // if (loginType === 'email') {
   //   req.body.authUser = await checkEmailUser(accessToken);
