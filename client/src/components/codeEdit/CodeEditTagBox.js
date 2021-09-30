@@ -15,6 +15,13 @@ console.log(codePost.postTags)
     understanding: [{ id: 21, name: '☹️', category: 'understanding' }],
   });
 
+  useState(()=>{
+
+    codePost.postTags.map((item,index) => {
+      item.tagId
+    })
+  },[])
+
   useEffect(() => {
     setCodeEditInfo({ ...codeEditInfo, tagList: choiceTag });
   }, [choiceTag]);
@@ -23,6 +30,7 @@ console.log(codePost.postTags)
   const handleChangeColor = (e) => {
     const currentTagName = e.target.innerHTML;
     const currentTag = tagNameData.filter((ele) => ele.name === currentTagName);
+
     if (currentTag[0].category === 'algorithm') {
       const algorithmFillterTag = choiceTag.algorithm.filter(
         (ele) => ele.name === currentTagName

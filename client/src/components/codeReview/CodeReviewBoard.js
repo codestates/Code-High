@@ -52,7 +52,8 @@ function CodeReviewBoard() {
     const data = {
       postId: e.target.id,
       accessToken: userInfo.accessToken,
-    } 
+    }
+
     dispatch(getCodepost(data));
     setTimeout(() => {
       history.push('/post');

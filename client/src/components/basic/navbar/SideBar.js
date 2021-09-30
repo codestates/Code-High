@@ -36,14 +36,16 @@ const SideBar = ({ setOpenSidebar }) => {
             <li onClick={handleCloseAuto}>
               <Link to='mypage'>마이 페이지</Link>
             </li>
-            {userInfo.authorityId === 1 
-              ? <><li onClick={handleCloseAuto}>
-              <Link to='admingraph'>사용자 현황</Link>
-            </li>
-            <li onClick={handleCloseAuto}>
-              <Link to='admintable'>게시글 현황 및 관리</Link>
-            </li></>
-            : null}
+            {userInfo === undefined ? null : userInfo.authority === 1 ? (
+              <>
+                <li onClick={handleCloseAuto}>
+                  <Link to='admingraph'>사용자 현황</Link>
+                </li>
+                <li onClick={handleCloseAuto}>
+                  <Link to='admintable'>게시글 현황 및 관리</Link>
+                </li>
+              </>
+            ) : null}
           </ul>
         </div>
       </div>

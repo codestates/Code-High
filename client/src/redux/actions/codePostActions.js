@@ -96,6 +96,7 @@ export async function getCodepost(data) {
     .then((res) => {
       return res.data.post
     });
+
     return {
       type: GET_CODEPOST,
       payload: response,
@@ -103,6 +104,27 @@ export async function getCodepost(data) {
 }
 
 //!5.게시글 수정
+export async function modifyCodePost(data) {
+  const response = axios
+    .patch(`${serverUrl}/post/${data.postId}`, 
+    data.codeEditInfo,
+    {
+      headers: {
+        Authorization: `bearer ${data.accessToken}`,
+        'Content-Type': 'application/json'
+      },
+      withCredentials: true,
+    })
+    .then((res) => {
+      return res.data.message
+    });
+    
+    return {
+      type: MODIFY_CODEPOST,
+      payload: response,
+    };
+}
+
 
 //6.게시글 삭제
 export async function deleteUsersPost(id, accessToken, logintype) {
