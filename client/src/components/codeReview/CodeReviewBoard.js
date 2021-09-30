@@ -51,9 +51,9 @@ function CodeReviewBoard() {
   const handleClickPost = (e) => {
     const data = {
       postId: e.target.id,
-      accessToken: userInfo.accessToken,
+      accessToken: userInfo ? userInfo.accessToken : undefined
     }
-
+console.log(data)
     dispatch(getCodepost(data));
     setTimeout(() => {
       history.push('/post');

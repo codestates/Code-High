@@ -41,9 +41,9 @@ function PostComment() {
   //로딩 시
   useEffect(() => {
     const data = {
-      postId : codePost.id,
-      accessToken : userInfo.accessToken
-    }
+      postId: codePost.id,
+      accessToken: userInfo ? userInfo.accessToken : undefined,
+    };
     dispatch(resetGetCommentPost(data));
     setUserComment({ ...userComment, postId: codePost.id });
   }, []);
@@ -52,7 +52,7 @@ function PostComment() {
     const data = {
       postId: codePost.id,
       count: count,
-      accessToken : userInfo.accessToken
+      accessToken: userInfo ? userInfo.accessToken : undefined,
     };
     setTimeout(() => {
       dispatch(getCommentPost(data));
@@ -118,13 +118,13 @@ function PostComment() {
         <div className='postcomment-container'>
           <div className='postcomment-button-container'>
             <span>댓글</span>
-            {userInfo.id === codePost.userId 
-              ? <Button
-              content={'Edit'}
-              backgroundColor='#2F8C4C'
-              onClickHandle={handleEditPost}
+            {userInfo === undefined ? null : userInfo.id === codePost.userId ? (
+              <Button
+                content={'Edit'}
+                backgroundColor='#2F8C4C'
+                onClickHandle={handleEditPost}
               />
-              :null}
+            ) : null}
           </div>
           <div className='postcomment-input-container'>
             <textarea
@@ -139,39 +139,41 @@ function PostComment() {
             />
           </div>
           <ul className='postcomment-output-container' onScroll={onScroll}>
-            {postComment ? postComment.map((item, index) => {
-              return (
-                <li className='postcomment-comment' key={index}>
-                  <div className='postcomment-userInfo'>
-                    <div>
-                      <span className='postcomment-username'>
-                        {item.userName}
-                      </span>
-                      <span className='postcomment-createdAt'>
-                        {item.createdAt}
-                      </span>
+            {postComment ? (
+              postComment.map((item, index) => {
+                return (
+                  <li className='postcomment-comment' key={index}>
+                    <div className='postcomment-userInfo'>
+                      <div>
+                        <span className='postcomment-username'>
+                          {item.userName}
+                        </span>
+                        <span className='postcomment-createdAt'>
+                          {item.createdAt}
+                        </span>
+                      </div>
+                      <div className='postcomment-deleteButton-container'>
+                        <button
+                          className='postcomment-modifyButton'
+                          //   onClick={() => handlemodifyComment(item.username, idx)}
+                        >
+                          <FontAwesomeIcon icon={faWrench} />
+                        </button>
+                        <button
+                          className='postcomment-deleteButton'
+                          onClick={() => handleDeleteComment(item.id)}
+                        >
+                          <FontAwesomeIcon icon={faTrashAlt} />
+                        </button>
+                      </div>
                     </div>
-                    <div className='postcomment-deleteButton-container'>
-                      <button
-                        className='postcomment-modifyButton'
-                        //   onClick={() => handlemodifyComment(item.username, idx)}
-                      >
-                        <FontAwesomeIcon icon={faWrench} />
-                      </button>
-                      <button
-                        className='postcomment-deleteButton'
-                        onClick={() => handleDeleteComment(item.id)}
-                      >
-                        <FontAwesomeIcon icon={faTrashAlt} />
-                      </button>
-                    </div>
-                  </div>
-                  <div className='postcomment-message'>{item.content}</div>
-                </li>
-              );
-            })
-            : <div>로딩중입니다.</div>
-          }
+                    <div className='postcomment-message'>{item.content}</div>
+                  </li>
+                );
+              })
+            ) : (
+              <div>로딩중입니다.</div>
+            )}
           </ul>
         </div>
       </div>

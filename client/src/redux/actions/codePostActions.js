@@ -83,7 +83,7 @@ export async function getReviewFilter(keyword) {
     });
 
   return {
-    type: GET_CODEREVIEW_POST,
+    type: GET_CODEREVIEW_FILTER,
     payload: response,
   };
 }
@@ -131,7 +131,7 @@ export async function modifyCodePost(data) {
 }
 
 
-//6.게시글 삭제
+//!6.게시글 삭제
 export async function deleteUsersPost(id, accessToken, logintype) {
   axios
     .delete(`${serverUrl}/post/:${id}`, {
@@ -149,13 +149,8 @@ export async function deleteUsersPost(id, accessToken, logintype) {
     });
 }
 
-
-
-
-
-
-//!댓글
-//7.댓글 가져오기(완료)
+//------------------------------------------------------------댓글-----------------------------------------------------------
+//!7.댓글 가져오기(완료)
 export async function getCommentPost(data) {
   const response = axios
     .get(`${serverUrl}/post/${data.postId}/comment?page=${data.count}`, {
@@ -194,7 +189,9 @@ export async function resetGetCommentPost(data) {
     };
 }
 
-//8.댓글 삭제
+//!8.댓글 수정
+
+//9.댓글 삭제
 export async function deleteComment(data) {
   const response = axios
     .delete(`${serverUrl}/comment/${data.id}`, {

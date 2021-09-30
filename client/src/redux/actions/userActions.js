@@ -4,7 +4,6 @@ import {
   KAKAO_SIGNIN_USER,
   GOOGLE_SIGNIN_USER,
   SIGNOUT_USER,
-  GET_USER_INFO,
   MODIFY_USER_INFO,
   DELETE_USER_INFO,
 } from './types';
@@ -45,15 +44,12 @@ export function signinUser(loginInfo) {
     type: SIGNIN_USER,
     payload: response,
   };
-}
+};
 
 //2.깃헙로그인(완료)
 export function githubSigninUser(authorizationCode) {
   const response = axios
-    .post(
-      `${serverUrl}/auth/github`,
-      { authorizationCode },
-    )
+    .post(`${serverUrl}/auth/github`, { authorizationCode })
     .then((res) => {
       const { id, email, image, name, authorityId, loginType } =
         res.data.userInfo;
@@ -69,12 +65,12 @@ export function githubSigninUser(authorizationCode) {
         loginType: loginType,
       };
     });
-  
+
   return {
     type: GITHUB_SIGNIN_USER,
     payload: response,
   };
-}
+};
 
 //3.카카오로그인(완료)
 export function kakaoSigninUser(authorizationCode) {
@@ -106,14 +102,14 @@ export function kakaoSigninUser(authorizationCode) {
     type: KAKAO_SIGNIN_USER,
     payload: response,
   };
-}
+};
 
 //4.구글로그인(완료)
 export function googleSigninUser(authorizationCode) {
   const response = axios
     .post(
       `${serverUrl}/auth/google`,
-      { authorizationCode},
+      { authorizationCode },
       {
         headers: { 'Content-Type': 'application/json' },
       }
@@ -138,15 +134,15 @@ export function googleSigninUser(authorizationCode) {
     type: GOOGLE_SIGNIN_USER,
     payload: response,
   };
-}
+};
 
 //5.로그아웃(완료)
 export async function signoutUser(accessToken) {
   const response = axios
-    .get(`${serverUrl}/auth/logout`, { 
-      headers: { 
+    .get(`${serverUrl}/auth/logout`, {
+      headers: {
         Authorization: `bearer ${accessToken}`,
-        'Content-Type': 'application/json' 
+        'Content-Type': 'application/json',
       },
     })
     .then((res) => {
@@ -157,45 +153,40 @@ export async function signoutUser(accessToken) {
     type: SIGNOUT_USER,
     payload: response,
   };
-}
+};
 
-//6.회원탈퇴(마이페이지 구현 후)
+//!6.회원탈퇴
 export async function deleteUserInfo(data) {
-  axios
+  const response = axios
     .delete(`${serverUrl}/user`, {
       headers: {
-        login_type: `${data.logintype}`,
         Authorization: `bearer ${data.accessToken}`,
       },
       withCredentials: true,
     })
     .then((res) => {
-      return {
-        type: DELETE_USER_INFO,
-        payload: res.data.message,
-      };
+      return res.data;
     });
-}
 
-//------------------------------5.유저 정보 수정하기-------------------------------
+  return {
+    type: DELETE_USER_INFO,
+    payload: response,
+  };
+};
 
-export function modifyUser(loginInfo) {
-  const { email, password, name } = loginInfo;
-
+//!7.유저 정보 수정하기
+export function modifyUser(data) {
   const response = axios
-    .put(
-      `${serverUrl}/user/info`,
-      { password, name },
-      {
-        headers: { Authorization: `bearer ${accessToken}` },
-        withCredentials: true,
-      })
+    .patch(`${serverUrl}/user`, data.modifyInfo, {
+      headers: { Authorization: `bearer ${data.accessToken}` },
+      withCredentials: true,
+    })
     .then((res) => {
-      const { name, password } = res.data.userInfo;
-      return {
-        name: name,
-        email: email,
-        password: password,
-      };
+      return res.data;
     });
-  }
+
+  return {
+    type: MODIFY_USER_INFO,
+    payload: response,
+  };
+};
