@@ -3,7 +3,7 @@ import { User } from '../entity/User';
 import { checkEmailUser, checkGithubUser, checkGoogleUser, checkKakaoUser } from './checkUserInfo';
 
 export const checkAuth = async (req: Request, res: Response, next: NextFunction) => {
-  const accessToken = req.headers['authorization'].split(' ')[1];
+  const accessToken = req.headers['authorization'] ? req.headers['authorization'].split(' ')[1] : 'undefined';
   // const loginType = req.headers['login_type'];
   
   if (accessToken === 'undefined') {
