@@ -5,6 +5,17 @@ import { BaseEntity, Column, Entity, PrimaryColumn } from 'typeorm';
 export class Stat extends BaseEntity {
 
   @PrimaryColumn()
-  date: Date
-  
+  date: Date;
+
+  @Column()
+  postCount: number;
+
+  @Column()
+  commentCount: number;
+
+  @Column()
+  joinCount: number;
+
+  @Column()
+  visitCount: number;
 }

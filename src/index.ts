@@ -6,7 +6,7 @@ import { createConnection } from 'typeorm';
 import router from './routes';
 import 'reflect-metadata';
 import config from '../ormconfig'
-import { checkVerifiedUser, test } from './utils/scheduler'
+import { checkVerifiedUser, test, weekStat } from './utils/scheduler'
 import { errorHandler } from './middleware/errorHandler';
 
 dotenv.config();
@@ -24,7 +24,8 @@ createConnection(config)
 
 // node-scheduler
 checkVerifiedUser();
-//test();
+// weekStat();
+// test();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));

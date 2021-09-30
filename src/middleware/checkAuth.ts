@@ -4,6 +4,7 @@ import { generateloginToken, verifyAccessToken, verifyRefreshToken } from '../ut
 
 export const checkAuth = async (req: Request, res: Response, next: NextFunction) => {
   let accessToken = req.headers['authorization'] ? req.headers['authorization'].split(' ')[1] : 'undefined';
+
   // 로그인하지않은 사용자
   if (accessToken === 'undefined') return next();
 
