@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import Button from '../basic/button/Button';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
+import {
+  getCodepost
+} from '../../redux/actions/codePostActions';
 
 axios.defaults.withCredentials = true;
 const serverUrl = 'https://api.codehigh.club';
@@ -12,6 +15,8 @@ function CodeInputSecretButton ({ codeInputInfo, setCodeInputInfo }) {
   const state = useSelector(state => state.userReducer);
   const { userInfo } = state;
   const history = useHistory();
+  const dispatch = useDispatch();
+
 console.log(codeInputInfo)
   const changeHandle = (checked, id) => {
     if (checked) {
@@ -49,13 +54,17 @@ console.log(codeInputInfo)
     ).then((res) => {
       console.log('메세지를 찾아보자',res)
       if(res.status === 201 || res.status === 200) {
-        history.push('/post')
+        const postId = res.data.postId;
+        dispatch(getCodepost(postId));
+        setTimeout(() => {
+          history.push('/post');
+        }, 1000);
       }
     })
   }
 
   const handleCancelButton = () => {
-    history.push('/codereview')
+    window.history.back()
   }
 
   return (

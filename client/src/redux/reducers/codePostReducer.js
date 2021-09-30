@@ -10,11 +10,11 @@ import {
   RESET_GET_COMMENT
 } from '../actions/types';
 
-const codePostReducer = (state = {}, action) => {
-  switch (action.type) {
+const codePostReducer = (state = {userPostList: [], postList:[], codePost:[], postComment:[]}, action) => {
+  switch (action.type) { 
     case GET_CODESTORAGE_POST:
       return Object.assign({}, state, {
-        userPostList: action.payload,
+        userPostList: [...action.payload]
       });
     case GET_CODEREVIEW_POST:
       return Object.assign({}, state, {
@@ -22,7 +22,7 @@ const codePostReducer = (state = {}, action) => {
       });
     case RESET_CODEREVIEW_POST:
       return Object.assign({}, state, {
-        postList: action.payload,
+        postList: [...action.payload]
       });
     case GET_CODEREVIEW_FILTER:
       return Object.assign({}, state, {
@@ -30,7 +30,7 @@ const codePostReducer = (state = {}, action) => {
       });
     case GET_CODEPOST:
       return Object.assign({}, state, {
-        codePost: action.payload,
+        codePost: [...action.payload]
       });
     case MODIFY_CODEPOST:
       return Object.assign({}, state, {

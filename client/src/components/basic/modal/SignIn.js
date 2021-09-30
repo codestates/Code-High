@@ -97,6 +97,11 @@ function Signin({ togglePopUp, showLoginModal, setShowLoginModal }) {
     dispatch(signinUser(geustInfo))
   }
 
+  const handleGoSignupPage = () => {
+    history.push('/signup')
+    setShowLoginModal(false);
+  }
+
   useEffect(() => {
     if(userInfo) {
       setShowLoginModal(false);
@@ -143,10 +148,10 @@ function Signin({ togglePopUp, showLoginModal, setShowLoginModal }) {
           </div>
           <ul>
             <li>
-              <span>비밀번호 찾기</span>
+              <span>비밀번호 찾기(점검중)</span>
             </li>
             <li>
-              <span>회원가입</span>
+              <span onClick={handleGoSignupPage}>회원가입</span>
             </li>
           </ul>
           <div className='signin-oauth-container'>
