@@ -78,8 +78,7 @@ function App() {
   return (
     <>
       <Suspense fallback={<Loading />}>
-        <TestNavbar />\
-        {/* <NavBar /> */}
+        <NavBar />
         <Switch>
           <Route exact path='/'>
             <Landing />
