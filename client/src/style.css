@@ -875,7 +875,8 @@
     font-family: 'NanumGothic';
     text-decoration: none;
     font-size: 15px;
-    font-weight: 600; }
+    font-weight: 600;
+    cursor: pointer; }
 
 .hamburger-menubar {
   font-size: 20px; }
@@ -897,6 +898,9 @@
   padding: 5px;
   background-color: #E1E1E1;
   color: white; }
+
+.login-tag {
+  cursor: pointer; }
 
 @media (min-width: 1200px) {
   .navbar {
@@ -1037,23 +1041,9 @@
 .codeinputmain-container {
   width: 1200px;
   display: flex; }
-  .codeinputmain-container textarea:nth-child(1) {
-    width: 70%;
-    height: 65vh;
-    background-color: #000;
-    margin: 5px;
-    overflow-y: auto;
-    padding: 10px;
-    font-size: 1.5rem;
-    color: white;
-    resize: none;
-    border: none;
-    font-family: 'NanumGothic'; }
-    .codeinputmain-container textarea:nth-child(1):focus {
-      outline: none; }
   .codeinputmain-container textarea:nth-child(2) {
     width: 30%;
-    height: 65vh;
+    height: 55vh;
     background-color: #E1E1E1;
     margin: 5px;
     overflow-y: auto;
@@ -1064,6 +1054,18 @@
     font-family: 'NanumGothic'; }
     .codeinputmain-container textarea:nth-child(2):focus {
       outline: none; }
+
+.codeinputmain-code {
+  width: 70%;
+  height: 55vh;
+  margin: 5px;
+  overflow-y: auto;
+  padding: 10px;
+  font-size: auto;
+  resize: none;
+  border: none;
+  font-family: 'NanumGothic';
+  background-color: #f5f5f5; }
 
 .codeinputsecretbutton {
   display: flex;
@@ -1947,16 +1949,6 @@ a {
 .codepostview-container {
   width: 1200px;
   display: flex; }
-  .codepostview-container span:nth-child(1) {
-    width: 70%;
-    height: 40vh;
-    margin: 5px;
-    overflow-y: auto;
-    padding: 10px;
-    font-size: auto;
-    resize: none;
-    border: none;
-    font-family: 'NanumGothic'; }
   .codepostview-container span:nth-child(2) {
     width: 30%;
     height: 40vh;
@@ -1968,6 +1960,18 @@ a {
     resize: none;
     border: none;
     font-family: 'NanumGothic'; }
+
+.codepostview-code {
+  width: 70%;
+  height: 40vh;
+  margin: 5px;
+  overflow-y: auto;
+  padding: 10px;
+  font-size: auto;
+  resize: none;
+  border: none;
+  font-family: 'NanumGothic';
+  background-color: #f5f5f5; }
 
 .postcomment {
   display: flex;

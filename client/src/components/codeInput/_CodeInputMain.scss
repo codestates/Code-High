@@ -8,25 +8,9 @@
 .codeinputmain-container{
   width: 1200px;
   display: flex;
-    textarea:nth-child(1){
-      width: 70%;
-      height: 65vh;
-      background-color: #{$black};
-      margin: 5px;
-      overflow-y: auto;
-      padding: 10px;
-      font-size: 1.5rem;
-      color:white;
-      resize: none;
-      border: none;
-      font-family: 'NanumGothic';
-      &:focus {
-        outline: none;
-      }
-    }
     textarea:nth-child(2){
       width: 30%;
-      height: 65vh;
+      height: 55vh;
       background-color: #{$gray};
       margin: 5px;
       overflow-y: auto;
@@ -39,4 +23,16 @@
         outline: none;
       }
     }
+}
+.codeinputmain-code{
+  width :70%;
+  height : 55vh;
+  margin: 5px;
+  overflow-y: auto;
+  padding: 10px;
+  font-size: auto;
+  resize: none;
+  border: none;
+  font-family: 'NanumGothic';
+  background-color: #f5f5f5;
 }
