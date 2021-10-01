@@ -1,9 +1,12 @@
 import * as schedule from 'node-schedule';
+import { Between } from 'typeorm';
 import { User } from '../entity/User';
+import * as moment from 'moment';
 
 const test = () => schedule.scheduleJob('*/2 * * * * *', () => {
-  const currentTime = new Date(Date.now() + 9 * 60 * 60 * 1000);
-  console.log(currentTime, currentTime.getFullYear() + '-' + currentTime.getMonth() + '-' + currentTime.getDay());
+  const currentTime = moment().format();
+  // console.log(currentTime, currentTime.getFullYear() + '-' + currentTime.getMonth() + '-' + currentTime.getDate());
+  console.log(currentTime)
 })
 
 // remove unverified user everyday
@@ -12,16 +15,18 @@ const checkVerifiedUser = () => schedule.scheduleJob('59 23 * * *', async () => 
   await User.remove(removeUserList);
 })
 
-// 매주 월요일 12시 사용자 수, 코드 수, 리뷰 댓글 수 저장
-const weekStat = () => schedule.scheduleJob('0', async () => {
+// 매일 12시 사용자 수, 코드 수, 리뷰 댓글 수 저장
+const weekStat = () => schedule.scheduleJob('*/2 * * * * *', async () => {
+  const today = moment().add(-1, 'days')
+  console.log(today);
   
-  // const userCnt = await User.count({ verified: true });
-  
+  const userCnt = await User.count({ verified: true, createdAt: Between('2021-09-28' , '2021-09-29')});
+  //console.log(userCnt);
 })
 
-// 매달 1일 12시 사용자 수, 코드 수, 리뷰 댓글 수 저장
 
 export { 
   test,
-  checkVerifiedUser
+  checkVerifiedUser,
+  weekStat
 }

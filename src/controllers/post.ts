@@ -18,6 +18,7 @@ const getPostList = async (req: Request, res: Response) => {
     .addSelect('user.name', 'userName')
     .leftJoin('post.user','user')
     .where('post.secret In (:...isSecret)', { isSecret })
+    .orderBy('post.createdAt', 'DESC')
     .getRawMany();
     
     res.send({ postList: result });
@@ -31,6 +32,7 @@ const getPostList = async (req: Request, res: Response) => {
     .where('post.secret In (:...isSecret)', { isSecret })
     .offset(pageOffset)
     .limit(pageCount)
+    .orderBy('post.createdAt', 'DESC')
     .getRawMany();
 
     res.status(200).send({ postList: result });
@@ -39,6 +41,10 @@ const getPostList = async (req: Request, res: Response) => {
 }
 
 const getUserPostList = async (req: Request, res: Response) => {
+  if (req.body.userRole > 4 ) {
+    return res.status(403).send({ message: 'forbidden user'})
+  }
+
   const id = req.body.authUserId;
   const search = req.query.search;
 
@@ -52,6 +58,7 @@ const getUserPostList = async (req: Request, res: Response) => {
   ])
   .leftJoin('post.postTags', 'postTag', 'postTag.tagId In (:understand)', { understand: [21, 22, 23]})
   .where('post.userId = :id', { id })
+  .orderBy('post.createdAt', 'DESC')
   .getRawMany()
 
   res.status(200).send({ postList: result});
@@ -60,7 +67,7 @@ const getUserPostList = async (req: Request, res: Response) => {
 const getPostById = async (req: Request, res: Response) => {
 
   const result = await Post.createQueryBuilder('post')
-  .select(['post', 'user.name', 'postTag.tagId', 'tag.name', 'tag.category'])
+  .select(['post', 'user.name', 'postTag.tagId', 'tag.name', 'tag.categoryId', 'tag.category'])
   .leftJoin('post.user', 'user')
   .leftJoin('post.postTags', 'postTag')
   .leftJoin('postTag.tag', 'tag')
@@ -73,10 +80,47 @@ const getPostById = async (req: Request, res: Response) => {
     }
   }
 
-  result['userName'] = result.user.name;
-  delete result.user;
+  const postTags = {
+    algorithm: [],
+    language: [],
+    platform: [],
+    difficulty: [],
+    understanding: []
+  }
+  
+  result.postTags.forEach((el) => {
+    const tag = {
+      id: el.tagId,
+      name: el.tag.name,
+      category: el.tag.category
+    }
+    switch (el.tag.categoryId) {
+      case 1: 
+        postTags['algorithm'].push(tag);
+        break;
+      case 2:
+        postTags['platform'].push(tag);
+        break;
+      case 3:
+        postTags['difficulty'].push(tag);
+        break;
+      case 4:
+        postTags['understanding'].push(tag);
+        break;
+      case 5:
+        postTags['language'].push(tag);
+        break
+    }
+  })
 
-  res.status(200).send({ post: result });
+  delete result.postTags;
+  
+  const post: object = result;
+  post['userName'] = result.user.name;
+  delete result.user;
+  post['postTags'] = postTags;
+
+  res.status(200).send({ post });
 }
 
 const addPost = async (req: Request, res: Response) => {

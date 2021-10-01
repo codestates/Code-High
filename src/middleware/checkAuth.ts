@@ -1,42 +1,21 @@
 import { NextFunction, Request, Response } from 'express';
 import { User } from '../entity/User';
-import { checkEmailUser, checkGithubUser, checkGoogleUser, checkKakaoUser } from './checkUserInfo';
+import { generateloginToken, verifyAccessToken, verifyRefreshToken } from '../utils/jwt';
 
 export const checkAuth = async (req: Request, res: Response, next: NextFunction) => {
-  const authorization = req.headers['authorization'];
-  // const loginType = req.headers['login_type'];
+  let accessToken = req.headers['authorization'] ? req.headers['authorization'].split(' ')[1] : 'undefined';
+
+  // 로그인하지않은 사용자
+  if (accessToken === 'undefined') return next();
+
+  const tokenInfo: any = verifyAccessToken(accessToken);
+  if (!tokenInfo) return next('InvalidToken');
+
+  const result = await User.findOne({ email: tokenInfo.email }, { select: ['id', 'email']});
+  if (!result) return next('NotFoundTokenUser');
   
-  if (!authorization) {
-    return next();
-    // console.log('authorization header not found');
-    // return res.status(404).send({ message: 'authorization header not found'});
-  }
-
-  const accessToken = authorization.split(' ')[1];
-
-  // if (loginType === 'email') {
-  //   req.body.authUser = await checkEmailUser(accessToken);
-  // } else if (loginType === 'google') {
-  //   req.body.authUser = await checkGoogleUser(accessToken);
-  // } else if (loginType === 'kakao') {
-  //   req.body.authUser = await checkKakaoUser(accessToken);
-  // } else if (loginType === 'github') {
-  //   req.body.authUser = await checkGithubUser(accessToken);
-  // } else {
-  //   return res.status(404).send({ message: 'invalid login-type'});
-  // }
-
-  req.body.authUser = await checkEmailUser(accessToken);
-
-  if (!req.body.authUser) {
-    return res.status(401).send({ message: 'unauthorized user'});
-  }
-
-  const user = await User.findOne({ email: req.body.authUser });
-  if (!user) {
-    return res.status(404).send({ message: 'user not found' });
-  }
-  req.body.authUserId = user.id;
+  req.body.authUser = result.email;
+  req.body.authUserId = result.id;
   
   next();
 }

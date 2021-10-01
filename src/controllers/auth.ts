@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import { User } from '../entity/User';
 import { sendSignUpEmail } from '../utils/mail';
 import * as bcrypt from 'bcrypt';
-import { generateloginToken, generateEmailToken, verifyEmailToken } from '../utils/jwt';
+import { generateloginToken, generateEmailToken, verifyEmailToken, verifyRefreshToken, checkToRegenerate } from '../utils/jwt';
 import { stringify } from 'query-string';
 import axios from 'axios';
 import 'dotenv/config';
@@ -62,7 +62,7 @@ const kakaoLogin = async (req: Request, res: Response) => {
     })
 
     if (!result) {
-      return res.status(401).send({ message: 'unauthorized' })
+      return res.status(401).send({ message: 'unauthorized kakao token' })
     }
 
     const kakaoAccessToken = result.data.access_token;
@@ -120,7 +120,7 @@ const googleLogin = async (req: Request, res: Response) => {
     })
 
     if (!result) {
-      return res.status(401).send({ message: 'unauthorized' })
+      return res.status(401).send({ message: 'unauthorized google token' })
     }
 
     const googleAccessToken = result.data.access_token;
@@ -181,7 +181,7 @@ const githubLogin = async (req: Request, res: Response) => {
 
     
     if (!result) {
-      return res.status(401).send({ message: 'unauthorized' })
+      return res.status(401).send({ message: 'unauthorized github token' })
     }
 
     const githubAccessToken = result.data.access_token;
@@ -229,9 +229,9 @@ const githubLogin = async (req: Request, res: Response) => {
 }
 
 const logout = async (req: Request, res: Response) => {
-  if (req.body.userRole === 5 ) {
-    return res.status(403).send({ message: 'not login yet'});
-  }
+  // if (req.body.userRole === 5 ) {
+  //   return res.status(403).send({ message: 'not login yet'});
+  // }
 
   res.clearCookie('refreshToken');
   await User.update(req.body.authUserId, { refreshToken: '' });
@@ -288,7 +288,7 @@ const checkEmailCode = async (req: Request, res: Response) => {
     const code = req.query.code as string;
     const user: any = verifyEmailToken(code);
     if (!user) {
-      return res.status(401).send({ message: 'unauthorized code'});
+      return res.status(401).send({ message: 'unauthorized email code'});
     }
    
     await User.update({ id: user.id }, { verified: true });
@@ -300,6 +300,23 @@ const checkEmailCode = async (req: Request, res: Response) => {
   }
 }
 
+const regenerateToken = async (req: Request, res: Response) => {
+  const refreshToken = req.cookies.refreshToken
+  // const refreshToken = req.body.refreshToken;
+  const verified = await checkToRegenerate(refreshToken);
+  if (!verified) {
+    return res.status(401).send('invalid refresh token');
+  }
+
+  res.clearCookie('refreshToken');
+  res.cookie('refreshToken', verified.refreshToken, {
+    maxAge: 1000 * 60 * 60 * 24 * 14, // 14d
+    httpOnly: true,
+    secure: true,
+  },)
+  res.status(201).send({ accessToken: verified.accessToken })
+}
+
 export { 
   emailLogin, 
   kakaoLogin, 
@@ -307,4 +324,6 @@ export {
   githubLogin, 
   logout, 
   signUpEmail, 
-  checkEmailCode };
+  checkEmailCode,
+  regenerateToken
+};

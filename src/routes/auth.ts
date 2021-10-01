@@ -11,5 +11,6 @@ authRouter.post('/github', authController.githubLogin);
 authRouter.post('/signup', authController.signUpEmail);
 authRouter.get('/logout', checkAuth, checkRole, authController.logout);
 authRouter.post('/checkemail', authController.checkEmailCode);
+authRouter.post('/refresh', authController.regenerateToken)
 
 export default authRouter;
