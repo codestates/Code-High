@@ -1,33 +1,45 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import Logo from '../../../images/codehighlogo.png';
 import HamburgerMenubar from '../../../images/hamburger-menu-icon.jpeg';
 import SignIn from '../modal/SignIn';
 import SideBar from '../navbar/SideBar';
 import { useDispatch, useSelector } from 'react-redux';
 import { signoutUser } from '../../../redux/actions/userActions';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUser } from '@fortawesome/free-regular-svg-icons';
+import profileImg from '../../../images/profileimg.png';
+import { faBars } from '@fortawesome/free-solid-svg-icons';
 // import { resetCodereviewPost } from '../../../redux/actions/codePostActions';
 
 const NavBar = () => {
   const state = useSelector((state) => state.userReducer);
   const { userInfo } = state;
-  const dispatch = useDispatch();
+
+  const [showLoginModal, setShowLoginModal] = useState(false);
   const [openSidebar, setOpenSidebar] = useState(false);
+  
+  const history = useHistory();
+  const dispatch = useDispatch();
+  
   const showSidebar = () => setOpenSidebar(!openSidebar);
 
-  //! modal
-  const [showLoginModal, setShowLoginModal] = useState(false);
   const togglePopUp = () => {
     setShowLoginModal(!showLoginModal);
   };
-console.log(showLoginModal)
-  const handleLogout = () => {
-    dispatch(signoutUser())
-    // dispatch(resetCodereviewPost())
-  }
 
-  console.log('네브바에서의 유저 정보',userInfo)
-  
+  const handleLogout = () => {
+    dispatch(signoutUser(userInfo.accessToken));
+    // dispatch(resetCodereviewPost())
+    history.push('/')
+  };
+
+  const handleGoMypage = () => {
+    history.push('/mypage');
+  };
+
+  // console.log('네브바에서의 유저 정보', userInfo);
+
   return (
     <>
       <div className='navbar'>
@@ -40,26 +52,52 @@ console.log(showLoginModal)
 
           <ul className='navbar-right'>
             {userInfo ? (
-              <li className='login-tag' onClick={handleLogout}>
-                Logout
-              </li>
+              userInfo.image === null || userInfo.image === '' ? (
+                <>
+                  <li className='login-tag'>
+                    <FontAwesomeIcon
+                      icon={faUser}
+                      className='navbar-default-userimg'
+                      onClick={handleGoMypage}
+                    />
+                  </li>
+                  <li className='login-tag' onClick={handleLogout}>
+                    LOGOUT
+                  </li>
+                </>
+              ) : (
+                <>
+                  <li className='login-tag'>
+                    <img
+                      src={userInfo.image}
+                      alt='userImage'
+                      onClick={handleGoMypage}
+                      className='navbar-userimg'
+                    />
+                  </li>
+                  <li className='login-tag' onClick={handleLogout}>
+                    LOGOUT
+                  </li>
+                </>
+              )
             ) : (
               <li className='login-tag' onClick={togglePopUp}>
-                Login
+                LOGIN
               </li>
             )}
             <li className='navbar-menubar-sidebar-container'>
-              <img
+              <FontAwesomeIcon
+                icon={faBars}
                 className='hamburger-menubar'
                 src={HamburgerMenubar}
                 alt='menubar'
                 onClick={showSidebar}
               />
-              <nav
+              <span
                 className={openSidebar ? 'navbar-menu active' : 'navbar-menu'}
               >
-                <SideBar />
-              </nav>
+                <SideBar setOpenSidebar={setOpenSidebar}/>
+              </span>
             </li>
           </ul>
         </div>

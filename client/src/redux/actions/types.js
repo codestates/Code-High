@@ -5,6 +5,7 @@ export const GITHUB_SIGNIN_USER = 'GITHUB_SIGNIN_USER';
 export const KAKAO_SIGNIN_USER = 'KAKAO_SIGNIN_USER';
 export const GOOGLE_SIGNIN_USER = 'GOOGLE_SIGNIN_USER';
 export const SIGNOUT_USER = 'SIGNOUT_USER';
+export const MODIFY_USER_INFO = 'MODIFY_USER_INFO';
 export const DELETE_USER_INFO = 'DELETE_USER_INFO';
 
 // codepost, codeComment
@@ -18,6 +19,7 @@ export const MODIFY_CODEPOST = 'MODIFY_CODEPOST';
 export const DELETE_POST = 'DELETE_POST';
 // 댓글 가져오기, 댓글 게시(댓글창에서), 댓글 삭제
 export const GET_COMMENT = 'GET_COMMENT';
+export const RESET_GET_COMMENT = 'RESET_GET_COMMENT';
 export const DELETE_COMMENT = 'DELETE_COMMENT';
 
 // admin

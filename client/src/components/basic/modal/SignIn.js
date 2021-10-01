@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { signinUser } from '../../../redux/actions/userActions';
@@ -79,11 +79,34 @@ function Signin({ togglePopUp, showLoginModal, setShowLoginModal }) {
     }
 
     dispatch(signinUser(loginInfo))
-    
+  };
+
+  const enterKeyPress = (e) => {
+    if(e.key === 'Enter') {
+      handleLogin()
+    }
+  }
+
+  //!guest login
+  const handleGuestLogin = () => {
+    const geustInfo = {
+      email : 'guest12@codehigh.club',
+      password: 'guest'
+    }
+
+    dispatch(signinUser(geustInfo))
+  }
+
+  const handleGoSignupPage = () => {
+    history.push('/signup')
+    setShowLoginModal(false);
+  }
+
+  useEffect(() => {
     if(userInfo) {
       setShowLoginModal(false);
     }
-  };
+  })
 
   return (
     <div className='signin-modal'>
@@ -106,24 +129,29 @@ function Signin({ togglePopUp, showLoginModal, setShowLoginModal }) {
               placeholder='Email'
               type='email'
               onChange={handleInputValue('email')}
+              onKeyPress={enterKeyPress}
             />
             <input
               placeholder='Password'
               type='password'
               onChange={handleInputValue('password')}
+              onKeyPress={enterKeyPress}
             />
           </article>
           <div className='signin-button-container'>
-            <button type='submit' onClick={handleLogin}>
+          <button type='submit' onClick={handleLogin}>
               로그인
+            </button>
+            <button type='submit' onClick={handleGuestLogin}>
+              게스트 로그인
             </button>
           </div>
           <ul>
             <li>
-              <span>비밀번호 찾기</span>
+              <span>비밀번호 찾기(점검중)</span>
             </li>
             <li>
-              <span>회원가입</span>
+              <span onClick={handleGoSignupPage}>회원가입</span>
             </li>
           </ul>
           <div className='signin-oauth-container'>

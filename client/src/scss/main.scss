@@ -9,6 +9,7 @@
 @import '../components/admin/table/Table';
 @import '../components/basic/alert/Alert';
 @import '../components/basic/button/Button';
+@import '../components//basic//error//LoginError';
 @import '../components/basic/error/NotFoundError';
 @import '../components/basic/footer/BlackFooter';
 @import '../components/basic/footer/WhiteFooter';
@@ -41,4 +42,9 @@
 @import '../components/landing/UserReview';
 @import '../components/CodePost/PostMainView';
 @import '../components/CodePost/PostComment';
+@import '../components/mypage/MyPageSub';
+@import '../components/admin/graph/Graph';
+@import '../components/admin/table/Table';
+@import '../components/CodePost/PostTagSet';
+@import '../components/CodePost/PostTitle';
 @import '../components/mypage/MyPageSub';

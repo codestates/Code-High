@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import Signupimg from '../../../images/Signupimg.svg';
 import codehighlogo from '../../../images/codehighlogo.png';
@@ -8,7 +8,7 @@ import Alert from '../alert/Alert';
 axios.defaults.withCredentials = true;
 const serverUrl = 'https://api.codehigh.club';
 
-function Signup({ SignupTogglePopUp, setShowSignupModal }) {
+function Signup() {
   const backgroundEl = useRef(null);
   const [userInfo, setUserInfo] = useState({
     email: '',
@@ -16,13 +16,6 @@ function Signup({ SignupTogglePopUp, setShowSignupModal }) {
     name: '',
   });
   const history = useHistory();
-
-  //!모달 배경
-  const backgroundClick = (e) => {
-    if (e.target === backgroundEl.current) {
-      setShowSignupModal(!SignupTogglePopUp);
-    }
-  };
 
   //!회원가입 정보 모으기
   const handleInputValue = (key) => (e) => {
@@ -68,47 +61,48 @@ function Signup({ SignupTogglePopUp, setShowSignupModal }) {
       })
   };
 
+  const enterKeyPress = (e) => {
+    if(e.key === 'Enter') {
+      handleSignup()
+    }
+  }
 
   return (
     <div className='signup-modal'>
-      <div
-        className='signup-modal-overlay'
-        onClick={(e) => backgroundClick(e)}
-        ref={backgroundEl}
-      />
       <div className='signup-container'>
         <div className='signup-right'>
           <img src={Signupimg} alt='signup' />
         </div>
         <div className='signup-left'>
-          <div className='signup-close'>
-            <span onClick={SignupTogglePopUp}>&times;</span>
-          </div>
-          <img src={codehighlogo} alt='logo' />
+        <h1>회원가입</h1>
           <article>
             <div>이메일</div>
             <input
               placeholder='이메일을 입력해주세요.'
               type='email'
               onChange={handleInputValue('email')}
+              onKeyPress={enterKeyPress}
             />
             <div>비밀번호</div>
             <input
               placeholder='비밀번호를 입력해주세요.'
               type='password'
               onChange={handleInputValue('password')}
+              onKeyPress={enterKeyPress}
             />
             <div>비밀번호 확인</div>
             <input
               placeholder='비밀번호를 확인해주세요.'
               type='password'
               onChange={handleInputValue('password')}
+              onKeyPress={enterKeyPress}
             />
             <div>닉네임</div>
             <input
               placeholder='닉네임을 입력해주세요.'
               type='name'
               onChange={handleInputValue('name')}
+              onKeyPress={enterKeyPress}
             />
           </article>
           <div className='signup-button-container'>

@@ -7,6 +7,7 @@ import {
   MODIFY_CODEPOST,
   DELETE_POST,
   GET_COMMENT,
+  RESET_GET_COMMENT,
   DELETE_COMMENT,
 } from './types';
 import axios from 'axios';
@@ -25,10 +26,9 @@ export async function getCodestoragePost(data) {
       withCredentials: true,
     })
     .then((res) => {
-      console.log('res.data.postList',res.data.postList)
       return res.data.postList
     });
-console.log('response',response)
+
     return {
       type: GET_CODESTORAGE_POST,
       payload: response
@@ -53,8 +53,10 @@ export function getReviewPost(page) {
 
 export function resetCodereviewPost() {
   const response = axios
-    .get(`${serverUrl}/post?page=1 `, {
-      headers: { 'Content-Type': 'application/json' },
+    .get(`${serverUrl}/post?page=1`, {
+      headers: { 
+        'Content-Type': 'application/json' 
+      },
     })
     .then((res) => {
       return res.data.postList;
@@ -70,7 +72,10 @@ export function resetCodereviewPost() {
 export async function getReviewFilter(keyword) {
   const response = axios
     .get(`${serverUrl}/post`, {
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 
+       Authorization: `bearer ${data.accessToken}`,
+      'Content-Type': 'application/json' 
+    },
     })
     .then((res) => {
       const filter = res.data.postList.filter((el) => el.title === `${keyword}` || el.codeContent === `${keyword}` || el.textcontent === `${keyword}`)
@@ -78,35 +83,55 @@ export async function getReviewFilter(keyword) {
     });
 
   return {
-    type: GET_CODEREVIEW_POST,
+    type: GET_CODEREVIEW_FILTER,
     payload: response,
   };
 }
 
-//4.코드 자세히 보기
-export async function getCodepost(id, accessToken, logintype) {
-  axios
-    .get(`${serverUrl}/post/:${id}`, {
+//4.코드 자세히 보기(완료)
+export async function getCodepost(data) {
+  const response = axios
+    .get(`${serverUrl}/post/${data.postId}`, {
       headers: {
-        loginType: `${logintype}`,
-        Authorization: `bearer ${accessToken}`,
+        Authorization: `bearer ${data.accessToken}`,
+        'Content-Type': 'application/json'
       },
       withCredentials: true,
     })
     .then((res) => {
-      return {
-        type: GET_COMMENT,
-        payload: {
-          message: res.data.message,
-          post: res.data.post,
-        },
-      };
+      return res.data.post
     });
+
+    return {
+      type: GET_CODEPOST,
+      payload: response,
+    };
 }
 
 //!5.게시글 수정
+export async function modifyCodePost(data) {
+  const response = axios
+    .patch(`${serverUrl}/post/${data.postId}`, 
+    data.codeEditInfo,
+    {
+      headers: {
+        Authorization: `bearer ${data.accessToken}`,
+        'Content-Type': 'application/json'
+      },
+      withCredentials: true,
+    })
+    .then((res) => {
+      return res.data.message
+    });
+    
+    return {
+      type: MODIFY_CODEPOST,
+      payload: response,
+    };
+}
 
-//6.게시글 삭제
+
+//!6.게시글 삭제
 export async function deleteUsersPost(id, accessToken, logintype) {
   axios
     .delete(`${serverUrl}/post/:${id}`, {
@@ -124,42 +149,64 @@ export async function deleteUsersPost(id, accessToken, logintype) {
     });
 }
 
-//!댓글
-//7.댓글 가져오기
-export async function getCommentPost(id, accessToken, logintype) {
-  axios
-    .get(`${serverUrl}/post/:${id}/comment`, {
+//------------------------------------------------------------댓글-----------------------------------------------------------
+//!7.댓글 가져오기(완료)
+export async function getCommentPost(data) {
+  const response = axios
+    .get(`${serverUrl}/post/${data.postId}/comment?page=${data.count}`, {
       headers: {
-        loginType: `${logintype}`,
-        Authorization: `bearer ${accessToken}`,
+        Authorization: `bearer ${data.accessToken}`,
+        'Content-Type': 'application/json'
       },
       withCredentials: true,
     })
     .then((res) => {
-      return {
-        type: GET_COMMENT_POST,
-        payload: {
-          message: res.data.message,
-          commentList: res.data.commentList,
-        },
-      };
+      return res.data.commentList;
     });
+
+    return {
+      type: GET_COMMENT,
+      payload: response
+    };
 }
 
-//8.댓글 삭제
-export async function deleteComment(id, accessToken, logintype) {
-  axios
-    .delete(`${serverUrl}/comment/:${id}`, {
+export async function resetGetCommentPost(data) {
+  const response = axios
+    .get(`${serverUrl}/post/${data.postId}/comment?page=1`, {
       headers: {
-        loginType: `${logintype}`,
-        Authorization: `bearer ${accessToken}`,
+        Authorization: `bearer ${data.accessToken}`,
+        'Content-Type': 'application/json'
       },
       withCredentials: true,
     })
     .then((res) => {
-      return {
-        type: DELETE_COMMENT,
-        payload: res.data.message,
-      };
+      return res.data.commentList;
     });
+
+    return {
+      type: RESET_GET_COMMENT,
+      payload: response
+    };
+}
+
+//!8.댓글 수정
+
+//9.댓글 삭제
+export async function deleteComment(data) {
+  const response = axios
+    .delete(`${serverUrl}/comment/${data.id}`, {
+      headers: {
+        login_type: `${data.logintype}`,
+        Authorization: `bearer ${data.accessToken}`,
+      },
+      withCredentials: true,
+    })
+    .then((res) => {
+      console.log(res)
+    });
+
+    return {
+      type: DELETE_COMMENT,
+      payload: response
+    };
 }

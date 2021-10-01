@@ -1,10 +1,22 @@
-import React from 'react';
+import React, { useState } from 'react';
 import profileImg from '../../images/profileimg.png'
 import moveCodeStorageImg from '../../images/mypageimg.svg'
 import { Link } from 'react-router-dom'
-
+import { useSelector } from 'react-redux';
+import ModifyUser from '../basic/modal/ModifyUser';
+import modifyUserInfoImg from '../../images/modifyuserinfo.png'
 
 const MyPageSub = (props) => {
+    const state = useSelector((state) => state.userReducer);
+    const { userInfo } = state;
+
+    const [ showUserInfoPopUp, setShowUserInfoPopUp] = useState(false);
+    const userInfoPopUp = () => {
+        setShowUserInfoPopUp(!showUserInfoPopUp)
+        console.log(showUserInfoPopUp,'click')
+    };
+
+    // console.log('마이페이지 유저정보',userInfo)
     const { onClickHandle } = props;
     return (
         <div className="mypage">
@@ -13,9 +25,12 @@ const MyPageSub = (props) => {
                 <div>
                     <img src={profileImg} alt='profile' />
                 </div>
-                <div>김코딩</div>
-                <div>example@example.com</div>
-                <div>회원정보수정</div>
+                <div className='userinfo-name'>{userInfo.name}</div>
+                <div className='userinfo-email'>{userInfo.email}</div>
+                <div className='modify-userinfo' onClick={userInfoPopUp}>
+                    <img className='modify-userinfo-img' src={modifyUserInfoImg} alt='modifty-userinfo'/>
+                    회원정보수정
+                </div>
             </div>
             <div className="mypage-right-container">
                 <div className="remaincodenotice">
@@ -61,6 +76,12 @@ const MyPageSub = (props) => {
                 </div>
             </div>
         </div>
+        {showUserInfoPopUp ? (
+            <ModifyUser
+                userInfoPopUp={userInfoPopUp}
+                setShowUserInfoPopUp={setShowUserInfoPopUp}
+            />
+        ) : null}
         </div>
     );
 };

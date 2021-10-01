@@ -10,23 +10,23 @@
     display: flex;
     span:nth-child(1){
         width :70%;
-        height :65vh;
-        background-color: #{$black};
+        height :40vh;
+        // background-color: #{$black};
         margin: 5px;
-        overflow-y: scroll;
+        overflow-y: auto;
         padding: 10px;
-        font-size: 1.5rem;
-        color: white;
+        font-size: auto;
+        // color: white;
         resize: none;
         border: none;
         font-family: 'NanumGothic';
     }
     span:nth-child(2){
         width: 30%;
-        height: 65vh;
+        height: 40vh;
         background-color: #{$gray};
         margin: 5px;
-        overflow-y: scroll;
+        overflow-y: auto;
         padding: 10px;
         font: 1.5rem;
         resize: none;

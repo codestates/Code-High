@@ -4,6 +4,7 @@ import {
   KAKAO_SIGNIN_USER,
   GOOGLE_SIGNIN_USER,
   SIGNOUT_USER,
+  MODIFY_USER_INFO,
   DELETE_USER_INFO,
 } from '../actions/types';
 
@@ -27,8 +28,12 @@ const userReducer = (state = {}, action) => {
       });
     case SIGNOUT_USER:
       return Object.assign({});
+    case MODIFY_USER_INFO:
+      return Object.assign({}, state, {
+        userInfo: [...state.userInfo, ...action.payload],
+      });
     case DELETE_USER_INFO:
-      return Object.assign({}, state, {});
+      return Object.assign({});
     default:
       return state;
   }

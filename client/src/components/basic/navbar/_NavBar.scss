@@ -4,6 +4,11 @@
     align-items: center;
     background-color: rgb(255, 255, 255);
     position: relative;
+    -ms-user-select:none;
+    -moz-user-select:-moz-none;
+    -khtml-user-select:none;
+    -webkit-user-select:none;
+    user-select:none;
 }
 
 .navbar-container {
@@ -22,28 +27,39 @@
     justify-content: right;
     margin: 0;
     text-align: center;
+    height: 70px;
         li {
             display: flex;
             align-items: center;
             color: #{$blackgreen};
             font-family: 'NanumGothic';
             text-decoration: none;
-            font-size: 17px;
-            font-weight: 500;
-            img{
-                width: 25px;
-            }
+            font-size: 15px;
+            font-weight: 600;
         }
 }
 
-
+.hamburger-menubar{
+  font-size: 20px;
+}
+.navbar-userimg{
+    width: 40px;
+    border-radius: 50px;
+}
 .navbar-menu{
     display:none;
 }
 .navbar-menu.active{
     display: block;
 }
-
+.navbar-default-userimg{
+    font-size: 20px;
+    border: solid 1px #{$gray};
+    border-radius: 50px;
+    padding: 5px;
+    background-color: #{$gray};
+    color: white;
+}
 
 @include desktop {
     .navbar{
@@ -59,9 +75,9 @@
         }
     }
     .navbar-right{
-    li{
-        margin-left: 30px;
-    }
+        li{
+            margin-left: 20px;
+        }
     }
 }
 
@@ -80,7 +96,7 @@
     }
     .navbar-right{
         li{
-         margin-left: 30px;
+         margin-left: 20px;
         }
       }
 }

@@ -1,25 +1,40 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import SearchInput from '../basic/search/SearchInput';
 import Button from '../basic/button/Button';
 import { Link, useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { getCodestoragePost } from '../../redux/actions/codePostActions';
+import { getCodestoragePost, getCodepost } from '../../redux/actions/codePostActions';
+import axios from 'axios';
 
-function Kanban () {
+function Kanban() {
   const dispatch = useDispatch();
   const postState = useSelector((state) => state.codePostReducer);
-  const userState = useSelector(state => state.userReducer);
+  const userState = useSelector((state) => state.userReducer);
   const { userPostList } = postState;
   const { userInfo } = userState;
   const history = useHistory();
+console.log(userInfo)
+  // const noUserMock = {
 
+  // };
+
+  //!글 목록 불러오기 및 칸반보드
   useEffect(() => {
+    async function getCodePost() {
+      let data = {
+        logintype: userInfo.loginType,
+        accessToken: userInfo.accessToken,
+      };
+      dispatch(getCodestoragePost(data));
+    }
+
+    getCodePost();
+
     const list_items = document.querySelectorAll('.kanban-list-item');
     const lists = document.querySelectorAll('.kanban-list');
-    console.log('list', list_items); //! 빈객체임
 
     let draggedItem = null;
-
+   
     for (let i = 0; i < list_items.length; i++) {
       const item = list_items[i];
 
@@ -51,35 +66,72 @@ function Kanban () {
           list.style.backgroundColor = 'rgba(0, 0, 0, 0.1)';
         });
         list.addEventListener('drop', function (e) {
-          console.log('drop');
           list.append(draggedItem);
           list.style.backgroundColor = 'rgba(0, 0, 0, 0.1)';
+          handleChangeTag(
+            list.className.substring(e.path[0].className.length - 4),
+            draggedItem.id
+          );
         });
       }
     }
   }, []);
 
-  useEffect(()=>{
-    const data = {
-      logintype:userInfo.loginType,
-      accessToken:userInfo.accessToken
-    }
-    dispatch(getCodestoragePost(data))
-    console.log('userPostList',userPostList)
-  },[])  
+  //!태그 수정
+  const handleChangeTag = async (understanding, id) => {
+    try {
+      const { loginType, accessToken } = userInfo;
+      let understandingId = 21;
 
-  const handleClickPost = () => {
-    //완성되면 리덕스 맞춰서 불러오는것도 같이하기
-    history.push('/post')
-  }
+      if (understanding === 'poor') understandingId = 21;
+      if (understanding === 'fair') understandingId = 22;
+      if (understanding === 'good') understandingId = 23;
+
+      axios
+        .patch(
+          'https://api.codehigh.club/post/tag',
+          {
+            postId: `${id}`,
+            understanding: `${understandingId}`,
+          },
+          {
+            headers: {
+              login_type: `${loginType}`,
+              Authorization: `bearer ${accessToken}`,
+            },
+            withCredentials: true,
+          }
+        )
+        .then((res) => {
+          if (res.status === 201) {
+            console.log('태그 수정 성공');
+            return;
+          }
+        });
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  //!글 불러오기
+  const handleClickPost = (e) => {
+    const data = {
+      postId: e.target.id,
+      accessToken: userInfo ? userInfo.accessToken : undefined
+    } 
+    dispatch(getCodepost(data));
+    setTimeout(() => {
+      history.push('/post');
+    }, 1000);
+  };
 
   return (
     <div className='kanban'>
       <div className='kanban-container'>
-        {/* 헤더 */}
         <div className='kanban-header'>
           <SearchInput />
-          <Link to='/codeinput'><Button content='NEW' backgroundColor='#2F8C4C' color='#fff' /></Link>
+          <Link to='/codeinput'>
+            <Button content='NEW' backgroundColor='#2F8C4C' color='#fff' />
+          </Link>
         </div>
         <div className='kanban-subject'>
           <div>이해도 (하)</div>
@@ -87,21 +139,64 @@ function Kanban () {
           <div>이해도 (상)</div>
         </div>
         <div className='kanban-list-container'>
-          <section className='kanban-list'>
+          <section className='kanban-list poor'>
             {userPostList.map((item, index) => {
-              return (
-                <div className='kanban-list-item' draggable='true' key={index} onDoubleClick={handleClickPost}>
-                  <h1>{item.title}</h1>
-                  <div>{item.createdAt}</div>
-                  <div>{item.codeContent}</div>
-                </div>
-              );
+              if (item.understanding === 21 || item.understanding === null) {
+                return (
+                  <div
+                    className='kanban-list-item'
+                    draggable='true'
+                    key={index}
+                    onDoubleClick={(e) => handleClickPost(e)}
+                    id={item.id}
+                  >
+                    <h1>{item.title}</h1>
+                    <div>{item.createdAt}</div>
+                    <div>{item.codeContent}</div>
+                  </div>
+                );
+              }
             })}
           </section>
-          <section className='kanban-list' />
-          <section className='kanban-list' />
+          <section className='kanban-list fair'>
+            {userPostList.map((item, index) => {
+              if (item.understanding === 22) {
+                return (
+                  <div
+                    className='kanban-list-item'
+                    draggable='true'
+                    key={index}
+                    onDoubleClick={(e) => handleClickPost(e)}
+                    id={item.id}
+                  >
+                    <h1>{item.title}</h1>
+                    <div>{item.createdAt}</div>
+                    <div>{item.codeContent}</div>
+                  </div>
+                );
+              }
+            })}
+          </section>
+          <section className='kanban-list good'>
+            {userPostList.map((item, index) => {
+              if (item.understanding === 23) {
+                return (
+                  <div
+                    className='kanban-list-item'
+                    draggable='true'
+                    key={index}
+                    onDoubleClick={(e) => handleClickPost(e)}
+                    id={item.id}
+                  >
+                    <h1>{item.title}</h1>
+                    <div>{item.createdAt}</div>
+                    <div>{item.codeContent}</div>
+                  </div>
+                );
+              }
+            })}
+          </section>
         </div>
-        {/* 푸터 */}
       </div>
     </div>
   );

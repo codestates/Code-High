@@ -1,8 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import Tag from '../basic/tag/Tag';
 import tagNameData from './TagNameData';
+import { useSelector } from 'react-redux';
 
-function CodeInputTagBox({ codeInputInfo, setCodeInputInfo }) {
+function CodeEditTagBox({ codeEditInfo, setCodeEditInfo }) {
+  const postState = useSelector((state) => state.codePostReducer);
+  const { codePost } = postState;
+
   const [choiceTag, setChoiceTag] = useState({
     algorithm: [],
     language: [],
@@ -11,14 +15,23 @@ function CodeInputTagBox({ codeInputInfo, setCodeInputInfo }) {
     understanding: [{ id: 21, name: '☹️', category: 'understanding' }],
   });
 
+  useState(()=>{
+    const defaultTag = [];
+    codePost.postTags.map((item,index) => {
+      defaultTag.push(item.tag.name)
+    })
+    console.log(defaultTag)
+  },[])
+
   useEffect(() => {
-    setCodeInputInfo({ ...codeInputInfo, tagList: choiceTag });
+    setCodeEditInfo({ ...codeEditInfo, tagList: choiceTag });
   }, [choiceTag]);
   // console.log(choiceTag, codeInputInfo);
 
   const handleChangeColor = (e) => {
     const currentTagName = e.target.innerHTML;
     const currentTag = tagNameData.filter((ele) => ele.name === currentTagName);
+
     if (currentTag[0].category === 'algorithm') {
       const algorithmFillterTag = choiceTag.algorithm.filter(
         (ele) => ele.name === currentTagName
@@ -203,4 +216,4 @@ function CodeInputTagBox({ codeInputInfo, setCodeInputInfo }) {
   );
 }
 
-export default CodeInputTagBox;
+export default CodeEditTagBox;
