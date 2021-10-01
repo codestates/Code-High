@@ -30,9 +30,9 @@ const getPostList = async (req: Request, res: Response) => {
     .addSelect('user.name', 'userName')
     .leftJoin('post.user','user')
     .where('post.secret In (:...isSecret)', { isSecret })
+    .orderBy('post.createdAt', 'DESC')
     .offset(pageOffset)
     .limit(pageCount)
-    .orderBy('post.createdAt', 'DESC')
     .getRawMany();
 
     res.status(200).send({ postList: result });
