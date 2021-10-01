@@ -1,20 +1,31 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import profileImg from '../../images/profileimg.png'
 import moveCodeStorageImg from '../../images/mypageimg.svg'
 import { Link } from 'react-router-dom'
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import ModifyUser from '../basic/modal/ModifyUser';
 import modifyUserInfoImg from '../../images/modifyuserinfo.png'
+import { getMypageInfo } from '../../redux/actions/userActions';
 
 const MyPageSub = (props) => {
-    const state = useSelector((state) => state.userReducer);
-    const { userInfo } = state;
-
-    const [ showUserInfoPopUp, setShowUserInfoPopUp] = useState(false);
+    const userState = useSelector((state) => state.userReducer);
+    const { mypageInfo, userInfo } = userState;
+    const dispatch = useDispatch();
+   
+    const [showUserInfoPopUp, setShowUserInfoPopUp] = useState(false);
     const userInfoPopUp = () => {
         setShowUserInfoPopUp(!showUserInfoPopUp)
-        console.log(showUserInfoPopUp,'click')
+        console.log(showUserInfoPopUp, 'click')
     };
+
+    useEffect(() => {
+        const data = {
+          accessToken: userInfo ? userInfo.accessToken : undefined,
+        };
+        dispatch(getMypageInfo(data));
+    }, []);    
+
+    console.log(mypageInfo)
 
     // console.log('마이페이지 유저정보',userInfo)
     const { onClickHandle } = props;
@@ -43,7 +54,7 @@ const MyPageSub = (props) => {
                                     작성한 코드
                                 </span>
                                 <span className='mypage-number'>
-                                    11
+                                    {mypageInfo.postCnt}
                                 </span>
                             </div>
                             <div>
@@ -51,15 +62,15 @@ const MyPageSub = (props) => {
                                     댓글
                                 </span>
                                 <span className='mypage-number'>
-                                    3
+                                    {mypageInfo.commentCnt}
                                 </span>
                             </div>
                             <div>
                                 <span>
-                                    리뷰수
+                                    이해한 코드
                                 </span>
                                 <span className='mypage-number'>
-                                    1
+                                    {mypageInfo.highCompCnt}
                                 </span>
                             </div>
                     </div>
