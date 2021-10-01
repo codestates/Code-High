@@ -8,6 +8,7 @@ const getPostList = async (req: Request, res: Response) => {
 
   const isSecret = req.body.userRole === 1 ? [true, false] : [false];
   const page = req.query.page;
+  const search = req.query.search || '';
   const pageCount = (page === '1') ? 15 : 6;
   const pageOffset = (page === '1') ? 0 : (Number(page) - 2) * 6 + 15;
 
@@ -18,6 +19,7 @@ const getPostList = async (req: Request, res: Response) => {
     .addSelect('user.name', 'userName')
     .leftJoin('post.user','user')
     .where('post.secret In (:...isSecret)', { isSecret })
+    .andWhere('post.title Like :search', { search: `%${search}%` })
     .orderBy('post.createdAt', 'DESC')
     .getRawMany();
     
@@ -30,6 +32,7 @@ const getPostList = async (req: Request, res: Response) => {
     .addSelect('user.name', 'userName')
     .leftJoin('post.user','user')
     .where('post.secret In (:...isSecret)', { isSecret })
+    .andWhere('post.title Like :search', { search: `%${search}%` })
     .orderBy('post.createdAt', 'DESC')
     .offset(pageOffset)
     .limit(pageCount)
@@ -46,7 +49,7 @@ const getUserPostList = async (req: Request, res: Response) => {
   }
 
   const id = req.body.authUserId;
-  const search = req.query.search;
+  const search = req.query.search || '';
 
   const result = await Post.createQueryBuilder('post')
   .select([
@@ -58,6 +61,7 @@ const getUserPostList = async (req: Request, res: Response) => {
   ])
   .leftJoin('post.postTags', 'postTag', 'postTag.tagId In (:understand)', { understand: [21, 22, 23]})
   .where('post.userId = :id', { id })
+  .andWhere('post.title Like :search', { search: `%${search}%` })
   .orderBy('post.createdAt', 'DESC')
   .getRawMany()
 
