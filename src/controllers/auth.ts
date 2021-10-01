@@ -35,6 +35,9 @@ const emailLogin = async (req: Request, res: Response) => {
     delete userInfo.password;
     delete userInfo.verified;
     delete userInfo.refreshToken;
+
+    // const lastLoginDate = Date.now();
+    // await User.update(userInfo, { lastLoginDate });
     
     return res.status(200).send({ accessToken, userInfo, message: 'login success'});
 

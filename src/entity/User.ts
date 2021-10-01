@@ -45,6 +45,9 @@ export class User extends BaseEntity {
   @UpdateDateColumn()
   updatedAt: Date;
 
+  @Column()
+  lastLoginDate: Date;
+
   // foreign key
   // user <-> authoritys n:1
   @ManyToOne((type) => Authority, (authority) => authority.users)
