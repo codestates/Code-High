@@ -1,0 +1,29 @@
+.sidebar{
+  display: flex;
+  position: absolute;
+}
+.sidebar-container{
+  display: flex;
+}
+.menutab-container{
+  // margin-top: 20px;
+  // padding-top: 20px;
+  height : 230px;
+  width: 180px;
+  background-color: rgba(255, 250, 250, 0.8);
+  border-radius: 10px;
+  border: 1px solid;
+  display: grid;
+  align-items: center;
+}
+ul{
+  font-size: 14px;
+  text-decoration: none;
+  color: black;
+  line-height: 200%;
+  text-align: center;
+  cursor: pointer;
+  margin: auto;
+  font-family: 'NanumGothic';
+  font-weight: 700;
+}

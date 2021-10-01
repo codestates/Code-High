@@ -13,6 +13,7 @@ import CodePost from './pages/CodePost';
 import NotFoundError from './components/basic/error/NotFoundError';
 import Loading from './components/basic/loading/Loading';
 import NavBar from './components/basic/navbar/NavBar';
+import TestNavbar from './components/basic/navbar/TestNavbar';
 
 function App() {
   const dispatch = useDispatch();
@@ -57,7 +58,8 @@ function App() {
   return (
     <>
       <Suspense fallback={<Loading />}>
-        <NavBar />
+        <TestNavbar />\
+        {/* <NavBar /> */}
         <Switch>
           <Route exact path='/'>
             <Landing />

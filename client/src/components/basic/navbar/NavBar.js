@@ -55,11 +55,11 @@ console.log(showLoginModal)
                 alt='menubar'
                 onClick={showSidebar}
               />
-              <span
+              <nav
                 className={openSidebar ? 'navbar-menu active' : 'navbar-menu'}
               >
                 <SideBar />
-              </span>
+              </nav>
             </li>
           </ul>
         </div>
