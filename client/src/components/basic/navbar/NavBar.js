@@ -6,6 +6,7 @@ import SignIn from '../modal/SignIn';
 import SideBar from '../navbar/SideBar';
 import { useDispatch, useSelector } from 'react-redux';
 import { signoutUser } from '../../../redux/actions/userActions';
+import { resetPostCommet } from '../../../redux/actions/codePostActions'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser } from '@fortawesome/free-regular-svg-icons';
 import profileImg from '../../../images/profileimg.png';
@@ -30,7 +31,7 @@ const NavBar = () => {
 
   const handleLogout = () => {
     dispatch(signoutUser(userInfo.accessToken));
-    // dispatch(resetCodereviewPost())
+    dispatch(resetPostCommet());
     history.push('/')
   };
 

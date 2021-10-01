@@ -15,7 +15,6 @@
       color: black;
       border: none;
       width: 150px;
-      
       &:focus {
         outline: none;
       }
@@ -30,4 +29,8 @@
     input::-webkit-search-results-decoration{
       display:none;
     }
+}
+
+.searchinput-clear{
+  cursor: pointer;
 }

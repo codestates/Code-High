@@ -8,13 +8,13 @@ function CodeInputTagBox({ codeInputInfo, setCodeInputInfo }) {
     language: [],
     platform: [],
     difficulty: [],
-    understanding: [{ id: 21, name: '☹️', category: 'understanding' }],
+    understanding: [{ id: 21, name: '하', category: 'understanding' }],
   });
 
   useEffect(() => {
     setCodeInputInfo({ ...codeInputInfo, tagList: choiceTag });
   }, [choiceTag]);
-  // console.log(choiceTag, codeInputInfo);
+  console.log(choiceTag, codeInputInfo);
 
   const handleChangeColor = (e) => {
     const currentTagName = e.target.innerHTML;
