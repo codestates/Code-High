@@ -146,7 +146,7 @@ const addPost = async (req: Request, res: Response) => {
   const postId = result.id;
 
   if (!tagList || !tagList.understanding || tagList.understanding.length === 0) {
-    tagList.understanding = [{"id": "21", "name": "🙁", "category": "이해도"}];
+    tagList.understanding = [{"id": "21", "name": "하", "category": "이해도"}];
   }
   
   const addTagList = Object.values(tagList);
