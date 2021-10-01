@@ -36,8 +36,8 @@ const emailLogin = async (req: Request, res: Response) => {
     delete userInfo.verified;
     delete userInfo.refreshToken;
 
-    // const lastLoginDate = Date.now();
-    // await User.update(userInfo, { lastLoginDate });
+    const lastLoginDate = new Date();
+    await User.update(userInfo.id, { lastLoginDate });
     
     return res.status(200).send({ accessToken, userInfo, message: 'login success'});
 
@@ -103,6 +103,9 @@ const kakaoLogin = async (req: Request, res: Response) => {
     delete userInfo.verified;
     delete userInfo.refreshToken;
 
+    const lastLoginDate = new Date();
+    await User.update(userInfo.id, { lastLoginDate });
+
     return res.status(200).send({ accessToken, userInfo, message: 'Kakao Login Success'});
   } catch (err) {
     console.log(err.response.data);
@@ -160,6 +163,9 @@ const googleLogin = async (req: Request, res: Response) => {
     delete userInfo.password;
     delete userInfo.verified;
     delete userInfo.refreshToken;
+
+    const lastLoginDate = new Date();
+    await User.update(userInfo.id, { lastLoginDate });
 
     return res.status(200).send({ accessToken, userInfo, message: 'Google login Success' });
 
@@ -222,6 +228,9 @@ const githubLogin = async (req: Request, res: Response) => {
     delete userInfo.password;
     delete userInfo.verified;
     delete userInfo.refreshToken;
+
+    const lastLoginDate = new Date();
+    await User.update(userInfo.id, { lastLoginDate });
 
     return res.status(200).send({ accessToken, userInfo, message: 'Github login Success' });
 
