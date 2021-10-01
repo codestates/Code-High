@@ -6,6 +6,7 @@ import {
   SIGNOUT_USER,
   MODIFY_USER_INFO,
   DELETE_USER_INFO,
+  MYPAGE_USER_INFO,
 } from '../actions/types';
 
 const userReducer = (state = {}, action) => {
@@ -34,6 +35,10 @@ const userReducer = (state = {}, action) => {
       });
     case DELETE_USER_INFO:
       return Object.assign({});
+    case MYPAGE_USER_INFO:
+      return Object.assign({}, state, {
+        mypageInfo: action.payload,
+      });
     default:
       return state;
   }

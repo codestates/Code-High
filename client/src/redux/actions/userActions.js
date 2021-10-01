@@ -6,6 +6,7 @@ import {
   SIGNOUT_USER,
   MODIFY_USER_INFO,
   DELETE_USER_INFO,
+  MYPAGE_USER_INFO,
 } from './types';
 import axios from 'axios';
 
@@ -190,3 +191,22 @@ export function modifyUser(data) {
     payload: response,
   };
 };
+
+// 8.mypageInfo
+export const getMypageInfo = async (data) => {
+  const response = axios
+    .get(`${serverUrl}/user/active`, {
+      headers: {
+        Authorization: `bearer ${data.accessToken}`,
+        'Content-Type': 'application/json',
+      },
+    })
+    .then((res) => {
+      return res.data;
+    });    
+
+  return {
+    type: MYPAGE_USER_INFO,
+    payload: response,
+  };
+}
