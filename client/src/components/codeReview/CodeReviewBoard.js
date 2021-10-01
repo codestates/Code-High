@@ -14,7 +14,7 @@ function CodeReviewBoard() {
   const userState = useSelector((state) => state.userReducer);
   const { userInfo } = userState;
   const postState = useSelector((state) => state.codePostReducer);
-  const { postList } = postState;
+  const { postList} = postState;
 
   const [count, setCount] = useState(2);
   const [searchValue, setSearchValue] = useState({
@@ -24,8 +24,7 @@ function CodeReviewBoard() {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  console.log('코드리뷰보드에서의 코드리스트', count, postList);
-
+  
   //로딩 시, 첫 15개 글만 나타남
   useEffect(() => {
     async function resetCodePost() {
@@ -33,6 +32,26 @@ function CodeReviewBoard() {
     }
     resetCodePost();
   }, []);
+  
+  useEffect(() => {
+    const data = {
+      search:searchValue.search,
+      // accessToken:userInfo.accessToken
+    }
+    dispatch(getReviewFilter(data))
+    console.log('코드리뷰보드에서의 코드리스트', count, postList, searchValue.search);
+  }, [searchValue]);
+
+  const enterKeyPress = (e) => {
+    const data = {
+      search:searchValue.search,
+      // accessToken:userInfo.accessToken
+    };
+    if(e.key === 'Enter') {
+      dispatch(getReviewFilter(data))
+      console.log(postList)
+    }
+  }
 
   //새로고침 시, 스크롤 상단
   window.onload = function () {
@@ -67,29 +86,26 @@ function CodeReviewBoard() {
     }, 1000);
   };
 
-  // const handleInputValue = (key) => (e) => {
-  //   setSearchValue({ [key]: e.target.value });
-  // };
+  const handleInputValue = (key) => (e) => {
+    setSearchValue({ [key]: e.target.value });
+  };
 
-  // const handleClearInputValue = () => {
-  //   const btnClear = document.querySelector('.searchinput-clear');
+  const handleClearInputValue = () => {
+    const btnClear = document.querySelector('.searchinput-clear');
 
-  //   btnClear.addEventListener('click', function () {
-  //     btnClear.parentNode.querySelector('input').value = '';
-  //   });
-  // };
-
-  // useEffect(()=>{
-  //   dispatch(getReviewFilter(searchValue.search))
-  // },[searchValue])
+    btnClear.addEventListener('click', function () {
+      btnClear.parentNode.querySelector('input').value = '';
+    });
+  };
 
   return (
     <div className='codereviewboard'>
       <div className='codereviewboard-container'>
         <div className='codereviewboard-header'>
           <SearchInput
-            // onChangeHandle={handleInputValue('search')}
-            // handleClearInput={handleClearInputValue}
+            onChangeHandle={handleInputValue('search')}
+            handleClearInput={handleClearInputValue}
+            enterKeyPress={enterKeyPress}
           />
         </div>
         <section className='codereviewboard-cardbox' onScroll={onScroll}>

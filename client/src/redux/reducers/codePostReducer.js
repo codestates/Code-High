@@ -30,7 +30,7 @@ const codePostReducer = (
       });
     case GET_CODEREVIEW_FILTER:
       return Object.assign({}, state, {
-        postList: [...state.postList, action.payload],
+        postList: [...action.payload],
       });
     case GET_CODEPOST:
       return Object.assign({}, state, {

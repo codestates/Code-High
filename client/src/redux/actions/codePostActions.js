@@ -73,22 +73,43 @@ export function resetCodereviewPost() {
 //!3.검색 기능
 export async function getReviewFilter(data) {
   const response = axios
-    .get(`${serverUrl}/post`, {
+    .get(`${serverUrl}/post?search=${data.search}`, {
       headers: {
         'Content-Type': 'application/json',
       },
     })
     .then((res) => {
-      // const filter = res.data.postList.filter((el) => el.title === `${data.keyword}`)
-      // return filter;
-      console.log(res);
+      if(res.data.postList) {
+        return res.data.postList
+      }
+      console.log(res)
+      return;
     });
-
+console.log('response',response)
   return {
     type: GET_CODEREVIEW_FILTER,
     payload: response,
   };
 }
+
+// export async function getReviewFilter(data) {
+//   const response = axios
+//     .get(`${serverUrl}/user/post?search=${data.search}`, {
+//       headers: {
+//         Authorization: `bearer ${data.accessToken}`,
+//         'Content-Type': 'application/json',
+//       },
+//     })
+//     .then((res) => {
+// console.log(res)
+//       return res.data.postList
+//     });
+// console.log(response)
+//   return {
+//     type: GET_CODEREVIEW_FILTER,
+//     payload: response,
+//   };
+// }
 
 //4.코드 자세히 보기(완료)
 export async function getCodepost(data) {
