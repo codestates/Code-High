@@ -84,7 +84,9 @@ function PostComment() {
       return;
     }
     if (userInfo.name === '게스트') {
-      console.log('게스트 계정 사용 중이십니다. 회원가입을 하시면 더 많은 서비스를 이용하실 수 있습니다.');
+      console.log(
+        '게스트 계정 사용 중이십니다. 회원가입을 하시면 더 많은 서비스를 이용하실 수 있습니다.'
+      );
       return;
     }
 

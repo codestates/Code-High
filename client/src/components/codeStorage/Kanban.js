@@ -3,17 +3,23 @@ import SearchInput from '../basic/search/SearchInput';
 import Button from '../basic/button/Button';
 import { Link, useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { getCodestoragePost, getCodepost } from '../../redux/actions/codePostActions';
+import { getCodestoragePost, getCodepost, getStorageFilter } from '../../redux/actions/codePostActions';
 import axios from 'axios';
 
 function Kanban() {
-  const dispatch = useDispatch();
   const postState = useSelector((state) => state.codePostReducer);
   const userState = useSelector((state) => state.userReducer);
-  const { userPostList } = postState;
+  const { userPostList, codePost } = postState;
   const { userInfo } = userState;
+
+  const [searchValue, setSearchValue] = useState({
+    search: '',
+  });
+
   const history = useHistory();
-console.log(userInfo)
+  const dispatch = useDispatch();
+
+console.log(userInfo, codePost)
   // const noUserMock = {
 
   // };
@@ -77,6 +83,14 @@ console.log(userInfo)
     }
   }, []);
 
+  useEffect(() => {
+    const data = {
+      search:searchValue.search,
+      accessToken:userInfo.accessToken
+    }
+    dispatch(getStorageFilter(data))
+  }, [searchValue]);
+
   //!태그 수정
   const handleChangeTag = async (understanding, id) => {
     try {
@@ -113,9 +127,9 @@ console.log(userInfo)
     }
   };
   //!글 불러오기
-  const handleClickPost = (e) => {
+  const handleClickPost = (id) => {
     const data = {
-      postId: e.target.id,
+      postId: id,
       accessToken: userInfo ? userInfo.accessToken : undefined
     } 
     dispatch(getCodepost(data));
@@ -124,11 +138,39 @@ console.log(userInfo)
     }, 1000);
   };
 
+   //!검색
+   const handleInputValue = (key) => (e) => {
+    setSearchValue({ [key]: e.target.value });
+  };
+
+  const handleClearInputValue = () => {
+    const btnClear = document.querySelector('.searchinput-clear');
+
+    btnClear.addEventListener('click', function () {
+      btnClear.parentNode.querySelector('input').value = '';
+    });
+  };
+
+  const enterKeyPress = (e) => {
+    const data = {
+      search:searchValue.search,
+      accessToken:userInfo.accessToken
+    };
+    if(e.key === 'Enter') {
+      dispatch(getStorageFilter(data))
+      console.log(postList)
+    }
+  }
+
   return (
     <div className='kanban'>
       <div className='kanban-container'>
         <div className='kanban-header'>
-          <SearchInput />
+          <SearchInput             
+            onChangeHandle={handleInputValue('search')}
+            handleClearInput={handleClearInputValue}
+            enterKeyPress={enterKeyPress}
+          />
           <Link to='/codeinput'>
             <Button content='NEW' backgroundColor='#2F8C4C' color='#fff' />
           </Link>
@@ -140,14 +182,16 @@ console.log(userInfo)
         </div>
         <div className='kanban-list-container'>
           <section className='kanban-list poor'>
-            {userPostList.map((item, index) => {
+            {userPostList === undefined
+            ? <div>로딩 중</div> 
+            : userPostList.map((item, index) => {
               if (item.understanding === 21 || item.understanding === null) {
                 return (
                   <div
                     className='kanban-list-item'
                     draggable='true'
                     key={index}
-                    onDoubleClick={(e) => handleClickPost(e)}
+                    onDoubleClick={() => handleClickPost(item.id)}
                     id={item.id}
                   >
                     <h1>{item.title}</h1>
@@ -159,7 +203,9 @@ console.log(userInfo)
             })}
           </section>
           <section className='kanban-list fair'>
-            {userPostList.map((item, index) => {
+            {userPostList === undefined
+            ? <div>로딩 중</div> 
+            : userPostList.map((item, index) => {
               if (item.understanding === 22) {
                 return (
                   <div
@@ -178,7 +224,9 @@ console.log(userInfo)
             })}
           </section>
           <section className='kanban-list good'>
-            {userPostList.map((item, index) => {
+            {userPostList === undefined
+            ? <div>로딩 중</div> 
+            : userPostList.map((item, index) => {
               if (item.understanding === 23) {
                 return (
                   <div

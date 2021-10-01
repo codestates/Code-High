@@ -3,13 +3,14 @@ import {
   GET_CODEREVIEW_POST,
   RESET_CODEREVIEW_POST,
   GET_CODEREVIEW_FILTER,
+  GET_CODESTORAGE_FILTER,
   GET_CODEPOST,
   MODIFY_CODEPOST,
   DELETE_POST,
   GET_COMMENT,
   RESET_GET_COMMENT,
   DELETE_COMMENT,
-  RESET_POST_COMMENT
+  RESET_POST_COMMENT,
 } from './types';
 import axios from 'axios';
 
@@ -21,7 +22,6 @@ export async function getCodestoragePost(data) {
   const response = axios
     .get(`${serverUrl}/user/post`, {
       headers: {
-        login_type: `${data.logintype}`,
         Authorization: `bearer ${data.accessToken}`,
       },
       withCredentials: true,
@@ -60,7 +60,7 @@ export function resetCodereviewPost() {
       },
     })
     .then((res) => {
-      console.log(res.data.postList)
+      console.log(res.data.postList);
       return res.data.postList;
     });
 
@@ -70,7 +70,7 @@ export function resetCodereviewPost() {
   };
 }
 
-//!3.검색 기능
+//!3.검색 기능(완료)
 export async function getReviewFilter(data) {
   const response = axios
     .get(`${serverUrl}/post?search=${data.search}`, {
@@ -79,37 +79,36 @@ export async function getReviewFilter(data) {
       },
     })
     .then((res) => {
-      if(res.data.postList) {
-        return res.data.postList
+      if (res.data.postList) {
+        return res.data.postList;
       }
-      console.log(res)
       return;
     });
-console.log('response',response)
+
   return {
     type: GET_CODEREVIEW_FILTER,
     payload: response,
   };
 }
 
-// export async function getReviewFilter(data) {
-//   const response = axios
-//     .get(`${serverUrl}/user/post?search=${data.search}`, {
-//       headers: {
-//         Authorization: `bearer ${data.accessToken}`,
-//         'Content-Type': 'application/json',
-//       },
-//     })
-//     .then((res) => {
-// console.log(res)
-//       return res.data.postList
-//     });
-// console.log(response)
-//   return {
-//     type: GET_CODEREVIEW_FILTER,
-//     payload: response,
-//   };
-// }
+export async function getStorageFilter(data) {
+  const response = axios
+    .get(`${serverUrl}/user/post?search=${data.search}`, {
+      headers: {
+        Authorization: `bearer ${data.accessToken}`,
+        'Content-Type': 'application/json',
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      return res.data.postList;
+    });
+  console.log(response);
+  return {
+    type: GET_CODESTORAGE_FILTER,
+    payload: response,
+  };
+}
 
 //4.코드 자세히 보기(완료)
 export async function getCodepost(data) {
@@ -235,6 +234,6 @@ export async function deleteComment(data) {
 export async function resetPostCommet() {
   return {
     type: RESET_POST_COMMENT,
-    payload: {}
+    payload: {},
   };
 }
