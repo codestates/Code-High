@@ -26,14 +26,14 @@ export async function getCodestoragePost(data) {
       withCredentials: true,
     })
     .then((res) => {
-      return res.data.postList
+      return res.data.postList;
     });
 
-    return {
-      type: GET_CODESTORAGE_POST,
-      payload: response
+  return {
+    type: GET_CODESTORAGE_POST,
+    payload: response,
+  };
 }
-};
 
 //2.코드 리뷰 공개글만 가져오기(완료)
 export function getReviewPost(page) {
@@ -54,8 +54,8 @@ export function getReviewPost(page) {
 export function resetCodereviewPost() {
   const response = axios
     .get(`${serverUrl}/post?page=1`, {
-      headers: { 
-        'Content-Type': 'application/json' 
+      headers: {
+        'Content-Type': 'application/json',
       },
     })
     .then((res) => {
@@ -69,17 +69,17 @@ export function resetCodereviewPost() {
 }
 
 //!3.검색 기능
-export async function getReviewFilter(keyword) {
+export async function getReviewFilter(data) {
   const response = axios
     .get(`${serverUrl}/post`, {
-      headers: { 
-       Authorization: `bearer ${data.accessToken}`,
-      'Content-Type': 'application/json' 
-    },
+      headers: {
+        'Content-Type': 'application/json',
+      },
     })
     .then((res) => {
-      const filter = res.data.postList.filter((el) => el.title === `${keyword}` || el.codeContent === `${keyword}` || el.textcontent === `${keyword}`)
-      return filter;
+      // const filter = res.data.postList.filter((el) => el.title === `${data.keyword}`)
+      // return filter;
+      console.log(res);
     });
 
   return {
@@ -94,42 +94,39 @@ export async function getCodepost(data) {
     .get(`${serverUrl}/post/${data.postId}`, {
       headers: {
         Authorization: `bearer ${data.accessToken}`,
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
       },
       withCredentials: true,
     })
     .then((res) => {
-      return res.data.post
+      return res.data.post;
     });
 
-    return {
-      type: GET_CODEPOST,
-      payload: response,
-    };
+  return {
+    type: GET_CODEPOST,
+    payload: response,
+  };
 }
 
 //!5.게시글 수정
 export async function modifyCodePost(data) {
   const response = axios
-    .patch(`${serverUrl}/post/${data.postId}`, 
-    data.codeEditInfo,
-    {
+    .patch(`${serverUrl}/post/${data.postId}`, data.codeEditInfo, {
       headers: {
         Authorization: `bearer ${data.accessToken}`,
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
       },
       withCredentials: true,
     })
     .then((res) => {
-      return res.data.message
+      return res.data.message;
     });
-    
-    return {
-      type: MODIFY_CODEPOST,
-      payload: response,
-    };
-}
 
+  return {
+    type: MODIFY_CODEPOST,
+    payload: response,
+  };
+}
 
 //!6.게시글 삭제
 export async function deleteUsersPost(id, accessToken, logintype) {
@@ -156,7 +153,7 @@ export async function getCommentPost(data) {
     .get(`${serverUrl}/post/${data.postId}/comment?page=${data.count}`, {
       headers: {
         Authorization: `bearer ${data.accessToken}`,
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
       },
       withCredentials: true,
     })
@@ -164,10 +161,10 @@ export async function getCommentPost(data) {
       return res.data.commentList;
     });
 
-    return {
-      type: GET_COMMENT,
-      payload: response
-    };
+  return {
+    type: GET_COMMENT,
+    payload: response,
+  };
 }
 
 export async function resetGetCommentPost(data) {
@@ -175,7 +172,7 @@ export async function resetGetCommentPost(data) {
     .get(`${serverUrl}/post/${data.postId}/comment?page=1`, {
       headers: {
         Authorization: `bearer ${data.accessToken}`,
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
       },
       withCredentials: true,
     })
@@ -183,10 +180,10 @@ export async function resetGetCommentPost(data) {
       return res.data.commentList;
     });
 
-    return {
-      type: RESET_GET_COMMENT,
-      payload: response
-    };
+  return {
+    type: RESET_GET_COMMENT,
+    payload: response,
+  };
 }
 
 //!8.댓글 수정
@@ -202,11 +199,11 @@ export async function deleteComment(data) {
       withCredentials: true,
     })
     .then((res) => {
-      console.log(res)
+      console.log(res);
     });
 
-    return {
-      type: DELETE_COMMENT,
-      payload: response
-    };
+  return {
+    type: DELETE_COMMENT,
+    payload: response,
+  };
 }

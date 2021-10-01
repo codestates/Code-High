@@ -1,33 +1,40 @@
 import React, { useEffect, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import {
   getReviewPost,
   getCodepost,
   resetCodereviewPost,
+  getReviewFilter
 } from '../../redux/actions/codePostActions';
-import { useSelector, useDispatch } from 'react-redux';
 import SearchInput from '../basic/search/SearchInput';
-import scrollImg from '../../images/scrollImg.gif';
-import { useHistory } from 'react-router-dom';
+// import scrollImg from '../../images/scrollImg.gif';
 
 function CodeReviewBoard() {
-  const [count, setCount] = useState(2);
   const userState = useSelector((state) => state.userReducer);
   const { userInfo } = userState;
   const postState = useSelector((state) => state.codePostReducer);
   const { postList } = postState;
+
+  const [count, setCount] = useState(2);
+  const [searchValue, setSearchValue] = useState({
+    search: '',
+  });
+
   const dispatch = useDispatch();
   const history = useHistory();
+
   console.log('코드리뷰보드에서의 코드리스트', count, postList);
 
-  //!새로고침하면 첫 15개만 나타남
+  //로딩 시, 첫 15개 글만 나타남
   useEffect(() => {
-    async function resetCodePost () {
+    async function resetCodePost() {
       dispatch(resetCodereviewPost());
     }
     resetCodePost();
-  },[]);
+  }, []);
 
-  //!새로고침 시, 스크롤 상단
+  //새로고침 시, 스크롤 상단
   window.onload = function () {
     setTimeout(() => {
       scrollTo(0, 0);
@@ -47,24 +54,44 @@ function CodeReviewBoard() {
       getMorePost();
     }
   };
-  //!글 불러오기
+
   const handleClickPost = (e) => {
     const data = {
       postId: e.target.id,
-      accessToken: userInfo ? userInfo.accessToken : undefined
-    }
-console.log(data)
+      accessToken: userInfo ? userInfo.accessToken : undefined,
+    };
+    console.log(data);
     dispatch(getCodepost(data));
     setTimeout(() => {
       history.push('/post');
     }, 1000);
   };
 
+console.log(searchValue);
+  const handleInputValue = (key) => (e) => {
+    setSearchValue({ [key]: e.target.value });
+  };
+
+  const handleClearInputValue = () => {
+    const btnClear = document.querySelector('.searchinput-clear');
+
+    btnClear.addEventListener('click', function () {
+      btnClear.parentNode.querySelector('input').value = '';
+    });
+  };
+
+  useEffect(()=>{
+    dispatch(getReviewFilter(searchValue.search))
+  },[searchValue])
+
   return (
     <div className='codereviewboard'>
       <div className='codereviewboard-container'>
         <div className='codereviewboard-header'>
-          <SearchInput />
+          <SearchInput
+            onChangeHandle={handleInputValue('search')}
+            handleClearInput={handleClearInputValue}
+          />
         </div>
         <section className='codereviewboard-cardbox' onScroll={onScroll}>
           {postList.map((item, index) => {
@@ -86,7 +113,7 @@ console.log(data)
         </section>
       </div>
     </div>
-  )
+  );
 }
 
 export default CodeReviewBoard;

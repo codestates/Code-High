@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
+import Alert from '../basic/alert/Alert';
 
 import {
   getCommentPost,
@@ -27,10 +28,10 @@ function PostComment() {
     content: '',
     postId: '',
   });
-
+  console.log(userInfo);
   const dispatch = useDispatch();
   const history = useHistory();
-  console.log(postComment);
+  console.log('postComment', postComment);
 
   //새로고침 시, 스크롤 가장 상단
   window.onload = function () {
@@ -78,6 +79,15 @@ function PostComment() {
   };
   //댓글 등록
   const handleButtonClick = () => {
+    if (!userInfo) {
+      console.log('로그인을 해주세요');
+      return;
+    }
+    if (userInfo.name === '게스트') {
+      console.log('게스트 계정 사용 중이십니다. 회원가입을 하시면 더 많은 서비스를 이용하실 수 있습니다.');
+      return;
+    }
+
     const { loginType, accessToken } = userInfo;
 
     axios
@@ -127,11 +137,19 @@ function PostComment() {
             ) : null}
           </div>
           <div className='postcomment-input-container'>
-            <textarea
-              type='text'
-              autoFocus={true}
-              onChange={handleInputValue('content')}
-            />
+            {userInfo ? (
+              userInfo.name === '게스트' ? (
+                <textarea disabled />
+              ) : (
+                <textarea
+                  type='text'
+                  autoFocus={true}
+                  onChange={handleInputValue('content')}
+                />
+              )
+            ) : (
+              <textarea disabled />
+            )}
             <Button
               content={'Enter'}
               backgroundColor='#E1E1E1'
@@ -139,7 +157,9 @@ function PostComment() {
             />
           </div>
           <ul className='postcomment-output-container' onScroll={onScroll}>
-            {postComment ? (
+            {postComment === undefined || postComment === [] ? (
+              <h2>첫 댓글을 달아보세요!</h2>
+            ) : (
               postComment.map((item, index) => {
                 return (
                   <li className='postcomment-comment' key={index}>
@@ -171,8 +191,6 @@ function PostComment() {
                   </li>
                 );
               })
-            ) : (
-              <div>로딩중입니다.</div>
             )}
           </ul>
         </div>

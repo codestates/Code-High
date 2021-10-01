@@ -15,13 +15,9 @@ function CodeEditTagBox({ codeEditInfo, setCodeEditInfo }) {
     understanding: [{ id: 21, name: '☹️', category: 'understanding' }],
   });
 
-  useState(()=>{
-    const defaultTag = [];
-    codePost.postTags.map((item,index) => {
-      defaultTag.push(item.tag.name)
-    })
-    console.log(defaultTag)
-  },[])
+  // useState(()=>{
+
+  // },[])
 
   useEffect(() => {
     setCodeEditInfo({ ...codeEditInfo, tagList: choiceTag });
