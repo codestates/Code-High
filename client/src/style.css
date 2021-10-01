@@ -1012,6 +1012,9 @@
   .searchinput-container input::-webkit-search-results-decoration {
     display: none; }
 
+.searchinput-clear {
+  cursor: pointer; }
+
 * {
   padding: 0;
   margin: 0; }
@@ -1220,6 +1223,7 @@
 .codereviewboard-cardbox {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
   height: 85vh;
   overflow-y: scroll; }
 

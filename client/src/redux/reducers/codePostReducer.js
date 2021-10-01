@@ -3,6 +3,7 @@ import {
   GET_CODEREVIEW_POST,
   RESET_CODEREVIEW_POST,
   GET_CODEREVIEW_FILTER,
+  GET_CODESTORAGE_FILTER,
   GET_CODEPOST,
   MODIFY_CODEPOST,
   DELETE_POST,
@@ -30,7 +31,11 @@ const codePostReducer = (
       });
     case GET_CODEREVIEW_FILTER:
       return Object.assign({}, state, {
-        postList: [...state.postList, action.payload],
+        postList: [...action.payload],
+      });
+    case GET_CODESTORAGE_FILTER:
+      return Object.assign({}, state, {
+        userPostList: [...action.payload],
       });
     case GET_CODEPOST:
       return Object.assign({}, state, {
