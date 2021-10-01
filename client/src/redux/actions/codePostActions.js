@@ -9,6 +9,7 @@ import {
   GET_COMMENT,
   RESET_GET_COMMENT,
   DELETE_COMMENT,
+  RESET_POST_COMMENT
 } from './types';
 import axios from 'axios';
 
@@ -59,6 +60,7 @@ export function resetCodereviewPost() {
       },
     })
     .then((res) => {
+      console.log(res.data.postList)
       return res.data.postList;
     });
 
@@ -205,5 +207,13 @@ export async function deleteComment(data) {
   return {
     type: DELETE_COMMENT,
     payload: response,
+  };
+}
+
+//10.로그아웃 시 모든 정보 리셋
+export async function resetPostCommet() {
+  return {
+    type: RESET_POST_COMMENT,
+    payload: {}
   };
 }

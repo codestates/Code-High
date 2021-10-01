@@ -67,34 +67,35 @@ function CodeReviewBoard() {
     }, 1000);
   };
 
-console.log(searchValue);
-  const handleInputValue = (key) => (e) => {
-    setSearchValue({ [key]: e.target.value });
-  };
+  // const handleInputValue = (key) => (e) => {
+  //   setSearchValue({ [key]: e.target.value });
+  // };
 
-  const handleClearInputValue = () => {
-    const btnClear = document.querySelector('.searchinput-clear');
+  // const handleClearInputValue = () => {
+  //   const btnClear = document.querySelector('.searchinput-clear');
 
-    btnClear.addEventListener('click', function () {
-      btnClear.parentNode.querySelector('input').value = '';
-    });
-  };
+  //   btnClear.addEventListener('click', function () {
+  //     btnClear.parentNode.querySelector('input').value = '';
+  //   });
+  // };
 
-  useEffect(()=>{
-    dispatch(getReviewFilter(searchValue.search))
-  },[searchValue])
+  // useEffect(()=>{
+  //   dispatch(getReviewFilter(searchValue.search))
+  // },[searchValue])
 
   return (
     <div className='codereviewboard'>
       <div className='codereviewboard-container'>
         <div className='codereviewboard-header'>
           <SearchInput
-            onChangeHandle={handleInputValue('search')}
-            handleClearInput={handleClearInputValue}
+            // onChangeHandle={handleInputValue('search')}
+            // handleClearInput={handleClearInputValue}
           />
         </div>
         <section className='codereviewboard-cardbox' onScroll={onScroll}>
-          {postList.map((item, index) => {
+          {postList === undefined 
+          ? <h1>로딩 중</h1>  
+          : postList.map((item, index) => {
             return (
               <div
                 id={item.id}
