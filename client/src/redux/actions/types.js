@@ -21,6 +21,7 @@ export const DELETE_POST = 'DELETE_POST';
 export const GET_COMMENT = 'GET_COMMENT';
 export const RESET_GET_COMMENT = 'RESET_GET_COMMENT';
 export const DELETE_COMMENT = 'DELETE_COMMENT';
+export const RESET_POST_COMMENT = 'RESET_POST_COMMENT';
 
 // admin
 export const GET_USERS_CHART = 'GET_USERS_CHART';
