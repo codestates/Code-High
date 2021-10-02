@@ -23,6 +23,7 @@
   top: 0;
   display: grid;
   background-color: white;
+  border-radius: 10px;
 }
 
 .alert-box {
@@ -31,12 +32,9 @@
   background-color: white;
   justify-content: center;
   align-items: center;
-  .alert-close {
-    width: 90%;
-    text-align: end;
-    font-size: 30px;
-    margin-bottom: 30px;
-  }
+  border-radius: 10px;
+  width: 35vh;
+  height: 20vh;
   article {
     align-items: flex-start;
     padding: 0 40px;
@@ -45,6 +43,7 @@
       font-weight: 600;
       font-size: 13px;
       padding: 10px 0px;
+      margin-top: 20px;
     }
   }
 }
@@ -60,7 +59,7 @@
     border: none;
     border-radius: 5px;
     margin-top: 20px;
-    margin-bottom: 60px;
+    margin-bottom: 20px;
     margin-left: 10px;
     margin-right: 10px;
     font-family: 'NanumGothic';

@@ -22,16 +22,17 @@ function PostComment() {
   const postState = useSelector((state) => state.codePostReducer);
   const { codePost, postComment } = postState;
 
+  const [alertModal, setAlertModal] = useState(false);
   const [count, setCount] = useState(2);
   const [checkToSetId, setCheckToSetId] = useState(false);
   const [userComment, setUserComment] = useState({
     content: '',
     postId: '',
   });
-  console.log(userInfo);
+console.log(userInfo);
   const dispatch = useDispatch();
   const history = useHistory();
-  console.log('postComment', postComment);
+console.log('postComment', postComment);
 
   //새로고침 시, 스크롤 가장 상단
   window.onload = function () {
@@ -123,6 +124,14 @@ function PostComment() {
     };
     dispatch(deleteComment(data));
   };
+  
+  const togglePopUp = () => {
+    setAlertModal(!alertModal);
+  };
+
+  const handleButtonSignup = () => {
+    history.push('/signup');
+  }
 
   return (
     <>
@@ -155,7 +164,7 @@ function PostComment() {
             <Button
               content={'Enter'}
               backgroundColor='#E1E1E1'
-              onClickHandle={handleButtonClick}
+              onClickHandle={togglePopUp}
             />
           </div>
           <ul className='postcomment-output-container' onScroll={onScroll}>
@@ -196,6 +205,15 @@ function PostComment() {
             )}
           </ul>
         </div>
+        {alertModal ? (<Alert 
+          content={'로그인 후 이용가능합니다'} 
+          leftbutton={'회원가입'}
+          rightbutton={'닫기'} 
+          onClickHandleLeft={handleButtonSignup}
+          onClickHandleRight={togglePopUp}
+          togglePopUp={togglePopUp}
+        />)
+        : null}
       </div>
     </>
   );

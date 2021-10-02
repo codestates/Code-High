@@ -5,9 +5,9 @@
   align-items: center;
   margin-bottom: 10px;
   flex-direction: column;
-  height: 700px;
+  height: 90vh;
   img{
-    width: 300px;
+    width: 500px;
   }
    div{
      display: flex;
@@ -17,5 +17,9 @@
      font-family: 'NanumGothic';
      text-align: center;
       margin-top: 20px;
+   }
+   span{
+     margin-top: 20px;
+     padding: 5px 50px;
    }
 }

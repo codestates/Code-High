@@ -1,18 +1,20 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import Signupimg from '../../../images/Signupimg.svg';
-import codehighlogo from '../../../images/codehighlogo.png';
 import axios from 'axios';
-import Alert from '../alert/Alert';
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
 
 axios.defaults.withCredentials = true;
 const serverUrl = 'https://api.codehigh.club';
 
 function Signup() {
-  const backgroundEl = useRef(null);
+  const [signupNotice, setSignupNotice] = useState('이메일 형식을 맞춰주세요.');
   const [userInfo, setUserInfo] = useState({
     email: '',
     password: '',
+    passwordcheck:'',
     name: '',
   });
   const history = useHistory();
@@ -31,15 +33,20 @@ function Signup() {
 
   //!회원가입
   const handleSignup = () => {
-    const { email, password, name } = userInfo;
+    const { email, password, passwordcheck, name } = userInfo;
 
     if (!isEmail(email)) {
-      console.log('이메일 이상해')
+      setSignupNotice('이메일 형식을 맞춰주세요.')
       return;
     }
 
+    if (password !== passwordcheck) {
+      setSignupNotice('비밀번호가 일치하지 않습니다.')
+      return;
+    } 
+
     if (!email || !password || !name ) {
-      console.log('다 비었어')
+      setSignupNotice('모든 항목을 채워주세요.')
       return;
     } 
 
@@ -94,7 +101,7 @@ function Signup() {
             <input
               placeholder='비밀번호를 확인해주세요.'
               type='password'
-              onChange={handleInputValue('password')}
+              onChange={handleInputValue('passwordcheck')}
               onKeyPress={enterKeyPress}
             />
             <div>닉네임</div>
@@ -105,6 +112,9 @@ function Signup() {
               onKeyPress={enterKeyPress}
             />
           </article>
+          <div className='signup-notice-container'>
+            <div className='signup-notice'><FontAwesomeIcon icon={faExclamationTriangle}/> {signupNotice}</div>
+          </div>
           <div className='signup-button-container'>
             <button type='submit' onClick={handleSignup}>
               회원가입

@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { signinUser } from '../../../redux/actions/userActions';
+import { signinUser, signoutUser } from '../../../redux/actions/userActions';
 import Signinimg from '../../../images/Signinimg.svg';
 import codehighlogo from '../../../images/codehighlogo.png';
 import github from '../../../images/github.png';
@@ -104,6 +104,17 @@ function Signin({ togglePopUp, showLoginModal, setShowLoginModal }) {
 
   useEffect(() => {
     if(userInfo) {
+      if(userInfo === 401) {
+        dispatch(signoutUser());
+        setShowLoginModal(false);
+        history.push('/unauthorized')
+        return ;
+      } else if(userInfo === 404) {
+        dispatch(signoutUser());
+        setShowLoginModal(false);
+        history.push('/notfound')
+        return ;
+      }
       setShowLoginModal(false);
     }
   })
