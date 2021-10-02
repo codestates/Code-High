@@ -6,6 +6,7 @@ import {
   SIGNOUT_USER,
   MODIFY_USER_INFO,
   DELETE_USER_INFO,
+  MYPAGE_USER_INFO,
 } from './types';
 import axios from 'axios';
 
@@ -25,7 +26,7 @@ export function signinUser(loginInfo) {
       }
     )
     .then((res) => {
-      if(res.status === 200) {
+      if (res.status === 200) {
         const { id, email, image, name, phone, authorityId, loginType } =
           res.data.userInfo;
         return {
@@ -40,10 +41,11 @@ export function signinUser(loginInfo) {
           loginType: loginType,
         };
       }
-    }).catch((err) => {
+    })
+    .catch((err) => {
       if (err.response.status === 401) return 401;
       if (err.response.status === 404) return 404;
-    })
+    });
 
   return {
     type: SIGNIN_USER,
@@ -184,3 +186,22 @@ export function modifyUser(data) {
     payload: response,
   };
 }
+
+// 8.mypageInfo
+export const getMypageInfo = async (data) => {
+  const response = axios
+    .get(`${serverUrl}/user/active`, {
+      headers: {
+        Authorization: `bearer ${data.accessToken}`,
+        'Content-Type': 'application/json',
+      },
+    })
+    .then((res) => {
+      return res.data;
+    });
+
+  return {
+    type: MYPAGE_USER_INFO,
+    payload: response,
+  };
+};

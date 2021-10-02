@@ -30,6 +30,7 @@
     "jsx-loader": "^0.13.2",
     "lodash": "^4.17.21",
     "next-redux-wrapper": "^7.0.5",
+    "node-sass": "^6.0.1",
     "react": "^17.0.2",
     "react-chartjs-2": "^3.0.5",
     "react-dom": "^17.0.2",
@@ -42,6 +43,7 @@
     "redux-persist": "^6.0.0",
     "redux-promise": "^0.6.0",
     "redux-thunk": "^2.3.0",
+    "scss": "^0.2.4",
     "webpack-dev-server": "^4.1.1",
     "webpack-loader-s3": "^1.0.2"
   },
