@@ -26,26 +26,32 @@ export function signinUser(loginInfo) {
       }
     )
     .then((res) => {
-      const { id, email, image, name, phone, authorityId, loginType } =
-        res.data.userInfo;
-      return {
-        message: res.data.message,
-        accessToken: res.data.accessToken,
-        id: id,
-        email: email,
-        image: image,
-        name: name,
-        phone: phone,
-        authority: authorityId,
-        loginType: loginType,
-      };
+      if (res.status === 200) {
+        const { id, email, image, name, phone, authorityId, loginType } =
+          res.data.userInfo;
+        return {
+          message: res.data.message,
+          accessToken: res.data.accessToken,
+          id: id,
+          email: email,
+          image: image,
+          name: name,
+          phone: phone,
+          authority: authorityId,
+          loginType: loginType,
+        };
+      }
+    })
+    .catch((err) => {
+      if (err.response.status === 401) return 401;
+      if (err.response.status === 404) return 404;
     });
 
   return {
     type: SIGNIN_USER,
     payload: response,
   };
-};
+}
 
 //2.깃헙로그인(완료)
 export function githubSigninUser(authorizationCode) {
@@ -71,7 +77,7 @@ export function githubSigninUser(authorizationCode) {
     type: GITHUB_SIGNIN_USER,
     payload: response,
   };
-};
+}
 
 //3.카카오로그인(완료)
 export function kakaoSigninUser(authorizationCode) {
@@ -103,7 +109,7 @@ export function kakaoSigninUser(authorizationCode) {
     type: KAKAO_SIGNIN_USER,
     payload: response,
   };
-};
+}
 
 //4.구글로그인(완료)
 export function googleSigninUser(authorizationCode) {
@@ -135,26 +141,15 @@ export function googleSigninUser(authorizationCode) {
     type: GOOGLE_SIGNIN_USER,
     payload: response,
   };
-};
+}
 
 //5.로그아웃(완료)
-export async function signoutUser(accessToken) {
-  const response = axios
-    .get(`${serverUrl}/auth/logout`, {
-      headers: {
-        Authorization: `bearer ${accessToken}`,
-        'Content-Type': 'application/json',
-      },
-    })
-    .then((res) => {
-      res.data.message;
-    });
-
+export async function signoutUser() {
   return {
     type: SIGNOUT_USER,
-    payload: response,
+    payload: {},
   };
-};
+}
 
 //!6.회원탈퇴
 export async function deleteUserInfo(data) {
@@ -173,7 +168,7 @@ export async function deleteUserInfo(data) {
     type: DELETE_USER_INFO,
     payload: response,
   };
-};
+}
 
 //!7.유저 정보 수정하기
 export function modifyUser(data) {
@@ -190,7 +185,7 @@ export function modifyUser(data) {
     type: MODIFY_USER_INFO,
     payload: response,
   };
-};
+}
 
 // 8.mypageInfo
 export const getMypageInfo = async (data) => {
@@ -203,10 +198,10 @@ export const getMypageInfo = async (data) => {
     })
     .then((res) => {
       return res.data;
-    });    
+    });
 
   return {
     type: MYPAGE_USER_INFO,
     payload: response,
   };
-}
+};

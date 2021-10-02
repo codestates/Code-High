@@ -15,11 +15,13 @@ import CodeReview from './pages/CodeReview';
 import Mypage from './pages/Mypage';
 import CodePost from './pages/CodePost';
 import NotFoundError from './components/basic/error/NotFoundError';
+import UnauthorizedError from './components/basic/error/UnauthorizedError';
 import Loading from './components/basic/loading/Loading';
 import NavBar from './components/basic/navbar/NavBar';
 import AdminGraph from './pages/AdminGraph';
 import AdminTable from './pages/AdiminTable';
 import CodeEdit from './pages/CodeEdit';
+import NoticeForSignup from './components/basic/error/NoticeForSignup';
 
 function App() {
   const dispatch = useDispatch();
@@ -109,6 +111,12 @@ function App() {
           </Route>
           <Route path='/notfound'>
             <NotFoundError />
+          </Route>
+          <Route path='/unauthorized'>
+            <UnauthorizedError />
+          </Route>
+          <Route path='/noticeforsignup'>
+            <NoticeForSignup />
           </Route>
           <Route path='/loading'>
             <Loading />

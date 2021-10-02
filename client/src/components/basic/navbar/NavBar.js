@@ -6,7 +6,7 @@ import SignIn from '../modal/SignIn';
 import SideBar from '../navbar/SideBar';
 import { useDispatch, useSelector } from 'react-redux';
 import { signoutUser } from '../../../redux/actions/userActions';
-import { resetPostCommet } from '../../../redux/actions/codePostActions'
+import { resetPostCommet } from '../../../redux/actions/codePostActions';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser } from '@fortawesome/free-regular-svg-icons';
 import profileImg from '../../../images/profileimg.png';
@@ -19,10 +19,10 @@ const NavBar = () => {
 
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [openSidebar, setOpenSidebar] = useState(false);
-  
+
   const history = useHistory();
   const dispatch = useDispatch();
-  
+
   const showSidebar = () => setOpenSidebar(!openSidebar);
 
   const togglePopUp = () => {
@@ -30,16 +30,16 @@ const NavBar = () => {
   };
 
   const handleLogout = () => {
-    dispatch(signoutUser(userInfo.accessToken));
+    dispatch(signoutUser());
     dispatch(resetPostCommet());
-    history.push('/')
+    history.push('/');
   };
 
   const handleGoMypage = () => {
     history.push('/mypage');
   };
 
-  // console.log('네브바에서의 유저 정보', userInfo);
+  console.log('네브바에서의 유저 정보', userInfo);
 
   return (
     <>
@@ -53,7 +53,11 @@ const NavBar = () => {
 
           <ul className='navbar-right'>
             {userInfo ? (
-              userInfo.image === null || userInfo.image === '' ? (
+              userInfo === 401 || userInfo === 404 ? (
+                <li className='login-tag' onClick={togglePopUp}>
+                  LOGIN
+                </li>
+              ) : userInfo.image === null || userInfo.image === '' ? (
                 <>
                   <li className='login-tag'>
                     <FontAwesomeIcon
@@ -97,7 +101,7 @@ const NavBar = () => {
               <span
                 className={openSidebar ? 'navbar-menu active' : 'navbar-menu'}
               >
-                <SideBar setOpenSidebar={setOpenSidebar}/>
+                <SideBar setOpenSidebar={setOpenSidebar} />
               </span>
             </li>
           </ul>
