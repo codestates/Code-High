@@ -14,7 +14,7 @@ function CodeEdit() {
 
   const [codeEditInfo, setCodeEditInfo] = useState({
     title: '',
-    tagList: '',
+    postTags: '',
     codeContent: '',
     textContent: '',
     secret: true,

@@ -8,19 +8,23 @@ function CodeEditTagBox({ codeEditInfo, setCodeEditInfo }) {
   const { codePost } = postState;
 
   const [choiceTag, setChoiceTag] = useState({
-    algorithm: [],
-    language: [],
-    platform: [],
-    difficulty: [],
-    understanding: [{ id: 21, name: '☹️', category: 'understanding' }],
+    algorithm: codePost.postTags.algorithm,
+    language: codePost.postTags.language,
+    platform: codePost.postTags.platform,
+    difficulty: codePost.postTags.difficulty,
+    understanding: codePost.postTags.understanding
   });
 
-  // useState(()=>{
-
-  // },[])
+  useState(()=>{
+    //태그 찾고 있었음! 운동 다녀올게 !
+    const algorithmTag = document.querySelectorAll(
+      'div.tag-button'
+    );
+    console.log('algorithmTag', algorithmTag)
+  },[])
 
   useEffect(() => {
-    setCodeEditInfo({ ...codeEditInfo, tagList: choiceTag });
+    setCodeEditInfo({ ...codeEditInfo, postTags: choiceTag });
   }, [choiceTag]);
   // console.log(choiceTag, codeInputInfo);
 

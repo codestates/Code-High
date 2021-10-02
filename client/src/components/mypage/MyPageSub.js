@@ -56,6 +56,9 @@ const MyPageSub = (props) => {
                                 <span className='mypage-number'>
                                     {mypageInfo.postCnt}
                                 </span>
+                                <span className='mypage-number'>
+                                    {mypageInfo.postCnt}
+                                </span>
                             </div>
                             <div>
                                 <span>
