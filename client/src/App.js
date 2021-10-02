@@ -15,6 +15,7 @@ import CodeReview from './pages/CodeReview';
 import Mypage from './pages/Mypage';
 import CodePost from './pages/CodePost';
 import NotFoundError from './components/basic/error/NotFoundError';
+import UnauthorizedError from './components/basic/error/UnauthorizedError';
 import Loading from './components/basic/loading/Loading';
 import NavBar from './components/basic/navbar/NavBar';
 import AdminGraph from './pages/AdminGraph';
@@ -109,6 +110,9 @@ function App() {
           </Route>
           <Route path='/notfound'>
             <NotFoundError />
+          </Route>
+          <Route path='/Unauthorized'>
+            <UnauthorizedError />
           </Route>
           <Route path='/loading'>
             <Loading />
