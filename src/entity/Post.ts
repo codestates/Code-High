@@ -25,6 +25,9 @@ export class Post extends BaseEntity {
     @Column({ type: 'int' })
     userId: number;
 
+    @Column()
+    viewCount: number;
+
     @CreateDateColumn()
     createdAt: Date;
 

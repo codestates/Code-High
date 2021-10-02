@@ -14,7 +14,7 @@ const getPostList = async (req: Request, res: Response) => {
 
   if (!page) {
     const result = await getRepository(Post).createQueryBuilder('post')
-    .select(['post.id AS id', 'post.title AS title'])
+    .select(['post.id AS id', 'post.title AS title', 'post.viewCount AS viewCount'])
     .addSelect('SUBSTR(post.codeContent, 1, 200)', 'codeContent')
     .addSelect('user.name', 'userName')
     .leftJoin('post.user','user')
@@ -27,7 +27,7 @@ const getPostList = async (req: Request, res: Response) => {
 
   } else {
     const result = await getRepository(Post).createQueryBuilder('post')
-    .select(['post.id AS id', 'post.title AS title'])
+    .select(['post.id AS id', 'post.title AS title', 'post.viewCount AS viewCount'])
     .addSelect('SUBSTR(post.codeContent, 1, 200)', 'codeContent')
     .addSelect('user.name', 'userName')
     .leftJoin('post.user','user')
@@ -55,8 +55,9 @@ const getUserPostList = async (req: Request, res: Response) => {
   .select([
     'post.id AS id',
     'post.title AS title',
-    'post.codeContent AS codeContent',
+    'SUBSTR(post.codeContent, 1, 200) AS codeContent',
     'post.secret AS secret',
+    'post.viewCount AS viewCount',
     'postTag.tagId AS understanding',
   ])
   .leftJoin('post.postTags', 'postTag', 'postTag.tagId In (:understand)', { understand: [21, 22, 23]})
@@ -116,6 +117,8 @@ const getPostById = async (req: Request, res: Response) => {
         break
     }
   })
+  
+  await Post.update(result.id, { viewCount: ++result.viewCount });
 
   delete result.postTags;
   
