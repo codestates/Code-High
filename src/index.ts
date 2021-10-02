@@ -24,7 +24,7 @@ createConnection(config)
 
 // node-scheduler
 checkVerifiedUser();
-// weekStat();
+weekStat();
 // test();
 
 app.use(express.json());
