@@ -27,7 +27,7 @@ function CodeEditMain({ codeEditInfo, setCodeEditInfo }) {
   useEffect(() => {
     if (textRef.current) {
       const obj = new SelectionText(textRef.current);
-      console.log("obj:", obj);
+      // console.log("obj:", obj);
     }
   }, []);
 

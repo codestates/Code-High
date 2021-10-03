@@ -7,10 +7,10 @@ import { getCodestoragePost, getCodepost, getStorageFilter } from '../../redux/a
 import axios from 'axios';
 
 function Kanban() {
-  const postState = useSelector((state) => state.codePostReducer);
   const userState = useSelector((state) => state.userReducer);
-  const { userPostList, codePost } = postState;
   const { userInfo } = userState;
+  const postState = useSelector((state) => state.codePostReducer);
+  const { userPostList, codePost } = postState;
 
   const [searchValue, setSearchValue] = useState({
     search: '',
@@ -19,7 +19,7 @@ function Kanban() {
   const history = useHistory();
   const dispatch = useDispatch();
 
-console.log(userInfo, codePost)
+// console.log(userInfo, codePost)
   // const noUserMock = {
 
   // };
@@ -127,11 +127,11 @@ console.log(userInfo, codePost)
     }
   };
   //!글 불러오기
-  const handleClickPost = (id) => {
+  const handleClickPost = (e) => {
     const data = {
-      postId: id,
-      accessToken: userInfo ? userInfo.accessToken : undefined
-    } 
+      postId: e.target.id,
+      accessToken: userInfo ? userInfo.accessToken : undefined,
+    };
     dispatch(getCodepost(data));
     setTimeout(() => {
       history.push('/post');
@@ -191,12 +191,12 @@ console.log(userInfo, codePost)
                     className='kanban-list-item'
                     draggable='true'
                     key={index}
-                    onDoubleClick={() => handleClickPost(item.id)}
+                    onDoubleClick={(e) => handleClickPost(e)}
                     id={item.id}
                   >
-                    <h1>{item.title}</h1>
-                    <div>{item.createdAt}</div>
-                    <div>{item.codeContent}</div>
+                    <h1 id={item.id}>{item.title}</h1>
+                    <div id={item.id}>{item.createdAt}</div>
+                    <div id={item.id}>{item.codeContent}</div>
                   </div>
                 );
               }
@@ -215,9 +215,9 @@ console.log(userInfo, codePost)
                     onDoubleClick={(e) => handleClickPost(e)}
                     id={item.id}
                   >
-                    <h1>{item.title}</h1>
-                    <div>{item.createdAt}</div>
-                    <div>{item.codeContent}</div>
+                    <h1 id={item.id}>{item.title}</h1>
+                    <div id={item.id}>{item.createdAt}</div>
+                    <div id={item.id}>{item.codeContent}</div>
                   </div>
                 );
               }
@@ -236,9 +236,9 @@ console.log(userInfo, codePost)
                     onDoubleClick={(e) => handleClickPost(e)}
                     id={item.id}
                   >
-                    <h1>{item.title}</h1>
-                    <div>{item.createdAt}</div>
-                    <div>{item.codeContent}</div>
+                    <h1 id={item.id}>{item.title}</h1>
+                    <div id={item.id}>{item.createdAt}</div>
+                    <div id={item.id}>{item.codeContent}</div>
                   </div>
                 );
               }

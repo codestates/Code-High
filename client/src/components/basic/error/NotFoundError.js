@@ -16,9 +16,9 @@ const NotFoundError = () => {
     <div className='login-error-container'>
       <img src={notfound} al='loginerror' />
       <div>
-        회원정보를 찾을 수 없습니다.
+        아이디 또는 비밀번호가 일치하지 않거나, 회원정보를 찾을 수 없습니다.
         <br />
-        회원가입 후 이용해주세요.
+        비회원이시면 회원가입 후 이용해주세요.
       </div>
       <Button
         content={'회원가입'}

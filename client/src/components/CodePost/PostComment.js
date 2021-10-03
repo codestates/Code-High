@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
-import Alert from '../basic/alert/Alert';
 
 import {
   getCommentPost,
@@ -10,6 +9,7 @@ import {
   deleteComment,
 } from '../../redux/actions/codePostActions';
 
+import Alert from '../basic/alert/Alert';
 import Button from '../basic/button/Button';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -24,15 +24,13 @@ function PostComment() {
 
   const [alertModal, setAlertModal] = useState(false);
   const [count, setCount] = useState(2);
-  const [checkToSetId, setCheckToSetId] = useState(false);
   const [userComment, setUserComment] = useState({
     content: '',
     postId: '',
   });
-console.log(userInfo);
+
   const dispatch = useDispatch();
   const history = useHistory();
-console.log('postComment', postComment);
 
   //새로고침 시, 스크롤 가장 상단
   window.onload = function () {
@@ -78,16 +76,19 @@ console.log('postComment', postComment);
       history.push('/codeedit');
     }, 1000);
   };
+
+  const togglePopUp = () => {
+    setAlertModal(!alertModal);
+  };
+
   //댓글 등록
   const handleButtonClick = () => {
     if (!userInfo) {
-      console.log('로그인을 해주세요');
+      togglePopUp()
       return;
     }
     if (userInfo.name === '게스트') {
-      console.log(
-        '게스트 계정 사용 중이십니다. 회원가입을 하시면 더 많은 서비스를 이용하실 수 있습니다.'
-      );
+      togglePopUp()
       return;
     }
 
@@ -124,14 +125,11 @@ console.log('postComment', postComment);
     };
     dispatch(deleteComment(data));
   };
-  
-  const togglePopUp = () => {
-    setAlertModal(!alertModal);
-  };
+
 
   const handleButtonSignup = () => {
     history.push('/signup');
-  }
+  };
 
   return (
     <>
@@ -143,7 +141,7 @@ console.log('postComment', postComment);
               <Button
                 content={'Edit'}
                 backgroundColor='#2F8C4C'
-                onClickHandle={handleEditPost}
+                onClickHandle={handleEditPost} 
               />
             ) : null}
           </div>
@@ -164,7 +162,7 @@ console.log('postComment', postComment);
             <Button
               content={'Enter'}
               backgroundColor='#E1E1E1'
-              onClickHandle={togglePopUp}
+              onClickHandle={handleButtonClick}
             />
           </div>
           <ul className='postcomment-output-container' onScroll={onScroll}>
@@ -205,15 +203,16 @@ console.log('postComment', postComment);
             )}
           </ul>
         </div>
-        {alertModal ? (<Alert 
-          content={'로그인 후 이용가능합니다'} 
-          leftbutton={'회원가입'}
-          rightbutton={'닫기'} 
-          onClickHandleLeft={handleButtonSignup}
-          onClickHandleRight={togglePopUp}
-          togglePopUp={togglePopUp}
-        />)
-        : null}
+        {alertModal ? (
+          <Alert
+            content={'회원 로그인 후 이용가능합니다'}
+            leftbutton={'회원가입'}
+            rightbutton={'닫기'}
+            onClickHandleLeft={handleButtonSignup}
+            onClickHandleRight={togglePopUp}
+            togglePopUp={togglePopUp}
+          />
+        ) : null}
       </div>
     </>
   );
