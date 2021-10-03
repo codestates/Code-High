@@ -10,6 +10,7 @@ import { getMypageInfo } from '../../redux/actions/userActions';
 const MyPageSub = (props) => {
     const userState = useSelector((state) => state.userReducer);
     const { mypageInfo, userInfo } = userState;
+    const [showUserInfoPopUp, setShowUserInfoPopUp] = useState(false);
     const dispatch = useDispatch();
     
     useEffect(() => {
@@ -19,7 +20,6 @@ const MyPageSub = (props) => {
         dispatch(getMypageInfo(data));
     }, []);
     
-    const [showUserInfoPopUp, setShowUserInfoPopUp] = useState(false);
     const userInfoPopUp = () => {
         setShowUserInfoPopUp(!showUserInfoPopUp)
         console.log(showUserInfoPopUp, 'click')

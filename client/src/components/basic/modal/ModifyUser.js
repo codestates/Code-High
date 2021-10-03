@@ -14,11 +14,10 @@ function ModifyUser ({userInfoPopUp,setShowUserInfoPopUp}) {
     }
 };
 
-  const enterKePress = (e) => {
-    // if(e.key === 'Enter') {
-      
-    // }
-  }
+
+  const enterKeyPress = (e) => {}
+    
+  
   return (
     <div className='modifyuser-modal'>
       <div className='modifyuser-modal-overlay'
@@ -36,11 +35,11 @@ function ModifyUser ({userInfoPopUp,setShowUserInfoPopUp}) {
             <div>이메일</div>
             <input placeholder={userInfo.email} disabled />
             <div>비밀번호</div>
-            <input placeholder='변경할 비밀번호를 입력해주세요.' onKeyPress={enterKePress}/>
+            <input placeholder='변경할 비밀번호를 입력해주세요.' onKeyPress={enterKeyPress}/>
             <div>비밀번호 확인</div>
-            <input placeholder='변경할 비밀번호를 확인해주세요.' onKeyPress={enterKePress}/>
+            <input placeholder='변경할 비밀번호를 확인해주세요.' onKeyPress={enterKeyPress}/>
             <div>닉네임</div>
-            <input placeholder='변경할 닉네임을 입력해주세요.' onKeyPress={enterKePress}/>
+            <input placeholder='변경할 닉네임을 입력해주세요.' onKeyPress={enterKeyPress}/>
           </article>
           <div className='modifyuser-button-container'>
             <button>회원정보 수정</button>
