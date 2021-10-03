@@ -14,11 +14,10 @@ function ModifyUser ({userInfoPopUp,setShowUserInfoPopUp}) {
     }
 };
 
-function ModifyUser () {
-  const enterKePress = (e) => {}
-    if(e.key === 'Enter') {
+  const enterKePress = (e) => {
+    // if(e.key === 'Enter') {
       
-    }
+    // }
   }
   return (
     <div className='modifyuser-modal'>

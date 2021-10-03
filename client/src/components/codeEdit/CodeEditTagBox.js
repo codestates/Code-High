@@ -8,23 +8,32 @@ function CodeEditTagBox({ codeEditInfo, setCodeEditInfo }) {
   const { codePost } = postState;
 
   const [choiceTag, setChoiceTag] = useState({
-    algorithm: [],
-    language: [],
-    platform: [],
-    difficulty: [],
-    understanding: [{ id: 21, name: '☹️', category: 'understanding' }],
+    algorithm: codePost.postTags.algorithm,
+    language: codePost.postTags.language,
+    platform: codePost.postTags.platform,
+    difficulty: codePost.postTags.difficulty,
+    understanding: codePost.postTags.understanding,
   });
 
-  // useState(()=>{
+  let taglist = [...codePost.postTags.algorithm, ...codePost.postTags.language, ...codePost.postTags.platform, ...codePost.postTags.difficulty, ...codePost.postTags.understanding];
+  let taglistId = taglist.map((ele) => ele.id)
+  console.log(taglistId);
 
-  // },[])
+  useEffect(()=> {
+    taglistId.map((ele) => {
+      let tag = document.getElementById(`${ele}`)
+      console.log(tag)
+      // tag.style.backgroundColor = '#2F8C4C';
+    })
+  },[])
 
   useEffect(() => {
-    setCodeEditInfo({ ...codeEditInfo, tagList: choiceTag });
+    setCodeEditInfo({ ...codeEditInfo, postTags: choiceTag });
   }, [choiceTag]);
   // console.log(choiceTag, codeInputInfo);
 
   const handleChangeColor = (e) => {
+    console.log(e.target)
     const currentTagName = e.target.innerHTML;
     const currentTag = tagNameData.filter((ele) => ele.name === currentTagName);
 
@@ -124,11 +133,12 @@ function CodeEditTagBox({ codeEditInfo, setCodeEditInfo }) {
               if (item.category === 'algorithm') {
                 return (
                   <Tag
-                    className='algorithm'
+                    className={`algorithm ${item.id}`}
                     key={index}
                     content={item.name}
                     backgroundColor='#E1E1E1'
                     onClickHandle={handleChangeColor}
+                    id={item.id}
                   />
                 );
               }
@@ -147,6 +157,7 @@ function CodeEditTagBox({ codeEditInfo, setCodeEditInfo }) {
                     content={item.name}
                     backgroundColor='#E1E1E1'
                     onClickHandle={handleChangeColor}
+                    id={item.id}
                   />
                 );
               }
@@ -165,6 +176,7 @@ function CodeEditTagBox({ codeEditInfo, setCodeEditInfo }) {
                     content={item.name}
                     backgroundColor='#E1E1E1'
                     onClickHandle={handleChangeColor}
+                    id={item.id}
                   />
                 );
               }
@@ -183,6 +195,7 @@ function CodeEditTagBox({ codeEditInfo, setCodeEditInfo }) {
                     content={item.name}
                     backgroundColor='#E1E1E1'
                     onClickHandle={handleChangeColor}
+                    id={item.id}
                   />
                 );
               }
@@ -201,6 +214,7 @@ function CodeEditTagBox({ codeEditInfo, setCodeEditInfo }) {
                     content={item.name}
                     backgroundColor='#E1E1E1'
                     onClickHandle={handleChangeColor}
+                    id={item.id}
                   />
                 );
               }

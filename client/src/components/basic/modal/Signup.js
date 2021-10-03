@@ -1,10 +1,12 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useState } from 'react';
+
 import { useHistory } from 'react-router-dom';
-import Signupimg from '../../../images/Signupimg.svg';
 import axios from 'axios';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
+
+import Signupimg from '../../../images/Signupimg.svg';
 
 axios.defaults.withCredentials = true;
 const serverUrl = 'https://api.codehigh.club';
@@ -14,16 +16,17 @@ function Signup() {
   const [userInfo, setUserInfo] = useState({
     email: '',
     password: '',
-    passwordcheck:'',
+    passwordcheck: '',
     name: '',
   });
+
   const history = useHistory();
 
   //!회원가입 정보 모으기
   const handleInputValue = (key) => (e) => {
     setUserInfo({ ...userInfo, [key]: e.target.value });
   };
-  
+
   //!정규표현식
   function isEmail(asValue) {
     var regExp =
@@ -36,26 +39,26 @@ function Signup() {
     const { email, password, passwordcheck, name } = userInfo;
 
     if (!isEmail(email)) {
-      setSignupNotice('이메일 형식을 맞춰주세요.')
+      setSignupNotice('이메일 형식을 맞춰주세요.');
       return;
     }
 
     if (password !== passwordcheck) {
-      setSignupNotice('비밀번호가 일치하지 않습니다.')
+      setSignupNotice('비밀번호가 일치하지 않습니다.');
       return;
-    } 
+    }
 
-    if (!email || !password || !name ) {
-      setSignupNotice('모든 항목을 채워주세요.')
+    if (!email || !password || !name) {
+      setSignupNotice('모든 항목을 채워주세요.');
       return;
-    } 
+    }
 
     axios
       .post(
         `${serverUrl}/auth/signup`,
         { email, password, name },
         {
-          headers: { 'Content-Type': 'application/json' }
+          headers: { 'Content-Type': 'application/json' },
         }
       )
       .then((data) => {
@@ -64,15 +67,15 @@ function Signup() {
         }
       })
       .catch((err) => {
-        console.log(err)
-      })
+        console.log(err);
+      });
   };
 
   const enterKeyPress = (e) => {
-    if(e.key === 'Enter') {
-      handleSignup()
+    if (e.key === 'Enter') {
+      handleSignup();
     }
-  }
+  };
 
   return (
     <div className='signup-modal'>
@@ -81,7 +84,7 @@ function Signup() {
           <img src={Signupimg} alt='signup' />
         </div>
         <div className='signup-left'>
-        <h1>회원가입</h1>
+          <h1>회원가입</h1>
           <article>
             <div>이메일</div>
             <input
@@ -113,7 +116,9 @@ function Signup() {
             />
           </article>
           <div className='signup-notice-container'>
-            <div className='signup-notice'><FontAwesomeIcon icon={faExclamationTriangle}/> {signupNotice}</div>
+            <div className='signup-notice'>
+              <FontAwesomeIcon icon={faExclamationTriangle} /> {signupNotice}
+            </div>
           </div>
           <div className='signup-button-container'>
             <button type='submit' onClick={handleSignup}>
