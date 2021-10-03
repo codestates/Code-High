@@ -14,7 +14,7 @@ const getPostList = async (req: Request, res: Response) => {
 
   if (!page) {
     const result = await getRepository(Post).createQueryBuilder('post')
-    .select(['post.id AS id', 'post.title AS title', 'post.viewCount AS viewCount'])
+    .select(['post.id AS id', 'post.title AS title', 'post.viewCount AS viewCount', 'post.createdAt AS createdAt'])
     .addSelect('SUBSTR(post.codeContent, 1, 200)', 'codeContent')
     .addSelect('user.name', 'userName')
     .leftJoin('post.user','user')
@@ -27,7 +27,7 @@ const getPostList = async (req: Request, res: Response) => {
 
   } else {
     const result = await getRepository(Post).createQueryBuilder('post')
-    .select(['post.id AS id', 'post.title AS title', 'post.viewCount AS viewCount'])
+    .select(['post.id AS id', 'post.title AS title', 'post.viewCount AS viewCount', 'post.createdAt AS createdAt'])
     .addSelect('SUBSTR(post.codeContent, 1, 200)', 'codeContent')
     .addSelect('user.name', 'userName')
     .leftJoin('post.user','user')
