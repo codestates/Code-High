@@ -22,6 +22,8 @@ import AdminGraph from './pages/AdminGraph';
 import AdminTable from './pages/AdiminTable';
 import CodeEdit from './pages/CodeEdit';
 import NoticeForSignup from './components/basic/error/NoticeForSignup';
+import FindingPassword from './components/basic/modal/FindingPassword';
+import ResetPassword from './components/basic/modal/ResetPassword';
 
 function App() {
   const dispatch = useDispatch();
@@ -90,6 +92,12 @@ function App() {
           </Route>
           <Route path='/signup'>
             <Signup />
+          </Route>
+          <Route path='/findingpassword'>
+            <FindingPassword />
+          </Route>
+          <Route path='/resetpassword'>
+            <ResetPassword />
           </Route>
           <Route path='/codestorage'>
             <CodeStorage />
