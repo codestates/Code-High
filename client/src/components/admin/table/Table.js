@@ -1,41 +1,68 @@
-import React from 'react';
+import React, { useEffect,  useState } from 'react';
 import Button from '../../basic/button/Button'
+import {useSelector, useDispatch } from 'react-redux';
+import{
+    getUsersPost,
+    getUsersComment,
+    deleteUsersPost,
+    deleteUsersComment,
+} from '../../../redux/actions/adminActions'
 
 const Table = () => {
-    const userPostData = 
-    [
-        {email:'kimcoding@test.kr', post:'js,dfs' , date:'2021.08.21'},
-        {email:'parkcoding@test.kr', post:'js,dfs' , date:'2021.08.21'},
-        {email:'jangcoding@test.kr', post:'js,dfs' , date:'2021.08.21'},
-        {email:'gocoding@test.kr', post:'js,dfs' , date:'2021.08.21'},
-        {email:'jicoding@test.kr', post:'js,dfs' , date:'2021.08.21'},
-        {email:'jungcoding@test.kr', post:'js,dfs' , date:'2021.08.21'},
-        {email:'jeoncoding@test.kr', post:'js,dfs' , date:'2021.08.21'},
-        {email:'kimcoding@test.kr', post:'js,dfs' , date:'2021.08.21'},
-        {email:'kimcoding@test.kr', post:'js,dfs' , date:'2021.08.21'},
-        {email:'kimcoding@test.kr', post:'js,dfs' , date:'2021.08.21'},
-        {email:'kimcoding@test.kr', post:'js,dfs' , date:'2021.08.21'},
-        {email:'parkcoding@test.kr', post:'js,dfs' , date:'2021.08.21'},
-        {email:'jangcoding@test.kr', post:'js,dfs' , date:'2021.08.21'},
-        {email:'gocoding@test.kr', post:'js,dfs' , date:'2021.08.21'},
-        {email:'jicoding@test.kr', post:'js,dfs' , date:'2021.08.21'},
-        {email:'jungcoding@test.kr', post:'js,dfs' , date:'2021.08.21'},
-        {email:'jeoncoding@test.kr', post:'js,dfs' , date:'2021.08.21'},
-        {email:'kimcoding@test.kr', post:'js,dfs' , date:'2021.08.21'},
-        {email:'kimcoding@test.kr', post:'js,dfs' , date:'2021.08.21'},
-        {email:'kimcoding@test.kr', post:'js,dfs' , date:'2021.08.21'},
-    ]
 
     const userCommentData = 
     [
-        {post:'[알고리즘1]', comment:'OOOOOOOOO'},
-        {post:'[알고리즘2]', comment:'OOOOOOOOO'},
-        {post:'[알고리즘3]', comment:'OOOOOOOOO'},
-        {post:'[알고리즘4]', comment:'OOOOOOOOO'},
-        {post:'[알고리즘5]', comment:'OOOOOOOOO'},
-        {post:'[알고리즘6]', comment:'OOOOOOOOO'},
+        {id:'1', name:'김코딩', comment:'OOOOOOOOO'},
+        {id:'2', name:'성코딩', comment:'OOOOOOOOO'},
+        {id:'3', name:'전해커', comment:'OOOOOOOOO'},
+        {id:'4', name:'장딩코', comment:'OOOOOOOOO'},
+        {id:'5', name:'박코', comment:'OOOOOOOOO'},
+        {id:'6', name:'유코', comment:'OOOOOOOOO'},
     ]
+    //!test
+    // const postState = useSelector((state) => state.codePostReducer);
+    // const { postList,commentList} = postState;
 
+    const adminState = useSelector((state) => state.adminReducer);
+    const { usersPost } = adminState
+    const dispatch = useDispatch();
+    
+    const userState = useSelector((state) => state.userReducer);
+    const { userInfo } = userState
+    
+    useEffect(() =>{
+        dispatch(getUsersPost(userInfo.accessToken))
+        console.log(usersPost,'@@@@')
+    },[]);
+
+    // console.log(postList)
+
+
+
+    //!test
+
+    const [checkPostList, setCheckPostList] = useState([])
+    const [checkCommentList, setCheckCommentList] = useState([])
+
+    const getPostCheckboxId = (e, id) =>{
+        if(e.target.checked){
+            setCheckPostList([...checkPostList, id]);
+        }
+        else{
+            setCheckPostList(checkPostList.filter((checkedId) => checkedId !== id))
+        }
+        console.log(checkPostList, 'PostList')
+    }
+
+    const getCommentCheckboxId = (e, id) =>{
+        if(e.target.checked){
+            setCheckCommentList([...checkCommentList, id]);
+        }
+        else{
+            setCheckCommentList(checkCommentList.filter((checkedId) => checkedId !== id))
+        }
+        console.log(checkCommentList, 'CommentList')
+    }
 
 
 
@@ -51,25 +78,26 @@ const Table = () => {
                 <div className='admin-table-container'>
                     <div className='admin-table-post-status'>
                         <div className='admin-table-button-box'>
-                            <div>게시글 {userPostData.length}개</div>
+                            <div>게시글 {usersPost.length}개</div>
                             <div className='admin-button'>
                             <Button content='Remove' backgroundColor='#2F8C4C' color='#fff' />
                             </div>
                         </div>
                         <div className='admin-table-post-data'>
                             <tr>
-                                <th>#</th>
-                                <th>메일</th>
+                                <th></th>
+                                <th>이메일</th>
                                 <th>게시글</th>
                                 <th>날짜</th>
                             </tr>
                             {
-                    userPostData.map((el,index)=>{                         
+                    usersPost.map((el,index)=>{                         
                                 return(
                                     <tr key={index}>
-                                        <td>[ ]</td>
-                                        <td>{el.email}</td>
-                                        <td>{el.post}</td>
+                                        <td><input type="checkbox" 
+                                        onChange={(e)=> getPostCheckboxId(e, el.id)} /></td>
+                                        <td>{el.userName}</td>
+                                        <td>{el.title}</td>
                                         <td>{el.date}</td>
                                     </tr>
                                 )    
@@ -88,18 +116,19 @@ const Table = () => {
                         </div>
                         <div className='admin-table-comment-box'>
                             <tr>
-                                <th>#</th>
-                                <th>No</th>
-                                <th>Name</th>
-                                <th>comment</th>
+                                <th></th>
+                                <th>순번</th>
+                                <th>이름</th>
+                                <th>댓글</th>
                             </tr>
                             {
                     userCommentData.map((el,index)=>{                         
                                 return(
-                                    <tr>
-                                        <td>[ ]</td>
+                                    <tr key={index}>
+                                        <td><input type="checkbox"
+                                        onChange={(e)=> getCommentCheckboxId(e, el.id)} /></td>
                                         <td>{index}</td>
-                                        <td>{el.post}</td>
+                                        <td>{el.name}</td>
                                         <td>{el.comment}</td>
                                     </tr>
                                 )    
