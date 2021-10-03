@@ -7,24 +7,26 @@ import {
 } from '../actions/types';
 
 //객체 복사하기
-const adminReducer = (state = {}, action) => {
+const adminReducer = (state = {}, 
+  action
+  ) => {
   switch (action.type) {
     case GET_USERS_CHART:
       return Object.assign({}, state, {
-        userChart: [...state.userChart, action.payload],
+        usersChart: [...action.payload],
       });
     case GET_USERS_POST:
       return Object.assign({}, state, {
-        usersPost: [...state.usersPost, action.payload],
+        usersPost: [...action.payload],
       });
     case GET_USERS_COMMENT:
       return Object.assign({}, state, {
-        usersComment: [...state.usersComment, action.payload],
+        usersComment: [...action.payload],
       });
-    case DELETE_USERS_POST:
-      return Object.assign({}, state, {});
-    case DELETE_USERS_COMMENT:
-      return Object.assign({}, state, {});
+    // case DELETE_USERS_POST:
+    //   return Object.assign({}, state, {});
+    // case DELETE_USERS_COMMENT:
+    //   return Object.assign({}, state, {});
     default:
       return state;
   }
