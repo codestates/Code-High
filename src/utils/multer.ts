@@ -18,9 +18,9 @@ export const upload = multer({
     contentType: multerS3.AUTO_CONTENT_TYPE,
     bucket: 'code-high-image',
     acl: 'public-read',
-    
     key: (req: Request, file, cb) => {
       cb(null, Date.now() + '.' + file.originalname.split('.').pop());
     }
-  })
+  }),
+  limits: { fileSize: 1000 * 1000 * 10 }
 });
