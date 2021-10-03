@@ -1,7 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react';
+
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+
 import { signinUser, signoutUser } from '../../../redux/actions/userActions';
+
 import Signinimg from '../../../images/Signinimg.svg';
 import codehighlogo from '../../../images/codehighlogo.png';
 import github from '../../../images/github.png';
@@ -9,13 +12,16 @@ import kakao from '../../../images/kakao.png';
 import google from '../../../images/google.png';
 
 function Signin({ togglePopUp, showLoginModal, setShowLoginModal }) {
-  const SigninBackgroundEl = useRef(null);
   const state = useSelector(state => state.userReducer);
   const { userInfo } = state;
+
   const [loginInfo, setLoginInfo] = useState({
     email: '',
     password: '',
   });
+
+  const SigninBackgroundEl = useRef(null);
+
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -68,13 +74,10 @@ function Signin({ togglePopUp, showLoginModal, setShowLoginModal }) {
     const { email, password } = loginInfo;
 
     if (!isEmail(email)) {
-      //axios 연결 후 alter 띄우기
-      console.log('이메일 확인');
       return;
     }
 
     if (!email || !password) {
-      console.log('빈칸 채워');
       return;
     }
 
@@ -116,6 +119,7 @@ function Signin({ togglePopUp, showLoginModal, setShowLoginModal }) {
         return ;
       }
       setShowLoginModal(false);
+      history.push('/')
     }
   })
 

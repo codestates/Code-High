@@ -39,7 +39,7 @@ function CodeReviewBoard() {
       // accessToken:userInfo.accessToken
     }
     dispatch(getReviewFilter(data))
-    console.log('코드리뷰보드에서의 코드리스트', count, postList, searchValue.search);
+    // console.log('코드리뷰보드에서의 코드리스트', count, postList, searchValue.search);
   }, [searchValue]);
 
   const enterKeyPress = (e) => {
@@ -49,7 +49,6 @@ function CodeReviewBoard() {
     };
     if(e.key === 'Enter') {
       dispatch(getReviewFilter(data))
-      console.log(postList)
     }
   }
 
@@ -79,7 +78,6 @@ function CodeReviewBoard() {
       postId: e.target.id,
       accessToken: userInfo ? userInfo.accessToken : undefined,
     };
-    console.log(data);
     dispatch(getCodepost(data));
     setTimeout(() => {
       history.push('/post');

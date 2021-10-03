@@ -14,14 +14,14 @@ function CodeEdit() {
 
   const [codeEditInfo, setCodeEditInfo] = useState({
     title: '',
-    tagList: '',
+    postTags: '',
     codeContent: '',
     textContent: '',
     secret: true,
     userId: '',
   });
 
-console.log('codeEditInfo', codeEditInfo)
+// console.log('codeEditInfo', codeEditInfo)
 
   useEffect(() => {
     setCodeEditInfo(codePost);    

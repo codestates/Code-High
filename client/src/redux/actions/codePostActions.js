@@ -60,7 +60,6 @@ export function resetCodereviewPost() {
       },
     })
     .then((res) => {
-      console.log(res.data.postList);
       return res.data.postList;
     });
 
@@ -100,10 +99,9 @@ export async function getStorageFilter(data) {
       },
     })
     .then((res) => {
-      console.log(res);
       return res.data.postList;
     });
-  console.log(response);
+
   return {
     type: GET_CODESTORAGE_FILTER,
     payload: response,
