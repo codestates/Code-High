@@ -8,6 +8,7 @@ adminRouter.use('/', checkAuth);
 adminRouter.use('/', checkRole);
 
 adminRouter.get('/stat/date', dashboardController.dateStat);
+adminRouter.get('/stat/week', dashboardController.weekStat);
 adminRouter.get('/stat/month', dashboardController.monthStat);
 
 export default adminRouter;

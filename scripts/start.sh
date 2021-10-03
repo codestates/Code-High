@@ -20,5 +20,9 @@ export GOOGLE_CLIENT_SECRET=$(aws ssm get-parameters --region ap-northeast-2 --n
 export KAKAO_CLIENT_ID=$(aws ssm get-parameters --region ap-northeast-2 --names KAKAO_CLIENT_ID --query Parameters[0].Value | sed 's/"//g')
 export KAKAO_CLIENT_SECRET=$(aws ssm get-parameters --region ap-northeast-2 --names KAKAO_CLIENT_SECRET --query Parameters[0].Value | sed 's/"//g')
 
+export S3_ACCESS_ID=$(aws ssm get-parameters --region ap-northeast-2 --names S3_ACCESS_ID --query Parameters[0].Value | sed 's/"//g')
+export S3_SECRET_KEY=$(aws ssm get-parameters --region ap-northeast-2 --names S3_SECRET_KEY --query Parameters[0].Value | sed 's/"//g')
+export S3_REGION=$(aws ssm get-parameters --region ap-northeast-2 --names S3_REGION --query Parameters[0].Value | sed 's/"//g')
+
 npm run build
 authbind --deep pm2 start dist/src/index.js
