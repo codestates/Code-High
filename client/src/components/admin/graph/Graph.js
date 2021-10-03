@@ -1,8 +1,26 @@
 import React from 'react';
 import { Bar } from 'react-chartjs-2'
+import {useSelector, useDispatch } from 'react-redux';
+import { getUsersChart } from '../../../redux/actions/adminActions';
 
 const Graph = () => {
-    const data = {
+    const usersChartState = useSelector((state) => state.adminReducer)
+    const { usersChart } = usersChartState;
+    const dispatch = useDispatch();
+    
+    console.log(usersChartState, '차트정보 불러오기')
+
+    // useEffect(() => {
+    //     const data = {
+    //       accessToken: userInfo ? userInfo.accessToken : undefined,
+    //     };
+    //     dispatch(getUsersChart(data));
+    // }, []); 
+
+
+
+
+    const chartData = {
         labels: ['5월', '6월', '7월', '8월', '9월', '10월'],
         datasets: [{
         label: '사용자 수',
@@ -24,12 +42,12 @@ const Graph = () => {
         <div className='admin-graph-main'>
             <div className='admin-graph-main-container'>
                 <div className='admin-graph-subject'>
-                사용자현황
+                사용자 현황
                 </div>
                 <div className='admin-status-graph-container'>
                     <div className='admin-graph'>
                         <Bar
-                        data={data}
+                        data={chartData}
                         options={{ maintainAspectRatio: false }}
                         />
                     </div>

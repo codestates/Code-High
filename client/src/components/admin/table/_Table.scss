@@ -92,6 +92,19 @@
 }
 
 @include tablet {
+    .admin-table-comment-box{
+        border: 1px solid $gray;
+        height: 250px;
+        overflow-y: auto;
+    }
+    .admin-table-post-data{
+        display: grid;
+        grid-template-columns: repeat(1,1fr);
+        border: 1px solid $gray;
+        height: 250px;
+        overflow-y: auto;
+    }
+
     .admin-table-container{
         flex-direction: column;
     }
@@ -106,5 +119,17 @@
     }
     .admin-table-sub{
         width: 100%;
+    }
+    .admin-table-comment-box{
+        border: 1px solid $gray;
+        height: 250px;
+        overflow-y: auto;
+    }
+    .admin-table-post-data{
+        display: grid;
+        grid-template-columns: repeat(1,1fr);
+        border: 1px solid $gray;
+        height: 250px;
+        overflow-y: auto;
     }
 }
