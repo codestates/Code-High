@@ -24,4 +24,4 @@ export S3_ACCESS_ID=$(aws ssm get-parameters --region ap-northeast-2 --names S3_
 export S3_SECRET_KEY=$(aws ssm get-parameters --region ap-northeast-2 --names S3_SECRET_KEY --query Parameters[0].Value | sed 's/"//g')
 export S3_REGION=$(aws ssm get-parameters --region ap-northeast-2 --names S3_REGION --query Parameters[0].Value | sed 's/"//g')
 
-authbind --deep pm2 start npm -- start
+authbind --deep pm2 start npm --name "server" -- run start
