@@ -32,7 +32,7 @@ const dateStat = async (req: Request, res: Response) => {
 
   const date = await Stat.createQueryBuilder()
   .orderBy('date', 'DESC')
-  .limit(4)
+  .limit(6)
   .getMany()
 
   date.reverse();
@@ -81,7 +81,7 @@ const monthStat = async (req: Request, res: Response) => {
   .select(['CONCAT(YEAR(date), \'-\', Month(date)) AS date', 'SUM(postCount) AS postCount', 'SUM(commentCount) AS commentCount', 'SUM(joinCount) AS joinCount', 'SUM(visitCount) AS visitCount'])
   .groupBy('CONCAT(YEAR(date), \'-\', Month(date))')
   .orderBy('MONTH(date)', 'DESC')
-  .limit(4)
+  .limit(6)
   .getRawMany()
 
   month.reverse();
