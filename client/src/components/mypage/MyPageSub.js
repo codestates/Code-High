@@ -6,6 +6,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import ModifyUser from '../basic/modal/ModifyUser';
 import modifyUserInfoImg from '../../images/modifyuserinfo.png'
 import { getMypageInfo } from '../../redux/actions/userActions';
+import { modifyUser } from '../../redux/actions/userActions'
 
 const MyPageSub = (props) => {
     const userState = useSelector((state) => state.userReducer);
