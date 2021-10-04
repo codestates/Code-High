@@ -11,7 +11,8 @@ import {
 import axios from 'axios';
 
 axios.defaults.withCredentials = true;
-const serverUrl = 'https://api.codehigh.club';
+// const serverUrl = 'https://api.codehigh.club';
+const serverUrl = 'http://localhost:4000';
 
 //1.로그인(완료)
 export function signinUser(loginInfo) {

@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
 
 import Alert from '../alert/Alert';
+import findingpassword from '../../../images/findingPassword.svg';
 
 function FindingPassword(){
   const [infoForFinding, setInfoForFinding] = useState({
@@ -69,6 +70,7 @@ function FindingPassword(){
    <div className='signup-modal'>
       <div className='signup-container'>
         <div className='signup-right'>
+        <img src={findingpassword} alt='signup' />
         </div>
         <div className='signup-left'>
           <h1>비밀번호 찾기</h1>
