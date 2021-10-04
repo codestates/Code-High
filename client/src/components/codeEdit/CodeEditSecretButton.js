@@ -7,8 +7,10 @@ import {
   getCodepost
 } from '../../redux/actions/codePostActions';
 
+import serverUrl from '../../App';
+
 axios.defaults.withCredentials = true;
-const serverUrl = 'https://api.codehigh.club';
+// const serverUrl = 'https://api.codehigh.club';
 
 function CodeEditSecretButton ({ codeEditInfo, setCodeEditInfo }) {
   const state = useSelector(state => state.userReducer);

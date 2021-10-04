@@ -105,6 +105,11 @@ function Signin({ togglePopUp, showLoginModal, setShowLoginModal }) {
     setShowLoginModal(false);
   }
 
+  const handleFindingPassword = () => {
+    history.push('/findingpassword')
+    setShowLoginModal(false);
+  }
+
   useEffect(() => {
     if(userInfo) {
       if(userInfo === 401) {
@@ -163,7 +168,7 @@ function Signin({ togglePopUp, showLoginModal, setShowLoginModal }) {
           </div>
           <ul>
             <li>
-              <span>비밀번호 찾기(점검중)</span>
+              <span onClick={handleFindingPassword}>비밀번호 찾기</span>
             </li>
             <li>
               <span onClick={handleGoSignupPage}>회원가입</span>

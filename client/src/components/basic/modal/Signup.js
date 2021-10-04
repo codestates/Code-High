@@ -7,9 +7,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
 
 import Signupimg from '../../../images/Signupimg.svg';
+import serverUrl from '../../../App';
 
 axios.defaults.withCredentials = true;
-const serverUrl = 'https://api.codehigh.club';
 
 function Signup() {
   const [signupNotice, setSignupNotice] = useState('이메일 형식을 맞춰주세요.');

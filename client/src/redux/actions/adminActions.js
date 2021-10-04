@@ -6,9 +6,10 @@ import {
   DELETE_USERS_COMMENT
 } from './types';
 import axios from 'axios';
+import serverUrl from '../../App';
 
 axios.defaults.withCredentials = true;
-const serverUrl = 'https://api.codehigh.club';
+// const serverUrl = 'https://api.codehigh.club';
 
 //1.유져 차트 정보 가져오기-------------------------------
 
