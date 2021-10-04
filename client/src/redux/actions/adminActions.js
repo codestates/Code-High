@@ -41,7 +41,7 @@ export async function getUsersPost(data) {
       withCredentials: true,
     })
     .then((res) => {
-      // console.log(res.data.postList)
+      console.log(res.data.postList)
       return res.data.postList
     });
 
@@ -57,13 +57,12 @@ export async function getUsersComment(data) {
     .get(
       `${serverUrl}/comment`,{
         headers: {
-          loginType: `${logintype}`,
-          Authorization: `bearer ${accessToken}`
+          Authorization: `bearer ${data}`,
         },
         withCredentials: true,
       })
     .then((res) => {
-      return res.data.commentList
+      console.log(res.data)
     })
       return {
         type: GET_USERS_COMMENT,
@@ -93,7 +92,7 @@ export async function getUsersComment(data) {
 //5.선택한 댓글 삭제하기-------------------------------
 // export async function deleteUsersComment(accessToken, logintype, commentList) {
 //   axios
-//     .delete(`${serverUrl}/comment`, {
+//     .delete(`${serverUrl}/comment`, {  
 //       data: { commentList: `${commentList}`},
 //       headers: { loginType: `${logintype}`, Authorization: `bearer ${accessToken}` },
 //       withCredentials: true,

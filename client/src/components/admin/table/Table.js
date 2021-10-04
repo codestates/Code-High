@@ -19,27 +19,20 @@ const Table = () => {
         {id:'5', name:'박코', comment:'OOOOOOOOO'},
         {id:'6', name:'유코', comment:'OOOOOOOOO'},
     ]
-    //!test
-    // const postState = useSelector((state) => state.codePostReducer);
-    // const { postList,commentList} = postState;
 
     const adminState = useSelector((state) => state.adminReducer);
-    const { usersPost } = adminState
+    const { usersPost, usersComment } = adminState
     const dispatch = useDispatch();
     
     const userState = useSelector((state) => state.userReducer);
     const { userInfo } = userState
     
     useEffect(() =>{
+        dispatch(getUsersComment(userInfo.accessToken))
         dispatch(getUsersPost(userInfo.accessToken))
-        console.log(usersPost,'@@@@')
+        // console.log(usersPost,'@@@@')
+        // console.log(usersComment)
     },[]);
-
-    // console.log(postList)
-
-
-
-    //!test
 
     const [checkPostList, setCheckPostList] = useState([])
     const [checkCommentList, setCheckCommentList] = useState([])
@@ -117,7 +110,7 @@ const Table = () => {
                         <div className='admin-table-comment-box'>
                             <tr>
                                 <th></th>
-                                <th>순번</th>
+                                <th>No</th>
                                 <th>이름</th>
                                 <th>댓글</th>
                             </tr>

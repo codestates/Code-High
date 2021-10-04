@@ -1,24 +1,21 @@
 import React from 'react';
 import { Bar } from 'react-chartjs-2'
-import {useSelector, useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { getUsersChart } from '../../../redux/actions/adminActions';
 
 const Graph = () => {
-    const usersChartState = useSelector((state) => state.adminReducer)
-    const { usersChart } = usersChartState;
+    const adminState = useSelector((state) => state.adminReducer);
+    const { usersChart } = adminState
     const dispatch = useDispatch();
     
-    console.log(usersChartState, '차트정보 불러오기')
+    const userState = useSelector((state) => state.userReducer);
+    const { userInfo } = userState
+    
+    useEffect(() =>{
+        dispatch(getUsersChart(userInfo.accessToken))
+    },[]);
 
-    // useEffect(() => {
-    //     const data = {
-    //       accessToken: userInfo ? userInfo.accessToken : undefined,
-    //     };
-    //     dispatch(getUsersChart(data));
-    // }, []); 
-
-
-
+    console.log(usersChart)
 
     const chartData = {
         labels: ['5월', '6월', '7월', '8월', '9월', '10월'],

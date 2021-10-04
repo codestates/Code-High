@@ -145,6 +145,8 @@
     border: 1px solid #E1E1E1;
     height: 250px;
     overflow-y: auto; }
+    .admin-table-comment-box tr {
+      grid-template-columns: 0.5fr 50px 3fr 5fr; }
   .admin-table-post-data {
     display: grid;
     grid-template-columns: repeat(1, 1fr);
@@ -2420,6 +2422,8 @@ a {
     border: 1px solid #E1E1E1;
     height: 250px;
     overflow-y: auto; }
+    .admin-table-comment-box tr {
+      grid-template-columns: 0.5fr 50px 3fr 5fr; }
   .admin-table-post-data {
     display: grid;
     grid-template-columns: repeat(1, 1fr);
