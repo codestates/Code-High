@@ -6,7 +6,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getCodestoragePost, getCodepost, getStorageFilter } from '../../redux/actions/codePostActions';
 import axios from 'axios';
 
-import serverUrl from '../../App';
+// const serverUrl = 'https://api.codehigh.club';
+const serverUrl = 'http://localhost:4000';
 
 function Kanban() {
   const userState = useSelector((state) => state.userReducer);

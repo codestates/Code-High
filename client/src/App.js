@@ -25,8 +25,6 @@ import NoticeForSignup from './components/basic/error/NoticeForSignup';
 import FindingPassword from './components/basic/modal/FindingPassword';
 import ResetPassword from './components/basic/modal/ResetPassword';
 
-const serverUrl = 'https://api.codehigh.club';
-
 function App() {
   const dispatch = useDispatch();
   const state = useSelector((state) => state.userReducer);

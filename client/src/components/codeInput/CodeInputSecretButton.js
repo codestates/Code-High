@@ -9,9 +9,10 @@ import {
 
 import Button from '../basic/button/Button';
 import Alert from '../basic/alert/Alert';
-import serverUrl from '../../App';
 
 axios.defaults.withCredentials = true;
+// const serverUrl = 'https://api.codehigh.club';
+const serverUrl = 'http://localhost:4000';
 
 function CodeInputSecretButton ({ codeInputInfo, setCodeInputInfo }) {
   const state = useSelector(state => state.userReducer);

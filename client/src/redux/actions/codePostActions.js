@@ -13,10 +13,10 @@ import {
   RESET_POST_COMMENT,
 } from './types';
 import axios from 'axios';
-import serverUrl from '../../App';
 
 axios.defaults.withCredentials = true;
 // const serverUrl = 'https://api.codehigh.club';
+const serverUrl = 'http://localhost:4000';
 
 //1.코드 저장소(완료)
 export async function getCodestoragePost(data) {

@@ -9,10 +9,10 @@ import {
   MYPAGE_USER_INFO,
 } from './types';
 import axios from 'axios';
-import serverUrl from '../../App';
 
 axios.defaults.withCredentials = true;
 // const serverUrl = 'https://api.codehigh.club';
+const serverUrl = 'http://localhost:4000';
 
 //1.로그인(완료)
 export function signinUser(loginInfo) {

@@ -16,7 +16,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashAlt } from '@fortawesome/free-regular-svg-icons';
 import { faWrench } from '@fortawesome/free-solid-svg-icons';
 
-import serverUrl from '../../App';
+// const serverUrl = 'https://api.codehigh.club';
+const serverUrl = 'http://localhost:4000';
 
 function PostComment() {
   const userState = useSelector((state) => state.userReducer);
