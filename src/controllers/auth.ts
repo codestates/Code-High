@@ -3,9 +3,11 @@ import { User } from '../entity/User';
 import { sendSignUpEmail } from '../utils/mail';
 import * as bcrypt from 'bcrypt';
 import { generateloginToken, generateEmailToken, verifyEmailToken, verifyRefreshToken, checkToRegenerate } from '../utils/jwt';
-import { stringify } from 'query-string';
 import axios from 'axios';
 import 'dotenv/config';
+
+const formUrlEncoded = x =>
+    Object.keys(x).reduce((p, c) => p + `&${c}=${encodeURIComponent(x[c])}`, '');
 
 const emailLogin = async (req: Request, res: Response) => {
   try {
@@ -52,7 +54,7 @@ const kakaoLogin = async (req: Request, res: Response) => {
     const getTokenUrl = 'https://kauth.kakao.com/oauth/token';
     const getInfoUrl = 'https://kapi.kakao.com/v2/user/me';
 
-    const result = await axios.post(getTokenUrl, stringify({
+    const result = await axios.post(getTokenUrl, formUrlEncoded({
       client_id: process.env.KAKAO_CLIENT_ID,
       client_secret: process.env.KAKAO_CLIENT_SECRET,
       code: req.body.authorizationCode,

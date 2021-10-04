@@ -3,6 +3,7 @@ import { Between } from 'typeorm'
 import { Comment } from '../entity/Comment'
 import { Post } from '../entity/Post'
 import { Stat } from '../entity/stat'
+import { User } from '../entity/User'
 import { dateFormat } from '../utils/dateFormat'
 
 const userActiveStat = async (req: Request, res: Response) => {
@@ -32,7 +33,7 @@ const dateStat = async (req: Request, res: Response) => {
 
   const date = await Stat.createQueryBuilder()
   .orderBy('date', 'DESC')
-  .limit(4)
+  .limit(6)
   .getMany()
 
   date.reverse();
@@ -53,7 +54,10 @@ const dateStat = async (req: Request, res: Response) => {
     stat.visitCount.push(el.visitCount);
   })
 
-  res.status(200).send({ stat });
+  const userCount = await User.count();
+  const postCount = await Post.count();
+
+  res.status(200).send({ stat, total: { userCount, postCount } });
 }
 
 const weekStat = async (req: Request, res: Response) => {
@@ -81,13 +85,13 @@ const monthStat = async (req: Request, res: Response) => {
   .select(['CONCAT(YEAR(date), \'-\', Month(date)) AS date', 'SUM(postCount) AS postCount', 'SUM(commentCount) AS commentCount', 'SUM(joinCount) AS joinCount', 'SUM(visitCount) AS visitCount'])
   .groupBy('CONCAT(YEAR(date), \'-\', Month(date))')
   .orderBy('MONTH(date)', 'DESC')
-  .limit(4)
+  .limit(6)
   .getRawMany()
 
   month.reverse();
 
   const stat = {
-    days: [],
+    months: [],
     postCount: [],
     commentCount: [],
     joinCount: [],
@@ -95,14 +99,17 @@ const monthStat = async (req: Request, res: Response) => {
   }
 
   month.forEach((el) => {
-    stat.days.push(el.date);
+    stat.months.push(el.date);
     stat.postCount.push(el.postCount);
     stat.commentCount.push(el.commentCount);
     stat.joinCount.push(el.joinCount);
     stat.visitCount.push(el.visitCount);
   })
 
-  res.status(200).send({ stat });
+  const userCount = await User.count();
+  const postCount = await Post.count();
+
+  res.status(200).send({ stat, total: { userCount, postCount } });
 }
 
 export {

@@ -13,6 +13,5 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "sourceMap": true
-  },
-  //"exclude": ["uploads/"]
+  }
 }
