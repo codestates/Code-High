@@ -12,6 +12,7 @@ import Alert from '../basic/alert/Alert';
 
 axios.defaults.withCredentials = true;
 const serverUrl = 'https://api.codehigh.club';
+// const serverUrl = 'http://localhost:4000';
 
 function CodeInputSecretButton ({ codeInputInfo, setCodeInputInfo }) {
   const state = useSelector(state => state.userReducer);
@@ -73,8 +74,11 @@ function CodeInputSecretButton ({ codeInputInfo, setCodeInputInfo }) {
     ).then((res) => {
       console.log('메세지를 찾아보자',res)
       if(res.status === 201 || res.status === 200) {
-        const postId = res.data.postId;
-        dispatch(getCodepost(postId));
+        const data = {
+          postId:res.data.postId,
+          accessToken:userInfo.accessToken
+        };
+        dispatch(getCodepost(data));
         setTimeout(() => {
           history.push('/post');
         }, 1000);

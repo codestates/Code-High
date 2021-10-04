@@ -9,6 +9,7 @@ import {
 
 axios.defaults.withCredentials = true;
 const serverUrl = 'https://api.codehigh.club';
+// const serverUrl = 'http://localhost:4000';
 
 function CodeEditSecretButton ({ codeEditInfo, setCodeEditInfo }) {
   const state = useSelector(state => state.userReducer);
@@ -39,31 +40,39 @@ function CodeEditSecretButton ({ codeEditInfo, setCodeEditInfo }) {
       console.log('비공개');
     }
   }
-
+console.log(codeEditInfo)
   const handleSaveButton = () => {
-    // const { loginType, accessToken } = userInfo;
-    console.log(codeEditInfo)
-    // axios.post(
-    //   `${serverUrl}/post`,
-    //   codeInputInfo,
-    //   {
-    //     headers: {
-    //       login_type: `${loginType}`,
-    //       Authorization: `bearer ${accessToken}`,
-    //     },
-    //     'Content-Type': 'application/json',
-    //     withCredentials: true,
-    //   }
-    // ).then((res) => {
-    //   console.log('메세지를 찾아보자',res)
-    //   if(res.status === 201 || res.status === 200) {
-    //     const postId = res.data.postId;
-    //     dispatch(getCodepost(postId));
-    //     setTimeout(() => {
-    //       history.push('/post');
-    //     }, 1000);
-    //   }
-    // })
+    const { accessToken } = userInfo;
+    const { title, postTags, codeContent, textContent, secret} = codeEditInfo;
+    const codeEdit = {
+      title: title,
+      secret: secret,
+      codeContent: codeContent,
+      tagList: postTags,
+      textContent: textContent
+    }
+
+    axios.patch(
+      `${serverUrl}/post/${codePost.id}`,
+      codeEdit,
+      {
+        headers: {
+          Authorization: `bearer ${accessToken}`
+        },
+      }
+    ).then((res) => {
+      console.log('메세지를 찾아보자',res)
+      if(res.status === 201 || res.status === 200) {
+        const data = {
+          postId:codePost.id,
+          accessToken:userInfo.accessToken
+        };
+        dispatch(getCodepost(data));
+        setTimeout(() => {
+          history.push('/post');
+        }, 1000);
+      }
+    })
   }
 
   const handleCancelButton = () => {

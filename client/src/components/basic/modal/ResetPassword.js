@@ -1,13 +1,20 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 
 import Alert from '../alert/Alert';
+import resetPassword from '../../../images/resetPassword.svg';
+
+const serverUrl = 'https://api.codehigh.club';
+// const serverUrl = 'http://localhost:4000';
 
 function ResetPassword(){
   const [infoForFinding, setInfoForFinding] = useState({
     password:''
   });
   const [alertModal, setAlertModal] = useState(false);
+
+  const history = useHistory();
 
   const handleInputValue = (key) => (e) => {
     setInfoForFinding({ ...infoForFinding, [key]: e.target.value });
@@ -23,11 +30,13 @@ function ResetPassword(){
 
   const handleFindingPassword = () => {
     const { password } = infoForFinding;
+    const url = new URL(window.location.href);
+    const checkCode = url.searchParams.get('code');
+    console.log('checkCode',checkCode)
 
-    //!이 부분 API 어떻게 되는지?
     axios
-      .post(
-        `https://api.codehigh.club/user`,
+      .patch(
+        `${serverUrl}/user/password?code=${checkCode}`,
         { password },
         {
           headers: { 'Content-Type': 'application/json' },
@@ -35,7 +44,7 @@ function ResetPassword(){
       )
       .then((data) => {
         console.log(data)
-        if (data.status === 200) {
+        if (data.status === 201) {
           togglePopUp()
         }
       })
@@ -55,6 +64,7 @@ function ResetPassword(){
    <div className='signup-modal'>
       <div className='signup-container'>
         <div className='signup-right'>
+         <img src={resetPassword} alt='signup' />
         </div>
         <div className='signup-left'>
           <h1>새 비밀번호 설정</h1>

@@ -10,6 +10,7 @@ import Signupimg from '../../../images/Signupimg.svg';
 
 axios.defaults.withCredentials = true;
 const serverUrl = 'https://api.codehigh.club';
+// const serverUrl = 'http://localhost:4000';
 
 function Signup() {
   const [signupNotice, setSignupNotice] = useState('이메일 형식을 맞춰주세요.');

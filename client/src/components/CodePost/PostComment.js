@@ -16,6 +16,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashAlt } from '@fortawesome/free-regular-svg-icons';
 import { faWrench } from '@fortawesome/free-solid-svg-icons';
 
+const serverUrl = 'https://api.codehigh.club';
+// const serverUrl = 'http://localhost:4000';
+
 function PostComment() {
   const userState = useSelector((state) => state.userReducer);
   const { userInfo } = userState;
@@ -95,7 +98,7 @@ function PostComment() {
     const { loginType, accessToken } = userInfo;
 
     axios
-      .post(`https://api.codehigh.club/comment`, userComment, {
+      .post(`${serverUrl}/comment`, userComment, {
         headers: {
           login_type: `${loginType}`,
           Authorization: `bearer ${accessToken}`,

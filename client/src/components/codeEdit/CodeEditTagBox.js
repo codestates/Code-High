@@ -15,25 +15,27 @@ function CodeEditTagBox({ codeEditInfo, setCodeEditInfo }) {
     understanding: codePost.postTags.understanding,
   });
 
-  let taglist = [...codePost.postTags.algorithm, ...codePost.postTags.language, ...codePost.postTags.platform, ...codePost.postTags.difficulty, ...codePost.postTags.understanding];
-  let taglistId = taglist.map((ele) => ele.id)
-  console.log(taglistId);
-
-  useEffect(()=> {
+  useEffect(() => {
+    let taglist = [
+      ...codePost.postTags.algorithm,
+      ...codePost.postTags.language,
+      ...codePost.postTags.platform,
+      ...codePost.postTags.difficulty,
+      ...codePost.postTags.understanding,
+    ];
+    let taglistId = taglist.map((ele) => ele.id - 1);
     taglistId.map((ele) => {
-      let tag = document.getElementById(`${ele}`)
-      console.log(tag)
-      // tag.style.backgroundColor = '#2F8C4C';
-    })
-  },[])
+      let tag = document.querySelectorAll('div.tag-button');
+      // console.log(taglist, taglistId, tag)
+      tag[ele].style.backgroundColor = '#2F8C4C';
+    });
+  }, []);
 
   useEffect(() => {
     setCodeEditInfo({ ...codeEditInfo, postTags: choiceTag });
   }, [choiceTag]);
-  // console.log(choiceTag, codeInputInfo);
 
   const handleChangeColor = (e) => {
-    console.log(e.target)
     const currentTagName = e.target.innerHTML;
     const currentTag = tagNameData.filter((ele) => ele.name === currentTagName);
 
@@ -133,7 +135,7 @@ function CodeEditTagBox({ codeEditInfo, setCodeEditInfo }) {
               if (item.category === 'algorithm') {
                 return (
                   <Tag
-                    className={`algorithm ${item.id}`}
+                    className={`algorithm`}
                     key={index}
                     content={item.name}
                     backgroundColor='#E1E1E1'

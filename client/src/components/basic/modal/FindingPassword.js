@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useHistory } from 'react-router-dom';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
 
 import Alert from '../alert/Alert';
+import findingpassword from '../../../images/findingPassword.svg';
 
 function FindingPassword(){
   const [infoForFinding, setInfoForFinding] = useState({
@@ -13,6 +15,8 @@ function FindingPassword(){
   const [signupNotice, setSignupNotice] = useState('비밀번호를 찾고자 하는 아이디를 입력해 주세요.');
   const [alertModal, setAlertModal] = useState(false);
 
+  const history = useHistory();
+  
   const handleInputValue = (key) => (e) => {
     setInfoForFinding({ ...infoForFinding, [key]: e.target.value });
   };
@@ -41,7 +45,7 @@ function FindingPassword(){
 
     axios
       .post(
-        `https://api.codehigh.club/email/password`,
+        `https://api.codehigh.club/auth/password`,
         { email },
         {
           headers: { 'Content-Type': 'application/json' },
@@ -69,6 +73,7 @@ function FindingPassword(){
    <div className='signup-modal'>
       <div className='signup-container'>
         <div className='signup-right'>
+        <img src={findingpassword} alt='signup' />
         </div>
         <div className='signup-left'>
           <h1>비밀번호 찾기</h1>

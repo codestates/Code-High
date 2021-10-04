@@ -11,22 +11,22 @@ function CodeInputMain({ codeInputInfo, setCodeInputInfo }) {
   const { codePost } = postState;
   const [selectLanguage, setSelectLanguage] = useState('');
 
-  useEffect(()=>{
-    if(codeInputInfo.tagList.language) {
-    if(codeInputInfo.tagList.language[0].name==='C#'){
-      setSelectLanguage('cs')
-    } else if(codeInputInfo.tagList.language[0].name==='C++'){
-      setSelectLanguage('cpp')
-    } else {
-      setSelectLanguage(codeInputInfo.tagList.language[0].name)
+  useEffect(() => {
+    if (codeInputInfo.tagList && codeInputInfo.tagList.language.length !== 0) {
+      if (codeInputInfo.tagList.language[0].name === 'C#') {
+        setSelectLanguage('cs');
+      } else if (codeInputInfo.tagList.language[0].name === 'C++') {
+        setSelectLanguage('cpp');
+      } else {
+        setSelectLanguage(codeInputInfo.tagList.language[0].name);
+      }
     }
-  }
-  },[codeInputInfo])
+  }, [codeInputInfo]);
 
   const handleInputValue = (key) => (e) => {
     setUserCodeCard({ ...userCodeCard, [key]: e.target.value });
   };
-// console.log(codeInputInfo.tagList.language[0].name)
+console.log(codeInputInfo);
   useEffect(() => {
     setCodeInputInfo({
       ...codeInputInfo,
@@ -38,20 +38,19 @@ function CodeInputMain({ codeInputInfo, setCodeInputInfo }) {
   return (
     <div className='codeinputmain'>
       <div className='codeinputmain-container'>
-        <span  className='codeinputmain-code'>
-        <CodeEditor
-
-          language={selectLanguage}
-          placeholder='Please enter code.'
-          onChange={handleInputValue('codeContent')}
-          padding={15}
-          style={{
-            fontSize: 12,
-            backgroundColor: '#f5f5f5',
-            fontFamily:
-              'ui-monospace,SFMono-Regular,SF Mono,Consolas,Liberation Mono,Menlo,monospace',
-          }}
-        />
+        <span className='codeinputmain-code'>
+          <CodeEditor
+            language={selectLanguage}
+            placeholder='Please enter code.'
+            onChange={handleInputValue('codeContent')}
+            padding={15}
+            style={{
+              fontSize: 12,
+              backgroundColor: '#f5f5f5',
+              fontFamily:
+                'ui-monospace,SFMono-Regular,SF Mono,Consolas,Liberation Mono,Menlo,monospace',
+            }}
+          />
         </span>
         {/* <textarea
           type='text'

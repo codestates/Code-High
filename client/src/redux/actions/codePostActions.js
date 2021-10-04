@@ -16,6 +16,7 @@ import axios from 'axios';
 
 axios.defaults.withCredentials = true;
 const serverUrl = 'https://api.codehigh.club';
+// const serverUrl = 'http://localhost:4000';
 
 //1.코드 저장소(완료)
 export async function getCodestoragePost(data) {
