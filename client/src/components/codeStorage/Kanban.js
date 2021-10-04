@@ -22,7 +22,7 @@ function Kanban() {
   const history = useHistory();
   const dispatch = useDispatch();
 
-// console.log(userInfo, codePost)
+console.log(userInfo, userPostList)
   // const noUserMock = {
 
   // };
@@ -31,7 +31,6 @@ function Kanban() {
   useEffect(() => {
     async function getCodePost() {
       let data = {
-        logintype: userInfo.loginType,
         accessToken: userInfo.accessToken,
       };
       dispatch(getCodestoragePost(data));
@@ -98,11 +97,11 @@ function Kanban() {
   const handleChangeTag = async (understanding, id) => {
     try {
       const { loginType, accessToken } = userInfo;
-      let understandingId = 21;
+      let understandingId = 40;
 
-      if (understanding === 'poor') understandingId = 21;
-      if (understanding === 'fair') understandingId = 22;
-      if (understanding === 'good') understandingId = 23;
+      if (understanding === 'poor') understandingId = 40;
+      if (understanding === 'fair') understandingId = 41;
+      if (understanding === 'good') understandingId = 42;
 
       axios
         .patch(
@@ -188,7 +187,7 @@ function Kanban() {
             {userPostList === undefined
             ? <div>로딩 중</div> 
             : userPostList.map((item, index) => {
-              if (item.understanding === 21 || item.understanding === null) {
+              if (item.understanding === 40 || item.understanding === null) {
                 return (
                   <div
                     className='kanban-list-item'
@@ -209,7 +208,7 @@ function Kanban() {
             {userPostList === undefined
             ? <div>로딩 중</div> 
             : userPostList.map((item, index) => {
-              if (item.understanding === 22) {
+              if (item.understanding === 41) {
                 return (
                   <div
                     className='kanban-list-item'
@@ -230,7 +229,7 @@ function Kanban() {
             {userPostList === undefined
             ? <div>로딩 중</div> 
             : userPostList.map((item, index) => {
-              if (item.understanding === 23) {
+              if (item.understanding === 42) {
                 return (
                   <div
                     className='kanban-list-item'

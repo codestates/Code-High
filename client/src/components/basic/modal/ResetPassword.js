@@ -1,15 +1,20 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 
 import Alert from '../alert/Alert';
 import resetPassword from '../../../images/resetPassword.svg';
-import serverUrl from '../../../App';
+
+const serverUrl = 'https://api.codehigh.club';
+// const serverUrl = 'http://localhost:4000';
 
 function ResetPassword(){
   const [infoForFinding, setInfoForFinding] = useState({
     password:''
   });
   const [alertModal, setAlertModal] = useState(false);
+
+  const history = useHistory();
 
   const handleInputValue = (key) => (e) => {
     setInfoForFinding({ ...infoForFinding, [key]: e.target.value });
@@ -25,11 +30,13 @@ function ResetPassword(){
 
   const handleFindingPassword = () => {
     const { password } = infoForFinding;
+    const url = new URL(window.location.href);
+    const checkCode = url.searchParams.get('code');
+    console.log('checkCode',checkCode)
 
-    //!이 부분 API 어떻게 되는지? user Router 로 접근 -> accessToken 필요 !
     axios
-      .post(
-        `${serverUrl}/user`,
+      .patch(
+        `${serverUrl}/user/password?code=${checkCode}`,
         { password },
         {
           headers: { 'Content-Type': 'application/json' },
@@ -37,7 +44,7 @@ function ResetPassword(){
       )
       .then((data) => {
         console.log(data)
-        if (data.status === 200) {
+        if (data.status === 201) {
           togglePopUp()
         }
       })
