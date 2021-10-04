@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import axios from 'axios';
 
 import Alert from '../alert/Alert';
+import resetPassword from '../../../images/resetPassword.svg';
+import serverUrl from '../../../App';
 
 function ResetPassword(){
   const [infoForFinding, setInfoForFinding] = useState({
@@ -24,10 +26,10 @@ function ResetPassword(){
   const handleFindingPassword = () => {
     const { password } = infoForFinding;
 
-    //!이 부분 API 어떻게 되는지?
+    //!이 부분 API 어떻게 되는지? user Router 로 접근 -> accessToken 필요 !
     axios
       .post(
-        `https://api.codehigh.club/user`,
+        `${serverUrl}/user`,
         { password },
         {
           headers: { 'Content-Type': 'application/json' },
@@ -55,6 +57,7 @@ function ResetPassword(){
    <div className='signup-modal'>
       <div className='signup-container'>
         <div className='signup-right'>
+         <img src={resetPassword} alt='signup' />
         </div>
         <div className='signup-left'>
           <h1>새 비밀번호 설정</h1>

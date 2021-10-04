@@ -1880,6 +1880,9 @@ a {
   margin-bottom: 30px;
   font-family: 'NanumGothic'; }
 
+.userreview-reverse {
+  background-color: #E1E1E1; }
+
 .userreview-box-container {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;

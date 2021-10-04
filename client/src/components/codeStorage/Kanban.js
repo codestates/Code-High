@@ -6,6 +6,9 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getCodestoragePost, getCodepost, getStorageFilter } from '../../redux/actions/codePostActions';
 import axios from 'axios';
 
+// const serverUrl = 'https://api.codehigh.club';
+const serverUrl = 'http://localhost:4000';
+
 function Kanban() {
   const userState = useSelector((state) => state.userReducer);
   const { userInfo } = userState;
@@ -103,7 +106,7 @@ function Kanban() {
 
       axios
         .patch(
-          'https://api.codehigh.club/post/tag',
+          `${serverUrl}/post/tag`,
           {
             postId: `${id}`,
             understanding: `${understandingId}`,
