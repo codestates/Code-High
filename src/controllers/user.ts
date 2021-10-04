@@ -81,11 +81,12 @@ const editUser = async (req: Request, res: Response) => {
 
 const resetPassword = async (req: Request, res: Response) => {
   let password = req.body.password;
-  if (!req.body.code || !password) {
+  let code: any = req.query.code;
+  if (!req.query.code || !password) {
     return res.status(422).send({ message: 'cannot find password or code'});
   }
   
-  const user: any = verifyEmailToken(req.body.code);
+  const user: any = verifyEmailToken(code);
   if (!user) {
     return res.status(401).send({ message: 'unauthorized email code'});
   }
