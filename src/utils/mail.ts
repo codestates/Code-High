@@ -3,7 +3,7 @@ import * as nodemailer from 'nodemailer';
 // 인증 메일
 export const sendSignUpEmail = async (email: string, name: string, token: string) => {
   
-  const redirectURL = `${process.env.CLIENT_ENDPOINT}/email?code=${token}`
+  const redirectURL = `${process.env.CLIENT_ENDPOINT}/checkemail?code=${token}`
   
   try {
     let transporter = nodemailer.createTransport({
