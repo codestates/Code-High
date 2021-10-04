@@ -18,6 +18,7 @@ userRouter.get('/post', postController.getUserPostList);
 userRouter.get('/active', dashboardController.userActiveStat);
 userRouter.get('/:id', userController.userInfoById);
 userRouter.get('/', userController.userList);
+userRouter.patch('/password', userController.resetPassword);
 userRouter.patch('/', userController.editUser);
 userRouter.delete('/', userController.deleteUser);
 

@@ -127,6 +127,8 @@ export {
   userInfo,
   userInfoById,
   editUser,
+  resetPassword,
+  passwordEmail,
   // editImage,
   deleteUser
 };

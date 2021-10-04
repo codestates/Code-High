@@ -158,7 +158,7 @@ export const sendPasswordEmail = async (email: string, code: string) => {
         <tr>
           <td>
             <div>
-              비밀번호 재설정<br/>
+              아래 버튼을 클릭해 비밀번호 재설정을 진행해주세요.<br/>
               이 링크는 5분간 유효합니다.
             </di>
             <div align="center" style="padding: 20px;">
