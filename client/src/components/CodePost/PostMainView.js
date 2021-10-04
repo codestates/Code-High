@@ -9,9 +9,10 @@ const PostMain = () => {
   const { codePost } = postState;
   const [codeLanguage, setCodeLanguage] = useState('js')
 
-  // console.log(codePost.postTags.language[0].name);
+  console.log(codePost.postTags);
 
 useEffect(()=>{
+  if(codePost.postTags.language.length !== 0) {
   if(codePost.postTags.language[0].name==='C#'){
     setCodeLanguage('cs')
   } else if(codePost.postTags.language[0].name==='C++'){
@@ -19,6 +20,7 @@ useEffect(()=>{
   } else {
     setCodeLanguage(codePost.postTags.language[0].name)
   }
+}
 },[])
 
   return (

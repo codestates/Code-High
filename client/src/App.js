@@ -24,6 +24,7 @@ import CodeEdit from './pages/CodeEdit';
 import NoticeForSignup from './components/basic/error/NoticeForSignup';
 import FindingPassword from './components/basic/modal/FindingPassword';
 import ResetPassword from './components/basic/modal/ResetPassword';
+import CheckEmail from './components/basic/modal/CheckEmail';
 
 function App() {
   const dispatch = useDispatch();
@@ -92,6 +93,9 @@ function App() {
           </Route>
           <Route path='/signup'>
             <Signup />
+          </Route>
+          <Route path='/checkemail'>
+            <CheckEmail />
           </Route>
           <Route path='/findingpassword'>
             <FindingPassword />
