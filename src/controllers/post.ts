@@ -3,6 +3,7 @@ import { getConnection, getManager, getRepository, In, Tree } from 'typeorm';
 import { Comment } from '../entity/Comment';
 import { Post } from '../entity/Post';
 import { Posttag } from '../entity/Posttag';
+import * as config from '../config/config';
 
 const getPostList = async (req: Request, res: Response) => {
 
@@ -60,7 +61,7 @@ const getUserPostList = async (req: Request, res: Response) => {
     'post.viewCount AS viewCount',
     'postTag.tagId AS understanding',
   ])
-  .leftJoin('post.postTags', 'postTag', 'postTag.tagId In (:understand)', { understand: [21, 22, 23]})
+  .leftJoin('post.postTags', 'postTag', 'postTag.tagId In (:understand)', { understand: config.UNDERSTANING_LIST})
   .where('post.userId = :id', { id })
   .andWhere('post.title Like :search', { search: `%${search}%` })
   .orderBy('post.createdAt', 'DESC')
@@ -104,16 +105,16 @@ const getPostById = async (req: Request, res: Response) => {
         postTags['algorithm'].push(tag);
         break;
       case 2:
-        postTags['platform'].push(tag);
+        postTags['language'].push(tag);
         break;
       case 3:
-        postTags['difficulty'].push(tag);
+        postTags['platform'].push(tag);
         break;
       case 4:
-        postTags['understanding'].push(tag);
+        postTags['difficulty'].push(tag);
         break;
       case 5:
-        postTags['language'].push(tag);
+        postTags['understanding'].push(tag);
         break
     }
   })
@@ -153,7 +154,7 @@ const addPost = async (req: Request, res: Response) => {
   const postId = result.id;
 
   if (!tagList || !tagList.understanding || tagList.understanding.length === 0) {
-    tagList.understanding = [{"id": "21", "name": "하", "category": "이해도"}];
+    tagList.understanding = [{ id: config.LOW_UNDERSTANDING, name: "하", category: "이해도"}];
   }
   
   const addTagList = Object.values(tagList);
@@ -192,7 +193,7 @@ const editPost = async (req: Request, res: Response) => {
   await Posttag.remove(deleteTagList);
 
   if (!tagList || !tagList.understanding || tagList.understanding.length === 0) {
-    tagList.understanding = [{"id": "21", "name": "🙁", "category": "이해도"}];
+    tagList.understanding = [{id: config.LOW_UNDERSTANDING, name: "하", category: "이해도"}];
   }
 
   const addTagList = Object.values(tagList);
@@ -228,7 +229,7 @@ const editUnderstandLevel = async (req: Request, res: Response) => {
     return res.status(403).send({ message: 'forbidden user'});
   }
 
-  const postUnderstandingTag = await Posttag.findOne({ postId, tagId: In([21, 22, 23]) })
+  const postUnderstandingTag = await Posttag.findOne({ postId, tagId: In(config.UNDERSTANING_LIST) })
   if (!postUnderstandingTag) {
     const tag = Posttag.create({ postId, tagId: understanding });
     await Posttag.save(tag);

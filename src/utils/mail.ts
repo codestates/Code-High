@@ -98,7 +98,7 @@ export const sendSignUpEmail = async (email: string, name: string, token: string
 
 
 export const sendPasswordEmail = async (email: string, code: string) => {
-  const redirectURL = `${process.env.CLIENT_ENDPOINT}/email?code=${code}`
+  const redirectURL = `${process.env.CLIENT_ENDPOINT}/resetpassword?code=${code}`
   
   try {
     let transporter = nodemailer.createTransport({
