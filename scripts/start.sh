@@ -25,4 +25,4 @@ export S3_SECRET_KEY=$(aws ssm get-parameters --region ap-northeast-2 --names S3
 export S3_REGION=$(aws ssm get-parameters --region ap-northeast-2 --names S3_REGION --query Parameters[0].Value | sed 's/"//g')
 
 npm run build
-authbind --deep pm2 start dist/src
+authbind --deep pm2 start dist/src/index.js
