@@ -45,7 +45,6 @@
     "mysql": "^2.18.1",
     "node-schedule": "^2.0.0",
     "nodemailer": "^6.6.3",
-    "query-string": "^7.0.1",
     "reflect-metadata": "^0.1.13",
     "typeorm": "^0.2.37",
     "uuid": "^8.3.2"
