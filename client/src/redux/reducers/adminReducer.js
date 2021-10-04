@@ -13,7 +13,7 @@ const adminReducer = (state = {},
   switch (action.type) {
     case GET_USERS_CHART:
       return Object.assign({}, state, {
-        usersChart: [...action.payload],
+        usersChart: {...action.payload},
       });
     case GET_USERS_POST:
       return Object.assign({}, state, {
@@ -23,13 +23,20 @@ const adminReducer = (state = {},
       return Object.assign({}, state, {
         usersComment: [...action.payload],
       });
-    // case DELETE_USERS_POST:
-    //   return Object.assign({}, state, {});
-    // case DELETE_USERS_COMMENT:
-    //   return Object.assign({}, state, {});
+    case DELETE_USERS_POST:
+      return Object.assign({}, state, {
+        usersPost: state.usersPost.filter(
+          (el) => el.id !== action.payload.id
+        )
+      });
+
     default:
       return state;
   }
 }
+
+
+    // case DELETE_USERS_COMMENT:
+    //   return Object.assign({}, state, {});
 
 export default adminReducer;

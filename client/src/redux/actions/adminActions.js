@@ -18,12 +18,12 @@ export const getUsersChart = async (data) => {
     .get(`${serverUrl}/admin/stat/date`, {
       headers: {
         Authorization: `bearer ${data}`,
-        'Content-Type': 'application/json',
       },
       withCredentials: true,
     })
     .then((res) => {
-      console.log(res.data)
+      return res.data.stat
+      // console.log(res.data)
     });
 
   return {
@@ -33,7 +33,7 @@ export const getUsersChart = async (data) => {
 }
 
 //2.모든 게시글 가져오기-------------------------------
-export async function getUsersPost(data) {
+export const getUsersPost = async (data) => {
   const response = axios
     .get(`${serverUrl}/post`, {
       headers: {
@@ -53,17 +53,17 @@ export async function getUsersPost(data) {
 }
 
 //3.모든 댓글 가져오기-------------------------------
-export async function getUsersComment(data) {
-  axios
+export const getUsersComment = async (data) => {
+  const response = axios
     .get(
       `${serverUrl}/comment`,{
         headers: {
-          loginType: `${logintype}`,
-          Authorization: `bearer ${accessToken}`
+          Authorization: `bearer ${data}`,
         },
         withCredentials: true,
       })
     .then((res) => {
+      // console.log(res.data.commentList,'@@@@')
       return res.data.commentList
     })
       return {
@@ -76,25 +76,25 @@ export async function getUsersComment(data) {
 
 
 //4.선택한 게시글 삭제하기-------------------------------
-// export async function deleteUsersPost(accessToken, logintype, postList) {
-//   axios
-//   .delete(`${serverUrl}/post`, {
-//     headers: { loginType: `${logintype}`, Authorization: `bearer ${accessToken}` },
-//     data: { postList: `${postList}`},
-//     withCredentials: true,
-//   })
-//     .then((res) => {
-//       return {
-//         type: DELETE_USERS_POST,
-//         payload: res.data.message,
-//       };
-//     });
-// }
+export async function deleteUsersPost(id) {
+  axios
+  .delete(`${serverUrl}/post`, {
+    headers: { Authorization: `bearer ${accessToken}` },
+    data: { postList: `${postList}`},
+    withCredentials: true,
+  })
+    .then((res) => {
+      return {
+        type: DELETE_USERS_POST,
+        payload: res.data.message,
+      };
+    });
+}
 
 //5.선택한 댓글 삭제하기-------------------------------
 // export async function deleteUsersComment(accessToken, logintype, commentList) {
 //   axios
-//     .delete(`${serverUrl}/comment`, {
+//     .delete(`${serverUrl}/comment`, {  
 //       data: { commentList: `${commentList}`},
 //       headers: { loginType: `${logintype}`, Authorization: `bearer ${accessToken}` },
 //       withCredentials: true,

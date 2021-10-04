@@ -10,36 +10,20 @@ import{
 
 const Table = () => {
 
-    const userCommentData = 
-    [
-        {id:'1', name:'김코딩', comment:'OOOOOOOOO'},
-        {id:'2', name:'성코딩', comment:'OOOOOOOOO'},
-        {id:'3', name:'전해커', comment:'OOOOOOOOO'},
-        {id:'4', name:'장딩코', comment:'OOOOOOOOO'},
-        {id:'5', name:'박코', comment:'OOOOOOOOO'},
-        {id:'6', name:'유코', comment:'OOOOOOOOO'},
-    ]
-    //!test
-    // const postState = useSelector((state) => state.codePostReducer);
-    // const { postList,commentList} = postState;
-
     const adminState = useSelector((state) => state.adminReducer);
-    const { usersPost } = adminState
+    const { usersPost, usersComment } = adminState
     const dispatch = useDispatch();
     
     const userState = useSelector((state) => state.userReducer);
     const { userInfo } = userState
     
     useEffect(() =>{
+        dispatch(getUsersComment(userInfo.accessToken))
         dispatch(getUsersPost(userInfo.accessToken))
         console.log(usersPost,'@@@@')
+        // console.log(usersComment,'🙁🙁🙁🙁🙁🙁')
     },[]);
-
-    // console.log(postList)
-
-
-
-    //!test
+    
 
     const [checkPostList, setCheckPostList] = useState([])
     const [checkCommentList, setCheckCommentList] = useState([])
@@ -98,7 +82,7 @@ const Table = () => {
                                         onChange={(e)=> getPostCheckboxId(e, el.id)} /></td>
                                         <td>{el.userName}</td>
                                         <td>{el.title}</td>
-                                        <td>{el.date}</td>
+                                        <td>{el.createdAt}</td>
                                     </tr>
                                 )    
                                 })
@@ -108,7 +92,7 @@ const Table = () => {
                     <div className='admin-table-comment-status'>
                         <div className='admin-table-button-box'>
                             <div>
-                            댓글 80개
+                            댓글 {usersComment.length}개
                             </div>
                             <div className='admin-button'>
                             <Button content='Remove' backgroundColor='#2F8C4C' color='#fff' />
@@ -117,19 +101,19 @@ const Table = () => {
                         <div className='admin-table-comment-box'>
                             <tr>
                                 <th></th>
-                                <th>순번</th>
+                                <th>No</th>
                                 <th>이름</th>
                                 <th>댓글</th>
                             </tr>
                             {
-                    userCommentData.map((el,index)=>{                         
+                    usersComment.map((el,index)=>{                         
                                 return(
                                     <tr key={index}>
                                         <td><input type="checkbox"
                                         onChange={(e)=> getCommentCheckboxId(e, el.id)} /></td>
                                         <td>{index}</td>
-                                        <td>{el.name}</td>
-                                        <td>{el.comment}</td>
+                                        <td>{el.userName}</td>
+                                        <td>{el.content}</td>
                                     </tr>
                                 )    
                                 })

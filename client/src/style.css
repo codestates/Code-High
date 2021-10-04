@@ -80,7 +80,8 @@
   grid-template-columns: repeat(1, 1fr);
   border: 1px solid #E1E1E1;
   height: 80%;
-  overflow-y: auto; }
+  overflow-y: auto;
+  overflow-x: auto; }
   .admin-table-post-data div {
     font-size: 1.5rem; }
   .admin-table-post-data tr {
@@ -96,7 +97,8 @@
 .admin-table-comment-box {
   border: 1px solid #E1E1E1;
   height: 80%;
-  overflow-y: auto; }
+  overflow-y: auto;
+  overflow-x: auto; }
   .admin-table-comment-box div {
     font-size: 1.5rem; }
   .admin-table-comment-box tr {
@@ -124,13 +126,15 @@
   .admin-table-comment-box {
     border: 1px solid #E1E1E1;
     height: 250px;
-    overflow-y: auto; }
+    overflow-y: auto;
+    overflow-x: auto; }
   .admin-table-post-data {
     display: grid;
     grid-template-columns: repeat(1, 1fr);
     border: 1px solid #E1E1E1;
     height: 250px;
-    overflow-y: auto; }
+    overflow-y: auto;
+    overflow-x: auto; }
   .admin-table-container {
     flex-direction: column; }
   .admin-table-sub {
@@ -144,13 +148,17 @@
   .admin-table-comment-box {
     border: 1px solid #E1E1E1;
     height: 250px;
-    overflow-y: auto; }
+    overflow-y: auto;
+    overflow-x: auto; }
+    .admin-table-comment-box tr {
+      grid-template-columns: 0.5fr 50px 3fr 5fr; }
   .admin-table-post-data {
     display: grid;
     grid-template-columns: repeat(1, 1fr);
     border: 1px solid #E1E1E1;
     height: 250px;
-    overflow-y: auto; } }
+    overflow-y: auto;
+    overflow-x: auto; } }
 
 .alert-modal {
   position: fixed;
@@ -2358,7 +2366,8 @@ a {
   grid-template-columns: repeat(1, 1fr);
   border: 1px solid #E1E1E1;
   height: 80%;
-  overflow-y: auto; }
+  overflow-y: auto;
+  overflow-x: auto; }
   .admin-table-post-data div {
     font-size: 1.5rem; }
   .admin-table-post-data tr {
@@ -2374,7 +2383,8 @@ a {
 .admin-table-comment-box {
   border: 1px solid #E1E1E1;
   height: 80%;
-  overflow-y: auto; }
+  overflow-y: auto;
+  overflow-x: auto; }
   .admin-table-comment-box div {
     font-size: 1.5rem; }
   .admin-table-comment-box tr {
@@ -2402,13 +2412,15 @@ a {
   .admin-table-comment-box {
     border: 1px solid #E1E1E1;
     height: 250px;
-    overflow-y: auto; }
+    overflow-y: auto;
+    overflow-x: auto; }
   .admin-table-post-data {
     display: grid;
     grid-template-columns: repeat(1, 1fr);
     border: 1px solid #E1E1E1;
     height: 250px;
-    overflow-y: auto; }
+    overflow-y: auto;
+    overflow-x: auto; }
   .admin-table-container {
     flex-direction: column; }
   .admin-table-sub {
@@ -2422,13 +2434,17 @@ a {
   .admin-table-comment-box {
     border: 1px solid #E1E1E1;
     height: 250px;
-    overflow-y: auto; }
+    overflow-y: auto;
+    overflow-x: auto; }
+    .admin-table-comment-box tr {
+      grid-template-columns: 0.5fr 50px 3fr 5fr; }
   .admin-table-post-data {
     display: grid;
     grid-template-columns: repeat(1, 1fr);
     border: 1px solid #E1E1E1;
     height: 250px;
-    overflow-y: auto; } }
+    overflow-y: auto;
+    overflow-x: auto; } }
 
 .posttagset {
   display: flex;
