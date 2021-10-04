@@ -41,6 +41,7 @@
     border: 1px solid $gray;
     height: 80%;
     overflow-y: auto;
+    overflow-x: auto;
     div{
         font-size: 1.5rem;
     }
@@ -61,6 +62,7 @@
     border: 1px solid $gray;
     height: 80%;
     overflow-y: auto;
+    overflow-x: auto;
     div{
         font-size: 1.5rem;
     }
@@ -96,6 +98,7 @@
         border: 1px solid $gray;
         height: 250px;
         overflow-y: auto;
+        overflow-x: auto;
     }
     .admin-table-post-data{
         display: grid;
@@ -103,6 +106,7 @@
         border: 1px solid $gray;
         height: 250px;
         overflow-y: auto;
+        overflow-x: auto;
     }
 
     .admin-table-container{
@@ -124,6 +128,7 @@
         border: 1px solid $gray;
         height: 250px;
         overflow-y: auto;
+        overflow-x: auto;
         tr{
             grid-template-columns: 0.5fr 50px 3fr 5fr;
         }
@@ -134,6 +139,7 @@
         border: 1px solid $gray;
         height: 250px;
         overflow-y: auto;
+        overflow-x: auto;
     }
 }
 

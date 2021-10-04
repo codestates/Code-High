@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Bar } from 'react-chartjs-2'
 import { useSelector, useDispatch } from 'react-redux';
 import { getUsersChart } from '../../../redux/actions/adminActions';
@@ -6,30 +6,29 @@ import { getUsersChart } from '../../../redux/actions/adminActions';
 const Graph = () => {
     const adminState = useSelector((state) => state.adminReducer);
     const { usersChart } = adminState
-    const dispatch = useDispatch();
-    
     const userState = useSelector((state) => state.userReducer);
     const { userInfo } = userState
-    
+    const dispatch = useDispatch();
+
     useEffect(() =>{
         dispatch(getUsersChart(userInfo.accessToken))
     },[]);
 
-    console.log(usersChart)
+    console.log(usersChart,'🙁🙁🙁🙁🙁🙁')
 
     const chartData = {
-        labels: ['5월', '6월', '7월', '8월', '9월', '10월'],
+        labels: usersChart.days,
         datasets: [{
-        label: '사용자 수',
+        label: '방문자 수',
         backgroundColor: 'blue',
-        data: [30,40,50,60,70,80,],
+        data: usersChart.visitCount,
         fill: false,
         tension: 0.1
         },
         {
         label: '게시글 수',
         backgroundColor:'green',
-        data: [100,110,100,90,80,170,],
+        data: usersChart.postCount,
         fill: false,
         tension: 0.1   
         }]
@@ -50,10 +49,17 @@ const Graph = () => {
                     </div>
                     <div className='admin-graph-status'> 
                         <div>   
-                            <div> 총 사용자 250명</div>
-                            <div> 총 게시글 수 810개</div>
+                            <div> 방문자 수 {
+                                usersChart.visitCount.reduce(function add(sum, currValue) {
+                                    return sum + currValue;
+                                }, 0)}
+                                명</div>
+                            <div> 게시글 수 {
+                            usersChart.postCount.reduce(function add(sum, currValue) {
+                                    return sum + currValue;
+                                }, 0)}개</div>
                         </div>
-                    </div>  
+                    </div>
                 </div>
             </div>
         </div>
