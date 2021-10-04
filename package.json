@@ -6,7 +6,7 @@
   "scripts": {
     "start": "tsc-watch --onSuccess \"ts-node dist/src/index.js\"",
     "start:dev": "tsc-watch --onSuccess \"ts-node src\"",
-    "build": "tsc -w",
+    "build": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

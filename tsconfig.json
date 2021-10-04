@@ -14,5 +14,5 @@
     "experimentalDecorators": true,
     "sourceMap": true
   },
-  //"exclude": ["uploads/"]
+  "exclude": ["node_modules", ".github", "scripts"]
 }
