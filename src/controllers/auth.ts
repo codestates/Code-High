@@ -5,9 +5,7 @@ import * as bcrypt from 'bcrypt';
 import { generateloginToken, generateEmailToken, verifyEmailToken, verifyRefreshToken, checkToRegenerate } from '../utils/jwt';
 import axios from 'axios';
 import 'dotenv/config';
-
-const formUrlEncoded = x =>
-    Object.keys(x).reduce((p, c) => p + `&${c}=${encodeURIComponent(x[c])}`, '');
+import { formUrlEncoded } from '../utils/dataFormat'
 
 const emailLogin = async (req: Request, res: Response) => {
   try {
@@ -177,7 +175,7 @@ const googleLogin = async (req: Request, res: Response) => {
   }
 }
 
-// TODO : refresh token ?
+
 const githubLogin = async (req: Request, res: Response) => {
   try {
 
@@ -321,6 +319,8 @@ const regenerateToken = async (req: Request, res: Response) => {
   if (!verified) {
     return res.status(401).send('invalid refresh token');
   }
+
+  await User.update(verified.id, { refreshToken: verified.refreshToken });
 
   res.clearCookie('refreshToken');
   res.cookie('refreshToken', verified.refreshToken, {

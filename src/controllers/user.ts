@@ -46,15 +46,15 @@ const editUser = async (req: Request, res: Response) => {
     return res.status(403).send({ message: 'forbidden user'})
   }
   
-  const loginType = req.headers['login-type'];
+  const updateInfo = await User.findOne(req.body.authUserId);
+  
   const { name, image, phone } = req.body;
   let password = req.body.password;
   
-  if (loginType === 'email' && password !== undefined) {
+  if (updateInfo.loginType === 'email' && password !== undefined) {
     password = await bcrypt.hash(password, 10);
   }
-  
-  const updateInfo = await User.findOne(req.body.authUserId);
+
   User.merge(updateInfo, { name, password, image, phone });
   await User.save(updateInfo);
 
@@ -64,16 +64,19 @@ const editUser = async (req: Request, res: Response) => {
   res.status(200).send({ userInfo: updateInfo, message: 'update success' })
 }
 
-// const editImage = async (req: Request, res: Response) => {
+// const editImage = async (req, res: Response) => {
 //   if (req.body.userRole > 3 ) {
 //     return res.status(403).send({ message: 'forbidden user'})
 //   }
 
-//   if (!req.file) {
+//   const file: any = req.file;
+
+//   if (!file) {
 //     return res.status(422).send('fail');
 //   }
 
-//   const file: any = req.file;
+//   //const file: any = req.file;
+//   console.log(file)
 //   await User.update({ id: req.body.authUserId}, { image: file.location })
 
 //   res.status(200).send({ message: 'upload success'})
@@ -82,7 +85,7 @@ const editUser = async (req: Request, res: Response) => {
 const resetPassword = async (req: Request, res: Response) => {
   let password = req.body.password;
   let code: any = req.query.code;
-  if (!req.query.code || !password) {
+  if (!code || !password) {
     return res.status(422).send({ message: 'cannot find password or code'});
   }
   
