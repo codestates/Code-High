@@ -43,10 +43,10 @@ function ModifyUser({ userInfoPopUp, setShowUserInfoPopUp }) {
         )
         .then((data) => {
           if (data.status === 200) {
-            const data = {
-              accessToken: userInfo ? userInfo.accessToken : undefined,
-              };
-            dispatch(getMypageInfo(data));
+            // const data = {
+            //   accessToken: userInfo ? userInfo.accessToken : undefined,
+            //   };
+            // dispatch(getMypageInfo(data));
             userInfoPopUp()
             history.push('/mypage')
           }
