@@ -16,7 +16,6 @@
     flex-direction: column;
     align-items: center;
     justify-content: start;
-    // width: 250px;
     height: 695px;
     border: $gray solid 1px;
     border-radius: 25px;
@@ -64,11 +63,11 @@
 }
 
 .mypage-right-middle-box-1{
-    border: $gray solid 1px;
-    align-items: center;
-    justify-content: center;
     display: flex;
+    justify-content: center;
+    align-items: center;
     flex-direction: column;
+    border: $gray solid 1px;
     div{
         display: flex;
         width: 100%;
@@ -77,9 +76,8 @@
         span{
             width: 100%;
             text-align: center;
-            font-size: 2.5rem;
+            font-size: 1.7rem;
             font-family: 'NanumGothic';
-            font-weight: 1500;
         }
     }
     
@@ -87,7 +85,6 @@
 
 .mypage-number{
     color: #{$darkgreen};
-    font-weight: 1200;
 }
 
 .mypage-right-middle-box-2{
@@ -127,7 +124,9 @@
 .userinfo-name{
     margin-top: 5px;    
 }
-
+.userinfo-email{
+  margin-top: 5px;
+}
 .mypage-right-bottom-container{
     margin: 10px;
     flex-grow: 1;

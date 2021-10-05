@@ -53,6 +53,7 @@
   font-family: 'Nanum Gothic';
   height: 130px;
   padding: 10px;
+  border-radius: 5px;
   cursor:grab;
    &:active {
      cursor:grabbing;
@@ -60,12 +61,10 @@
    h1{
      font-size: 1.5rem;
      margin-bottom: 5px;
+     margin-left: 7px;
    }
+
    div:nth-child(2){
-     font-size: 1.3rem;
-     margin-bottom: 10px;
-   }
-   div:nth-child(3){
     font-size: 1.5rem;
   }
 }
@@ -77,8 +76,8 @@
 @include mobile{
   .kanban-list-item{
     height: 70px;
-    div:nth-child(3) {
-      display: none;
-    }
+  }
+  .codeeditor{
+    display: none;
   }
 }
