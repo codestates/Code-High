@@ -61,25 +61,27 @@ function ModifyUser({ userInfoPopUp, setShowUserInfoPopUp }) {
   }
 
   const modifyuserpassword = () => {
-    const { newpassword, nickname } = modifyInfo;
-    axios
-      .patch(
-        `${serverUrl}/user`,
-        { password: newpassword, name: nickname },
-        {
-          headers: { Authorization: `bearer ${userInfo.accessToken}` },
-        }
-      )
-      .then((data) => {
-        if (data.status === 200) {
-          userInfo.name = nickname;
-          userInfoPopUp()
-          window.location.reload();
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    const { newpassword, passwordcheck, nickname } = modifyInfo;
+    if (newpassword === passwordcheck) {
+      axios
+        .patch(
+          `${serverUrl}/user`,
+          { password: newpassword, name: nickname },
+          {
+            headers: { Authorization: `bearer ${userInfo.accessToken}` },
+          }
+        )
+        .then((data) => {
+          if (data.status === 200) {
+            userInfo.name = nickname;
+            userInfoPopUp()
+            window.location.reload();
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
   }
 
   const enterKeyPress = (e) => {
