@@ -74,7 +74,8 @@ const editUser = async (req: Request, res: Response) => {
 //   }
 
 //   const file: any = req.file;
-//   await User.update({ id: req.body.authUserId}, { image: file.location })
+//   console.log(file)
+//   //await User.update({ id: req.body.authUserId}, { image: file.location })
 
 //   res.status(200).send({ message: 'upload success'})
 // }
@@ -130,6 +131,6 @@ export {
   editUser,
   resetPassword,
   passwordEmail,
-  // editImage,
+  //editImage,
   deleteUser
 };
