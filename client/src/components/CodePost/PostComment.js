@@ -6,6 +6,8 @@ import axios from 'axios';
 import {
   getCommentPost,
   resetGetCommentPost,
+  deleteUserPost,
+  modifyComment,
   deleteComment,
 } from '../../redux/actions/codePostActions';
 
@@ -17,19 +19,22 @@ import { faTrashAlt } from '@fortawesome/free-regular-svg-icons';
 import { faWrench } from '@fortawesome/free-solid-svg-icons';
 
 const serverUrl = 'https://api.codehigh.club';
-// const serverUrl = 'http://localhost:4000';
 
 function PostComment() {
   const userState = useSelector((state) => state.userReducer);
   const { userInfo } = userState;
   const postState = useSelector((state) => state.codePostReducer);
-  const { codePost, postComment } = postState;
+  const { codePost, postComment, message } = postState;
 
   const [alertModal, setAlertModal] = useState(false);
   const [count, setCount] = useState(2);
   const [userComment, setUserComment] = useState({
     content: '',
     postId: '',
+  });
+  const [modifyCommetButton, setModifyCommetButton] = useState(0);
+  const [modifyUserComment, setModifyUserComment] = useState({
+    content: ''
   });
 
   const dispatch = useDispatch();
@@ -41,6 +46,7 @@ function PostComment() {
       scrollTo(0, 0);
     }, 100);
   };
+
   //로딩 시
   useEffect(() => {
     const data = {
@@ -50,7 +56,16 @@ function PostComment() {
     dispatch(resetGetCommentPost(data));
     setUserComment({ ...userComment, postId: codePost.id });
   }, []);
-  //무한 스크롤 댓글 더 불러오기
+
+  const handleInputValue = (key) => (e) => {
+    setUserComment({ ...userComment, [key]: e.target.value });
+  };
+
+  const handleInputValueModify = (key) => (e) => {
+    setModifyUserComment({ ...modifyUserComment, [key]: e.target.value });
+  };
+
+  //무한 스크롤
   const getMorecomment = () => {
     const data = {
       postId: codePost.id,
@@ -62,7 +77,6 @@ function PostComment() {
       setCount(count + 1);
     }, 1000);
   };
-  //무한스크롤
   const onScroll = (e) => {
     const { clientHeight, scrollTop, scrollHeight } = e.target;
     if (clientHeight + scrollTop === scrollHeight) {
@@ -70,9 +84,6 @@ function PostComment() {
     }
   };
 
-  const handleInputValue = (key) => (e) => {
-    setUserComment({ ...userComment, [key]: e.target.value });
-  };
   //글 수정
   const handleEditPost = () => {
     setTimeout(() => {
@@ -84,14 +95,28 @@ function PostComment() {
     setAlertModal(!alertModal);
   };
 
+  //글 삭제
+  const handleDeletePost = () => {
+    const { accessToken } = userInfo;
+    const data = {
+      id: codePost.id,
+      accessToken: accessToken,
+    };
+    dispatch(deleteUserPost(data));
+
+    if (message === 200) {
+      history.push('/codestorage');
+    }
+  };
+
   //댓글 등록
   const handleButtonClick = () => {
     if (!userInfo) {
-      togglePopUp()
+      togglePopUp();
       return;
     }
     if (userInfo.name === '게스트') {
-      togglePopUp()
+      togglePopUp();
       return;
     }
 
@@ -113,22 +138,34 @@ function PostComment() {
         }
       });
   };
+
   //댓글 수정
-  const handlemodifyComment = () => {
-    console.log('handlemodifyComment');
+  const handlemodifyComment = (id) => {
+    setModifyCommetButton(id);
   };
-  //댓글 삭제
-  const handleDeleteComment = (id) => {
-    console.log(id);
-    const { loginType, accessToken } = userInfo;
+
+  const handleButtonModifyComment = (id) => {
+    const { accessToken } = userInfo;
     const data = {
       id: id,
-      logintype: loginType,
+      accessToken: accessToken,
+      modify:modifyUserComment
+    };
+    dispatch(modifyComment(data));
+    setModifyCommetButton(0);
+    window.location.reload();
+  };
+
+  //댓글 삭제
+  const handleDeleteComment = (id) => {
+    const { accessToken } = userInfo;
+    const data = {
+      id: id,
       accessToken: accessToken,
     };
     dispatch(deleteComment(data));
+    window.location.reload();
   };
-
 
   const handleButtonSignup = () => {
     history.push('/signup');
@@ -136,18 +173,27 @@ function PostComment() {
 
   return (
     <>
-      <div className='postcomment'>
-        <div className='postcomment-container'>
-          <div className='postcomment-button-container'>
-            <span>댓글</span>
-            {userInfo === undefined ? null : userInfo.id === codePost.userId ? (
+      <div className='postcomment-button-warp'>
+        <div className='postcomment-button-container'>
+          {userInfo === undefined ? null : userInfo.id === codePost.userId ? (
+            <span className='postcomment-buttons'>
               <Button
                 content={'Edit'}
                 backgroundColor='#2F8C4C'
-                onClickHandle={handleEditPost} 
+                onClickHandle={handleEditPost}
               />
-            ) : null}
-          </div>
+              <Button
+                content={'Delete'}
+                backgroundColor='#2F8C4C'
+                onClickHandle={handleDeletePost}
+              />
+            </span>
+          ) : null}
+        </div>
+      </div>
+
+      <div className='postcomment'>
+        <div className='postcomment-container'>
           <div className='postcomment-input-container'>
             {userInfo ? (
               userInfo.name === '게스트' ? (
@@ -157,6 +203,7 @@ function PostComment() {
                   type='text'
                   autoFocus={true}
                   onChange={handleInputValue('content')}
+                  placeholder='댓글을 입력해주세요.'
                 />
               )
             ) : (
@@ -184,22 +231,36 @@ function PostComment() {
                           {item.createdAt}
                         </span>
                       </div>
-                      <div className='postcomment-deleteButton-container'>
-                        <button
-                          className='postcomment-modifyButton'
-                          //   onClick={() => handlemodifyComment(item.username, idx)}
-                        >
-                          <FontAwesomeIcon icon={faWrench} />
-                        </button>
-                        <button
-                          className='postcomment-deleteButton'
-                          onClick={() => handleDeleteComment(item.id)}
-                        >
-                          <FontAwesomeIcon icon={faTrashAlt} />
-                        </button>
-                      </div>
+                      {userInfo === undefined ? null : userInfo.id ===
+                        item.userId ? (
+                        <div className='postcomment-deleteButton-container'>
+                          <button
+                            className='postcomment-modifyButton'
+                            onClick={() => handlemodifyComment(item.id)}
+                          >
+                            <FontAwesomeIcon icon={faWrench} />
+                          </button>
+                          <button
+                            className='postcomment-deleteButton'
+                            onClick={() => handleDeleteComment(item.id)}
+                          >
+                            <FontAwesomeIcon icon={faTrashAlt} />
+                          </button>
+                        </div>
+                      ) : null}
                     </div>
-                    <div className='postcomment-message'>{item.content}</div>
+                    {modifyCommetButton === item.id ? (
+                      <div className='postcomment-modifyinput-container'>
+                        <textarea
+                          className='postcomment-input'
+                          defaultValue={item.content}
+                          onChange={handleInputValueModify('content')}
+                        ></textarea>
+                        <button className='postcomment-input-button'onClick={()=>handleButtonModifyComment(item.id)}>수정</button>
+                      </div>
+                    ) : (
+                      <div className='postcomment-message'>{item.content}</div>
+                    )}
                   </li>
                 );
               })

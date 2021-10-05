@@ -9,6 +9,7 @@ import {
   DELETE_POST,
   GET_COMMENT,
   RESET_GET_COMMENT,
+  MODIFY_COMMENT,
   DELETE_COMMENT,
   RESET_POST_COMMENT,
 } from './types';
@@ -70,7 +71,7 @@ export function resetCodereviewPost() {
   };
 }
 
-//!3.검색 기능(완료)
+//3.검색 기능(완료)
 export async function getReviewFilter(data) {
   const response = axios
     .get(`${serverUrl}/post?search=${data.search}`, {
@@ -129,7 +130,7 @@ export async function getCodepost(data) {
   };
 }
 
-//!5.게시글 수정
+//5.게시글 수정(완료)
 export async function modifyCodePost(data) {
   const response = axios
     .patch(`${serverUrl}/post/${data.postId}`, data.codeEditInfo, {
@@ -149,26 +150,27 @@ export async function modifyCodePost(data) {
   };
 }
 
-//!6.게시글 삭제
-export async function deleteUsersPost(id, accessToken, logintype) {
-  axios
-    .delete(`${serverUrl}/post/:${id}`, {
+//6.게시글 삭제(완료)
+export async function deleteUserPost(data) {
+  const response = axios
+    .delete(`${serverUrl}/post/${data.id}`, {
       headers: {
-        loginType: `${logintype}`,
-        Authorization: `bearer ${accessToken}`,
+        Authorization: `bearer ${data.accessToken}`,
       },
       withCredentials: true,
     })
     .then((res) => {
-      return {
-        type: DELETE_POST,
-        payload: res.data.message,
-      };
+      if(res.status === 200) return 200;
     });
+
+    return {
+      type: DELETE_POST,
+      payload: response
+    };
 }
 
 //------------------------------------------------------------댓글-----------------------------------------------------------
-//!7.댓글 가져오기(완료)
+//7.댓글 가져오기(완료)
 export async function getCommentPost(data) {
   const response = axios
     .get(`${serverUrl}/post/${data.postId}/comment?page=${data.count}`, {
@@ -207,20 +209,40 @@ export async function resetGetCommentPost(data) {
   };
 }
 
-//!8.댓글 수정
+//8.댓글 수정(완료)
+export async function modifyComment(data) {
+  const response = axios
+    .patch(`${serverUrl}/comment/${data.id}`, 
+       data.modify,
+       {
+      headers: {
+        Authorization: `bearer ${data.accessToken}`,
+        'Content-Type': 'application/json',
+      },
+      withCredentials: true,
+    })
+    .then((res) => {
+      console.log(res)
+      return res.data.message;
+    });
 
-//9.댓글 삭제
+  return {
+    type: MODIFY_COMMENT,
+    payload: response,
+  };
+}
+
+//9.댓글 삭제(완료)
 export async function deleteComment(data) {
   const response = axios
     .delete(`${serverUrl}/comment/${data.id}`, {
       headers: {
-        login_type: `${data.logintype}`,
         Authorization: `bearer ${data.accessToken}`,
       },
       withCredentials: true,
     })
     .then((res) => {
-      console.log(res);
+      return res.data.message;
     });
 
   return {
@@ -229,7 +251,7 @@ export async function deleteComment(data) {
   };
 }
 
-//10.로그아웃 시 모든 정보 리셋
+//10.로그아웃 시 모든 정보 리셋(완료)
 export async function resetPostCommet() {
   return {
     type: RESET_POST_COMMENT,

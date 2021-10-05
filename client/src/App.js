@@ -36,9 +36,6 @@ function App() {
     const loginType = url.searchParams.get('login');
     const authorizationCode = url.searchParams.get('code');
     if (authorizationCode) {
-      console.log('authorizationCode', authorizationCode);
-      console.log('loginType', loginType);
-
       if (loginType === 'github') {
         getGithubAccessToken(authorizationCode);
       } else if (loginType === 'kakao') {

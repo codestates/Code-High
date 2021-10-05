@@ -7,21 +7,27 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
 
 import Signupimg from '../../../images/Signupimg.svg';
+import Alert from '../alert/Alert';
 
 axios.defaults.withCredentials = true;
 const serverUrl = 'https://api.codehigh.club';
 // const serverUrl = 'http://localhost:4000';
 
 function Signup() {
-  const [signupNotice, setSignupNotice] = useState('이메일 형식을 맞춰주세요.');
+  const [signupNotice, setSignupNotice] = useState('Gmail은 소셜 로그인만 이용가능합니다.');
   const [userInfo, setUserInfo] = useState({
     email: '',
     password: '',
     passwordcheck: '',
     name: '',
   });
+  const [alertModal, setAlertModal] = useState(false);
 
   const history = useHistory();
+
+  const togglePopUp = () => {
+    setAlertModal(!alertModal);
+  };
 
   //!회원가입 정보 모으기
   const handleInputValue = (key) => (e) => {
@@ -64,7 +70,7 @@ function Signup() {
       )
       .then((data) => {
         if (data.status === 200) {
-          history.push('/');
+          togglePopUp();
         }
       })
       .catch((err) => {
@@ -77,6 +83,10 @@ function Signup() {
       handleSignup();
     }
   };
+
+  const handleGoHome = () => {
+    history.push('/')
+  }
 
   return (
     <div className='signup-modal'>
@@ -128,6 +138,16 @@ function Signup() {
           </div>
         </div>
       </div>
+      {alertModal ? (
+          <Alert
+            content={'이메일이 전송되었습니다. 이메일 인증을 진행해주세요.'}
+            leftbutton={'확인'}
+            rightbutton={'닫기'}
+            onClickHandleLeft={handleGoHome}
+            onClickHandleRight={handleGoHome}
+            togglePopUp={togglePopUp}
+          />
+        ) : null}
     </div>
   );
 }

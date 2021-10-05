@@ -115,13 +115,11 @@
             padding: 5px 0;
         }
     }
-    .navbar-container {
-        li:nth-child(1){
-            display: none;
-            margin-left: 0px;
-            margin-bottom: 10px;
+    .navbar-right{
+        li{
+         margin-left: 20px;
         }
-    }
+      }
 }
 
 
