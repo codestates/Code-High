@@ -8,6 +8,8 @@ import {
   MODIFY_CODEPOST,
   DELETE_POST,
   GET_COMMENT,
+  MODIFY_COMMENT,
+  DELETE_COMMENT,
   RESET_GET_COMMENT,
   RESET_POST_COMMENT,
 } from '../actions/types';
@@ -47,11 +49,19 @@ const codePostReducer = (
       });
     case DELETE_POST:
       return Object.assign({}, state, {
-        postComment: [...state.postComment, ...action.payload],
+        message: action.payload,
       });
     case GET_COMMENT:
       return Object.assign({}, state, {
         postComment: [...state.postComment, ...action.payload],
+      });
+    case MODIFY_COMMENT:
+      return Object.assign({}, state, {
+        postComment: [...state.postComment],
+      });
+    case DELETE_COMMENT:
+      return Object.assign({}, state, {
+        message: action.payload,
       });
     case RESET_GET_COMMENT:
       return Object.assign({}, state, {

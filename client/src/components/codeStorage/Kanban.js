@@ -42,10 +42,10 @@ console.log(userInfo, userPostList)
     const lists = document.querySelectorAll('.kanban-list');
 
     let draggedItem = null;
-   
+  // console.log(draggedItem)
     for (let i = 0; i < list_items.length; i++) {
       const item = list_items[i];
-
+  // console.log(draggedItem)
       item.addEventListener('dragstart', function () {
         draggedItem = item;
         setTimeout(() => {
@@ -57,6 +57,7 @@ console.log(userInfo, userPostList)
         setTimeout(() => {
           draggedItem.style.display = 'block';
           draggedItem = null;
+          // console.log(draggedItem)
         }, 0);
       });
 
@@ -79,6 +80,7 @@ console.log(userInfo, userPostList)
           handleChangeTag(
             list.className.substring(e.path[0].className.length - 4),
             draggedItem.id
+            //여기서 null 오류 발생
           );
         });
       }
