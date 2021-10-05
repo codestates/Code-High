@@ -64,16 +64,18 @@ const editUser = async (req: Request, res: Response) => {
   res.status(200).send({ userInfo: updateInfo, message: 'update success' })
 }
 
-const editImage = async (req: Request, res: Response) => {
+const editImage = async (req, res: Response) => {
   if (req.body.userRole > 3 ) {
     return res.status(403).send({ message: 'forbidden user'})
   }
 
-  if (!req.file) {
+  const file: any = req.file;
+
+  if (!file) {
     return res.status(422).send('fail');
   }
 
-  const file: any = req.file;
+  //const file: any = req.file;
   console.log(file)
   await User.update({ id: req.body.authUserId}, { image: file.location })
 
