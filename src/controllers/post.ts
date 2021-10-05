@@ -15,12 +15,19 @@ const getPostList = async (req: Request, res: Response) => {
 
   if (!page) {
     const result = await getRepository(Post).createQueryBuilder('post')
-    .select(['post.id AS id', 'post.title AS title', 'post.viewCount AS viewCount', 'post.createdAt AS createdAt'])
+    .select([
+      'post.id AS id',
+      'post.title AS title',
+      'post.viewCount AS viewCount',
+      'post.createdAt AS createdAt',
+      'language.tagId AS language'
+    ])
     .addSelect('SUBSTR(post.codeContent, 1, 200)', 'codeContent')
     .addSelect('user.name', 'userName')
-    .leftJoin('post.user','user')
     .where('post.secret In (:...isSecret)', { isSecret })
     .andWhere('post.title Like :search', { search: `%${search}%` })
+    .leftJoin('post.user','user')
+    .leftJoin('post.postTags', 'language', 'language.tagId In (:languageId)', { languageId: config.LANGUAGE_LIST})
     .orderBy('post.createdAt', 'DESC')
     .getRawMany();
     
@@ -28,15 +35,22 @@ const getPostList = async (req: Request, res: Response) => {
 
   } else {
     const result = await getRepository(Post).createQueryBuilder('post')
-    .select(['post.id AS id', 'post.title AS title', 'post.viewCount AS viewCount', 'post.createdAt AS createdAt'])
+    .select([
+      'post.id AS id',
+      'post.title AS title',
+      'post.viewCount AS viewCount',
+      'post.createdAt AS createdAt',
+      'language.tagId AS language'
+    ])
     .addSelect('SUBSTR(post.codeContent, 1, 200)', 'codeContent')
     .addSelect('user.name', 'userName')
-    .leftJoin('post.user','user')
     .where('post.secret In (:...isSecret)', { isSecret })
     .andWhere('post.title Like :search', { search: `%${search}%` })
-    .orderBy('post.createdAt', 'DESC')
     .offset(pageOffset)
     .limit(pageCount)
+    .leftJoin('post.user','user')
+    .leftJoin('post.postTags', 'language', 'language.tagId In (:languageId)', { languageId: config.LANGUAGE_LIST})
+    .orderBy('post.createdAt', 'DESC')
     .getRawMany();
 
     res.status(200).send({ postList: result });
@@ -59,11 +73,13 @@ const getUserPostList = async (req: Request, res: Response) => {
     'SUBSTR(post.codeContent, 1, 200) AS codeContent',
     'post.secret AS secret',
     'post.viewCount AS viewCount',
-    'postTag.tagId AS understanding',
+    'understanding.tagId AS understanding',
+    'language.tagId AS language'
   ])
-  .leftJoin('post.postTags', 'postTag', 'postTag.tagId In (:understand)', { understand: config.UNDERSTANING_LIST})
   .where('post.userId = :id', { id })
   .andWhere('post.title Like :search', { search: `%${search}%` })
+  .leftJoin('post.postTags', 'understanding', 'understanding.tagId In (:understandId)', { understandId: config.UNDERSTANING_LIST})
+  .leftJoin('post.postTags', 'language', 'language.tagId In (:languageId)', { languageId: config.LANGUAGE_LIST})
   .orderBy('post.createdAt', 'DESC')
   .getRawMany()
 
