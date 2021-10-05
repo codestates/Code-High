@@ -1,12 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+
+import CodeEditor from '@uiw/react-textarea-code-editor';
+
 import {
   getReviewPost,
   getCodepost,
   resetCodereviewPost,
-  getReviewFilter
+  getReviewFilter,
 } from '../../redux/actions/codePostActions';
+
 import SearchInput from '../basic/search/SearchInput';
 // import scrollImg from '../../images/scrollImg.gif';
 
@@ -14,7 +18,7 @@ function CodeReviewBoard() {
   const userState = useSelector((state) => state.userReducer);
   const { userInfo } = userState;
   const postState = useSelector((state) => state.codePostReducer);
-  const { postList} = postState;
+  const { postList } = postState;
 
   const [count, setCount] = useState(2);
   const [searchValue, setSearchValue] = useState({
@@ -24,7 +28,6 @@ function CodeReviewBoard() {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  
   //로딩 시, 첫 15개 글만 나타남
   useEffect(() => {
     async function resetCodePost() {
@@ -32,25 +35,25 @@ function CodeReviewBoard() {
     }
     resetCodePost();
   }, []);
-  
+
   useEffect(() => {
     const data = {
-      search:searchValue.search,
+      search: searchValue.search,
       // accessToken:userInfo.accessToken
-    }
-    dispatch(getReviewFilter(data))
+    };
+    dispatch(getReviewFilter(data));
     // console.log('코드리뷰보드에서의 코드리스트', count, postList, searchValue.search);
   }, [searchValue]);
 
   const enterKeyPress = (e) => {
     const data = {
-      search:searchValue.search,
+      search: searchValue.search,
       // accessToken:userInfo.accessToken
     };
-    if(e.key === 'Enter') {
-      dispatch(getReviewFilter(data))
+    if (e.key === 'Enter') {
+      dispatch(getReviewFilter(data));
     }
-  }
+  };
 
   //새로고침 시, 스크롤 상단
   window.onload = function () {
@@ -108,21 +111,38 @@ function CodeReviewBoard() {
           />
         </div>
         <section className='codereviewboard-cardbox' onScroll={onScroll}>
-          {postList === undefined 
-          ? <h1>로딩 중</h1>  
-          : postList.map((item, index) => {
-            return (
-              <div
-                id={item.id}
-                className='codereviewboard-card'
-                key={index}
-                onClick={(e) => handleClickPost(e)}
-              >
-                <h1 id={item.id}>{item.title}</h1>
-                <div id={item.id}>{item.codeContent}</div>
-              </div>
-            );
-          })}
+          {postList === undefined ? (
+            <h1>로딩 중</h1>
+          ) : (
+            postList.map((item, index) => {
+              return (
+                <div
+                  id={item.id}
+                  className='codereviewboard-card'
+                  key={index}
+                  onClick={(e) => handleClickPost(e)}
+                >
+                  <h1 id={item.id}>{item.title}</h1>
+                  <div id={item.id}>
+                    <CodeEditor 
+                      readOnly 
+                      value={item.codeContent}
+                      language={item.language===null ? 'javascript' :`${item.language}`}
+                      id={item.id}
+                      tyle={{
+                        margin: '5px',
+                        fontSize: 17,
+                        backgroundColor: '#f5f5f5',
+                        fontWeight: 500,
+                        fontFamily:
+                          'ui-monospace,SFMono-Regular,SF Mono,Consolas,Liberation Mono,Menlo,monospace',
+                      }}
+                    />
+                  </div>
+                </div>
+              );
+            })
+          )}
           {/* <div className='codereviewboard-loding'></div>
           <div className='codereviewboard-loding'><img src={scrollImg} alt=''/></div>
           <div className='codereviewboard-loding'></div> */}

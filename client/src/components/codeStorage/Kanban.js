@@ -1,10 +1,18 @@
 import React, { useEffect, useState } from 'react';
-import SearchInput from '../basic/search/SearchInput';
-import Button from '../basic/button/Button';
 import { Link, useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { getCodestoragePost, getCodepost, getStorageFilter } from '../../redux/actions/codePostActions';
 import axios from 'axios';
+
+import CodeEditor from '@uiw/react-textarea-code-editor';
+
+import {
+  getCodestoragePost,
+  getCodepost,
+  getStorageFilter,
+} from '../../redux/actions/codePostActions';
+
+import SearchInput from '../basic/search/SearchInput';
+import Button from '../basic/button/Button';
 
 const serverUrl = 'https://api.codehigh.club';
 // const serverUrl = 'http://localhost:4000';
@@ -18,14 +26,9 @@ function Kanban() {
   const [searchValue, setSearchValue] = useState({
     search: '',
   });
-
+  console.log(userPostList);
   const history = useHistory();
   const dispatch = useDispatch();
-
-console.log(userInfo, userPostList)
-  // const noUserMock = {
-
-  // };
 
   //!글 목록 불러오기 및 칸반보드
   useEffect(() => {
@@ -42,10 +45,10 @@ console.log(userInfo, userPostList)
     const lists = document.querySelectorAll('.kanban-list');
 
     let draggedItem = null;
-  // console.log(draggedItem)
+    // console.log(draggedItem)
     for (let i = 0; i < list_items.length; i++) {
       const item = list_items[i];
-  // console.log(draggedItem)
+      // console.log(draggedItem)
       item.addEventListener('dragstart', function () {
         draggedItem = item;
         setTimeout(() => {
@@ -89,10 +92,10 @@ console.log(userInfo, userPostList)
 
   useEffect(() => {
     const data = {
-      search:searchValue.search,
-      accessToken:userInfo.accessToken
-    }
-    dispatch(getStorageFilter(data))
+      search: searchValue.search,
+      accessToken: userInfo.accessToken,
+    };
+    dispatch(getStorageFilter(data));
   }, [searchValue]);
 
   //!태그 수정
@@ -142,8 +145,8 @@ console.log(userInfo, userPostList)
     }, 1000);
   };
 
-   //!검색
-   const handleInputValue = (key) => (e) => {
+  //!검색
+  const handleInputValue = (key) => (e) => {
     setSearchValue({ [key]: e.target.value });
   };
 
@@ -157,20 +160,20 @@ console.log(userInfo, userPostList)
 
   const enterKeyPress = (e) => {
     const data = {
-      search:searchValue.search,
-      accessToken:userInfo.accessToken
+      search: searchValue.search,
+      accessToken: userInfo.accessToken,
     };
-    if(e.key === 'Enter') {
-      dispatch(getStorageFilter(data))
-      console.log(postList)
+    if (e.key === 'Enter') {
+      dispatch(getStorageFilter(data));
+      console.log(postList);
     }
-  }
+  };
 
   return (
     <div className='kanban'>
       <div className='kanban-container'>
         <div className='kanban-header'>
-          <SearchInput             
+          <SearchInput
             onChangeHandle={handleInputValue('search')}
             handleClearInput={handleClearInputValue}
             enterKeyPress={enterKeyPress}
@@ -186,67 +189,124 @@ console.log(userInfo, userPostList)
         </div>
         <div className='kanban-list-container'>
           <section className='kanban-list poor'>
-            {userPostList === undefined
-            ? <div>로딩 중</div> 
-            : userPostList.map((item, index) => {
-              if (item.understanding === 40 || item.understanding === null) {
-                return (
-                  <div
-                    className='kanban-list-item'
-                    draggable='true'
-                    key={index}
-                    onDoubleClick={(e) => handleClickPost(e)}
-                    id={item.id}
-                  >
-                    <h1 id={item.id}>{item.title}</h1>
-                    <div id={item.id}>{item.createdAt}</div>
-                    <div id={item.id}>{item.codeContent}</div>
-                  </div>
-                );
-              }
-            })}
+            {userPostList === undefined ? (
+              <div>로딩 중</div>
+            ) : (
+              userPostList.map((item, index) => {
+                if (item.understanding === 40 || item.understanding === null) {
+                  return (
+                    <div
+                      className='kanban-list-item'
+                      draggable='true'
+                      key={index}
+                      onDoubleClick={(e) => handleClickPost(e)}
+                      id={item.id}
+                    >
+                      <h1 id={item.id}>{item.title}</h1>
+                      <div id={item.id}>
+                        <CodeEditor
+                          readOnly
+                          className='codeeditor'
+                          value={item.codeContent}
+                          language={item.language===null ? 'javascript' :`${item.language}`}
+                          id={item.id}
+                          style={{
+                            width: '95%',
+                            height: '100px',
+                            margin: '5px',
+                            fontSize: 15,
+                            backgroundColor: '#f5f5f5',
+                            fontWeight: 500,
+                            fontFamily:
+                              'ui-monospace,SFMono-Regular,SF Mono,Consolas,Liberation Mono,Menlo,monospace',
+                          }}
+                        />
+                      </div>
+                    </div>
+                  );
+                }
+              })
+            )}
           </section>
           <section className='kanban-list fair'>
-            {userPostList === undefined
-            ? <div>로딩 중</div> 
-            : userPostList.map((item, index) => {
-              if (item.understanding === 41) {
-                return (
-                  <div
-                    className='kanban-list-item'
-                    draggable='true'
-                    key={index}
-                    onDoubleClick={(e) => handleClickPost(e)}
-                    id={item.id}
-                  >
-                    <h1 id={item.id}>{item.title}</h1>
-                    <div id={item.id}>{item.createdAt}</div>
-                    <div id={item.id}>{item.codeContent}</div>
-                  </div>
-                );
-              }
-            })}
+            {userPostList === undefined ? (
+              <div>로딩 중</div>
+            ) : (
+              userPostList.map((item, index) => {
+                if (item.understanding === 41) {
+                  return (
+                    <div
+                      className='kanban-list-item'
+                      draggable='true'
+                      key={index}
+                      onDoubleClick={(e) => handleClickPost(e)}
+                      id={item.id}
+                    >
+                      <h1 id={item.id}>{item.title}</h1>
+                      <div id={item.id}>
+                        <CodeEditor
+                          readOnly
+                          value={item.codeContent}
+                          className='codeeditor'
+                          language={item.language===null ? 'javascript' :`${item.language}`}
+                          id={item.id}
+                          style={{
+                            width: '95%',
+                            height: '100px',
+                            margin: '5px',
+                            fontSize: 15,
+                            backgroundColor: '#f5f5f5',
+                            fontWeight: 500,
+                            fontFamily:
+                              'ui-monospace,SFMono-Regular,SF Mono,Consolas,Liberation Mono,Menlo,monospace',
+                          }}
+                        />
+                      </div>
+                    </div>
+                  );
+                }
+              })
+            )}
           </section>
           <section className='kanban-list good'>
-            {userPostList === undefined
-            ? <div>로딩 중</div> 
-            : userPostList.map((item, index) => {
-              if (item.understanding === 42) {
-                return (
-                  <div
-                    className='kanban-list-item'
-                    draggable='true'
-                    key={index}
-                    onDoubleClick={(e) => handleClickPost(e)}
-                    id={item.id}
-                  >
-                    <h1 id={item.id}>{item.title}</h1>
-                    <div id={item.id}>{item.createdAt}</div>
-                    <div id={item.id}>{item.codeContent}</div>
-                  </div>
-                );
-              }
-            })}
+            {userPostList === undefined ? (
+              <div>로딩 중</div>
+            ) : (
+              userPostList.map((item, index) => {
+                if (item.understanding === 42) {
+                  return (
+                    <div
+                      className='kanban-list-item'
+                      draggable='true'
+                      key={index}
+                      onDoubleClick={(e) => handleClickPost(e)}
+                      id={item.id}
+                    >
+                      <h1 id={item.id}>{item.title}</h1>
+                      <div id={item.id}>
+                        <CodeEditor
+                          readOnly
+                          value={item.codeContent}
+                          className='codeeditor'
+                          language={item.language===null ? 'javascript' :`${item.language}`}
+                          id={item.id}
+                          style={{
+                            width: '95%',
+                            height: '100px',
+                            margin: '5px',
+                            fontSize: 15,
+                            backgroundColor: '#f5f5f5',
+                            fontWeight: 500,
+                            fontFamily:
+                              'ui-monospace,SFMono-Regular,SF Mono,Consolas,Liberation Mono,Menlo,monospace',
+                          }}
+                        />
+                      </div>
+                    </div>
+                  );
+                }
+              })
+            )}
           </section>
         </div>
       </div>
