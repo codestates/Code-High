@@ -130,15 +130,6 @@ function App() {
           <Route path='/loading'>
             <Loading />
           </Route>
-          <Route path='/github'>
-            <Loading />
-          </Route>
-          <Route path='/kakao'>
-            <Loading />
-          </Route>
-          <Route path='/google'>
-            <Loading />
-          </Route>
           <Route path='/admingraph'>
             <AdminGraph />
           </Route>
