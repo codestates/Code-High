@@ -294,7 +294,6 @@ const deletePostList = async (req: Request, res: Response) => {
   } else {
     selectPostList = await Post.findByIds(postList);
   }
-  
   await Post.remove(selectPostList);
   res.status(200).send({ message: 'delete posts successfully'})
 }

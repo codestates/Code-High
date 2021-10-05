@@ -21,6 +21,20 @@ const userActiveStat = async (req: Request, res: Response) => {
   res.status(200).send({ postCnt, commentCnt, highCompCnt })
 }
 
+const userPostStat = async (req: Request, res: Response) => {
+
+  const after = dateFormat.calculateDate(-4);
+
+  const result = await Post.createQueryBuilder()
+  .where('createdAt >= :after')
+  .orderBy('createdAt', 'DESC')
+  .getMany()
+
+
+  res.status(200).send({ result })
+
+}
+
 // 일별 코드 작성 현황
 const dateStat = async (req: Request, res: Response) => {
   if (req.body.userRole !== 1) {
@@ -28,8 +42,8 @@ const dateStat = async (req: Request, res: Response) => {
   }
 
   const today = dateFormat.today();
-  const fourDayAgo = dateFormat.calculateDate(-4);
-  const day = await Stat.find({ date: Between(fourDayAgo, today)});
+  const sixDayAgo = dateFormat.calculateDate(-6);
+  const day = await Stat.find({ date: Between(sixDayAgo, today)});
 
   const date = await Stat.createQueryBuilder()
   .orderBy('date', 'DESC')
@@ -114,6 +128,7 @@ const monthStat = async (req: Request, res: Response) => {
 
 export {
   userActiveStat,
+  userPostStat,
   dateStat,
   weekStat,
   monthStat

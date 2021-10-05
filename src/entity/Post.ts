@@ -40,11 +40,9 @@ export class Post extends BaseEntity {
     user: User;
 
     // post <-> postTag 1:n
-    @OneToMany((type) => Posttag, (postTag) => postTag.post, {onDelete: 'CASCADE'})
+    @OneToMany((type) => Posttag, (postTag) => postTag.post, {cascade: true})
     postTags: Posttag[];
 
-    @OneToMany((type) => Comment, (comment) => comment.post, {onDelete: 'CASCADE'})
+    @OneToMany((type) => Comment, (comment) => comment.post, {cascade: true})
     comments: Comment[];
-
-
 }

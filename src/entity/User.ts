@@ -54,10 +54,10 @@ export class User extends BaseEntity {
   authority: Authority;
 
   // user <-> post 1:n
-  @OneToMany((type) => Post, (post) => post.user, {onDelete: 'CASCADE'})
+  @OneToMany((type) => Post, (post) => post.user)
   posts: Post[];
 
   // user <-> comment 1:n
-  @OneToMany((type) => Comment, (comment) => comment.user, {onDelete: 'CASCADE'})
+  @OneToMany((type) => Comment, (comment) => comment.user)
   comments: Comment[];
 }
