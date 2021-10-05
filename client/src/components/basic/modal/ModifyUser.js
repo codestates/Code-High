@@ -1,15 +1,17 @@
-import React, { useRef, useState, useEffect }from 'react';
+import React, { useRef, useState,  }from 'react';
 import modifyimg from '../../../images/modifyimg.png';
 import codehighlogo from '../../../images/codehighlogo.png';
 import { useSelector, useDispatch } from 'react-redux';
-import { useHistory } from 'react-router-dom';
 import axios from 'axios';
+import userInfoPopUp from '../../mypage/MyPageSub'
+import { modifyUserInfo } from '../../../redux/actions/userActions';
+import { getMypageInfo } from '../../../redux/actions/userActions';
+import { useHistory } from 'react-router-dom';
 
 function ModifyUser({ userInfoPopUp, setShowUserInfoPopUp }) {
   const ModifyUserBackgroundEl = useRef(null);
   const state = useSelector((state) => state.userReducer);
   const { userInfo } = state;
-  const history = useHistory();
   const serverUrl = 'https://api.codehigh.club';
   const [signupNotice, setSignupNotice] = useState('비밀번호를 입력해 주세요');
   const [modifyInfo, setModifyInfo] = useState({
@@ -17,8 +19,7 @@ function ModifyUser({ userInfoPopUp, setShowUserInfoPopUp }) {
     passwordcheck: '',
     nickname: userInfo.name
   })
-
-  const ModifyUserBackgroundClick = (e) => {
+   const ModifyUserBackgroundClick = (e) => {
     if (e.target === ModifyUserBackgroundEl.current) {
       setShowUserInfoPopUp(!userInfoPopUp);
     }
@@ -27,7 +28,8 @@ function ModifyUser({ userInfoPopUp, setShowUserInfoPopUp }) {
   const handleInputValue = (key) => (e) => {
     setModifyInfo({ ...modifyInfo, [key]: e.target.value });
   };
-
+  const dispatch = useDispatch();
+  const history = useHistory();
   const handlemodify = () => {
     const { newpassword, passwordcheck, nickname } = modifyInfo;
     if (!newpassword && !passwordcheck && nickname !== undefined) {
@@ -41,7 +43,12 @@ function ModifyUser({ userInfoPopUp, setShowUserInfoPopUp }) {
         )
         .then((data) => {
           if (data.status === 200) {
-            history.push('/');
+            const data = {
+              accessToken: userInfo ? userInfo.accessToken : undefined,
+              };
+            dispatch(getMypageInfo(data));
+            userInfoPopUp()
+            history.push('/mypage')
           }
         })
         .catch((err) => {
@@ -61,7 +68,8 @@ function ModifyUser({ userInfoPopUp, setShowUserInfoPopUp }) {
         )
         .then((data) => {
           if (data.status === 200) {
-            history.push('/');
+            userInfoPopUp()
+            window.location.reload();
           }
         })
         .catch((err) => {

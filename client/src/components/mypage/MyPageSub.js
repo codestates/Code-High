@@ -6,7 +6,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import ModifyUser from '../basic/modal/ModifyUser';
 import modifyUserInfoImg from '../../images/modifyuserinfo.png'
 import { getMypageInfo } from '../../redux/actions/userActions';
-import { modifyUser } from '../../redux/actions/userActions'
+
 
 const MyPageSub = (props) => {
     const userState = useSelector((state) => state.userReducer);
@@ -23,7 +23,6 @@ const MyPageSub = (props) => {
     
     const userInfoPopUp = () => {
         setShowUserInfoPopUp(!showUserInfoPopUp)
-        console.log(showUserInfoPopUp, 'click')
     };
 
     // console.log('마이페이지 유저정보',userInfo)
