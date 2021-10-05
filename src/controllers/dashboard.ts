@@ -4,7 +4,7 @@ import { Comment } from '../entity/Comment'
 import { Post } from '../entity/Post'
 import { Stat } from '../entity/stat'
 import { User } from '../entity/User'
-import { dateFormat } from '../utils/dateFormat'
+import { dateFormat } from '../utils/dataFormat'
 
 const userActiveStat = async (req: Request, res: Response) => {
   if (req.body.userRole > 4 ) {
