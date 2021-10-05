@@ -36,9 +36,6 @@ function App() {
     const loginType = url.searchParams.get('login');
     const authorizationCode = url.searchParams.get('code');
     if (authorizationCode) {
-      console.log('authorizationCode', authorizationCode);
-      console.log('loginType', loginType);
-
       if (loginType === 'github') {
         getGithubAccessToken(authorizationCode);
       } else if (loginType === 'kakao') {
@@ -131,15 +128,6 @@ function App() {
             <NoticeForSignup />
           </Route>
           <Route path='/loading'>
-            <Loading />
-          </Route>
-          <Route path='/github'>
-            <Loading />
-          </Route>
-          <Route path='/kakao'>
-            <Loading />
-          </Route>
-          <Route path='/google'>
             <Loading />
           </Route>
           <Route path='/admingraph'>
