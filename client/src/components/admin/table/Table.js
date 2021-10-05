@@ -54,7 +54,7 @@ const Table = () => {
         }
         dispatch(deleteUsersPost(data))
         console.log(data.postList, 'postList?')
-        // window.location.reload();
+        window.location.reload();
     }
 
     const deleteCommentHandle = () => {
