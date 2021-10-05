@@ -57,7 +57,7 @@ const kakaoLogin = async (req: Request, res: Response) => {
       client_secret: process.env.KAKAO_CLIENT_SECRET,
       code: req.body.authorizationCode,
       grant_type: 'authorization_code',
-      redirect_uri: 'http://localhost:3000?login=kakao'
+      redirect_uri: `${process.env.CLIENT_ENDPOINT}?login=kakao`
     }), {
       headers: {
         'Content-type': 'application/x-www-form-urlencoded;charset=utf-8'
@@ -122,7 +122,7 @@ const googleLogin = async (req: Request, res: Response) => {
       client_secret: process.env.GOOGLE_CLIENT_SECRET,
       code: req.body.authorizationCode,
       grant_type: 'authorization_code',
-      redirect_uri: 'http://localhost:3000?login=google'
+      redirect_uri: `${process.env.CLIENT_ENDPOINT}?login=google`
     })
 
     if (!result) {
