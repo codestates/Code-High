@@ -1,7 +1,7 @@
 import * as schedule from 'node-schedule';
 import { Between } from 'typeorm';
 import { User } from '../entity/User';
-import { dateFormat } from './dateFormat';
+import { dateFormat } from './dataFormat';
 import { Post } from '../entity/Post';
 import { Comment } from '../entity/Comment';
 import { Stat } from '../entity/stat';
