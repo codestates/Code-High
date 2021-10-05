@@ -82,7 +82,7 @@ const editUser = async (req: Request, res: Response) => {
 const resetPassword = async (req: Request, res: Response) => {
   let password = req.body.password;
   let code: any = req.query.code;
-  if (!req.query.code || !password) {
+  if (!code || !password) {
     return res.status(422).send({ message: 'cannot find password or code'});
   }
   

@@ -322,6 +322,8 @@ const regenerateToken = async (req: Request, res: Response) => {
     return res.status(401).send('invalid refresh token');
   }
 
+  await User.update(verified.id, { refreshToken: verified.refreshToken });
+
   res.clearCookie('refreshToken');
   res.cookie('refreshToken', verified.refreshToken, {
     maxAge: 1000 * 60 * 60 * 24 * 14, // 14d

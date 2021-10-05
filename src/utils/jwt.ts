@@ -63,7 +63,7 @@ const checkToRegenerate = async (token: string) => {
   const { id, email } = result;
   const accessToken = generateAccessToken({ id, email });
   const refreshToken = generateRefreshToken({ email });
-  return { accessToken, refreshToken };
+  return { id, accessToken, refreshToken };
 }
 
 export { 
