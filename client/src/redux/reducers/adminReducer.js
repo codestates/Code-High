@@ -25,10 +25,12 @@ const adminReducer = (state = {},
       });
     case DELETE_USERS_POST:
       return Object.assign({}, state, {
-        usersPost: state.usersPost.filter(
-          (el) => el.id !== action.payload.id
-        )
+        message: action.payload,
       });
+      case DELETE_USERS_COMMENT:
+        return Object.assign({}, state, {
+          message: action.payload,
+        });
 
     default:
       return state;
@@ -36,7 +38,5 @@ const adminReducer = (state = {},
 }
 
 
-    // case DELETE_USERS_COMMENT:
-    //   return Object.assign({}, state, {});
 
 export default adminReducer;

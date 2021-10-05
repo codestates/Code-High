@@ -86,13 +86,17 @@
     font-size: 1.5rem; }
   .admin-table-post-data tr {
     display: grid;
-    grid-template-columns: 0.5fr 2fr 3fr 1fr;
+    grid-template-columns: 0.5fr 1fr 3fr 1fr;
     text-align: center;
-    height: 20px; }
+    height: 40px; }
     .admin-table-post-data tr td {
       font-size: 1.5rem; }
     .admin-table-post-data tr th {
       font-size: 1.5rem; }
+
+.td-textalign-left {
+  text-align: left;
+  padding-left: 10px; }
 
 .admin-table-comment-box {
   border: 1px solid #E1E1E1;
@@ -103,9 +107,9 @@
     font-size: 1.5rem; }
   .admin-table-comment-box tr {
     display: grid;
-    grid-template-columns: 0.5fr 0.5fr 3fr 5fr;
+    grid-template-columns: 0.5fr 0.5fr 1fr 5fr;
     text-align: center;
-    height: 20px; }
+    height: 40px; }
     .admin-table-comment-box tr td {
       font-size: 1.5rem; }
     .admin-table-comment-box tr th {
@@ -2417,13 +2421,17 @@ a {
     font-size: 1.5rem; }
   .admin-table-post-data tr {
     display: grid;
-    grid-template-columns: 0.5fr 2fr 3fr 1fr;
+    grid-template-columns: 0.5fr 1fr 3fr 1fr;
     text-align: center;
-    height: 20px; }
+    height: 40px; }
     .admin-table-post-data tr td {
       font-size: 1.5rem; }
     .admin-table-post-data tr th {
       font-size: 1.5rem; }
+
+.td-textalign-left {
+  text-align: left;
+  padding-left: 10px; }
 
 .admin-table-comment-box {
   border: 1px solid #E1E1E1;
@@ -2434,9 +2442,9 @@ a {
     font-size: 1.5rem; }
   .admin-table-comment-box tr {
     display: grid;
-    grid-template-columns: 0.5fr 0.5fr 3fr 5fr;
+    grid-template-columns: 0.5fr 0.5fr 1fr 5fr;
     text-align: center;
-    height: 20px; }
+    height: 40px; }
     .admin-table-comment-box tr td {
       font-size: 1.5rem; }
     .admin-table-comment-box tr th {
