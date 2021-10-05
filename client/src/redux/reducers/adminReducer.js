@@ -25,9 +25,7 @@ const adminReducer = (state = {},
       });
     case DELETE_USERS_POST:
       return Object.assign({}, state, {
-        usersPost: state.usersPost.filter(
-          (el) => el.id !== action.payload.id
-        )
+        usersPost: [...state.usersPost, ...action.payload]
       });
 
     default:

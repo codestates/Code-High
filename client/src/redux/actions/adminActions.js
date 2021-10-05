@@ -76,15 +76,16 @@ export const getUsersComment = async (data) => {
 
 
 //4.선택한 게시글 삭제하기-------------------------------
-export async function deleteUsersPost(id) {
+export async function deleteUsersPost(data) {
   axios
   .delete(`${serverUrl}/post`, {
-    headers: { Authorization: `bearer ${accessToken}` },
-    data: { postList: `${postList}`},
+    headers: { Authorization: `bearer ${data.accessToken}` },
+    data: { postList: `${data.postList}`},
     withCredentials: true,
   })
-    .then((res) => {
-      return {
+  .then((res) => {
+    console.log(data);
+    return {
         type: DELETE_USERS_POST,
         payload: res.data.message,
       };

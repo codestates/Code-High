@@ -17,17 +17,27 @@ const Table = () => {
     const userState = useSelector((state) => state.userReducer);
     const { userInfo } = userState
     
-    useEffect(() =>{
-        dispatch(getUsersComment(userInfo.accessToken))
-        dispatch(getUsersPost(userInfo.accessToken))
-        console.log(usersPost,'@@@@')
-        // console.log(usersComment,'🙁🙁🙁🙁🙁🙁')
-    },[]);
-    
-
     const [checkPostList, setCheckPostList] = useState([])
     const [checkCommentList, setCheckCommentList] = useState([])
 
+    const deletePostHandle = (checkPostList) => {
+        const data = {
+            accessToken: userInfo.accessToken,
+            postList: checkPostList
+        }
+        console.log('deletePostHandle', data)
+    }
+    
+    
+    useEffect(() =>{
+        dispatch(getUsersComment(userInfo.accessToken))
+        dispatch(getUsersPost(userInfo.accessToken))
+        dispatch(deleteUsersPost(data))
+    },[checkPostList, checkCommentList,]);
+    
+    // console.log(checkCommentList,'commentList')
+    // console.log(checkPostList,'postList') 
+    
     const getPostCheckboxId = (e, id) =>{
         if(e.target.checked){
             setCheckPostList([...checkPostList, id]);
@@ -35,7 +45,6 @@ const Table = () => {
         else{
             setCheckPostList(checkPostList.filter((checkedId) => checkedId !== id))
         }
-        console.log(checkPostList, 'PostList')
     }
 
     const getCommentCheckboxId = (e, id) =>{
@@ -45,7 +54,7 @@ const Table = () => {
         else{
             setCheckCommentList(checkCommentList.filter((checkedId) => checkedId !== id))
         }
-        console.log(checkCommentList, 'CommentList')
+        // console.log(checkCommentList, 'CommentList')
     }
 
 
@@ -64,7 +73,7 @@ const Table = () => {
                         <div className='admin-table-button-box'>
                             <div>게시글 {usersPost.length}개</div>
                             <div className='admin-button'>
-                            <Button content='Remove' backgroundColor='#2F8C4C' color='#fff' />
+                            <Button content='Remove' backgroundColor='#2F8C4C' color='#fff' onClick={deletePostHandle(checkPostList)} />
                             </div>
                         </div>
                         <div className='admin-table-post-data'>
@@ -72,7 +81,7 @@ const Table = () => {
                                 <th></th>
                                 <th>이메일</th>
                                 <th>게시글</th>
-                                <th>날짜</th>
+                                <th>createdAt</th>
                             </tr>
                             {
                     usersPost.map((el,index)=>{                         
@@ -81,7 +90,7 @@ const Table = () => {
                                         <td><input type="checkbox" 
                                         onChange={(e)=> getPostCheckboxId(e, el.id)} /></td>
                                         <td>{el.userName}</td>
-                                        <td>{el.title}</td>
+                                        <td className='td-textalign-left'>{el.title}</td>
                                         <td>{el.createdAt}</td>
                                     </tr>
                                 )    
@@ -113,7 +122,7 @@ const Table = () => {
                                         onChange={(e)=> getCommentCheckboxId(e, el.id)} /></td>
                                         <td>{index}</td>
                                         <td>{el.userName}</td>
-                                        <td>{el.content}</td>
+                                        <td className='td-textalign-left'>{el.content}</td>
                                     </tr>
                                 )    
                                 })
