@@ -285,8 +285,11 @@ const deletePostList = async (req: Request, res: Response) => {
   }
 
   const postList = req.body.postList;
+  if (!postList) {
+    return res.status(422).send({ message: 'empty array' });
+  }
   let selectPostList;
-
+  
   // TODO: count확인
 
   if (req.body.userRole !== 1) {
