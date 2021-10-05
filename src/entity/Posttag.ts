@@ -15,7 +15,7 @@ export class Posttag extends BaseEntity {
 
     // foreign key
     // postTag <-> post n:1
-    @ManyToOne((type) => Post, (post) => post.postTags)
+    @ManyToOne((type) => Post, (post) => post.postTags, { onDelete: 'CASCADE' })
     post:Post;
 
     // posttag <-> tag n:1
