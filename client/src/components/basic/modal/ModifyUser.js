@@ -30,10 +30,7 @@ function ModifyUser({ userInfoPopUp, setShowUserInfoPopUp }) {
 
   const handlemodify = () => {
     const { newpassword, passwordcheck, nickname } = modifyInfo;
-    if (newpassword !== passwordcheck) {
-      setSignupNotice('비밀번호가 일치하지 않습니다.');
-      return;
-    } else if (newpassword === passwordcheck && newpassword === '') {
+    if (!newpassword && !passwordcheck && nickname !== undefined) {
       axios
         .patch(
           `${serverUrl}/user`,
@@ -50,6 +47,9 @@ function ModifyUser({ userInfoPopUp, setShowUserInfoPopUp }) {
         .catch((err) => {
           console.log(err);
         });
+    } else if (newpassword !== passwordcheck) {
+      setSignupNotice('비밀번호가 일치하지 않습니다.');
+      return;
     } else if (newpassword === passwordcheck) {
       axios
         .patch(
@@ -68,6 +68,7 @@ function ModifyUser({ userInfoPopUp, setShowUserInfoPopUp }) {
           console.log(err);
         });
     }
+    
   }
 
   const enterKeyPress = (e) => {
