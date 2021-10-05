@@ -4,11 +4,11 @@ import * as postController from '../controllers/post';
 import * as dashboardController from '../controllers/dashboard';
 import { checkAuth } from '../middleware/checkAuth'
 import { checkRole } from '../middleware/checkRole';
-//import { upload } from '../utils/multer';
+import { upload } from '../utils/multer';
 
 const userRouter = Router();
 
-//userRouter.post('/image', upload.single('image'), checkAuth, checkRole, userController.editImage)
+userRouter.post('/image', upload.single('image'), checkAuth, checkRole, userController.editImage)
 
 userRouter.use('/', checkAuth);
 userRouter.use('/', checkRole);
