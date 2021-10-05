@@ -1,46 +1,50 @@
-.postcomment{
+.postcomment-button-warp{
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 10px 0;
-}
-.postcomment-container{
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  flex-direction: column;
 }
 .postcomment-button-container{
-  width: 100%;
+  width: 1200px;
   display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  span:nth-child(1){
-    font-size: 1.3rem;
-    margin: 0 10px;
-    font-family: 'NanumGothic';
-    font-weight: 600;
-  }
-  span:nth-child(2){
+  justify-items:end;
+  justify-content: right;
+  align-items: center;
+  margin: 0 10px;
+}
+.postcomment-buttons{
+  span{
     font-size: 1.4rem;
-    padding: 0 30px;
+    padding: 10px 30px;
     font-family: 'NanumGothic';
     font-weight: 600;
     color: white;
   }
 }
 
-.postcomment-input-container{
-  width: 1200px;
+//----------------------------------
+
+.postcomment{
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-left: 10px;
   margin-top: 10px;
+}
+.postcomment-container{
+  width: 1200px;
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  margin: 0 10px;
+  flex-direction: column;
+}
+
+.postcomment-input-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
   textarea{
+    width: 1083px;
     font-size: 1.4rem;
-    width: 80vw;
-    height: 2vh;
     resize: none;
     display: flex;
     padding: 10px;
@@ -61,8 +65,6 @@
     height: 20vh;
     display: flex;
     flex-direction: column;
-    margin-left: 10px;
-    margin-top: 10px;
     overflow-y: auto;
     li{
         list-style: none;
@@ -80,7 +82,7 @@
     border-radius: 10px;
     padding: 10px;
     margin:3px 0px;
-    width: 98%;
+    width: 95%;
 }
 .postcomment-message{
     display: flex;
@@ -104,4 +106,70 @@
         padding: 2px;
         border: 0px;
     }
+}
+.postcomment-modifyinput-container{
+  display: flex;
+  margin-top: 5px;
+  textarea{
+    padding: 5px;
+    width: 1000px;
+    resize: none;
+    &:focus{
+      outline: none;
+    }
+  }
+  button{
+    margin-left: 5px;
+    padding: 0 10px;
+    background-color: #{$green};
+    color: white;
+    border-radius: 5px;
+    border: 0;
+  }
+}
+
+
+@include tablet {
+  .postcomment-input-container{
+    textarea{
+      width: 800px;
+    }
+  }
+  .postcomment-output-container{
+    width: 920px;
+  }
+  .postcomment-modifyinput-container{
+    display: flex;
+    margin-top: 5px;
+    textarea{
+      padding: 5px;
+      width: 800px;
+      resize: none;
+      &:focus{
+        outline: none;
+      }
+    }
+  }
+}
+@include mobile {
+  .postcomment-input-container{
+    textarea{
+      width: 350px;
+    }
+  }
+  .postcomment-output-container{
+    width: 450px;
+  }
+  .postcomment-modifyinput-container{
+    display: flex;
+    margin-top: 5px;
+    textarea{
+      padding: 5px;
+      width: 350px;
+      resize: none;
+      &:focus{
+        outline: none;
+      }
+    }
+  }
 }

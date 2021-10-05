@@ -29,6 +29,7 @@
     padding: 10px;
     border-radius: 10px;
     border: solid 1px #{$gray};
+
       li{
           display: flex;
           justify-content: right;
@@ -48,4 +49,10 @@
       li:nth-child(4){
         border-top: solid 1px #{$gray};
       }
+}
+
+@include mobile {
+  .sidebar-main {
+    width: 120px;
+  }
 }
