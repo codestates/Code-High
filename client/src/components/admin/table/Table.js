@@ -17,22 +17,12 @@ const Table = () => {
     const userState = useSelector((state) => state.userReducer);
     const { userInfo } = userState
     
-    const [checkPostList, setCheckPostList] = useState([])
-    const [checkCommentList, setCheckCommentList] = useState([])
-
-    const deletePostHandle = (checkPostList) => {
-        const data = {
-            accessToken: userInfo.accessToken,
-            postList: checkPostList
-        }
-        console.log('deletePostHandle', data)
-    }
-    
+        const [checkPostList, setCheckPostList] = useState([])
+        const [checkCommentList, setCheckCommentList] = useState([])
     
     useEffect(() =>{
-        dispatch(getUsersComment(userInfo.accessToken))
         dispatch(getUsersPost(userInfo.accessToken))
-        dispatch(deleteUsersPost(data))
+        dispatch(getUsersComment(userInfo.accessToken))
     },[checkPostList, checkCommentList,]);
     
     // console.log(checkCommentList,'commentList')
@@ -57,7 +47,26 @@ const Table = () => {
         // console.log(checkCommentList, 'CommentList')
     }
 
+    const deletePostHandle = () => {
+        const data = {
+            accessToken: userInfo.accessToken,
+            postList: checkPostList
+        }
+        dispatch(deleteUsersPost(data))
+        console.log(data.postList, 'postList?')
+        // window.location.reload();
+    }
 
+    const deleteCommentHandle = () => {
+        const data = {
+            accessToken: userInfo.accessToken,
+            commentList: checkCommentList
+        }
+        dispatch(deleteUsersComment(data));
+        // window.location.reload();
+        console.log(data.commentList, 'commentList?')
+
+    }
 
     return (
         <>
@@ -73,7 +82,12 @@ const Table = () => {
                         <div className='admin-table-button-box'>
                             <div>게시글 {usersPost.length}개</div>
                             <div className='admin-button'>
-                            <Button content='Remove' backgroundColor='#2F8C4C' color='#fff' onClick={deletePostHandle(checkPostList)} />
+                            <Button
+                                content={'Remove'}
+                                backgroundColor='#2F8C4C' 
+                                color='#fff' 
+                                onClickHandle={deletePostHandle}
+                            />
                             </div>
                         </div>
                         <div className='admin-table-post-data'>
@@ -84,7 +98,7 @@ const Table = () => {
                                 <th>createdAt</th>
                             </tr>
                             {
-                    usersPost.map((el,index)=>{                         
+                            usersPost.map((el,index)=>{                         
                                 return(
                                     <tr key={index}>
                                         <td><input type="checkbox" 
@@ -104,7 +118,11 @@ const Table = () => {
                             댓글 {usersComment.length}개
                             </div>
                             <div className='admin-button'>
-                            <Button content='Remove' backgroundColor='#2F8C4C' color='#fff' />
+                            <Button 
+                                content={'Remove'}
+                                backgroundColor='#2F8C4C'
+                                color='#fff'
+                                onClickHandle={deleteCommentHandle} />
                             </div>  
                         </div>
                         <div className='admin-table-comment-box'>
