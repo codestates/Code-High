@@ -7,6 +7,7 @@ import {
   MODIFY_USER_INFO,
   DELETE_USER_INFO,
   MYPAGE_USER_INFO,
+  GET_USER_POST_ACTIVE,
 } from './types';
 import axios from 'axios';
 
@@ -210,3 +211,22 @@ export const getMypageInfo = async (data) => {
     payload: response,
   };
 };
+
+// 9.mypage get user post active
+export const getUserPostActive = async (data) => {
+  const response = axios
+    .get(`${serverUrl}/user/active/post`, {
+      headers: {
+        Authorization: `bearer ${data.accessToken}`,
+        'Content-Type': 'application/json',
+      }
+    })
+    .then((res) => {
+      return res.data
+    })
+  
+  return {
+    type: GET_USER_POST_ACTIVE,
+    payload: response,
+  };
+}

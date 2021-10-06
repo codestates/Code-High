@@ -5,7 +5,7 @@ import { getUsersChart } from '../../../redux/actions/adminActions';
 
 const Graph = () => {
     const adminState = useSelector((state) => state.adminReducer);
-    const { usersChart } = adminState
+    const { usersChart } = adminState;
     const userState = useSelector((state) => state.userReducer);
     const { userInfo } = userState
     const dispatch = useDispatch();
@@ -13,25 +13,6 @@ const Graph = () => {
     useEffect(() =>{
         dispatch(getUsersChart(userInfo.accessToken))
     },[]);
-
-    const chartData = {
-        labels: usersChart.days,
-        datasets: [{
-        label: '방문자 수',
-        backgroundColor: 'blue',
-        data: usersChart.visitCount,
-        fill: false,
-        tension: 0.1
-        },
-        {
-        label: '게시글 수',
-        backgroundColor:'green',
-        data: usersChart.postCount,
-        fill: false,
-        tension: 0.1   
-        }]
-    }
-
 
     return (
         <div className='admin-graph-main'>
@@ -45,11 +26,23 @@ const Graph = () => {
                 <div className='admin-status-graph-container'>
                     <div className='admin-graph'>
                         <Bar
-                        data={chartData === undefined ? (
-                            로딩중
-                        ):(
-                            chartData
-                        )}
+                        data={{
+                            labels: usersChart.days,
+                            datasets: [{
+                                label: '방문자 수',
+                                backgroundColor: 'blue',
+                                data: usersChart.visitCount,
+                                fill: false,
+                                tension: 0.1
+                            },
+                            {
+                                label: '게시글 수',
+                                backgroundColor:'green',
+                                data: usersChart.postCount,
+                                fill: false,
+                                tension: 0.1   
+                            }]
+                        }}
                         options={{ maintainAspectRatio: false }}
                         />
                     </div>
