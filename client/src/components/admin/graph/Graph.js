@@ -32,8 +32,12 @@ const Graph = () => {
         }]
     }
 
+
     return (
         <div className='admin-graph-main'>
+            {usersChart === undefined ? (
+                <h1>오류발생</h1>
+            ):(
             <div className='admin-graph-main-container'>
                 <div className='admin-graph-subject'>
                 사용자 현황
@@ -73,6 +77,7 @@ const Graph = () => {
                     </div>
                 </div>
             </div>
+            )}
         </div>
     );
 };
