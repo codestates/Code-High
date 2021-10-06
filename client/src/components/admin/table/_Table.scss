@@ -13,7 +13,7 @@
     padding-left: 30px;
     text-align: left;
     font-size: 2rem;
-    font-weight: 800;
+    font-weight: 700;
 }
 
 .admin-table-sub{
@@ -47,14 +47,20 @@
     }
     tr{
         display: grid;
-        grid-template-columns: 0.5fr 1fr 3fr 1fr;
+        grid-template-columns: 0.5fr 0.5fr 1fr 3fr 1fr;
         text-align: center;
         height: 40px;
         td{
             font-size: 1.5rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
         th{
             font-size: 1.5rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
     }
 }
@@ -78,9 +84,15 @@
         height: 40px;
         td{
             font-size: 1.5rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
         th{
             font-size: 1.5rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
     }
 }
@@ -95,7 +107,9 @@
     justify-content: center;
     align-items: center;
     div{
-        font-size: 1.5rem;
+        font-size: 1.7rem;
+        margin-left: 0;
+        font-weight: 700;
     }
 }
 

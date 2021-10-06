@@ -30,71 +30,6 @@ function Kanban() {
   const history = useHistory();
   const dispatch = useDispatch();
 
-  //글 목록 불러오기 및 칸반보드
-  useEffect(() => {
-    async function getCodePost() {
-      let data = {
-        accessToken: userInfo.accessToken,
-      };
-      dispatch(getCodestoragePost(data));
-    }
-
-    getCodePost();
-
-    const list_items = document.querySelectorAll('.kanban-list-item');
-    const lists = document.querySelectorAll('.kanban-list');
-
-    let draggedItem = null;
-
-    for (let i = 0; i < list_items.length; i++) {
-      const item = list_items[i];
-      item.addEventListener('dragstart', function () {
-        draggedItem = item;
-        setTimeout(() => {
-          item.style.display = 'none';
-        }, 0);
-      });
-
-      item.addEventListener('dragend', function () {
-        setTimeout(() => {
-          draggedItem.style.display = 'block';
-          draggedItem = null;
-        }, 0);
-      });
-
-      for (let j = 0; j < lists.length; j++) {
-        const list = lists[j];
-
-        list.addEventListener('dragover', function (e) {
-          e.preventDefault();
-        });
-        list.addEventListener('dragenter', function (e) {
-          e.preventDefault();
-          list.style.backgroundColor = 'rgba(0, 0, 0, 0.2)';
-        });
-        list.addEventListener('dragleave', function (e) {
-          list.style.backgroundColor = 'rgba(0, 0, 0, 0.1)';
-        });
-        list.addEventListener('drop', function (e) {
-          list.append(draggedItem);
-          list.style.backgroundColor = 'rgba(0, 0, 0, 0.1)';
-          handleChangeTag(
-            list.className.substring(e.path[0].className.length - 4),
-            draggedItem.id
-          );
-        });
-      }
-    }
-  }, []);
-
-  useEffect(() => {
-    const data = {
-      search: searchValue.search,
-      accessToken: userInfo.accessToken,
-    };
-    dispatch(getStorageFilter(data));
-  }, [searchValue]);
-
   //태그 수정
   const handleChangeTag = async (understanding, id) => {
     try {
@@ -127,6 +62,57 @@ function Kanban() {
         });
     } catch (err) {
       console.log(err);
+    }
+  };
+
+  const kanban = () => {
+    const list_items = document.querySelectorAll('.kanban-list-item');
+    const lists = document.querySelectorAll('.kanban-list');
+
+    let draggedItem = null;
+
+    for (let i = 0; i < list_items.length; i++) {
+      const item = list_items[i];
+      item.addEventListener('dragstart', function () {
+        draggedItem = item;
+        if (draggedItem !== null) {
+          setTimeout(() => {
+            item.style.display = 'none';
+          }, 0);
+        }
+      });
+
+      item.addEventListener('dragend', function () {
+        setTimeout(() => {
+          draggedItem.style.display = 'block';
+          draggedItem = null;
+        }, 0);
+      });
+
+      for (let j = 0; j < lists.length; j++) {
+        const list = lists[j];
+
+        list.addEventListener('dragover', function (e) {
+          e.preventDefault();
+        });
+        list.addEventListener('dragenter', function (e) {
+          e.preventDefault();
+          list.style.backgroundColor = 'rgba(0, 0, 0, 0.2)';
+        });
+        list.addEventListener('dragleave', function (e) {
+          list.style.backgroundColor = 'rgba(0, 0, 0, 0.1)';
+        });
+        list.addEventListener('drop', function (e) {
+          if (draggedItem !== null) {
+            list.append(draggedItem);
+            list.style.backgroundColor = 'rgba(0, 0, 0, 0.1)';
+            handleChangeTag(
+              list.className.substring(e.path[0].className.length - 4),
+              draggedItem.id
+            );
+          }
+        });
+      }
     }
   };
 
@@ -164,6 +150,31 @@ function Kanban() {
       dispatch(getStorageFilter(data));
     }
   };
+
+  //칸반보드
+  useEffect(() => {
+    kanban();
+  });
+
+  //글 목록 불러오기
+  useEffect(() => {
+    async function getCodePost() {
+      let data = {
+        accessToken: userInfo.accessToken,
+      };
+      dispatch(getCodestoragePost(data));
+    }
+
+    getCodePost();
+  }, []);
+
+  useEffect(() => {
+    const data = {
+      search: searchValue.search,
+      accessToken: userInfo.accessToken,
+    };
+    dispatch(getStorageFilter(data));
+  }, [searchValue]);
 
   return (
     <div className='kanban'>

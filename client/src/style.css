@@ -57,7 +57,7 @@
   padding-left: 30px;
   text-align: left;
   font-size: 2rem;
-  font-weight: 800; }
+  font-weight: 700; }
 
 .admin-table-sub {
   width: 1200px;
@@ -86,13 +86,19 @@
     font-size: 1.5rem; }
   .admin-table-post-data tr {
     display: grid;
-    grid-template-columns: 0.5fr 1fr 3fr 1fr;
+    grid-template-columns: 0.5fr 0.5fr 1fr 3fr 1fr;
     text-align: center;
     height: 40px; }
     .admin-table-post-data tr td {
-      font-size: 1.5rem; }
+      font-size: 1.5rem;
+      display: flex;
+      justify-content: center;
+      align-items: center; }
     .admin-table-post-data tr th {
-      font-size: 1.5rem; }
+      font-size: 1.5rem;
+      display: flex;
+      justify-content: center;
+      align-items: center; }
 
 .td-textalign-left {
   text-align: left;
@@ -111,9 +117,15 @@
     text-align: center;
     height: 40px; }
     .admin-table-comment-box tr td {
-      font-size: 1.5rem; }
+      font-size: 1.5rem;
+      display: flex;
+      justify-content: center;
+      align-items: center; }
     .admin-table-comment-box tr th {
-      font-size: 1.5rem; }
+      font-size: 1.5rem;
+      display: flex;
+      justify-content: center;
+      align-items: center; }
 
 .admin-button {
   text-align: right; }
@@ -124,7 +136,9 @@
   justify-content: center;
   align-items: center; }
   .admin-table-button-box div {
-    font-size: 1.5rem; }
+    font-size: 1.7rem;
+    margin-left: 0;
+    font-weight: 700; }
 
 @media (min-width: 769px) and (max-width: 1199px) {
   .admin-table-comment-box {
@@ -1749,7 +1763,7 @@ a {
   user-select: none; }
 
 .subbanner-container {
-  padding: 70px 30px;
+  padding: 100px 30px;
   width: auto;
   height: auto;
   display: grid; }
@@ -2111,9 +2125,9 @@ a {
   font-weight: 100; }
 
 .postcomment-deleteButton-container button {
-  font-size: 1.5rem;
+  font-size: 1.6rem;
   margin-left: 5px;
-  border-radius: 20px;
+  border-radius: 5px;
   background-color: white;
   padding: 2px;
   border: 0px; }
@@ -2134,6 +2148,8 @@ a {
     color: white;
     border-radius: 5px;
     border: 0; }
+    .postcomment-modifyinput-container button:focus {
+      cursor: pointer; }
 
 @media (min-width: 769px) and (max-width: 1199px) {
   .postcomment-input-container textarea {
@@ -2393,7 +2409,7 @@ a {
   padding-left: 30px;
   text-align: left;
   font-size: 2rem;
-  font-weight: 800; }
+  font-weight: 700; }
 
 .admin-table-sub {
   width: 1200px;
@@ -2422,13 +2438,19 @@ a {
     font-size: 1.5rem; }
   .admin-table-post-data tr {
     display: grid;
-    grid-template-columns: 0.5fr 1fr 3fr 1fr;
+    grid-template-columns: 0.5fr 0.5fr 1fr 3fr 1fr;
     text-align: center;
     height: 40px; }
     .admin-table-post-data tr td {
-      font-size: 1.5rem; }
+      font-size: 1.5rem;
+      display: flex;
+      justify-content: center;
+      align-items: center; }
     .admin-table-post-data tr th {
-      font-size: 1.5rem; }
+      font-size: 1.5rem;
+      display: flex;
+      justify-content: center;
+      align-items: center; }
 
 .td-textalign-left {
   text-align: left;
@@ -2447,9 +2469,15 @@ a {
     text-align: center;
     height: 40px; }
     .admin-table-comment-box tr td {
-      font-size: 1.5rem; }
+      font-size: 1.5rem;
+      display: flex;
+      justify-content: center;
+      align-items: center; }
     .admin-table-comment-box tr th {
-      font-size: 1.5rem; }
+      font-size: 1.5rem;
+      display: flex;
+      justify-content: center;
+      align-items: center; }
 
 .admin-button {
   text-align: right; }
@@ -2460,7 +2488,9 @@ a {
   justify-content: center;
   align-items: center; }
   .admin-table-button-box div {
-    font-size: 1.5rem; }
+    font-size: 1.7rem;
+    margin-left: 0;
+    font-weight: 700; }
 
 @media (min-width: 769px) and (max-width: 1199px) {
   .admin-table-comment-box {

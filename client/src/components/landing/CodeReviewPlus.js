@@ -9,7 +9,7 @@ import Subbannerimg from '../../images/codereview.svg';
 function CodeReviewPlus() {
   return (
     <>
-      <div className='subbanner'>
+      <div className='subbanner' style={{background:'#f2f2f2'}}>
         <div className='subbanner-container'>
           <div className='subbanner-left up-on-scroll'>
             <img src={codeinput} alt='draganddrop' />

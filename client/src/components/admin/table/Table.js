@@ -91,8 +91,9 @@ const Table = () => {
                         <div className='admin-table-post-data'>
                             <tr>
                                 <th></th>
-                                <th>이메일</th>
-                                <th>게시글</th>
+                                <th>No</th>
+                                <th>닉네임</th>
+                                <th>내용</th>
                                 <th>createdAt</th>
                             </tr>
                             {
@@ -104,9 +105,10 @@ const Table = () => {
                                     <tr key={index}>
                                         <td><input type="checkbox" 
                                         onChange={(e)=> getPostCheckboxId(e, el.id)} /></td>
+                                        <td>{index+1}</td>
                                         <td>{el.userName}</td>
                                         <td className='td-textalign-left'>{el.title}</td>
-                                        <td>{el.createdAt}</td>
+                                        <td>{el.createdAt.substring(0,10)}</td>
                                     </tr>
                                 )    
                                 })
@@ -137,8 +139,8 @@ const Table = () => {
                             <tr>
                                 <th></th>
                                 <th>No</th>
-                                <th>이름</th>
-                                <th>댓글</th>
+                                <th>닉네임</th>
+                                <th>내용</th>
                             </tr>
                             {
                                 usersComment === undefined ? (
@@ -149,7 +151,7 @@ const Table = () => {
                                     <tr key={index}>
                                         <td><input type="checkbox"
                                         onChange={(e)=> getCommentCheckboxId(e, el.id)} /></td>
-                                        <td>{index}</td>
+                                        <td>{index+1}</td>
                                         <td>{el.userName}</td>
                                         <td className='td-textalign-left'>{el.content}</td>
                                     </tr>
