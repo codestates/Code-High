@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import profileImg from '../../images/profileimg.png';
-import moveCodeStorageImg from '../../images/mypageimg.svg';
-import { Link } from 'react-router-dom';
+import profileImg from '../../images/profileimg.png'
+import moveCodeStorageImg from '../../images/mypageimg.svg'
+import { Link } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux';
 import ModifyUser from '../basic/modal/ModifyUser';
-import modifyUserInfoImg from '../../images/modifyuserinfo.png';
+import modifyUserInfoImg from '../../images/modifyuserinfo.png'
 import { getMypageInfo } from '../../redux/actions/userActions';
-import { modifyUser } from '../../redux/actions/userActions';
+
 
 const MyPageSub = (props) => {
   const userState = useSelector((state) => state.userReducer);
@@ -16,13 +16,12 @@ const MyPageSub = (props) => {
 
   useEffect(() => {
     const data = {
-      accessToken: userInfo.accessToken,
+      accessToken: userInfo ? userInfo.accessToken : undefined,
     };
     dispatch(getMypageInfo(data));
   }, []);
-
   const userInfoPopUp = () => {
-    setShowUserInfoPopUp(!showUserInfoPopUp);
+    setShowUserInfoPopUp(!showUserInfoPopUp)
   };
 
   return (
@@ -33,11 +32,7 @@ const MyPageSub = (props) => {
       <div className='mypage-container'>
         <div className='mypage-left-container'>
           <div>
-            {userInfo.image === null ? (
-              <img src={profileImg} alt='profile' />
-            ) : (
-              <img src={userInfo.image} alt='profile' />
-            )}
+            <img src={profileImg} alt='profile' />
           </div>
           <div className='userinfo-name'>{userInfo.name}</div>
           <div className='userinfo-email'>{userInfo.email}</div>
@@ -52,7 +47,8 @@ const MyPageSub = (props) => {
         </div>
         <div className='mypage-right-container'>
           <div className='remaincodenotice'>
-            현재 복습해야될 코드는 {mypageInfo.postCnt - mypageInfo.highCompCnt}개 입니다.
+            현재 복습해야될 코드는 {mypageInfo.postCnt - mypageInfo.highCompCnt}
+            개 입니다.
           </div>
           <div className='mypage-right-midlle-container'>
             {mypageInfo === undefined ? (
@@ -75,20 +71,18 @@ const MyPageSub = (props) => {
                 </div>
               </div>
             )}
-            <Link to='/codestorage'>
-              <div className='mypage-right-middle-box-2'>
+            <div className='mypage-right-middle-box-2' >
+              <Link to='/codestorage'>
                 <img
                   className='mypage-move-codestorage'
                   src={moveCodeStorageImg}
                   alt='moveCodeStorage'
                 />
-                <div className='mypage-move-codestorage-text'>
-                  코드 저장소
-                  <br />
-                  이동하기
-                </div>
+              </Link>
+              <div className='mypage-move-codestorage-text'>
+                코드 저장소 <br /> 이동하기
               </div>
-            </Link>
+            </div>
           </div>
           <div className='mypage-right-bottom-container'></div>
         </div>

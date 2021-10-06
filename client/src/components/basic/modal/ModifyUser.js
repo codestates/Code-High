@@ -1,25 +1,27 @@
 import React, { useRef, useState,  }from 'react';
 import modifyimg from '../../../images/modifyimg.png';
 import codehighlogo from '../../../images/codehighlogo.png';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import axios from 'axios';
-import userInfoPopUp from '../../mypage/MyPageSub'
-import { modifyUserInfo } from '../../../redux/actions/userActions';
-import { getMypageInfo } from '../../../redux/actions/userActions';
 import { useHistory } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
 
 function ModifyUser({ userInfoPopUp, setShowUserInfoPopUp }) {
   const ModifyUserBackgroundEl = useRef(null);
   const state = useSelector((state) => state.userReducer);
   const { userInfo } = state;
   const serverUrl = 'https://api.codehigh.club';
-  const [signupNotice, setSignupNotice] = useState('비밀번호를 입력해 주세요');
+  const [modifyNotice, setModifyNotice] = useState('수정할 정보를 입력해 주세요.');
   const [modifyInfo, setModifyInfo] = useState({
     password: '',
     passwordcheck: '',
     nickname: userInfo.name
   })
-   const ModifyUserBackgroundClick = (e) => {
+  const { newpassword, passwordcheck, nickname } = modifyInfo;
+  const history = useHistory();
+
+  const ModifyUserBackgroundClick = (e) => {
     if (e.target === ModifyUserBackgroundEl.current) {
       setShowUserInfoPopUp(!userInfoPopUp);
     }
@@ -28,11 +30,9 @@ function ModifyUser({ userInfoPopUp, setShowUserInfoPopUp }) {
   const handleInputValue = (key) => (e) => {
     setModifyInfo({ ...modifyInfo, [key]: e.target.value });
   };
-  const dispatch = useDispatch();
-  const history = useHistory();
+
   const handlemodify = () => {
-    const { newpassword, passwordcheck, nickname } = modifyInfo;
-    if (!newpassword && !passwordcheck && nickname !== undefined) {
+    if ((!newpassword || !passwordcheck && nickname !== undefined)) {
       axios
         .patch(
           `${serverUrl}/user`,
@@ -43,10 +43,7 @@ function ModifyUser({ userInfoPopUp, setShowUserInfoPopUp }) {
         )
         .then((data) => {
           if (data.status === 200) {
-            // const data = {
-            //   accessToken: userInfo ? userInfo.accessToken : undefined,
-            //   };
-            // dispatch(getMypageInfo(data));
+            userInfo.name = nickname;
             userInfoPopUp()
             history.push('/mypage')
           }
@@ -54,10 +51,7 @@ function ModifyUser({ userInfoPopUp, setShowUserInfoPopUp }) {
         .catch((err) => {
           console.log(err);
         });
-    } else if (newpassword !== passwordcheck) {
-      setSignupNotice('비밀번호가 일치하지 않습니다.');
-      return;
-    } else if (newpassword === passwordcheck) {
+    } else if (newpassword === passwordcheck && newpassword !== '') {
       axios
         .patch(
           `${serverUrl}/user`,
@@ -68,15 +62,18 @@ function ModifyUser({ userInfoPopUp, setShowUserInfoPopUp }) {
         )
         .then((data) => {
           if (data.status === 200) {
+            userInfo.name = nickname;
             userInfoPopUp()
-            window.location.reload();
+            history.push('/mypage')
           }
         })
         .catch((err) => {
           console.log(err);
         });
-    }
-    
+    } else if (newpassword !== passwordcheck) {
+      setModifyNotice('비밀번호가 일치하지 않습니다.');
+      return;
+    } 
   }
 
   const enterKeyPress = (e) => {
@@ -108,6 +105,9 @@ function ModifyUser({ userInfoPopUp, setShowUserInfoPopUp }) {
             <div>닉네임</div>
             <input placeholder='변경할 닉네임을 입력해주세요.' onChange={handleInputValue('nickname')} onKeyPress={enterKeyPress} />
           </article>
+          <div className='signup-notice'>
+            <FontAwesomeIcon icon={faExclamationTriangle} /> {modifyNotice}
+          </div>
           <div className='modifyuser-button-container'>
             <button type='submit' onClick={handlemodify}>회원정보 수정</button>
           </div>
