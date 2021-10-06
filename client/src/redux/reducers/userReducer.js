@@ -33,12 +33,13 @@ const userReducer = (state = {}, action) => {
       return Object.assign({}, state, {
         userInfo: [...state.userInfo, ...action.payload],
       });
-    case DELETE_USER_INFO:
-      return Object.assign({});
     case MYPAGE_USER_INFO:
       return Object.assign({}, state, {
         mypageInfo: action.payload
       });
+    case DELETE_USER_INFO:
+      return Object.assign({});
+          
     default:
       return state;
   }

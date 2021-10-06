@@ -222,7 +222,6 @@ export async function modifyComment(data) {
       withCredentials: true,
     })
     .then((res) => {
-      console.log(res)
       return res.data.message;
     });
 

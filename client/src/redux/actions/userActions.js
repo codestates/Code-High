@@ -173,7 +173,6 @@ export async function deleteUserInfo(data) {
 
 //!7.유저 정보 수정하기
 export function modifyUserInfo(data) {
-  console.log(data.userInfo)
   const response = axios
     .patch(`${serverUrl}/user`, { name: data.modifyInfo.nickname }, {
       headers: { Authorization: `bearer ${data.userInfo.accessToken}` },

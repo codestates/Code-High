@@ -14,8 +14,6 @@ const Graph = () => {
         dispatch(getUsersChart(userInfo.accessToken))
     },[]);
 
-    console.log(usersChart,'🙁🙁🙁🙁🙁🙁')
-
     const chartData = {
         labels: usersChart.days,
         datasets: [{
@@ -34,8 +32,12 @@ const Graph = () => {
         }]
     }
 
+
     return (
         <div className='admin-graph-main'>
+            {usersChart === undefined ? (
+                <h1>오류발생</h1>
+            ):(
             <div className='admin-graph-main-container'>
                 <div className='admin-graph-subject'>
                 사용자 현황
@@ -43,25 +45,39 @@ const Graph = () => {
                 <div className='admin-status-graph-container'>
                     <div className='admin-graph'>
                         <Bar
-                        data={chartData}
+                        data={chartData === undefined ? (
+                            로딩중
+                        ):(
+                            chartData
+                        )}
                         options={{ maintainAspectRatio: false }}
                         />
                     </div>
                     <div className='admin-graph-status'> 
                         <div>   
                             <div> 방문자 수 {
+                                usersChart === undefined ? (
+                                    <h1>로딩 중</h1>
+                                ) : (
                                 usersChart.visitCount.reduce(function add(sum, currValue) {
                                     return sum + currValue;
-                                }, 0)}
+                                }, 0)
+                                )
+                                }
                                 명</div>
                             <div> 게시글 수 {
-                            usersChart.postCount.reduce(function add(sum, currValue) {
+                                usersChart === undefined ? (
+                                    <h1>로딩 중</h1>
+                                ) : (
+                                usersChart.postCount.reduce(function add(sum, currValue) {
                                     return sum + currValue;
-                                }, 0)}개</div>
+                                }, 0))
+                                }개</div>
                         </div>
                     </div>
                 </div>
             </div>
+            )}
         </div>
     );
 };

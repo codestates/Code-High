@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
+
 import CodeEditor from '@uiw/react-textarea-code-editor';
 
 const PostMain = () => {
@@ -7,9 +8,8 @@ const PostMain = () => {
   const { userInfo } = userState;
   const postState = useSelector((state) => state.codePostReducer);
   const { codePost } = postState;
-  const [codeLanguage, setCodeLanguage] = useState('js');
 
-  console.log(codePost.postTags);
+  const [codeLanguage, setCodeLanguage] = useState('js');
 
   useEffect(() => {
     if (codePost.postTags.language.length !== 0) {

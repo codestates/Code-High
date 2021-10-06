@@ -9,7 +9,6 @@ import{
 } from '../../../redux/actions/adminActions'
 
 const Table = () => {
-
     const adminState = useSelector((state) => state.adminReducer);
     const { usersPost, usersComment } = adminState
     const dispatch = useDispatch();
@@ -24,9 +23,6 @@ const Table = () => {
         dispatch(getUsersPost(userInfo.accessToken))
         dispatch(getUsersComment(userInfo.accessToken))
     },[checkPostList, checkCommentList,]);
-    
-    // console.log(checkCommentList,'commentList')
-    // console.log(checkPostList,'postList') 
     
     const getPostCheckboxId = (e, id) =>{
         if(e.target.checked){
@@ -44,7 +40,6 @@ const Table = () => {
         else{
             setCheckCommentList(checkCommentList.filter((checkedId) => checkedId !== id))
         }
-        // console.log(checkCommentList, 'CommentList')
     }
 
     const deletePostHandle = () => {
@@ -53,7 +48,6 @@ const Table = () => {
             postList: checkPostList
         }
         dispatch(deleteUsersPost(data))
-        console.log(data.postList, 'postList?')
         window.location.reload();
     }
 
@@ -62,10 +56,8 @@ const Table = () => {
             accessToken: userInfo.accessToken,
             commentList: checkCommentList
         }
-        dispatch(deleteUsersComment(data));
-        // window.location.reload();
-        console.log(data.commentList, 'commentList?')
-
+        dispatch(deleteUsersComment(data))
+        window.location.reload();
     }
 
     return (
@@ -80,7 +72,13 @@ const Table = () => {
                 <div className='admin-table-container'>
                     <div className='admin-table-post-status'>
                         <div className='admin-table-button-box'>
-                            <div>게시글 {usersPost.length}개</div>
+                            <div>게시글 {
+                            usersPost === undefined ? (
+                                <h1>로딩 중</h1>
+                            ) : (
+                                usersPost.length
+                            )
+                            }개</div>
                             <div className='admin-button'>
                             <Button
                                 content={'Remove'}
@@ -98,6 +96,9 @@ const Table = () => {
                                 <th>createdAt</th>
                             </tr>
                             {
+                                usersPost === undefined ? (
+                                    <h1>로딩 중</h1>
+                                ) : (
                             usersPost.map((el,index)=>{                         
                                 return(
                                     <tr key={index}>
@@ -109,13 +110,20 @@ const Table = () => {
                                     </tr>
                                 )    
                                 })
+                                )
                             }
                         </div>
                     </div>
                     <div className='admin-table-comment-status'>
                         <div className='admin-table-button-box'>
                             <div>
-                            댓글 {usersComment.length}개
+                            댓글 {
+                                usersComment === undefined?(
+                                    <h1>로딩 중</h1>
+                                ) : (
+                                usersComment.length
+                            )
+                            }개
                             </div>
                             <div className='admin-button'>
                             <Button 
@@ -133,7 +141,10 @@ const Table = () => {
                                 <th>댓글</th>
                             </tr>
                             {
-                    usersComment.map((el,index)=>{                         
+                                usersComment === undefined ? (
+                                    <h1>로딩 중</h1>
+                                ) : (
+                                usersComment.map((el,index)=>{                         
                                 return(
                                     <tr key={index}>
                                         <td><input type="checkbox"
@@ -142,8 +153,9 @@ const Table = () => {
                                         <td>{el.userName}</td>
                                         <td className='td-textalign-left'>{el.content}</td>
                                     </tr>
-                                )    
+                                    )    
                                 })
+                                )
                             }
                         </div>
                     </div>               

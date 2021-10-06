@@ -32,7 +32,6 @@ function ResetPassword(){
     const { password } = infoForFinding;
     const url = new URL(window.location.href);
     const checkCode = url.searchParams.get('code');
-    console.log('checkCode',checkCode)
 
     axios
       .patch(
@@ -43,7 +42,6 @@ function ResetPassword(){
         }
       )
       .then((data) => {
-        console.log(data)
         if (data.status === 201) {
           togglePopUp()
         }

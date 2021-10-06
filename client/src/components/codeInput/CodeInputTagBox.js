@@ -14,7 +14,6 @@ function CodeInputTagBox({ codeInputInfo, setCodeInputInfo }) {
   useEffect(() => {
     setCodeInputInfo({ ...codeInputInfo, tagList: choiceTag });
   }, [choiceTag]);
-  // console.log(choiceTag, codeInputInfo);
 
   const handleChangeColor = (e) => {
     const currentTagName = e.target.innerHTML;

@@ -3,18 +3,13 @@ import { Link } from 'react-router-dom';
 
 import Button from '../basic/button/Button';
 
-import codeinput from '../../images/codehightag.gif'
-import Subbannerimg from '../../images/tag.svg';
+import codeinput from '../../images/commentgif.gif'
+import Subbannerimg from '../../images/codereview.svg';
 
-
-function Uploadvideo () {
+function CodeReviewPlus(){
   return (
-    // <div className='uploadvideo'>
-    //   <div className='uploadvideo-container up-on-scroll'>
-    //     <img src={codeinput} alt='uploadvideo' />
-    //   </div>
-    // </div>    
-    <div className='subbanner' >
+    <>
+  <div className='subbanner'>
       <div className='subbanner-container'>
       <div className='subbanner-left up-on-scroll'>
         <img src={codeinput} alt='draganddrop' />
@@ -22,15 +17,15 @@ function Uploadvideo () {
       <div className='subbanner-right up-on-scroll'>
         <img src={Subbannerimg} alt='subbannerimg' />
         <div>
-          <h1>코드 포스팅</h1>
+          <h1>코드 리뷰</h1>
           <p className='subbanner-p'>
-            클릭 한 번으로 태그를 추가, 변경할 수 있으며,
+            코드 리뷰를 통해
             <br />
-            코드리뷰 공개를 설정할 수 있습니다.
+            피드백을 주고 받을 수 있습니다.
           </p>
           <p className='subbanner-mobile-p'>
-          클릭 한 번으로 태그를 추가, 변경할 수 있으며,
-            <br />코드리뷰 공개를 설정할 수 있습니다.
+          코드 리뷰를 통해
+            <br />피드백을 주고 받을 수 있습니다.
           </p>
           <Link to='/codestorage'>
             <Button
@@ -43,7 +38,8 @@ function Uploadvideo () {
       </div>
     </div>
   </div>
+    </>
   );
-}
+};
 
-export default Uploadvideo;
+export default CodeReviewPlus;
