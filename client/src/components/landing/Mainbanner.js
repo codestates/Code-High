@@ -31,7 +31,7 @@ function Mainbanner() {
             <Link to='/codereview'>
               <Button
                 content='다른 코드 구경하기'
-                backgroundColor='#E1E1E1'
+                backgroundColor='#f2f2f2'
                 color='#000'
               />
             </Link>

@@ -8,7 +8,7 @@ import codestorage from '../../images/codestorage1.gif';
 
 function Subbanner() {
   return (
-    <div className='subbanner' style={{background:'#f9fafb'}}>
+    <div className='subbanner' style={{background:'#f2f2f2'}}>
       <div className='subbanner-container'>
         <div className='subbanner-left up-on-scroll'>
           <img src={codestorage} alt='draganddrop' />

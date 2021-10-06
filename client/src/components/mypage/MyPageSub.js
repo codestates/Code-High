@@ -6,6 +6,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import ModifyUser from '../basic/modal/ModifyUser';
 import modifyUserInfoImg from '../../images/modifyuserinfo.png'
 import { getMypageInfo } from '../../redux/actions/userActions';
+import LineGraph from '../admin/graph/LineGraph';
 
 
 const MyPageSub = (props) => {
@@ -20,6 +21,7 @@ const MyPageSub = (props) => {
     };
     dispatch(getMypageInfo(data));
   }, []);
+  
   const userInfoPopUp = () => {
     setShowUserInfoPopUp(!showUserInfoPopUp)
   };
@@ -71,20 +73,22 @@ const MyPageSub = (props) => {
                 </div>
               </div>
             )}
-            <div className='mypage-right-middle-box-2' >
               <Link to='/codestorage'>
+            <div className='mypage-right-middle-box-2' >
                 <img
                   className='mypage-move-codestorage'
                   src={moveCodeStorageImg}
                   alt='moveCodeStorage'
                 />
-              </Link>
               <div className='mypage-move-codestorage-text'>
                 코드 저장소 <br /> 이동하기
               </div>
             </div>
+              </Link>
           </div>
-          <div className='mypage-right-bottom-container'></div>
+          <div className='mypage-right-bottom-container'>
+            <LineGraph />
+          </div>
         </div>
       </div>
       )}
