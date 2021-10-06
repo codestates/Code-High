@@ -26,10 +26,13 @@ const MyPageSub = (props) => {
     console.log(showUserInfoPopUp, 'click');
   };
 
-  // console.log('마이페이지 유저정보',userInfo)
+  console.log('마이페이지 유저정보',mypageInfo)
   const { onClickHandle } = props;
   return (
     <div className='mypage'>
+      {mypageInfo === undefined ?(
+        <h1>오류야</h1>
+      ):(
       <div className='mypage-container'>
         <div className='mypage-left-container'>
           <div>
@@ -88,12 +91,14 @@ const MyPageSub = (props) => {
           <div className='mypage-right-bottom-container'></div>
         </div>
       </div>
+      )}
       {showUserInfoPopUp ? (
         <ModifyUser
           userInfoPopUp={userInfoPopUp}
           setShowUserInfoPopUp={setShowUserInfoPopUp}
         />
       ) : null}
+      
     </div>
   );
 };
