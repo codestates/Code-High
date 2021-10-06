@@ -13,15 +13,13 @@ function GettingStart () {
           <img src={codereviwimg} alt='gettingstartimg' />
         </div>
         <div className='gettingstart-box up-on-scroll'>
-          <h1>코드리뷰</h1>
+          <h1>Getting Start</h1>
           <p>
-            코드리뷰를 통해
+            코드 저장소, 코드 리뷰에서는
             <br />
-            오타, 버그 가능성 등에 대한 의견,
+            검색을 통해 작성한 글을 찾을 수 있습니다.
             <br />
-            또는 좋은 코드에 대한 긍정적인 피드백을
-            <br />
-            주고 받을 수 있습니다.
+            Code High는 기능 단위의 코드에 집중할 수 있는 서비스를 제공합니다.
           </p>
           <Link to='/codereview'>
             <Button content='Start' backgroundColor='#2F8C4C' color='#fff' />

@@ -77,7 +77,7 @@ export async function deleteUsersPost(data) {
   const response = axios
   .delete(
     `${serverUrl}/post`, {
-    data: {postList: data.postList},
+    data: { postList: data.postList },
     headers: { 
       Authorization: `bearer ${data.accessToken}`,
     },
@@ -97,8 +97,10 @@ export async function deleteUsersComment(data) {
   const response = axios
     .delete(
       `${serverUrl}/comment`, {  
-      commentList: `${commentList}`,
-      headers: { Authorization: `bearer ${data}` },
+      data:{ commentList: data.commentList },
+      headers: {
+        Authorization: `bearer ${data.accessToken}` 
+      },
       withCredentials: true,
     })
     .then((res) => {

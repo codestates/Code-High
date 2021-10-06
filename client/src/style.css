@@ -1742,7 +1742,6 @@ a {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #E1E1E1;
   -ms-user-select: none;
   -moz-user-select: -moz-none;
   -khtml-user-select: none;
@@ -1853,9 +1852,7 @@ a {
   justify-content: center;
   align-items: center; }
   .uploadvideo-container img {
-    margin: 70px 0;
-    border-radius: 10px;
-    border: solid 1px #E1E1E1; }
+    margin: 70px 0; }
 
 @media (min-width: 1200px) {
   .uploadvideo-container {

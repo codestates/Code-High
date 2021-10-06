@@ -23,11 +23,11 @@ function CodeReview () {
         </div>
         <div className='codereview-right up-on-scroll'>
         <h1>Getting Start</h1>
-          <p>
-            코드 공개를 원하지 않으신다면, <br />
+          {/* <p> */}
+            {/* 코드 공개를 원하지 않으신다면, <br />
             비공개 설정으로 개인적인 보관이 가능합니다.<br /> 
             또한, 빠른 검색 기능을 사용하여 코드를 찾을 수 있습니다.
-          </p>
+          </p> */}
 
           {!userInfo 
           ?<Link to='/signup'>
