@@ -30,6 +30,7 @@ a{
   align-items: center;
    img{
      width: 800px;
+     border-radius: 10px;
    }
 }
 
@@ -39,23 +40,24 @@ a{
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-end;
-  margin-left: 20px;
+  margin-left: 70px;
   img {
-    width: 300px;
+    width: 200px;
   }
   h1 {
     color: #{$green};
-    font-size: 3.0rem;
+    font-size: 2.5rem;
     margin-bottom: 20px;
     font-family: 'NanumGothic';
   }
   p {
-    font-size: 1.7rem;
+    font-size: 1.4rem;
     margin-bottom: 20px;
     font-family: 'NanumGothic';
+
   }
   span{
-    padding: 5px 60px;
+    padding: 5px 50px;
     margin-left: 0;
     font-family: 'NanumGothic';
   }

@@ -9,7 +9,7 @@ function PostTagSet() {
   const { userInfo } = userState;
 
   const tagList = [];
-console.log(codePost)
+
   tagList.push(...codePost.postTags.algorithm)
   tagList.push(...codePost.postTags.difficulty)
   tagList.push(...codePost.postTags.language)

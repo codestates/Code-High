@@ -25,9 +25,6 @@ const Table = () => {
         dispatch(getUsersComment(userInfo.accessToken))
     },[checkPostList, checkCommentList,]);
     
-    // console.log(checkCommentList,'commentList')
-    // console.log(checkPostList,'postList') 
-    
     const getPostCheckboxId = (e, id) =>{
         if(e.target.checked){
             setCheckPostList([...checkPostList, id]);
@@ -44,7 +41,6 @@ const Table = () => {
         else{
             setCheckCommentList(checkCommentList.filter((checkedId) => checkedId !== id))
         }
-        // console.log(checkCommentList, 'CommentList')
     }
 
     const deletePostHandle = () => {
@@ -53,7 +49,6 @@ const Table = () => {
             postList: checkPostList
         }
         dispatch(deleteUsersPost(data))
-        console.log(data.postList, 'postList?')
         window.location.reload();
     }
 
@@ -63,9 +58,6 @@ const Table = () => {
             commentList: checkCommentList
         }
         dispatch(deleteUsersComment(data));
-        // window.location.reload();
-        console.log(data.commentList, 'commentList?')
-
     }
 
     return (

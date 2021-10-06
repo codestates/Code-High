@@ -26,7 +26,7 @@ function Kanban() {
   const [searchValue, setSearchValue] = useState({
     search: '',
   });
-  console.log(userPostList);
+
   const history = useHistory();
   const dispatch = useDispatch();
 
@@ -45,10 +45,9 @@ function Kanban() {
     const lists = document.querySelectorAll('.kanban-list');
 
     let draggedItem = null;
-    // console.log(draggedItem)
+  
     for (let i = 0; i < list_items.length; i++) {
       const item = list_items[i];
-      // console.log(draggedItem)
       item.addEventListener('dragstart', function () {
         draggedItem = item;
         setTimeout(() => {
@@ -60,7 +59,6 @@ function Kanban() {
         setTimeout(() => {
           draggedItem.style.display = 'block';
           draggedItem = null;
-          // console.log(draggedItem)
         }, 0);
       });
 
@@ -125,7 +123,6 @@ function Kanban() {
         )
         .then((res) => {
           if (res.status === 201) {
-            console.log('태그 수정 성공');
             return;
           }
         });
@@ -165,7 +162,6 @@ function Kanban() {
     };
     if (e.key === 'Enter') {
       dispatch(getStorageFilter(data));
-      console.log(postList);
     }
   };
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import video from '../../images/video.png';
-import codeinput from '../../images/codeinput.gif'
+import codeinput from '../../images/codehighhi.gif'
 
 function Uploadvideo () {
   return (

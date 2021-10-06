@@ -26,7 +26,7 @@ function CodeInputMain({ codeInputInfo, setCodeInputInfo }) {
   const handleInputValue = (key) => (e) => {
     setUserCodeCard({ ...userCodeCard, [key]: e.target.value });
   };
-console.log(codeInputInfo);
+
   useEffect(() => {
     setCodeInputInfo({
       ...codeInputInfo,

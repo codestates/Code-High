@@ -1277,7 +1277,8 @@
 .codereviewboard-card {
   border: solid 1px #E1E1E1;
   padding: 10px;
-  margin: 5px; }
+  margin: 5px;
+  border-radius: 5px; }
   .codereviewboard-card h1 {
     font-size: 1.5rem;
     margin-bottom: 5px;
@@ -1286,7 +1287,7 @@
     font-size: 1.3rem;
     background-color: #f5f5f5;
     padding: 5px;
-    height: 200px; }
+    height: 180px; }
 
 .codereviewboard-header {
   margin-bottom: 5px;
@@ -1388,7 +1389,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 100px 0; }
+  padding: 50px 0; }
   .buttoncontainer-container div span {
     padding: 15px 50px;
     font-size: 2.0rem;
@@ -1445,7 +1446,7 @@
     margin-bottom: 40px;
     font-family: 'NanumGothic'; }
   .codereview-right p {
-    font-size: 1.8rem;
+    font-size: 1.6rem;
     line-height: 2.3rem;
     margin-bottom: 40px;
     font-family: 'NanumGothic'; }
@@ -1559,12 +1560,12 @@
   .gettingstart-box h1 {
     color: #2F8C4C;
     font-size: 2.4rem;
-    margin-bottom: 25px;
+    margin-bottom: 20px;
     font-family: 'NanumGothic'; }
   .gettingstart-box p {
-    font-size: 1.6rem;
-    margin-bottom: 25px;
-    line-height: 1.9rem;
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    line-height: 2.0rem;
     font-family: 'NanumGothic'; }
   .gettingstart-box span {
     padding: 10px 40px;
@@ -1615,8 +1616,7 @@
     color: #2F8C4C;
     font-family: 'NanumGothic'; }
   .mainbanner-left p {
-    font-family: 'NanumGothic';
-    font-weight: 500; }
+    font-family: 'NanumGothic'; }
 
 .mainbanner-right {
   width: 600px;
@@ -1641,7 +1641,6 @@
   .mainbanner-left p {
     font-size: 1.7rem;
     font-family: 'NanumGothic';
-    font-weight: 500;
     line-height: 30px;
     margin-bottom: 50px; }
   .mainbanner-button-container-mobile {
@@ -1762,7 +1761,8 @@ a {
   justify-content: center;
   align-items: center; }
   .subbanner-left img {
-    width: 800px; }
+    width: 800px;
+    border-radius: 10px; }
 
 .subbanner-right {
   width: 400px;
@@ -1770,20 +1770,20 @@ a {
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-end;
-  margin-left: 20px; }
+  margin-left: 70px; }
   .subbanner-right img {
-    width: 300px; }
+    width: 200px; }
   .subbanner-right h1 {
     color: #2F8C4C;
-    font-size: 3.0rem;
+    font-size: 2.5rem;
     margin-bottom: 20px;
     font-family: 'NanumGothic'; }
   .subbanner-right p {
-    font-size: 1.7rem;
+    font-size: 1.4rem;
     margin-bottom: 20px;
     font-family: 'NanumGothic'; }
   .subbanner-right span {
-    padding: 5px 60px;
+    padding: 5px 50px;
     margin-left: 0;
     font-family: 'NanumGothic'; }
 
@@ -1853,25 +1853,27 @@ a {
   justify-content: center;
   align-items: center; }
   .uploadvideo-container img {
-    margin: 70px 0; }
+    margin: 70px 0;
+    border-radius: 10px;
+    border: solid 1px #E1E1E1; }
 
 @media (min-width: 1200px) {
   .uploadvideo-container {
     width: 1200px; }
     .uploadvideo-container img {
-      width: 1100px; } }
+      width: 900px; } }
 
 @media (min-width: 769px) and (max-width: 1199px) {
   .uploadvideo-container {
     width: 800px; }
     .uploadvideo-container img {
-      width: 800px; } }
+      width: 700px; } }
 
 @media (min-width: 335px) and (max-width: 768px) {
   .uploadvideo-container {
     width: 375px; }
     .uploadvideo-container img {
-      width: 375px; } }
+      width: 400px; } }
 
 .userreview {
   display: flex;
@@ -2015,12 +2017,14 @@ a {
 
 .codepostview-text {
   width: 30%;
-  height: 40vh;
+  height: 35.5vh;
   background-color: #E1E1E1;
   overflow-y: auto;
-  font: 1.5rem;
+  font-size: 1.4rem;
+  line-height: 2.0rem;
   resize: none;
   border: none;
+  padding: 20px;
   font-family: 'NanumGothic'; }
 
 .postcomment-button-warp {

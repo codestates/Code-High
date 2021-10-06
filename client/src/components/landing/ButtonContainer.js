@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+
 import Button from '../basic/button/Button';
 import Signup from '../basic/modal/Signup';
 
@@ -8,8 +9,7 @@ function ButtonContainer () {
   const state = useSelector(state => state.userReducer);
   const { userInfo } = state;
   const history = useHistory();
-  //! modal
-  // const [showSignupModal, setShowSignupModal] = useState(false);
+
   const handleGoMypageSignup = () => {
     history.push('/signup')
   };
@@ -20,7 +20,7 @@ function ButtonContainer () {
   return (
     <div className='buttoncontainer'>
       <div className='buttoncontainer-container up-on-scroll'>
-        <div>
+        {/* <div>
           {userInfo ?<Button
             content='마이페이지'
             backgroundColor='#E1E1E1'
@@ -32,7 +32,7 @@ function ButtonContainer () {
             onClickHandle={handleGoMypageSignup}
           />
           } 
-        </div>
+        </div> */}
       </div>
       {/* {showSignupModal
         ? (

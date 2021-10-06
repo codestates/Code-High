@@ -14,8 +14,6 @@ const Graph = () => {
         dispatch(getUsersChart(userInfo.accessToken))
     },[]);
 
-    console.log(usersChart,'🙁🙁🙁🙁🙁🙁')
-
     const chartData = {
         labels: usersChart.days,
         datasets: [{

@@ -21,8 +21,6 @@ function CodeEdit() {
     userId: '',
   });
 
-// console.log('codeEditInfo', codeEditInfo)
-
   useEffect(() => {
     setCodeEditInfo(codePost);    
   }, []);

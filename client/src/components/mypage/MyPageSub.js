@@ -23,11 +23,10 @@ const MyPageSub = (props) => {
 
   const userInfoPopUp = () => {
     setShowUserInfoPopUp(!showUserInfoPopUp);
-    console.log(showUserInfoPopUp, 'click');
   };
 
-  // console.log('마이페이지 유저정보',userInfo)
   const { onClickHandle } = props;
+
   return (
     <div className='mypage'>
       <div className='mypage-container'>
@@ -58,7 +57,7 @@ const MyPageSub = (props) => {
               <div className='mypage-right-middle-box-1'>
                 <div>
                   <span>작성한 코드</span>
-                  <span className='mypage-number'>{mypageInfo.postCnt}</span>
+                  <span className='mypage-number'>{!mypageInfo.postCnt}</span>
                 </div>
                 <div>
                   <span>댓글</span>

@@ -26,7 +26,6 @@ function CodeEditTagBox({ codeEditInfo, setCodeEditInfo }) {
     let taglistId = taglist.map((ele) => ele.id - 1);
     taglistId.map((ele) => {
       let tag = document.querySelectorAll('div.tag-button');
-      // console.log(taglist, taglistId, tag)
       tag[ele].style.backgroundColor = '#2F8C4C';
     });
   }, []);

@@ -18,7 +18,6 @@ function CheckEmail(){
   useEffect(()=>{
     const url = new URL(window.location.href);
     const checkCode = url.searchParams.get('code');
-    console.log('checkCode',checkCode)
 
     axios
     .post(
@@ -29,8 +28,7 @@ function CheckEmail(){
     )
     .then((data) => {
       if (data.status === 201) {
-        console.log('이메일 체크 완료')
-        //인증이 완료되었습니다 띄우기
+        return;
       }
     })
     .catch((err) => {

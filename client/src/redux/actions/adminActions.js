@@ -23,7 +23,6 @@ export const getUsersChart = async (data) => {
     })
     .then((res) => {
       return res.data.stat
-      // console.log(res.data)
     });
 
   return {
@@ -42,7 +41,6 @@ export const getUsersPost = async (data) => {
       withCredentials: true,
     })
     .then((res) => {
-      // console.log(res.data.postList)
       return res.data.postList
     });
 
@@ -63,7 +61,6 @@ export const getUsersComment = async (data) => {
         withCredentials: true,
       })
     .then((res) => {
-      // console.log(res.data.commentList,'@@@@')
       return res.data.commentList
     })
       return {
@@ -77,7 +74,6 @@ export const getUsersComment = async (data) => {
 
 //4.선택한 게시글 삭제하기-------------------------------
 export async function deleteUsersPost(data) {
-  console.log('?', data)
   const response = axios
   .delete(
     `${serverUrl}/post`, {
