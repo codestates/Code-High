@@ -6,6 +6,7 @@ import CodeEditor from '@uiw/react-textarea-code-editor';
 const PostMain = () => {
   const userState = useSelector((state) => state.userReducer);
   const { userInfo } = userState;
+
   const postState = useSelector((state) => state.codePostReducer);
   const { codePost } = postState;
 
@@ -26,23 +27,23 @@ const PostMain = () => {
   return (
     <div className='codepostmain'>
       <div className='codepostmain-container'>
-      <CodeEditor
-        readOnly
-        value={codePost.codeContent}
-        language={codeLanguage}
-        style={{
-          width: '70%',
-          height: '40vh',
-          margin: '5px',
-          overflowY: 'auto',
-          fontSize: 15,
-          backgroundColor: '#f5f5f5',
-          fontWeight: 500,
-          fontFamily:
-            'ui-monospace,SFMono-Regular,SF Mono,Consolas,Liberation Mono,Menlo,monospace',
-        }}
-      />
-      <span className='codepostview-text'>{codePost.textContent}</span>
+        <CodeEditor
+          readOnly
+          value={codePost.codeContent}
+          language={codeLanguage}
+          style={{
+            width: '70%',
+            height: '40vh',
+            margin: '5px',
+            overflowY: 'auto',
+            fontSize: 15,
+            backgroundColor: '#f5f5f5',
+            fontWeight: 500,
+            fontFamily:
+              'ui-monospace,SFMono-Regular,SF Mono,Consolas,Liberation Mono,Menlo,monospace',
+          }}
+        />
+        <span className='codepostview-text'>{codePost.textContent}</span>
       </div>
     </div>
   );

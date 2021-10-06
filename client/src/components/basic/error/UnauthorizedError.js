@@ -1,14 +1,14 @@
 import React from 'react';
 import unauthorized from '../../../images/unauthorized.svg';
 
-function UnauthorizedError(){
+function UnauthorizedError() {
   return (
     <>
-    <div className='error-container'>
-      <img src={unauthorized} alt='Error' />
-    </div>
+      <div className='error-container'>
+        <img src={unauthorized} alt='Error' />
+      </div>
     </>
   );
-};
+}
 
 export default UnauthorizedError;

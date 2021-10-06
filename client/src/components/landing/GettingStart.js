@@ -4,7 +4,7 @@ import codereviwimg from '../../images/codereview.svg';
 import Button from '../basic/button/Button';
 import { Link } from 'react-router-dom';
 
-function GettingStart () {
+function GettingStart() {
   return (
     <div className='gettingstart'>
       <div className='gettingstart-container'>
@@ -21,7 +21,7 @@ function GettingStart () {
             <br />
             Code High는 기능 단위의 코드에 집중할 수 있는 서비스를 제공합니다.
           </p>
-          <Link to='/codereview'>
+          <Link to='/signup'>
             <Button content='Start' backgroundColor='#2F8C4C' color='#fff' />
           </Link>
         </div>

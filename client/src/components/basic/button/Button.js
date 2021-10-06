@@ -1,6 +1,6 @@
 import React from 'react';
 
-function GreenButton (props) {
+function GreenButton(props) {
   const { content, onClickHandle, backgroundColor, color } = props;
   // backgroundColor: `#191A20` -> 형식
   // props 넘겨줄 때는 content={'확인'}
@@ -10,10 +10,11 @@ function GreenButton (props) {
       className='components-button'
       style={{
         backgroundColor,
-        color
+        color,
       }}
       onClick={onClickHandle}
-    >{content}
+    >
+      {content}
     </span>
   );
 }

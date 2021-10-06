@@ -6,9 +6,9 @@ import Button from '../basic/button/Button';
 import Subbannerimg from '../../images/subbannerimg.svg';
 import codestorage from '../../images/codestorage1.gif';
 
-function Subbanner () {
+function Subbanner() {
   return (
-    <div className='subbanner'>
+    <div className='subbanner' style={{background:'#f9fafb'}}>
       <div className='subbanner-container'>
         <div className='subbanner-left up-on-scroll'>
           <img src={codestorage} alt='draganddrop' />
@@ -23,8 +23,9 @@ function Subbanner () {
               이해도에 따라 분류하여 관리할 수 있습니다.
             </p>
             <p className='subbanner-mobile-p'>
-              학습에 필요한 코드를 
-              <br />이해도에 따라 분류하여 관리할 수 있습니다.
+              학습에 필요한 코드를
+              <br />
+              이해도에 따라 분류하여 관리할 수 있습니다.
             </p>
             <Link to='/codestorage'>
               <Button

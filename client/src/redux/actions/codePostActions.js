@@ -160,13 +160,13 @@ export async function deleteUserPost(data) {
       withCredentials: true,
     })
     .then((res) => {
-      if(res.status === 200) return 200;
+      if (res.status === 200) return 200;
     });
 
-    return {
-      type: DELETE_POST,
-      payload: response
-    };
+  return {
+    type: DELETE_POST,
+    payload: response,
+  };
 }
 
 //------------------------------------------------------------댓글-----------------------------------------------------------
@@ -212,9 +212,7 @@ export async function resetGetCommentPost(data) {
 //8.댓글 수정(완료)
 export async function modifyComment(data) {
   const response = axios
-    .patch(`${serverUrl}/comment/${data.id}`, 
-       data.modify,
-       {
+    .patch(`${serverUrl}/comment/${data.id}`, data.modify, {
       headers: {
         Authorization: `bearer ${data.accessToken}`,
         'Content-Type': 'application/json',

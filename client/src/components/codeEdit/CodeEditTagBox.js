@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import Tag from '../basic/tag/Tag';
-import tagNameData from './TagNameData';
 import { useSelector } from 'react-redux';
+
+import Tag from '../basic/tag/Tag';
+
+import tagNameData from './TagNameData';
 
 function CodeEditTagBox({ codeEditInfo, setCodeEditInfo }) {
   const postState = useSelector((state) => state.codePostReducer);

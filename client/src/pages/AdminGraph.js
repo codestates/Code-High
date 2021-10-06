@@ -5,12 +5,12 @@ import Graph from '../components/admin/graph/Graph';
 import AdminTable from '../components/admin/table/Table';
 
 const AdminGraph = () => {
-    return (
-        <>
-            <Graph/>
-            <WhiteFooter/>           
-        </>
-    );
+  return (
+    <>
+      <Graph />
+      <WhiteFooter />
+    </>
+  );
 };
 
 export default AdminGraph;
