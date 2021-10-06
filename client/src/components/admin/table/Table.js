@@ -104,6 +104,9 @@ const Table = () => {
                                 <th>createdAt</th>
                             </tr>
                             {
+                                usersPost === undefined ? (
+                                    <h1>로딩 중</h1>
+                                ) : (
                             usersPost.map((el,index)=>{                         
                                 return(
                                     <tr key={index}>
@@ -115,13 +118,20 @@ const Table = () => {
                                     </tr>
                                 )    
                                 })
+                                )
                             }
                         </div>
                     </div>
                     <div className='admin-table-comment-status'>
                         <div className='admin-table-button-box'>
                             <div>
-                            댓글 {usersComment.length}개
+                            댓글 {
+                                usersComment === undefined?(
+                                    <h1>로딩 중</h1>
+                                ) : (
+                                usersComment.length
+                            )
+                            }개
                             </div>
                             <div className='admin-button'>
                             <Button 
@@ -139,7 +149,10 @@ const Table = () => {
                                 <th>댓글</th>
                             </tr>
                             {
-                    usersComment.map((el,index)=>{                         
+                                usersComment === undefined ? (
+                                    <h1>로딩 중</h1>
+                                ) : (
+                                usersComment.map((el,index)=>{                         
                                 return(
                                     <tr key={index}>
                                         <td><input type="checkbox"
@@ -148,8 +161,9 @@ const Table = () => {
                                         <td>{el.userName}</td>
                                         <td className='td-textalign-left'>{el.content}</td>
                                     </tr>
-                                )    
+                                    )    
                                 })
+                                )
                             }
                         </div>
                     </div>               
