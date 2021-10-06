@@ -7,6 +7,7 @@ import {
   MODIFY_USER_INFO,
   DELETE_USER_INFO,
   MYPAGE_USER_INFO,
+  GET_USER_POST_ACTIVE
 } from '../actions/types';
 
 const userReducer = (state = {}, action) => {
@@ -39,6 +40,10 @@ const userReducer = (state = {}, action) => {
       });
     case DELETE_USER_INFO:
       return Object.assign({});
+    case GET_USER_POST_ACTIVE: 
+      return Object.assign({}, state, {
+        userPostActive: action.payload
+      })
           
     default:
       return state;
