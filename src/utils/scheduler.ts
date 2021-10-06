@@ -6,12 +6,6 @@ import { Post } from '../entity/Post';
 import { Comment } from '../entity/Comment';
 import { Stat } from '../entity/stat';
 
-const test = () => schedule.scheduleJob('*/2 * * * * *', () => {
-  const currentTime = new Date();
-  // console.log(currentTime, currentTime.getFullYear() + '-' + currentTime.getMonth() + '-' + currentTime.getDate());
-  console.log(currentTime)
-})
-
 // remove unverified user everyday
 const checkVerifiedUser = () => schedule.scheduleJob('59 23 * * *', async () => {
   const removeUserList = await User.find({ verified: false });
@@ -40,7 +34,6 @@ const weekStat = () => schedule.scheduleJob('0 * * *', async () => {
 
 
 export { 
-  test,
   checkVerifiedUser,
   weekStat
 }

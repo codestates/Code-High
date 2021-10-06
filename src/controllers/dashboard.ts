@@ -6,7 +6,7 @@ import { Stat } from '../entity/stat'
 import { User } from '../entity/User'
 import { dateFormat } from '../utils/dataFormat'
 
-const userActiveStat = async (req: Request, res: Response) => {
+const userTotalStat = async (req: Request, res: Response) => {
   if (req.body.userRole > 4 ) {
     return res.status(403).send({ message: 'forbidden user'})
   }
@@ -21,34 +21,46 @@ const userActiveStat = async (req: Request, res: Response) => {
   res.status(200).send({ postCnt, commentCnt, highCompCnt })
 }
 
-const userPostStat = async (req: Request, res: Response) => {
+const userWeekStat = async (req: Request, res: Response) => {
   if (req.body.userRole > 4 ) {
     return res.status(403).send({ message: 'forbidden user'})
   }
 
   const after = dateFormat.calculateDate(-6);
 
-  const result = await Post.createQueryBuilder()
+  const postCountList = await Post.createQueryBuilder()
   .select(['date_format(createdAt, \'%Y-%m-%d\') AS date', 'COUNT(id) AS count'])
   .where('createdAt >= :after', { after })
   .andWhere('userId = :id', { id: req.body.authUserId })
   .groupBy('Date(createdAt)')
   .getRawMany()
 
+  const commentCountList = await Comment.createQueryBuilder()
+  .select(['date_format(createdAt, \'%Y-%m-%d\') AS date', 'COUNT(id) AS count'])
+  .where('createdAt >= :after', { after })
+  .andWhere('userId = :id', { id: req.body.authUserId })
+  .groupBy('Date(createdAt)')
+  .getRawMany()
 
   const dateList = [];
-  const countList = new Array(7).fill("0");
+  const postList = new Array(7).fill("0");
+  const commentList = new Array(7).fill("0");
   for (let i = 6; i >= 0; i--) {
     const date = dateFormat.calculateDate(-i);
     dateList.push(date);
   }
 
-  result.forEach((el) => {
+  postCountList.forEach((el) => {
     const day = dateFormat.getNumberOfDays(after, el.date);
-    countList[day] = el.count;
+    postList[day] = el.count;
   })
 
-  res.status(200).send({ dateList, countList });
+  commentCountList.forEach((el) => {
+    const day = dateFormat.getNumberOfDays(after, el.date);
+    commentList[day] = el.count;
+  })
+
+  res.status(200).send({ dateList, postList, commentList });
 }
 
 // 일별 코드 작성 현황
@@ -140,8 +152,8 @@ const monthStat = async (req: Request, res: Response) => {
 }
 
 export {
-  userActiveStat,
-  userPostStat,
+  userTotalStat,
+  userWeekStat,
   dateStat,
   weekStat,
   monthStat
