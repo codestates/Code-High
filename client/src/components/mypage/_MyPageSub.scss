@@ -51,15 +51,19 @@
 }
 
 .mypage-right-midlle-container{
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     justify-content: center;
     align-items: center;
-    div{
-        flex: 1;
-        margin: 10px;
-        height: 300px;
-        border-radius: 40px;
-    }
+    margin-top: 10px;
+    height: 300px;
+
+    // div{
+    //     flex: 1;
+    //     margin: 10px;
+    //     height: 300px;
+    //     border-radius: 40px;
+    // }
 }
 
 .mypage-right-middle-box-1{
@@ -68,9 +72,15 @@
     align-items: center;
     flex-direction: column;
     border: $gray solid 1px;
+    height: 100%;
+    width: 100%;
+    margin: 10px;
+    border-radius: 40px;
+    padding-right: 5px;
     div{
         display: flex;
         width: 100%;
+        height: 50px;
         justify-content: center;
         align-items: center;
         span{
@@ -91,23 +101,24 @@
     align-items: center;
     border-radius: 40px;
     background-color: #{$gray};
-    height: 50px;
     display: flex;
     justify-content: center;
+    height: 100%;
+    width: 100%;
     img{
         margin: 10px;
-        width: 200px;
+        width: 150px;
     }
-    div{
-        text-align: center;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-size: 3rem;
-        color: white;
-        font-weight: 1500;
-        font-family: 'NanumGothic'
-    }
+    // div{
+    //     text-align: center;
+    //     display: flex;
+    //     justify-content: center;
+    //     align-items: center;
+    //     font-size: 3rem;
+    //     color: white;
+    //     font-weight: 1500;
+    //     font-family: 'NanumGothic'
+    // }
 }
 
 .modify-userinfo{
