@@ -17,25 +17,27 @@ const Graph = () => {
     const chartData = {
         labels: usersChart.days,
         datasets: [{
-        label: '방문자 수',
-        backgroundColor: 'blue',
-        data: usersChart.visitCount,
-        fill: false,
-        tension: 0.1
+            label: '방문자 수',
+            backgroundColor: 'blue',
+            data: usersChart.visitCount,
+            fill: false,
+            tension: 0.1
         },
         {
-        label: '게시글 수',
-        backgroundColor:'green',
-        data: usersChart.postCount,
-        fill: false,
-        tension: 0.1   
+            label: '게시글 수',
+            backgroundColor:'green',
+            data: usersChart.postCount,
+            fill: false,
+            tension: 0.1   
         }]
     }
+    console.log(usersChart,'🙁usersChart🙁')
+    console.log(chartData,'🙁chartData🙁')
 
 
     return (
         <div className='admin-graph-main'>
-            {usersChart === undefined ? (
+            {(chartData === undefined) && (usersChart === undefined) ? (
                 <h1>오류발생</h1>
             ):(
             <div className='admin-graph-main-container'>
@@ -45,11 +47,7 @@ const Graph = () => {
                 <div className='admin-status-graph-container'>
                     <div className='admin-graph'>
                         <Bar
-                        data={chartData === undefined ? (
-                            로딩중
-                        ):(
-                            chartData
-                        )}
+                        data={chartData}
                         options={{ maintainAspectRatio: false }}
                         />
                     </div>
