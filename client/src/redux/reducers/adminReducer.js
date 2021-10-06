@@ -11,7 +11,7 @@ const adminReducer = (state = {}, action) => {
   switch (action.type) {
     case GET_USERS_CHART:
       return Object.assign({}, state, {
-        usersChart: {...action.payload},
+        usersChart: { ...action.payload },
       });
     case GET_USERS_POST:
       return Object.assign({}, state, {
@@ -25,16 +25,14 @@ const adminReducer = (state = {}, action) => {
       return Object.assign({}, state, {
         message: action.payload,
       });
-      case DELETE_USERS_COMMENT:
-        return Object.assign({}, state, {
-          message: action.payload,
-        });
+    case DELETE_USERS_COMMENT:
+      return Object.assign({}, state, {
+        message: action.payload,
+      });
 
     default:
       return state;
   }
-}
-
-
+};
 
 export default adminReducer;

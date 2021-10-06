@@ -1,4 +1,4 @@
-import React,{useRef} from 'react';
+import React, { useRef } from 'react';
 
 function Alert(props) {
   const alertBackgroundEl = useRef(null);
@@ -8,7 +8,7 @@ function Alert(props) {
     leftbutton,
     onClickHandleRight,
     onClickHandleLeft,
-    togglePopUp
+    togglePopUp,
   } = props;
 
   const alertBackgroundClick = (e) => {

@@ -9,7 +9,7 @@ import ButtonContainer from '../components/landing/ButtonContainer';
 import CodeReviewPlus from '../components/landing/CodeReviewPlus';
 import BlackFooter from '../components/basic/footer/BlackFooter';
 
-function Landing () {
+function Landing() {
   useEffect(() => {
     const isElementUnderBottom = (elem, triggerDiff) => {
       const { top } = elem.getBoundingClientRect();
@@ -40,9 +40,9 @@ function Landing () {
       <Uploadvideo />
       <CodeReviewPlus />
       <UserReview />
-      <GettingStart />
+      {/* <GettingStart /> */}
       {/* <CodeReview /> */}
-      {/* <ButtonContainer /> */}
+      <ButtonContainer />
       <BlackFooter />
     </>
   );

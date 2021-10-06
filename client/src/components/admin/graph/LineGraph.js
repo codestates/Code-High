@@ -49,7 +49,7 @@ function LineGraph() {
 
   return (
     <div className='line-graph-container'>
-      <Line className='line-graph' data={chartData} options={options} width='900px' height='300px'/>
+      <Line className='line-graph' width='910px' height='310px' data={chartData} options={options} />
     </div>
   )
 }

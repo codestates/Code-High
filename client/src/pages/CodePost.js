@@ -6,15 +6,15 @@ import PostTagSet from '../components/CodePost/PostTagSet';
 import PostTitle from '../components/CodePost/PostTitle';
 
 const CodePost = () => {
-    return (
-        <>
-        <PostTagSet/>
-        <PostTitle />
-        <PostMain/>
-        <PostComment/>
-        <WhiteFooter/>
-        </>
-    );
+  return (
+    <>
+      <PostTagSet />
+      <PostTitle />
+      <PostMain />
+      <PostComment />
+      <WhiteFooter />
+    </>
+  );
 };
 
 export default CodePost;
