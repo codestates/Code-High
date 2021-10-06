@@ -14,25 +14,28 @@ const Graph = () => {
         dispatch(getUsersChart(userInfo.accessToken))
     },[]);
 
-    console.log(usersChart,'🙁🙁🙁🙁🙁🙁')
-
+    if(usersChart === undefined){
+        console.log('없어?')
+    }
+    
     const chartData = {
         labels: usersChart.days,
         datasets: [{
-        label: '방문자 수',
-        backgroundColor: 'blue',
-        data: usersChart.visitCount,
-        fill: false,
-        tension: 0.1
+            label: '방문자 수',
+            backgroundColor: 'blue',
+            data: usersChart.visitCount,
+            fill: false,
+            tension: 0.1
         },
         {
-        label: '게시글 수',
-        backgroundColor:'green',
-        data: usersChart.postCount,
-        fill: false,
-        tension: 0.1   
+            label: '게시글 수',
+            backgroundColor:'green',
+            data: usersChart.postCount,
+            fill: false,
+            tension: 0.1   
         }]
     }
+    console.log(usersChart,'🙁🙁🙁🙁🙁🙁')
 
 
     return (
