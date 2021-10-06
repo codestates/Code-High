@@ -18,6 +18,7 @@ function ModifyUser({ userInfoPopUp, setShowUserInfoPopUp }) {
     passwordcheck: '',
     nickname: userInfo.name
   })
+  const { newpassword, passwordcheck, nickname } = modifyInfo;
   const history = useHistory();
 
   const ModifyUserBackgroundClick = (e) => {
@@ -31,8 +32,7 @@ function ModifyUser({ userInfoPopUp, setShowUserInfoPopUp }) {
   };
 
   const handlemodify = () => {
-    const { newpassword, passwordcheck, nickname } = modifyInfo;
-    if (!newpassword && !passwordcheck && nickname !== undefined) {
+    if ((!newpassword || !passwordcheck && nickname !== undefined)) {
       axios
         .patch(
           `${serverUrl}/user`,
@@ -51,18 +51,7 @@ function ModifyUser({ userInfoPopUp, setShowUserInfoPopUp }) {
         .catch((err) => {
           console.log(err);
         });
-    } else if (newpassword !== passwordcheck) {
-      setModifyNotice('비밀번호가 일치하지 않습니다.');
-      return;
-    } else if (newpassword === passwordcheck) {
-      setModifyNotice('비밀번호가 일치합니다.');
-      return;
-    }
-  }
-
-  const modifyuserpassword = () => {
-    const { newpassword, passwordcheck, nickname } = modifyInfo;
-    if (newpassword === passwordcheck) {
+    } else if (newpassword === passwordcheck && newpassword !== '') {
       axios
         .patch(
           `${serverUrl}/user`,
@@ -75,13 +64,16 @@ function ModifyUser({ userInfoPopUp, setShowUserInfoPopUp }) {
           if (data.status === 200) {
             userInfo.name = nickname;
             userInfoPopUp()
-            window.location.reload();
+            history.push('/mypage')
           }
         })
         .catch((err) => {
           console.log(err);
         });
-    }
+    } else if (newpassword !== passwordcheck) {
+      setModifyNotice('비밀번호가 일치하지 않습니다.');
+      return;
+    } 
   }
 
   const enterKeyPress = (e) => {
@@ -117,7 +109,7 @@ function ModifyUser({ userInfoPopUp, setShowUserInfoPopUp }) {
             <FontAwesomeIcon icon={faExclamationTriangle} /> {modifyNotice}
           </div>
           <div className='modifyuser-button-container'>
-            <button type='submit' onClick={modifyuserpassword}>회원정보 수정</button>
+            <button type='submit' onClick={handlemodify}>회원정보 수정</button>
           </div>
         </div>
       </div>
