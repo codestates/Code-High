@@ -43,7 +43,11 @@ const Graph = () => {
                 <div className='admin-status-graph-container'>
                     <div className='admin-graph'>
                         <Bar
-                        data={chartData}
+                        data={chartData === undefined ? (
+                            로딩중
+                        ):(
+                            chartData
+                        )}
                         options={{ maintainAspectRatio: false }}
                         />
                     </div>
