@@ -32,7 +32,7 @@ const getPostList = async (req: Request, res: Response) => {
     .orderBy('post.createdAt', 'DESC')
     .getRawMany();
     
-    res.send({ postList: result });
+    res.status(200).send({ postList: result });
 
   } else {
     const result = await getRepository(Post).createQueryBuilder('post')

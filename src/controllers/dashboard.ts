@@ -22,17 +22,33 @@ const userActiveStat = async (req: Request, res: Response) => {
 }
 
 const userPostStat = async (req: Request, res: Response) => {
+  if (req.body.userRole > 4 ) {
+    return res.status(403).send({ message: 'forbidden user'})
+  }
 
-  const after = dateFormat.calculateDate(-4);
+  const after = dateFormat.calculateDate(-6);
 
   const result = await Post.createQueryBuilder()
-  .where('createdAt >= :after')
-  .orderBy('createdAt', 'DESC')
-  .getMany()
+  .select(['date_format(createdAt, \'%Y-%m-%d\') AS date', 'COUNT(id) AS count'])
+  .where('createdAt >= :after', { after })
+  .andWhere('userId = :id', { id: req.body.authUserId })
+  .groupBy('Date(createdAt)')
+  .getRawMany()
 
 
-  res.status(200).send({ result })
+  const dateList = [];
+  const countList = new Array(7).fill("0");
+  for (let i = 6; i >= 0; i--) {
+    const date = dateFormat.calculateDate(-i);
+    dateList.push(date);
+  }
 
+  result.forEach((el) => {
+    const day = dateFormat.getNumberOfDays(after, el.date);
+    countList[day] = el.count;
+  })
+
+  res.status(200).send({ dateList, countList });
 }
 
 // 일별 코드 작성 현황
@@ -83,9 +99,6 @@ const weekStat = async (req: Request, res: Response) => {
   .select(['CONCAT(YEAR(date), \'-\', Month(date), \' \', WEEK(date)) AS date'])
   .groupBy('CONCAT(YEAR(date), \'-\', Month(date), \' \', WEEK(date))')
   .getRawMany()
-
-  console.log(week)
-
 
   res.status(200).send('test');
 }
