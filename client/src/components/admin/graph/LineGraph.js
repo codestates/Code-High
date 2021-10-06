@@ -26,18 +26,21 @@ function LineGraph() {
     }]
   }
 
-  const option = {
-    yAxes: [{
-      ticks: { 
-        beginAtZero: true,
-      }
-    }],
+  const options = {
+    responsive: false,
     maintainAspectRatio: false,
+    scales: {
+      y: {
+        ticks: {
+          stepSize: 1
+        }
+      }
+    }
   }
 
   return (
     <div className='line-graph-container'>
-      <Line className='line-graph' data={chartData} options={option}/>
+      <Line data={chartData} legend={legend} options={options} />
     </div>
   )
 }
