@@ -6,7 +6,7 @@ import Uploadvideo from '../components/landing/Uploadvideo';
 import UserReview from '../components/landing/UserReview';
 import CodeReview from '../components/landing/CodeReview';
 import ButtonContainer from '../components/landing/ButtonContainer';
-import NavBar from '../components/basic/navbar/NavBar';
+import CodeReviewPlus from '../components/landing/CodeReviewPlus';
 import BlackFooter from '../components/basic/footer/BlackFooter';
 
 function Landing () {
@@ -37,11 +37,12 @@ function Landing () {
     <>
       <Mainbanner />
       <Subbanner />
-      <GettingStart />
       <Uploadvideo />
+      <CodeReviewPlus />
       <UserReview />
-      <CodeReview />
-      <ButtonContainer />
+      <GettingStart />
+      {/* <CodeReview /> */}
+      {/* <ButtonContainer /> */}
       <BlackFooter />
     </>
   );

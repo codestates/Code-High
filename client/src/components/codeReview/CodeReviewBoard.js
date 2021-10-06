@@ -39,16 +39,13 @@ function CodeReviewBoard() {
   useEffect(() => {
     const data = {
       search: searchValue.search,
-      // accessToken:userInfo.accessToken
     };
     dispatch(getReviewFilter(data));
-    // console.log('코드리뷰보드에서의 코드리스트', count, postList, searchValue.search);
   }, [searchValue]);
 
   const enterKeyPress = (e) => {
     const data = {
       search: searchValue.search,
-      // accessToken:userInfo.accessToken
     };
     if (e.key === 'Enter') {
       dispatch(getReviewFilter(data));

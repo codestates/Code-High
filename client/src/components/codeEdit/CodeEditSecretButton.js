@@ -34,13 +34,11 @@ function CodeEditSecretButton ({ codeEditInfo, setCodeEditInfo }) {
   const changeHandle = (checked, id) => {
     if (checked) {
       setIsChecked([...isChecked, id]);
-      console.log('공개');
     } else {
       setIsChecked(isChecked.filter(el => el !== id));
-      console.log('비공개');
     }
   }
-console.log(codeEditInfo)
+
   const handleSaveButton = () => {
     const { accessToken } = userInfo;
     const { title, postTags, codeContent, textContent, secret} = codeEditInfo;
@@ -61,7 +59,6 @@ console.log(codeEditInfo)
         },
       }
     ).then((res) => {
-      console.log('메세지를 찾아보자',res)
       if(res.status === 201 || res.status === 200) {
         const data = {
           postId:codePost.id,

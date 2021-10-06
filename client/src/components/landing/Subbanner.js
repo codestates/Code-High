@@ -1,9 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+
 import Button from '../basic/button/Button';
+
 import Subbannerimg from '../../images/subbannerimg.svg';
 import codestorage from '../../images/codestorage1.gif';
-import gif from '../../images/gif.png';
 
 function Subbanner () {
   return (
@@ -27,7 +28,7 @@ function Subbanner () {
             </p>
             <Link to='/codestorage'>
               <Button
-                content='체험하기'
+                content='바로가기'
                 backgroundColor='#2F8C4C'
                 color='#fff'
               />

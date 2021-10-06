@@ -16,18 +16,15 @@ const MyPageSub = (props) => {
 
   useEffect(() => {
     const data = {
-      accessToken: userInfo ? userInfo.accessToken : undefined,
+      accessToken: userInfo.accessToken,
     };
     dispatch(getMypageInfo(data));
   }, []);
 
   const userInfoPopUp = () => {
     setShowUserInfoPopUp(!showUserInfoPopUp);
-    console.log(showUserInfoPopUp, 'click');
   };
-
-  console.log('마이페이지 유저정보',mypageInfo)
-  const { onClickHandle } = props;
+  
   return (
     <div className='mypage'>
       {mypageInfo === undefined ?(
@@ -36,7 +33,11 @@ const MyPageSub = (props) => {
       <div className='mypage-container'>
         <div className='mypage-left-container'>
           <div>
-            <img src={profileImg} alt='profile' />
+            {userInfo.image === null ? (
+              <img src={profileImg} alt='profile' />
+            ) : (
+              <img src={userInfo.image} alt='profile' />
+            )}
           </div>
           <div className='userinfo-name'>{userInfo.name}</div>
           <div className='userinfo-email'>{userInfo.email}</div>
@@ -51,8 +52,7 @@ const MyPageSub = (props) => {
         </div>
         <div className='mypage-right-container'>
           <div className='remaincodenotice'>
-            현재 복습해야될 코드는 {mypageInfo.postCnt - mypageInfo.highCompCnt}
-            개 입니다.
+            현재 복습해야될 코드는 {mypageInfo.postCnt - mypageInfo.highCompCnt}개 입니다.
           </div>
           <div className='mypage-right-midlle-container'>
             {mypageInfo === undefined ? (
@@ -75,18 +75,20 @@ const MyPageSub = (props) => {
                 </div>
               </div>
             )}
-            <div className='mypage-right-middle-box-2' onClick={onClickHandle}>
-              <Link to='/codestorage'>
+            <Link to='/codestorage'>
+              <div className='mypage-right-middle-box-2'>
                 <img
                   className='mypage-move-codestorage'
                   src={moveCodeStorageImg}
                   alt='moveCodeStorage'
                 />
-              </Link>
-              <div className='mypage-move-codestorage-text'>
-                코드 저장소 <br /> 이동하기
+                <div className='mypage-move-codestorage-text'>
+                  코드 저장소
+                  <br />
+                  이동하기
+                </div>
               </div>
-            </div>
+            </Link>
           </div>
           <div className='mypage-right-bottom-container'></div>
         </div>

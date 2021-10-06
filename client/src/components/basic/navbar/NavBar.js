@@ -39,8 +39,6 @@ const NavBar = () => {
     history.push('/mypage');
   };
 
-  // console.log('네브바에서의 유저 정보', userInfo);
-
   return (
     <>
       <div className='navbar'>
