@@ -20,6 +20,7 @@ const MyPageSub = (props) => {
     };
     dispatch(getMypageInfo(data));
   }, []);
+  
   const userInfoPopUp = () => {
     setShowUserInfoPopUp(!showUserInfoPopUp)
   };
