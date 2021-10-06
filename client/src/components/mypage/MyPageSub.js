@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import profileImg from '../../images/profileimg.png';
-import moveCodeStorageImg from '../../images/mypageimg.svg';
-import { Link } from 'react-router-dom';
+import profileImg from '../../images/profileimg.png'
+import moveCodeStorageImg from '../../images/mypageimg.svg'
+import { Link } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux';
 import ModifyUser from '../basic/modal/ModifyUser';
-import modifyUserInfoImg from '../../images/modifyuserinfo.png';
+import modifyUserInfoImg from '../../images/modifyuserinfo.png'
 import { getMypageInfo } from '../../redux/actions/userActions';
-import { modifyUser } from '../../redux/actions/userActions';
+
 
 const MyPageSub = (props) => {
   const userState = useSelector((state) => state.userReducer);
@@ -20,14 +20,10 @@ const MyPageSub = (props) => {
     };
     dispatch(getMypageInfo(data));
   }, []);
-
   const userInfoPopUp = () => {
-    setShowUserInfoPopUp(!showUserInfoPopUp);
-    console.log(showUserInfoPopUp, 'click');
+    setShowUserInfoPopUp(!showUserInfoPopUp)
   };
 
-  console.log('마이페이지 유저정보',mypageInfo)
-  const { onClickHandle } = props;
   return (
     <div className='mypage'>
       {mypageInfo === undefined ?(
@@ -75,18 +71,18 @@ const MyPageSub = (props) => {
                 </div>
               </div>
             )}
-            <div className='mypage-right-middle-box-2' onClick={onClickHandle}>
               <Link to='/codestorage'>
+            <div className='mypage-right-middle-box-2' >
                 <img
                   className='mypage-move-codestorage'
                   src={moveCodeStorageImg}
                   alt='moveCodeStorage'
                 />
-              </Link>
               <div className='mypage-move-codestorage-text'>
                 코드 저장소 <br /> 이동하기
               </div>
             </div>
+              </Link>
           </div>
           <div className='mypage-right-bottom-container'></div>
         </div>

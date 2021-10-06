@@ -14,10 +14,6 @@ const Graph = () => {
         dispatch(getUsersChart(userInfo.accessToken))
     },[]);
 
-    if(usersChart === undefined){
-        console.log('없어?')
-    }
-    
     const chartData = {
         labels: usersChart.days,
         datasets: [{
@@ -35,12 +31,13 @@ const Graph = () => {
             tension: 0.1   
         }]
     }
-    console.log(usersChart,'🙁🙁🙁🙁🙁🙁')
+    console.log(usersChart,'🙁usersChart🙁')
+    console.log(chartData,'🙁chartData🙁')
 
 
     return (
         <div className='admin-graph-main'>
-            {usersChart === undefined ? (
+            {(chartData === undefined) && (usersChart === undefined) ? (
                 <h1>오류발생</h1>
             ):(
             <div className='admin-graph-main-container'>
@@ -50,11 +47,7 @@ const Graph = () => {
                 <div className='admin-status-graph-container'>
                     <div className='admin-graph'>
                         <Bar
-                        data={chartData === undefined ? (
-                            로딩중
-                        ):(
-                            chartData
-                        )}
+                        data={chartData}
                         options={{ maintainAspectRatio: false }}
                         />
                     </div>

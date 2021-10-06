@@ -132,7 +132,6 @@ function PostComment() {
         withCredentials: true,
       })
       .then((res) => {
-        console.log('메세지를 찾아보자', res);
         if (res.status === 201 || res.status === 200) {
           window.location.reload();
         }
