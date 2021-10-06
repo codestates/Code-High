@@ -40,7 +40,7 @@ function LineGraph() {
 
   return (
     <div className='line-graph-container'>
-      <Line data={chartData} legend={legend} options={options} />
+      <Line className='line-graph' width='910px' height='310px' data={chartData} options={options} />
     </div>
   )
 }
