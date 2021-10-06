@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Button from '../basic/button/Button';
 import Subbannerimg from '../../images/subbannerimg.svg';
+import codestorage from '../../images/codestorage1.gif';
 import gif from '../../images/gif.png';
 
 function Subbanner () {
@@ -9,7 +10,7 @@ function Subbanner () {
     <div className='subbanner'>
       <div className='subbanner-container'>
         <div className='subbanner-left up-on-scroll'>
-          <img src={gif} alt='draganddrop' />
+          <img src={codestorage} alt='draganddrop' />
         </div>
         <div className='subbanner-right up-on-scroll'>
           <img src={Subbannerimg} alt='subbannerimg' />
@@ -18,10 +19,11 @@ function Subbanner () {
             <p className='subbanner-p'>
               학습에 필요한 코드를
               <br />
-              보기 쉽게 관리할 수 있습니다.
+              이해도에 따라 분류하여 관리할 수 있습니다.
             </p>
             <p className='subbanner-mobile-p'>
-              학습에 필요한 코드를 보기 쉽게 관리할 수 있습니다.
+              학습에 필요한 코드를 
+              <br />이해도에 따라 분류하여 관리할 수 있습니다.
             </p>
             <Link to='/codestorage'>
               <Button
