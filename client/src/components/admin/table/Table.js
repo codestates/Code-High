@@ -63,8 +63,8 @@ const Table = () => {
             commentList: checkCommentList
         }
         dispatch(deleteUsersComment(data));
-        // window.location.reload();
         console.log(data.commentList, 'commentList?')
+        window.location.reload();
 
     }
 
@@ -80,7 +80,13 @@ const Table = () => {
                 <div className='admin-table-container'>
                     <div className='admin-table-post-status'>
                         <div className='admin-table-button-box'>
-                            <div>게시글 {usersPost.length}개</div>
+                            <div>게시글 {
+                            usersPost === undefined ? (
+                                <h1>로딩 중</h1>
+                            ) : (
+                                usersPost.length
+                            )
+                            }개</div>
                             <div className='admin-button'>
                             <Button
                                 content={'Remove'}
