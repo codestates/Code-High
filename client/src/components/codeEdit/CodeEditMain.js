@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
+
 import CodeEditor, { SelectionText } from '@uiw/react-textarea-code-editor';
 
 function CodeEditMain({ codeEditInfo, setCodeEditInfo }) {
-  const textRef = React.useRef();
   const postState = useSelector((state) => state.codePostReducer);
   const { codePost } = postState;
+
+  const textRef = React.useRef();
 
   const [userCodeCard, setUserCodeCard] = useState({
     codeContent: '',

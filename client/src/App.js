@@ -1,17 +1,19 @@
-import React, { useEffect, Suspense, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useEffect, Suspense } from 'react';
+import { Route, Switch } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+
 import {
   githubSigninUser,
   kakaoSigninUser,
   googleSigninUser,
 } from './redux/actions/userActions';
-import { Route, Switch } from 'react-router-dom';
+
 import Landing from './pages/Landing';
+import CodeStorage from './pages/CodeStorage';
+import CodeReview from './pages/CodeReview';
 import SignIn from './components/basic/modal/SignIn';
 import Signup from './components/basic/modal/Signup';
 import CodeInput from './pages/CodeInput';
-import CodeStorage from './pages/CodeStorage';
-import CodeReview from './pages/CodeReview';
 import Mypage from './pages/Mypage';
 import CodePost from './pages/CodePost';
 import NotFoundError from './components/basic/error/NotFoundError';
@@ -28,8 +30,6 @@ import CheckEmail from './components/basic/modal/CheckEmail';
 
 function App() {
   const dispatch = useDispatch();
-  const state = useSelector((state) => state.userReducer);
-  const { userInfo } = state;
 
   useEffect(() => {
     const url = new URL(window.location.href);

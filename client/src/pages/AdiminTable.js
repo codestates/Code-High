@@ -5,12 +5,12 @@ import Graph from '../components/admin/graph/Graph';
 import Table from '../components/admin/table/Table';
 
 const AdiminTable = () => {
-    return (
-        <div>
-            <Table/>
-            <WhiteFooter/>
-        </div>          
-    );
+  return (
+    <div>
+      <Table />
+      <WhiteFooter />
+    </div>
+  );
 };
 
 export default AdiminTable;

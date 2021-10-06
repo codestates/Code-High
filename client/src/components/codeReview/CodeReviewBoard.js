@@ -12,11 +12,11 @@ import {
 } from '../../redux/actions/codePostActions';
 
 import SearchInput from '../basic/search/SearchInput';
-// import scrollImg from '../../images/scrollImg.gif';
 
 function CodeReviewBoard() {
   const userState = useSelector((state) => state.userReducer);
   const { userInfo } = userState;
+
   const postState = useSelector((state) => state.codePostReducer);
   const { postList } = postState;
 
@@ -121,10 +121,14 @@ function CodeReviewBoard() {
                 >
                   <h1 id={item.id}>{item.title}</h1>
                   <div id={item.id}>
-                    <CodeEditor 
-                      readOnly 
+                    <CodeEditor
+                      readOnly
                       value={item.codeContent}
-                      language={item.language===null ? 'javascript' :`${item.language}`}
+                      language={
+                        item.language === null
+                          ? 'javascript'
+                          : `${item.language}`
+                      }
                       id={item.id}
                       tyle={{
                         margin: '5px',
@@ -140,9 +144,6 @@ function CodeReviewBoard() {
               );
             })
           )}
-          {/* <div className='codereviewboard-loding'></div>
-          <div className='codereviewboard-loding'><img src={scrollImg} alt=''/></div>
-          <div className='codereviewboard-loding'></div> */}
         </section>
       </div>
     </div>

@@ -35,11 +35,11 @@ const userReducer = (state = {}, action) => {
       });
     case MYPAGE_USER_INFO:
       return Object.assign({}, state, {
-        mypageInfo: action.payload
+        mypageInfo: action.payload,
       });
     case DELETE_USER_INFO:
       return Object.assign({});
-          
+
     default:
       return state;
   }

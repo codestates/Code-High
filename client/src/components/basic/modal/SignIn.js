@@ -12,7 +12,7 @@ import kakao from '../../../images/kakao.png';
 import google from '../../../images/google.png';
 
 function Signin({ togglePopUp, showLoginModal, setShowLoginModal }) {
-  const state = useSelector(state => state.userReducer);
+  const state = useSelector((state) => state.userReducer);
   const { userInfo } = state;
 
   const [loginInfo, setLoginInfo] = useState({
@@ -25,7 +25,7 @@ function Signin({ togglePopUp, showLoginModal, setShowLoginModal }) {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  //!모달 배경
+  //모달 배경
   const SigninBackgroundClick = (e) => {
     if (e.target === SigninBackgroundEl.current) {
       togglePopUp();
@@ -57,19 +57,19 @@ function Signin({ togglePopUp, showLoginModal, setShowLoginModal }) {
     window.location.assign(googleLoginUrl);
   };
 
-  //!로그인 정보
+  //로그인 정보
   const handleInputValue = (key) => (e) => {
     setLoginInfo({ ...loginInfo, [key]: e.target.value });
   };
 
-  //!이메일 정규표현식
+  //이메일 정규표현식
   function isEmail(asValue) {
     var regExp =
       /^[0-9a-zA-Z]([-_]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
     return regExp.test(asValue);
   }
 
-  //!email 로그인
+  //email 로그인
   const handleLogin = () => {
     const { email, password } = loginInfo;
 
@@ -81,52 +81,52 @@ function Signin({ togglePopUp, showLoginModal, setShowLoginModal }) {
       return;
     }
 
-    dispatch(signinUser(loginInfo))
+    dispatch(signinUser(loginInfo));
   };
 
   const enterKeyPress = (e) => {
-    if(e.key === 'Enter') {
-      handleLogin()
+    if (e.key === 'Enter') {
+      handleLogin();
     }
-  }
+  };
 
-  //!guest login
+  //guest login
   const handleGuestLogin = () => {
     const geustInfo = {
-      email : 'guest12@codehigh.club',
-      password: 'guest'
-    }
+      email: 'guest12@codehigh.club',
+      password: 'guest',
+    };
 
-    dispatch(signinUser(geustInfo))
-  }
+    dispatch(signinUser(geustInfo));
+  };
 
   const handleGoSignupPage = () => {
-    history.push('/signup')
+    history.push('/signup');
     setShowLoginModal(false);
-  }
+  };
 
   const handleFindingPassword = () => {
-    history.push('/findingpassword')
+    history.push('/findingpassword');
     setShowLoginModal(false);
-  }
+  };
 
   useEffect(() => {
-    if(userInfo) {
-      if(userInfo === 401) {
+    if (userInfo) {
+      if (userInfo === 401) {
         dispatch(signoutUser());
         setShowLoginModal(false);
-        history.push('/unauthorized')
-        return ;
-      } else if(userInfo === 404) {
+        history.push('/unauthorized');
+        return;
+      } else if (userInfo === 404) {
         dispatch(signoutUser());
         setShowLoginModal(false);
-        history.push('/notfound')
-        return ;
+        history.push('/notfound');
+        return;
       }
       setShowLoginModal(false);
-      history.push('/')
+      history.push('/');
     }
-  })
+  });
 
   return (
     <div className='signin-modal'>
@@ -159,7 +159,7 @@ function Signin({ togglePopUp, showLoginModal, setShowLoginModal }) {
             />
           </article>
           <div className='signin-button-container'>
-          <button type='submit' onClick={handleLogin}>
+            <button type='submit' onClick={handleLogin}>
               로그인
             </button>
             <button type='submit' onClick={handleGuestLogin}>

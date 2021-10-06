@@ -6,11 +6,10 @@ import Alert from '../alert/Alert';
 import resetPassword from '../../../images/resetPassword.svg';
 
 const serverUrl = 'https://api.codehigh.club';
-// const serverUrl = 'http://localhost:4000';
 
-function ResetPassword(){
+function ResetPassword() {
   const [infoForFinding, setInfoForFinding] = useState({
-    password:''
+    password: '',
   });
   const [alertModal, setAlertModal] = useState(false);
 
@@ -43,7 +42,7 @@ function ResetPassword(){
       )
       .then((data) => {
         if (data.status === 201) {
-          togglePopUp()
+          togglePopUp();
         }
       })
       .catch((err) => {
@@ -59,30 +58,30 @@ function ResetPassword(){
 
   return (
     <>
-   <div className='signup-modal'>
-      <div className='signup-container'>
-        <div className='signup-right'>
-         <img src={resetPassword} alt='signup' />
-        </div>
-        <div className='signup-left'>
-          <h1>새 비밀번호 설정</h1>
-          <article>
-            <div>비밀번호</div>
-            <input
-              placeholder='새로운 비밀번호를 입력해주세요.'
-              type='password'
-              onChange={handleInputValue('password')}
-              onKeyPress={enterKeyPress}
-            />
-          </article>
-          <div className='signup-button-container'>
-            <button type='submit' onClick={handleFindingPassword}>
-              다음
-            </button>
+      <div className='signup-modal'>
+        <div className='signup-container'>
+          <div className='signup-right'>
+            <img src={resetPassword} alt='signup' />
+          </div>
+          <div className='signup-left'>
+            <h1>새 비밀번호 설정</h1>
+            <article>
+              <div>비밀번호</div>
+              <input
+                placeholder='새로운 비밀번호를 입력해주세요.'
+                type='password'
+                onChange={handleInputValue('password')}
+                onKeyPress={enterKeyPress}
+              />
+            </article>
+            <div className='signup-button-container'>
+              <button type='submit' onClick={handleFindingPassword}>
+                다음
+              </button>
+            </div>
           </div>
         </div>
-      </div>
-      {alertModal ? (
+        {alertModal ? (
           <Alert
             content={'비밀번호가 재설정되었습니다.'}
             leftbutton={'로그인'}
@@ -92,9 +91,9 @@ function ResetPassword(){
             togglePopUp={togglePopUp}
           />
         ) : null}
-    </div>
+      </div>
     </>
   );
-};
+}
 
 export default ResetPassword;
