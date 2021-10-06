@@ -20,24 +20,36 @@ function LineGraph() {
     datasets: [{
       label: '작성 코드',
       backgroundColor: 'RGB(47, 140, 76, 0.5)',
-      data: userPostActive ?userPostActive.countList : [],
-      fill: true,
+      borderColor: 'RGB(47, 140, 76, 0.5)',
+      data: userPostActive ? userPostActive.postList : [],
+      fill: false,
+      tension: 0.1
+    },{
+      label: '작성 댓글',
+      backgroundColor: 'RGB(189, 188, 188, 0.5)',
+      borderColor: 'RGB(189, 188, 188)',
+      data: userPostActive ?userPostActive.commentList : [],
+      fill: false,
       tension: 0.1
     }]
   }
 
-  const option = {
-    yAxes: [{
-      ticks: { 
+  const options = {
+    responsive: false,
+    maintainAspectRatio: false,
+    scales: {
+      y: {
+        ticks: {
+          stepSize: 1,
+        },
         beginAtZero: true,
       }
-    }],
-    maintainAspectRatio: false,
+    },
   }
 
   return (
     <div className='line-graph-container'>
-      <Line className='line-graph' data={chartData} options={option}/>
+      <Line className='line-graph' width='910px' height='310px' data={chartData} options={options} />
     </div>
   )
 }

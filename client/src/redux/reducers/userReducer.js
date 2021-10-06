@@ -44,7 +44,6 @@ const userReducer = (state = {}, action) => {
       return Object.assign({}, state, {
         userPostActive: action.payload
       })
-          
     default:
       return state;
   }
