@@ -63,8 +63,8 @@ const Table = () => {
             commentList: checkCommentList
         }
         dispatch(deleteUsersComment(data));
-        // window.location.reload();
         console.log(data.commentList, 'commentList?')
+        window.location.reload();
 
     }
 
