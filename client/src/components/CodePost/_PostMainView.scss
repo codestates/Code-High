@@ -15,7 +15,7 @@
 }
 .codepostview-text{
     width: 30%;
-    height: 35.5vh;
+    height: 36.5vh;
     background-color: #{$gray};
     overflow-y: auto;
     font-size: 1.4rem;
@@ -25,6 +25,14 @@
     padding: 20px;
     font-family: 'NanumGothic';
 }
+// .codepostmain-codeedit{
+//     // span{
+//     //     font-size: 15px;
+//     // }
+//     w-tc-editor{
+//         font-size: 15px;
+//     }
+// }
 
 // @include mobile {
 //     .codepostmain-container{

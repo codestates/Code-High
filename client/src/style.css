@@ -13,15 +13,20 @@
 
 .admin-graph-subject {
   font-size: 2rem;
-  font-weight: 800;
-  margin-bottom: 20px; }
+  font-weight: 600;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center; }
 
 .admin-status-graph-container {
   display: flex;
   width: 100%;
   height: 550px;
   justify-content: center;
-  align-items: center; }
+  align-items: center;
+  margin-top: 20px;
+  margin-bottom: 20px; }
   .admin-status-graph-container div {
     height: 550px;
     display: flex;
@@ -40,7 +45,7 @@
   flex-direction: column; }
   .admin-graph-status div {
     height: 60px;
-    font-size: 2rem;
+    font-size: 1.7rem;
     flex-direction: column; }
 
 .admin-table-main {
@@ -2028,7 +2033,7 @@ a {
 
 .codepostview-text {
   width: 30%;
-  height: 35.5vh;
+  height: 36.5vh;
   background-color: #E1E1E1;
   overflow-y: auto;
   font-size: 1.4rem;
@@ -2105,18 +2110,19 @@ a {
   align-items: center; }
 
 .postcomment-comment {
-  background-color: #E1E1E1;
-  border-radius: 10px;
+  border-bottom: 1px solid #E1E1E1;
   padding: 10px;
   margin: 3px 0px;
   width: 95%; }
 
 .postcomment-message {
-  display: flex; }
+  display: flex;
+  font-size: 1.4rem;
+  margin-top: 5px; }
 
 .postcomment-username {
   margin-right: 10px;
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   font-weight: 700; }
 
 .postcomment-createdAt {
@@ -2365,15 +2371,20 @@ a {
 
 .admin-graph-subject {
   font-size: 2rem;
-  font-weight: 800;
-  margin-bottom: 20px; }
+  font-weight: 600;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center; }
 
 .admin-status-graph-container {
   display: flex;
   width: 100%;
   height: 550px;
   justify-content: center;
-  align-items: center; }
+  align-items: center;
+  margin-top: 20px;
+  margin-bottom: 20px; }
   .admin-status-graph-container div {
     height: 550px;
     display: flex;
@@ -2392,7 +2403,7 @@ a {
   flex-direction: column; }
   .admin-graph-status div {
     height: 60px;
-    font-size: 2rem;
+    font-size: 1.7rem;
     flex-direction: column; }
 
 .admin-table-main {

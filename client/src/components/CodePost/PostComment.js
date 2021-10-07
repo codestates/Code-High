@@ -78,6 +78,7 @@ function PostComment() {
       setCount(count + 1);
     }, 1000);
   };
+  
   const onScroll = (e) => {
     const { clientHeight, scrollTop, scrollHeight } = e.target;
     if (clientHeight + scrollTop === scrollHeight) {

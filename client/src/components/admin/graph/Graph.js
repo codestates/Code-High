@@ -17,7 +17,7 @@ const Graph = () => {
     return (
         <div className='admin-graph-main'>
             {usersChart === undefined ? (
-                <h1>오류발생</h1>
+                <h1>로딩중</h1>
             ):(
             <div className='admin-graph-main-container'>
                 <div className='admin-graph-subject'>
@@ -30,16 +30,16 @@ const Graph = () => {
                             labels: usersChart.days,
                             datasets: [{
                                 label: '방문자 수',
-                                backgroundColor: 'blue',
+                                backgroundColor: '#E1E1E1',
                                 data: usersChart.visitCount,
-                                fill: false,
+                                fill: true,
                                 tension: 0.1
                             },
                             {
                                 label: '게시글 수',
-                                backgroundColor:'green',
+                                backgroundColor:'#2F8C4C',
                                 data: usersChart.postCount,
-                                fill: false,
+                                fill:true,
                                 tension: 0.1   
                             }]
                         }}
