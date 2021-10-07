@@ -1,5 +1,6 @@
 import { Request, Response } from 'express'
 import { Between } from 'typeorm'
+import { HIGH_UNDERSTANDING } from '../config/config'
 import { Comment } from '../entity/Comment'
 import { Post } from '../entity/Post'
 import { Stat } from '../entity/stat'
@@ -15,7 +16,7 @@ const userTotalStat = async (req: Request, res: Response) => {
   const commentCnt = await Comment.count({ userId: req.body.authUserId });
   const highCompCnt = await Post.createQueryBuilder('post')
   .leftJoin('post.postTags', 'postTag')
-  .where('postTag.tagId = :id', { id: 23 })
+  .where('postTag.tagId = :id', { id: HIGH_UNDERSTANDING })
   .getCount();
 
   res.status(200).send({ postCnt, commentCnt, highCompCnt })
