@@ -1,7 +1,11 @@
 import React, { useRef, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import axios from 'axios';
+
+import { deleteUser, signoutUser } from '../../../redux/actions/userActions';
+
+import Alert from '../alert/Alert';
 
 import modifyimg from '../../../images/modifyimg.png';
 import codehighlogo from '../../../images/codehighlogo.png';
@@ -17,6 +21,7 @@ function ModifyUser({ userInfoPopUp, setShowUserInfoPopUp }) {
 
   const ModifyUserBackgroundEl = useRef(null);
 
+  const [alertModal, setAlertModal] = useState(false);
   const [modifyNotice, setModifyNotice] =
     useState('수정할 정보를 입력해 주세요.');
   const [modifyInfo, setModifyInfo] = useState({
@@ -27,6 +32,7 @@ function ModifyUser({ userInfoPopUp, setShowUserInfoPopUp }) {
   const { newpassword, passwordcheck, nickname } = modifyInfo;
 
   const history = useHistory();
+  const dispatch = useDispatch();
 
   const ModifyUserBackgroundClick = (e) => {
     if (e.target === ModifyUserBackgroundEl.current) {
@@ -89,6 +95,26 @@ function ModifyUser({ userInfoPopUp, setShowUserInfoPopUp }) {
     }
   };
 
+  const togglePopUp = () => {
+    setAlertModal(!alertModal);
+  };
+
+  const handleButtonDeleteUser = () => {
+    togglePopUp();
+  }
+
+  const handleButtonCancel = () => {
+    togglePopUp();
+  }
+
+  const handleDeleteUser = () => {
+    const data = {
+      accessToken:userInfo.accessToken
+    }
+    dispatch(deleteUser(data));
+    dispatch(signoutUser(data));
+  }
+
   return (
     <div className='modifyuser-modal'>
       <div
@@ -101,9 +127,9 @@ function ModifyUser({ userInfoPopUp, setShowUserInfoPopUp }) {
           <img src={modifyimg} alt='modifyuser' />
         </div>
         <div className='modifyuser-left'>
-          <div className='modifyuser-close' onClick={userInfoPopUp}>
-            &times;
-          </div>
+          <span className='modifyuser-close'>
+            <span onClick={userInfoPopUp}>&times;</span>
+          </span>
           <img src={codehighlogo} alt='logo' />
           <article>
             <div>이메일</div>
@@ -136,9 +162,22 @@ function ModifyUser({ userInfoPopUp, setShowUserInfoPopUp }) {
             <button type='submit' onClick={handlemodify}>
               회원정보 수정
             </button>
+            <button type='submit' onClick={handleButtonDeleteUser}>
+              회원탈퇴
+            </button>
           </div>
         </div>
       </div>
+      {alertModal ? (
+          <Alert
+            content={'정말 회원 탈퇴 하시겠습니까?'}
+            leftbutton={'아니요'}
+            rightbutton={'네'}
+            onClickHandleLeft={handleButtonCancel}
+            onClickHandleRight={handleDeleteUser}
+            togglePopUp={togglePopUp}
+          />
+        ) : null}
     </div>
   );
 }
