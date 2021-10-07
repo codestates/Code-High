@@ -29,6 +29,7 @@ const emailLogin = async (req: Request, res: Response) => {
     res.cookie('refreshToken', refreshToken, {
         maxAge: 1000 * 60 * 60 * 24 * 14, // 14d
         httpOnly: true,
+        sameSite: 'none',
         secure: true,
     })
 
@@ -97,6 +98,7 @@ const kakaoLogin = async (req: Request, res: Response) => {
       maxAge: 1000 * 60 * 60 * 24 * 14, // 14d
       httpOnly: true,
       secure: true,
+      sameSite: 'none'
     },)
 
     delete userInfo.password;
@@ -158,6 +160,7 @@ const googleLogin = async (req: Request, res: Response) => {
       maxAge: 1000 * 60 * 60 * 24 * 14, // 14d
       httpOnly: true,
       secure: true,
+      sameSite: 'none'
     },)
 
     delete userInfo.password;
@@ -223,6 +226,7 @@ const githubLogin = async (req: Request, res: Response) => {
       maxAge: 1000 * 60 * 60 * 24 * 14, // 14d
       httpOnly: true,
       secure: true,
+      sameSite: 'none'
     },)
 
     delete userInfo.password;
@@ -284,6 +288,11 @@ const signUpEmail = async (req: Request, res: Response) => {
     // send code to userEmail
     const code = generateEmailToken({ email, id: result.id });
     sendSignUpEmail(email, name, code);
+
+    setTimeout(async () => {
+      const userInfo = await User.findOne({ email },{ select: ['id','verified'] });
+      if (!userInfo.verified) await userInfo.remove();
+    }, 1000 * 60 * 5);
     
     return res.status(200).send({ message: 'send email' });
 
