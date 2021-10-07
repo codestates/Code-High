@@ -1973,9 +1973,9 @@ a {
   .userreview-howmany {
     margin-top: 50px;
     border-bottom: solid 2px #2F8C4C;
-    width: 660px; }
+    width: 475px; }
     .userreview-howmany h1 {
-      font-size: 3.5rem;
+      font-size: 2.5rem;
       font-family: 'NanumGothic'; } }
 
 @media (min-width: 769px) and (max-width: 1199px) {

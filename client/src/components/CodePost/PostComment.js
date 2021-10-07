@@ -78,7 +78,7 @@ function PostComment() {
       setCount(count + 1);
     }, 1000);
   };
-  
+
   const onScroll = (e) => {
     const { clientHeight, scrollTop, scrollHeight } = e.target;
     if (clientHeight + scrollTop === scrollHeight) {
@@ -176,7 +176,8 @@ function PostComment() {
     <>
       <div className='postcomment-button-warp'>
         <div className='postcomment-button-container'>
-          {userInfo === undefined ? null : userInfo.id === codePost.userId ? (
+          {userInfo === undefined ? null : userInfo.id === codePost.userId &&
+            userInfo.name !== '게스트' ? (
             <span className='postcomment-buttons'>
               <Button
                 content={'Edit'}
