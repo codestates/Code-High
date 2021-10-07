@@ -54,10 +54,10 @@ export class User extends BaseEntity {
   authority: Authority;
 
   // user <-> post 1:n
-  @OneToMany((type) => Post, (post) => post.user)
+  @OneToMany((type) => Post, (post) => post.user, { cascade: true })
   posts: Post[];
 
   // user <-> comment 1:n
-  @OneToMany((type) => Comment, (comment) => comment.user)
+  @OneToMany((type) => Comment, (comment) => comment.user, { cascade: true })
   comments: Comment[];
 }
