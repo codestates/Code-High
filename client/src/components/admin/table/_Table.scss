@@ -1,5 +1,5 @@
 .admin-table-main{
-    padding: 0;
+    padding-top: 0;
     display: flex;
     height: 850px;
     justify-content: center;
@@ -39,7 +39,7 @@
     display: grid;
     grid-template-columns: repeat(1,1fr);
     border: 1px solid $gray;
-    height: 80%;
+    height: 100%;
     overflow-y: auto;
     overflow-x: auto;
     div{
@@ -70,8 +70,9 @@
     padding-left: 10px;
 }
 .admin-table-comment-box{
+    display: grid;
     border: 1px solid $gray;
-    height: 80%;
+    height: 100%;
     overflow-y: auto;
     overflow-x: auto;
     div{

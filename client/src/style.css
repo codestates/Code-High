@@ -49,7 +49,7 @@
     flex-direction: column; }
 
 .admin-table-main {
-  padding: 0;
+  padding-top: 0;
   display: flex;
   height: 850px;
   justify-content: center;
@@ -84,7 +84,7 @@
   display: grid;
   grid-template-columns: repeat(1, 1fr);
   border: 1px solid #E1E1E1;
-  height: 80%;
+  height: 100%;
   overflow-y: auto;
   overflow-x: auto; }
   .admin-table-post-data div {
@@ -110,8 +110,9 @@
   padding-left: 10px; }
 
 .admin-table-comment-box {
+  display: grid;
   border: 1px solid #E1E1E1;
-  height: 80%;
+  height: 100%;
   overflow-y: auto;
   overflow-x: auto; }
   .admin-table-comment-box div {
@@ -2234,30 +2235,35 @@ a {
   border-radius: 10px; }
 
 .mypage-right-midlle-container {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   justify-content: center;
-  align-items: center; }
-  .mypage-right-midlle-container div {
-    flex: 1;
-    margin: 10px;
-    height: 300px;
-    border-radius: 40px; }
+  align-items: center;
+  margin-top: 10px;
+  height: 300px; }
 
 .mypage-right-middle-box-1 {
   display: flex;
+  flex-grow: 1;
+  margin-left: 10px;
+  margin-right: 5px;
+  margin-bottom: 10px;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  border: #E1E1E1 solid 1px; }
+  border: #E1E1E1 solid 1px;
+  height: 298px;
+  border-radius: 40px; }
   .mypage-right-middle-box-1 div {
     display: flex;
     width: 100%;
+    height: 50px;
     justify-content: center;
     align-items: center; }
     .mypage-right-middle-box-1 div span {
       width: 100%;
       text-align: center;
-      font-size: 1.7rem;
+      font-size: 2rem;
       font-family: 'NanumGothic'; }
 
 .mypage-number {
@@ -2267,18 +2273,21 @@ a {
   align-items: center;
   border-radius: 40px;
   background-color: #E1E1E1;
-  height: 50px;
   display: flex;
-  justify-content: center; }
+  justify-content: center;
+  height: 300px;
+  flex-grow: 1;
+  margin-left: 5px;
+  margin-right: 10px;
+  margin-bottom: 10px; }
   .mypage-right-middle-box-2 img {
-    margin: 10px;
-    width: 200px; }
+    width: 180px; }
   .mypage-right-middle-box-2 div {
     text-align: center;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 3rem;
+    font-size: 2.5rem;
     color: white;
     font-weight: 1500;
     font-family: 'NanumGothic'; }
@@ -2303,7 +2312,7 @@ a {
 .mypage-right-bottom-container {
   margin: 10px;
   flex-grow: 1;
-  height: 340px;
+  height: 355px;
   border: #E1E1E1 solid 1px;
   border-radius: 25px; }
 
@@ -2314,12 +2323,15 @@ a {
     width: 80%; } }
 
 @media (min-width: 769px) and (max-width: 1199px) {
+  .mypage-container {
+    width: 100%;
+    height: 750px;
+    display: flex;
+    padding-top: 10px; }
   .mypage-left-container {
     width: 250px; }
   .mypage-right-container {
-    width: 80%; } }
-
-@media (min-width: 769px) and (max-width: 1199px) {
+    width: 80%; }
   .mypage-right-middle-box-1 div span {
     font-size: 2rem;
     font-family: 'NanumGothic';
@@ -2334,6 +2346,8 @@ a {
 @media (min-width: 335px) and (max-width: 768px) {
   .mypage-container {
     display: flex;
+    height: 100%;
+    width: 100%;
     flex-direction: column; }
   .mypage-left-container {
     justify-content: center;
@@ -2407,7 +2421,7 @@ a {
     flex-direction: column; }
 
 .admin-table-main {
-  padding: 0;
+  padding-top: 0;
   display: flex;
   height: 850px;
   justify-content: center;
@@ -2442,7 +2456,7 @@ a {
   display: grid;
   grid-template-columns: repeat(1, 1fr);
   border: 1px solid #E1E1E1;
-  height: 80%;
+  height: 100%;
   overflow-y: auto;
   overflow-x: auto; }
   .admin-table-post-data div {
@@ -2468,8 +2482,9 @@ a {
   padding-left: 10px; }
 
 .admin-table-comment-box {
+  display: grid;
   border: 1px solid #E1E1E1;
-  height: 80%;
+  height: 100%;
   overflow-y: auto;
   overflow-x: auto; }
   .admin-table-comment-box div {
@@ -2626,30 +2641,35 @@ a {
   border-radius: 10px; }
 
 .mypage-right-midlle-container {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   justify-content: center;
-  align-items: center; }
-  .mypage-right-midlle-container div {
-    flex: 1;
-    margin: 10px;
-    height: 300px;
-    border-radius: 40px; }
+  align-items: center;
+  margin-top: 10px;
+  height: 300px; }
 
 .mypage-right-middle-box-1 {
   display: flex;
+  flex-grow: 1;
+  margin-left: 10px;
+  margin-right: 5px;
+  margin-bottom: 10px;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  border: #E1E1E1 solid 1px; }
+  border: #E1E1E1 solid 1px;
+  height: 298px;
+  border-radius: 40px; }
   .mypage-right-middle-box-1 div {
     display: flex;
     width: 100%;
+    height: 50px;
     justify-content: center;
     align-items: center; }
     .mypage-right-middle-box-1 div span {
       width: 100%;
       text-align: center;
-      font-size: 1.7rem;
+      font-size: 2rem;
       font-family: 'NanumGothic'; }
 
 .mypage-number {
@@ -2659,18 +2679,21 @@ a {
   align-items: center;
   border-radius: 40px;
   background-color: #E1E1E1;
-  height: 50px;
   display: flex;
-  justify-content: center; }
+  justify-content: center;
+  height: 300px;
+  flex-grow: 1;
+  margin-left: 5px;
+  margin-right: 10px;
+  margin-bottom: 10px; }
   .mypage-right-middle-box-2 img {
-    margin: 10px;
-    width: 200px; }
+    width: 180px; }
   .mypage-right-middle-box-2 div {
     text-align: center;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 3rem;
+    font-size: 2.5rem;
     color: white;
     font-weight: 1500;
     font-family: 'NanumGothic'; }
@@ -2695,7 +2718,7 @@ a {
 .mypage-right-bottom-container {
   margin: 10px;
   flex-grow: 1;
-  height: 340px;
+  height: 355px;
   border: #E1E1E1 solid 1px;
   border-radius: 25px; }
 
@@ -2706,12 +2729,15 @@ a {
     width: 80%; } }
 
 @media (min-width: 769px) and (max-width: 1199px) {
+  .mypage-container {
+    width: 100%;
+    height: 750px;
+    display: flex;
+    padding-top: 10px; }
   .mypage-left-container {
     width: 250px; }
   .mypage-right-container {
-    width: 80%; } }
-
-@media (min-width: 769px) and (max-width: 1199px) {
+    width: 80%; }
   .mypage-right-middle-box-1 div span {
     font-size: 2rem;
     font-family: 'NanumGothic';
@@ -2726,6 +2752,8 @@ a {
 @media (min-width: 335px) and (max-width: 768px) {
   .mypage-container {
     display: flex;
+    height: 100%;
+    width: 100%;
     flex-direction: column; }
   .mypage-left-container {
     justify-content: center;
