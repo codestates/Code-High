@@ -35,7 +35,7 @@ function LineGraph() {
   }
 
   const options = {
-    responsive: false,
+    // responsive: false,
     maintainAspectRatio: false,
     scales: {
       y: {
@@ -49,7 +49,7 @@ function LineGraph() {
 
   return (
     <div className='line-graph-container'>
-      <Line className='line-graph' width='920px' height='325px' style={{padding:10, marginTop:10}}  data={chartData} options={options} />
+      <Line className='line-graph' width='910px' height='310px' data={chartData} options={options} />
     </div>
   )
 }

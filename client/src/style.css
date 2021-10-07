@@ -2281,7 +2281,7 @@ a {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 3rem;
+    font-size: 2.5rem;
     color: white;
     font-weight: 1500;
     font-family: 'NanumGothic'; }
@@ -2340,6 +2340,7 @@ a {
 @media (min-width: 335px) and (max-width: 768px) {
   .mypage-container {
     display: flex;
+    height: 100%;
     width: 100%;
     flex-direction: column; }
   .mypage-left-container {
@@ -2681,7 +2682,7 @@ a {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 3rem;
+    font-size: 2.5rem;
     color: white;
     font-weight: 1500;
     font-family: 'NanumGothic'; }
@@ -2740,6 +2741,7 @@ a {
 @media (min-width: 335px) and (max-width: 768px) {
   .mypage-container {
     display: flex;
+    height: 100%;
     width: 100%;
     flex-direction: column; }
   .mypage-left-container {
