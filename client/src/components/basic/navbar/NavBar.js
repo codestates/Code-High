@@ -31,7 +31,10 @@ const NavBar = () => {
   };
 
   const handleLogout = () => {
-    dispatch(signoutUser());
+    const data = {
+      accessToken: userInfo ? userInfo.accessToken : undefined,
+    };
+    dispatch(signoutUser(data));
     dispatch(resetPostCommet());
     history.push('/');
   };

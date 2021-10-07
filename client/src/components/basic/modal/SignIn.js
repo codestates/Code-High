@@ -112,13 +112,16 @@ function Signin({ togglePopUp, showLoginModal, setShowLoginModal }) {
 
   useEffect(() => {
     if (userInfo) {
+      const data = {
+        accessToken: userInfo ? userInfo.accessToken : undefined,
+      };
       if (userInfo === 401) {
-        dispatch(signoutUser());
+        dispatch(signoutUser(data));
         setShowLoginModal(false);
         history.push('/unauthorized');
         return;
       } else if (userInfo === 404) {
-        dispatch(signoutUser());
+        dispatch(signoutUser(data));
         setShowLoginModal(false);
         history.push('/notfound');
         return;
