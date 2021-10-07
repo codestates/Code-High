@@ -130,9 +130,9 @@ function CodeReviewBoard() {
                           : `${item.language}`
                       }
                       id={item.id}
-                      tyle={{
-                        margin: '5px',
-                        fontSize: 17,
+                      style={{
+                        margin: '3px',
+                        fontSize: 15,
                         backgroundColor: '#f5f5f5',
                         fontWeight: 500,
                         fontFamily:

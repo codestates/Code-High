@@ -12,8 +12,11 @@
 
 .admin-graph-subject{
     font-size: 2rem;
-    font-weight: 800;
+    font-weight: 600;
     margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .admin-status-graph-container{
@@ -22,6 +25,8 @@
     height: 550px;
     justify-content: center;
     align-items: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
     div{
         height: 550px;
         display: flex;
@@ -44,7 +49,7 @@
     flex-direction: column;
     div{
         height: 60px;
-        font-size: 2rem;
+        font-size: 1.7rem;
         flex-direction: column;
     }
 }

@@ -28,6 +28,7 @@ const PostMain = () => {
     <div className='codepostmain'>
       <div className='codepostmain-container'>
         <CodeEditor
+          className='codepostmain-codeedit'
           readOnly
           value={codePost.codeContent}
           language={codeLanguage}
