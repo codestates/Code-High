@@ -9,10 +9,8 @@ import axios from 'axios';
 
 axios.defaults.withCredentials = true;
 const serverUrl = 'https://api.codehigh.club';
-// const serverUrl = 'http://localhost:4000';
 
 //1.유져 차트 정보 가져오기-------------------------------
-
 export const getUsersChart = async (data) => {
   const response = axios
     .get(`${serverUrl}/admin/stat/date`, {

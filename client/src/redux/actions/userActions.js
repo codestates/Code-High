@@ -26,7 +26,7 @@ export function signinUser(loginInfo) {
       {
         headers: { 'Content-Type': 'application/json' },
         withCredentials: true,
-        credential: 'include'
+        credential: 'include',
       }
     )
     .then((res) => {
@@ -149,14 +149,13 @@ export function googleSigninUser(authorizationCode) {
 
 //5.로그아웃(완료)
 export async function signoutUser(data) {
-  const response = axios
-    .get(`${serverUrl}/auth/logout`,{
-      headers: {
-        Authorization: `bearer ${data.accessToken}`,
-        'Content-Type': 'application/json',
-      }
-    })
-    
+  const response = axios.get(`${serverUrl}/auth/logout`, {
+    headers: {
+      Authorization: `bearer ${data.accessToken}`,
+      'Content-Type': 'application/json',
+    },
+  });
+
   return {
     type: SIGNOUT_USER,
     payload: {},
@@ -229,14 +228,14 @@ export const getUserPostActive = async (data) => {
       headers: {
         Authorization: `bearer ${data.accessToken}`,
         'Content-Type': 'application/json',
-      }
+      },
     })
     .then((res) => {
-      return res.data
-    })
-  
+      return res.data;
+    });
+
   return {
     type: GET_USER_POST_ACTIVE,
     payload: response,
   };
-}
+};

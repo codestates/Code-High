@@ -101,19 +101,19 @@ function ModifyUser({ userInfoPopUp, setShowUserInfoPopUp }) {
 
   const handleButtonDeleteUser = () => {
     togglePopUp();
-  }
+  };
 
   const handleButtonCancel = () => {
     togglePopUp();
-  }
+  };
 
   const handleDeleteUser = () => {
     const data = {
-      accessToken:userInfo.accessToken
-    }
+      accessToken: userInfo.accessToken,
+    };
     dispatch(deleteUser(data));
     dispatch(signoutUser(data));
-  }
+  };
 
   return (
     <div className='modifyuser-modal'>
@@ -169,15 +169,15 @@ function ModifyUser({ userInfoPopUp, setShowUserInfoPopUp }) {
         </div>
       </div>
       {alertModal ? (
-          <Alert
-            content={'정말 회원 탈퇴 하시겠습니까?'}
-            leftbutton={'아니요'}
-            rightbutton={'네'}
-            onClickHandleLeft={handleButtonCancel}
-            onClickHandleRight={handleDeleteUser}
-            togglePopUp={togglePopUp}
-          />
-        ) : null}
+        <Alert
+          content={'정말 회원 탈퇴 하시겠습니까?'}
+          leftbutton={'아니요'}
+          rightbutton={'네'}
+          onClickHandleLeft={handleButtonCancel}
+          onClickHandleRight={handleDeleteUser}
+          togglePopUp={togglePopUp}
+        />
+      ) : null}
     </div>
   );
 }
