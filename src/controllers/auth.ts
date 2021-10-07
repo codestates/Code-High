@@ -29,8 +29,8 @@ const emailLogin = async (req: Request, res: Response) => {
     res.cookie('refreshToken', refreshToken, {
         maxAge: 1000 * 60 * 60 * 24 * 14, // 14d
         httpOnly: true,
+        sameSite: 'none',
         secure: true,
-        sameSite: 'none'
     })
 
     delete userInfo.password;
