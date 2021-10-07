@@ -288,6 +288,11 @@ const signUpEmail = async (req: Request, res: Response) => {
     // send code to userEmail
     const code = generateEmailToken({ email, id: result.id });
     sendSignUpEmail(email, name, code);
+
+    setTimeout(async () => {
+      const userInfo = await User.findOne({ email },{ select: ['id','verified'] });
+      if (!userInfo.verified) await userInfo.remove();
+    }, 1000 * 60 * 5);
     
     return res.status(200).send({ message: 'send email' });
 

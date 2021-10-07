@@ -23,7 +23,7 @@ createConnection(config)
 });
 
 // node-scheduler
-checkVerifiedUser();
+// checkVerifiedUser();
 weekStat();
 
 app.use(express.json());
