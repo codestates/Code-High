@@ -92,6 +92,7 @@ const Table = () => {
 								<tbody>
 									<tr>
 										<th></th>
+										<th>No</th>
 										<th>이메일</th>
 										<th>게시글</th>
 										<th>createdAt</th>
@@ -107,9 +108,10 @@ const Table = () => {
 													<tr>
 														<td><input type="checkbox"
 															onChange={(e) => getPostCheckboxId(e, el.id)} /></td>
+															<td>{index+1}</td>
 														<td>{el.userName}</td>
 														<td className='td-textalign-left'>{el.title}</td>
-														<td>{el.createdAt}</td>
+														<td>{el.createdAt.substring(0,10)}</td>
 													</tr>
 												</tbody>
 											)
