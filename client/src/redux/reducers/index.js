@@ -8,12 +8,12 @@ import storage from 'redux-persist/lib/storage';
 const persistConfig = {
   key: 'root',
   storage,
-}
+};
 
 const rootReducer = combineReducers({
   userReducer,
   codePostReducer,
-  adminReducer
+  adminReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

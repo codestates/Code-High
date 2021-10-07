@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
+
 import CodeEditor from '@uiw/react-textarea-code-editor';
 
 function CodeInputMain({ codeInputInfo, setCodeInputInfo }) {
@@ -7,8 +8,6 @@ function CodeInputMain({ codeInputInfo, setCodeInputInfo }) {
     codeContent: '',
     textContent: '',
   });
-  const postState = useSelector((state) => state.codePostReducer);
-  const { codePost } = postState;
   const [selectLanguage, setSelectLanguage] = useState('');
 
   useEffect(() => {
@@ -52,12 +51,6 @@ function CodeInputMain({ codeInputInfo, setCodeInputInfo }) {
             }}
           />
         </span>
-        {/* <textarea
-          type='text'
-          className='codeinputmain-code'
-          placeholder='코드를 입력하세요.'
-          onChange={handleInputValue('codeContent')}
-        ></textarea> */}
         <textarea
           type='text'
           className='codeinputmain-text'

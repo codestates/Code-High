@@ -10,11 +10,14 @@ function CodeStorage() {
 
   return (
     <>
-    {userInfo !== undefined 
-      ? <><Kanban />
-      <WhiteFooter /></>
-      :<LoginError/>
-    }
+      {userInfo !== undefined ? (
+        <>
+          <Kanban />
+          <WhiteFooter />
+        </>
+      ) : (
+        <LoginError />
+      )}
     </>
   );
 }

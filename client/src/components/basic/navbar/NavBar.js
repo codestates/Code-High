@@ -1,17 +1,18 @@
 import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import Logo from '../../../images/codehighlogo.png';
-import HamburgerMenubar from '../../../images/hamburger-menu-icon.jpeg';
-import SignIn from '../modal/SignIn';
-import SideBar from '../navbar/SideBar';
 import { useDispatch, useSelector } from 'react-redux';
+
 import { signoutUser } from '../../../redux/actions/userActions';
 import { resetPostCommet } from '../../../redux/actions/codePostActions';
+
+import SignIn from '../modal/SignIn';
+import SideBar from '../navbar/SideBar';
+
+import Logo from '../../../images/codehighlogo.png';
+import HamburgerMenubar from '../../../images/hamburger-menu-icon.jpeg';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser } from '@fortawesome/free-regular-svg-icons';
-import profileImg from '../../../images/profileimg.png';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
-// import { resetCodereviewPost } from '../../../redux/actions/codePostActions';
 
 const NavBar = () => {
   const state = useSelector((state) => state.userReducer);

@@ -15,13 +15,13 @@ import SearchInput from '../basic/search/SearchInput';
 import Button from '../basic/button/Button';
 
 const serverUrl = 'https://api.codehigh.club';
-// const serverUrl = 'http://localhost:4000';
 
 function Kanban() {
   const userState = useSelector((state) => state.userReducer);
   const { userInfo } = userState;
+
   const postState = useSelector((state) => state.codePostReducer);
-  const { userPostList, codePost } = postState;
+  const { userPostList } = postState;
 
   const [searchValue, setSearchValue] = useState({
     search: '',
@@ -30,73 +30,7 @@ function Kanban() {
   const history = useHistory();
   const dispatch = useDispatch();
 
-  //!글 목록 불러오기 및 칸반보드
-  useEffect(() => {
-    async function getCodePost() {
-      let data = {
-        accessToken: userInfo.accessToken,
-      };
-      dispatch(getCodestoragePost(data));
-    }
-
-    getCodePost();
-
-    const list_items = document.querySelectorAll('.kanban-list-item');
-    const lists = document.querySelectorAll('.kanban-list');
-
-    let draggedItem = null;
-  
-    for (let i = 0; i < list_items.length; i++) {
-      const item = list_items[i];
-      item.addEventListener('dragstart', function () {
-        draggedItem = item;
-        setTimeout(() => {
-          item.style.display = 'none';
-        }, 0);
-      });
-
-      item.addEventListener('dragend', function () {
-        setTimeout(() => {
-          draggedItem.style.display = 'block';
-          draggedItem = null;
-        }, 0);
-      });
-
-      for (let j = 0; j < lists.length; j++) {
-        const list = lists[j];
-
-        list.addEventListener('dragover', function (e) {
-          e.preventDefault();
-        });
-        list.addEventListener('dragenter', function (e) {
-          e.preventDefault();
-          list.style.backgroundColor = 'rgba(0, 0, 0, 0.2)';
-        });
-        list.addEventListener('dragleave', function (e) {
-          list.style.backgroundColor = 'rgba(0, 0, 0, 0.1)';
-        });
-        list.addEventListener('drop', function (e) {
-          list.append(draggedItem);
-          list.style.backgroundColor = 'rgba(0, 0, 0, 0.1)';
-          handleChangeTag(
-            list.className.substring(e.path[0].className.length - 4),
-            draggedItem.id
-            //여기서 null 오류 발생
-          );
-        });
-      }
-    }
-  }, []);
-
-  useEffect(() => {
-    const data = {
-      search: searchValue.search,
-      accessToken: userInfo.accessToken,
-    };
-    dispatch(getStorageFilter(data));
-  }, [searchValue]);
-
-  //!태그 수정
+  //태그 수정
   const handleChangeTag = async (understanding, id) => {
     try {
       const { loginType, accessToken } = userInfo;
@@ -130,7 +64,59 @@ function Kanban() {
       console.log(err);
     }
   };
-  //!글 불러오기
+
+  const kanban = () => {
+    const list_items = document.querySelectorAll('.kanban-list-item');
+    const lists = document.querySelectorAll('.kanban-list');
+
+    let draggedItem = null;
+
+    for (let i = 0; i < list_items.length; i++) {
+      const item = list_items[i];
+      item.addEventListener('dragstart', function () {
+        draggedItem = item;
+        if (draggedItem !== null) {
+          setTimeout(() => {
+            item.style.display = 'none';
+          }, 0);
+        }
+      });
+
+      item.addEventListener('dragend', function () {
+        setTimeout(() => {
+          draggedItem.style.display = 'block';
+          draggedItem = null;
+        }, 0);
+      });
+
+      for (let j = 0; j < lists.length; j++) {
+        const list = lists[j];
+
+        list.addEventListener('dragover', function (e) {
+          e.preventDefault();
+        });
+        list.addEventListener('dragenter', function (e) {
+          e.preventDefault();
+          list.style.backgroundColor = 'rgba(0, 0, 0, 0.2)';
+        });
+        list.addEventListener('dragleave', function (e) {
+          list.style.backgroundColor = 'rgba(0, 0, 0, 0.1)';
+        });
+        list.addEventListener('drop', function (e) {
+          if (draggedItem !== null) {
+            list.append(draggedItem);
+            list.style.backgroundColor = 'rgba(0, 0, 0, 0.1)';
+            handleChangeTag(
+              list.className.substring(e.path[0].className.length - 4),
+              draggedItem.id
+            );
+          }
+        });
+      }
+    }
+  };
+
+  //글 불러오기
   const handleClickPost = (e) => {
     const data = {
       postId: e.target.id,
@@ -142,7 +128,7 @@ function Kanban() {
     }, 1000);
   };
 
-  //!검색
+  //검색
   const handleInputValue = (key) => (e) => {
     setSearchValue({ [key]: e.target.value });
   };
@@ -164,6 +150,31 @@ function Kanban() {
       dispatch(getStorageFilter(data));
     }
   };
+
+  //칸반보드
+  useEffect(() => {
+    kanban();
+  });
+
+  //글 목록 불러오기
+  useEffect(() => {
+    async function getCodePost() {
+      let data = {
+        accessToken: userInfo.accessToken,
+      };
+      dispatch(getCodestoragePost(data));
+    }
+
+    getCodePost();
+  }, []);
+
+  useEffect(() => {
+    const data = {
+      search: searchValue.search,
+      accessToken: userInfo.accessToken,
+    };
+    dispatch(getStorageFilter(data));
+  }, [searchValue]);
 
   return (
     <div className='kanban'>
@@ -204,7 +215,11 @@ function Kanban() {
                           readOnly
                           className='codeeditor'
                           value={item.codeContent}
-                          language={item.language===null ? 'javascript' :`${item.language}`}
+                          language={
+                            item.language === null
+                              ? 'javascript'
+                              : `${item.language}`
+                          }
                           id={item.id}
                           style={{
                             width: '95%',
@@ -244,7 +259,11 @@ function Kanban() {
                           readOnly
                           value={item.codeContent}
                           className='codeeditor'
-                          language={item.language===null ? 'javascript' :`${item.language}`}
+                          language={
+                            item.language === null
+                              ? 'javascript'
+                              : `${item.language}`
+                          }
                           id={item.id}
                           style={{
                             width: '95%',
@@ -284,7 +303,11 @@ function Kanban() {
                           readOnly
                           value={item.codeContent}
                           className='codeeditor'
-                          language={item.language===null ? 'javascript' :`${item.language}`}
+                          language={
+                            item.language === null
+                              ? 'javascript'
+                              : `${item.language}`
+                          }
                           id={item.id}
                           style={{
                             width: '95%',

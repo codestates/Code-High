@@ -3,21 +3,18 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 
-import {
-  getCodepost
-} from '../../redux/actions/codePostActions';
+import { getCodepost } from '../../redux/actions/codePostActions';
 
 import Button from '../basic/button/Button';
 import Alert from '../basic/alert/Alert';
 
 axios.defaults.withCredentials = true;
 const serverUrl = 'https://api.codehigh.club';
-// const serverUrl = 'http://localhost:4000';
 
-function CodeInputSecretButton ({ codeInputInfo, setCodeInputInfo }) {
-  const state = useSelector(state => state.userReducer);
+function CodeInputSecretButton({ codeInputInfo, setCodeInputInfo }) {
+  const state = useSelector((state) => state.userReducer);
   const { userInfo } = state;
-  
+
   const [alertModal, setAlertModal] = useState(false);
   const [isChecked, setIsChecked] = useState([]);
 
@@ -28,63 +25,60 @@ function CodeInputSecretButton ({ codeInputInfo, setCodeInputInfo }) {
     if (checked) {
       setIsChecked([...isChecked, id]);
     } else {
-      setIsChecked(isChecked.filter(el => el !== id));
+      setIsChecked(isChecked.filter((el) => el !== id));
     }
-  }
+  };
 
-  useEffect(()=>{
-    if(isChecked[0] === 'check') {
-      setCodeInputInfo({ ...codeInputInfo, secret:false});
-    } else if(isChecked.length === 0){
-      setCodeInputInfo({ ...codeInputInfo, secret:true});
+  useEffect(() => {
+    if (isChecked[0] === 'check') {
+      setCodeInputInfo({ ...codeInputInfo, secret: false });
+    } else if (isChecked.length === 0) {
+      setCodeInputInfo({ ...codeInputInfo, secret: true });
     }
-  },[isChecked])
+  }, [isChecked]);
 
   const togglePopUp = () => {
     setAlertModal(!alertModal);
   };
 
   const handleSaveButton = () => {
-
     if (!userInfo) {
-      togglePopUp()
+      togglePopUp();
       return;
     }
     if (userInfo.name === '게스트') {
-      togglePopUp()
+      togglePopUp();
       return;
     }
 
     const { loginType, accessToken } = userInfo;
-    
-    axios.post(
-      `${serverUrl}/post`,
-      codeInputInfo,
-      {
+
+    axios
+      .post(`${serverUrl}/post`, codeInputInfo, {
         headers: {
           login_type: `${loginType}`,
           Authorization: `bearer ${accessToken}`,
         },
         'Content-Type': 'application/json',
         withCredentials: true,
-      }
-    ).then((res) => {
-      if(res.status === 201 || res.status === 200) {
-        const data = {
-          postId:res.data.postId,
-          accessToken:userInfo.accessToken
-        };
-        dispatch(getCodepost(data));
-        setTimeout(() => {
-          history.push('/post');
-        }, 1000);
-      }
-    })
-  }
+      })
+      .then((res) => {
+        if (res.status === 201 || res.status === 200) {
+          const data = {
+            postId: res.data.postId,
+            accessToken: userInfo.accessToken,
+          };
+          dispatch(getCodepost(data));
+          setTimeout(() => {
+            history.push('/post');
+          }, 1000);
+        }
+      });
+  };
 
   const handleCancelButton = () => {
-    window.history.back()
-  }
+    window.history.back();
+  };
 
   const handleButtonSignup = () => {
     history.push('/signup');
@@ -94,24 +88,37 @@ function CodeInputSecretButton ({ codeInputInfo, setCodeInputInfo }) {
     <div className='codeinputsecretbutton'>
       <div className='codeinputsecretbutton-container'>
         <div className='codeinputsecretbutton-checkbox'>
-          <input type='checkbox' onChange={e => changeHandle(e.currentTarget.checked, 'check')}/>
+          <input
+            type='checkbox'
+            onChange={(e) => changeHandle(e.currentTarget.checked, 'check')}
+          />
           <span>코드 리뷰 공개</span>
         </div>
         <div className='codeinputsecretbutton-button'>
-          <Button content='SAVE' backgroundColor='#2F8C4C' color='#fff' onClickHandle={handleSaveButton}/>
-          <Button content='CANCEL' backgroundColor='#E1E1E1' color='#fff' onClickHandle={handleCancelButton}/>
+          <Button
+            content='SAVE'
+            backgroundColor='#2F8C4C'
+            color='#fff'
+            onClickHandle={handleSaveButton}
+          />
+          <Button
+            content='CANCEL'
+            backgroundColor='#E1E1E1'
+            color='#fff'
+            onClickHandle={handleCancelButton}
+          />
         </div>
       </div>
       {alertModal ? (
-          <Alert
-            content={'회원 로그인 후 이용가능합니다'}
-            leftbutton={'회원가입'}
-            rightbutton={'닫기'}
-            onClickHandleLeft={handleButtonSignup}
-            onClickHandleRight={togglePopUp}
-            togglePopUp={togglePopUp}
-          />
-        ) : null}
+        <Alert
+          content={'회원 로그인 후 이용가능합니다'}
+          leftbutton={'회원가입'}
+          rightbutton={'닫기'}
+          onClickHandleLeft={handleButtonSignup}
+          onClickHandleRight={togglePopUp}
+          togglePopUp={togglePopUp}
+        />
+      ) : null}
     </div>
   );
 }

@@ -99,9 +99,9 @@
 }
 .postcomment-deleteButton-container{
     button{
-        font-size: 1.5rem;
+        font-size: 1.6rem;
         margin-left: 5px;
-        border-radius: 20px;
+        border-radius: 5px;
         background-color: white;
         padding: 2px;
         border: 0px;
@@ -125,6 +125,9 @@
     color: white;
     border-radius: 5px;
     border: 0;
+    &:focus{
+      cursor: pointer;
+    }
   }
 }
 

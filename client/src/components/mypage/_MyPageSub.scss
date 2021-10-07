@@ -68,15 +68,16 @@
 
 .mypage-right-middle-box-1{
     display: flex;
+    flex-grow: 1;
+    margin-left: 10px;
+    margin-right: 5px;
+    margin-bottom: 10px;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     border: $gray solid 1px;
-    height: 100%;
-    width: 100%;
-    margin: 10px;
+    height: 298px;
     border-radius: 40px;
-    padding-right: 5px;
     div{
         display: flex;
         width: 100%;
@@ -86,7 +87,7 @@
         span{
             width: 100%;
             text-align: center;
-            font-size: 1.7rem;
+            font-size: 2rem;
             font-family: 'NanumGothic';
         }
     }
@@ -103,22 +104,24 @@
     background-color: #{$gray};
     display: flex;
     justify-content: center;
-    height: 100%;
-    width: 100%;
+    height: 300px;
+    flex-grow: 1;
+    margin-left: 5px;
+    margin-right: 10px;
+    margin-bottom: 10px;
     img{
-        margin: 10px;
-        width: 150px;
+        width: 180px;
     }
-    // div{
-    //     text-align: center;
-    //     display: flex;
-    //     justify-content: center;
-    //     align-items: center;
-    //     font-size: 3rem;
-    //     color: white;
-    //     font-weight: 1500;
-    //     font-family: 'NanumGothic'
-    // }
+    div{
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 3rem;
+        color: white;
+        font-weight: 1500;
+        font-family: 'NanumGothic'
+    }
 }
 
 .modify-userinfo{
@@ -141,7 +144,7 @@
 .mypage-right-bottom-container{
     margin: 10px;
     flex-grow: 1;
-    height: 340px;
+    height: 355px;
     border: $gray solid 1px;
     border-radius: 25px;
 }
@@ -154,16 +157,20 @@
     }
 }
 
+
 @include tablet {
+    .mypage-container{
+        width: 100%;
+        height: 750px;
+        display: flex;
+        padding-top: 10px;
+    }
     .mypage-left-container{
         width: 250px;
     }
     .mypage-right-container{
         width: 80%;
     }
-}
-
-@include tablet {
     .mypage-right-middle-box-1{
         div{
             span{
@@ -187,8 +194,10 @@
 
 
 @include mobile {
+    
     .mypage-container{
         display: flex;
+        width: 100%;
         flex-direction: column;
     }
     .mypage-left-container{

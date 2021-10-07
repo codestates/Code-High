@@ -1,9 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import mainbannerimg from '../../images/mainbannerimg.svg';
+
 import Button from '../basic/button/Button';
 
-function Mainbanner () {
+import mainbannerimg from '../../images/mainbannerimg.svg';
+
+function Mainbanner() {
   return (
     <div className='mainbanner'>
       <div className='mainbanner-container'>
@@ -29,7 +31,7 @@ function Mainbanner () {
             <Link to='/codereview'>
               <Button
                 content='다른 코드 구경하기'
-                backgroundColor='#E1E1E1'
+                backgroundColor='#f2f2f2'
                 color='#000'
               />
             </Link>

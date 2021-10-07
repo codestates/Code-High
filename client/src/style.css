@@ -57,7 +57,7 @@
   padding-left: 30px;
   text-align: left;
   font-size: 2rem;
-  font-weight: 800; }
+  font-weight: 700; }
 
 .admin-table-sub {
   width: 1200px;
@@ -86,13 +86,19 @@
     font-size: 1.5rem; }
   .admin-table-post-data tr {
     display: grid;
-    grid-template-columns: 0.5fr 1fr 3fr 1fr;
+    grid-template-columns: 0.5fr 0.5fr 1fr 3fr 1fr;
     text-align: center;
     height: 40px; }
     .admin-table-post-data tr td {
-      font-size: 1.5rem; }
+      font-size: 1.5rem;
+      display: flex;
+      justify-content: center;
+      align-items: center; }
     .admin-table-post-data tr th {
-      font-size: 1.5rem; }
+      font-size: 1.5rem;
+      display: flex;
+      justify-content: center;
+      align-items: center; }
 
 .td-textalign-left {
   text-align: left;
@@ -112,9 +118,15 @@
     text-align: center;
     height: 40px; }
     .admin-table-comment-box tr td {
-      font-size: 1.5rem; }
+      font-size: 1.5rem;
+      display: flex;
+      justify-content: center;
+      align-items: center; }
     .admin-table-comment-box tr th {
-      font-size: 1.5rem; }
+      font-size: 1.5rem;
+      display: flex;
+      justify-content: center;
+      align-items: center; }
 
 .admin-button {
   text-align: right; }
@@ -125,7 +137,9 @@
   justify-content: center;
   align-items: center; }
   .admin-table-button-box div {
-    font-size: 1.5rem; }
+    font-size: 1.7rem;
+    margin-left: 0;
+    font-weight: 700; }
 
 @media (min-width: 769px) and (max-width: 1199px) {
   .admin-table-comment-box {
@@ -1750,7 +1764,7 @@ a {
   user-select: none; }
 
 .subbanner-container {
-  padding: 70px 30px;
+  padding: 100px 30px;
   width: auto;
   height: auto;
   display: grid; }
@@ -2112,9 +2126,9 @@ a {
   font-weight: 100; }
 
 .postcomment-deleteButton-container button {
-  font-size: 1.5rem;
+  font-size: 1.6rem;
   margin-left: 5px;
-  border-radius: 20px;
+  border-radius: 5px;
   background-color: white;
   padding: 2px;
   border: 0px; }
@@ -2135,6 +2149,8 @@ a {
     color: white;
     border-radius: 5px;
     border: 0; }
+    .postcomment-modifyinput-container button:focus {
+      cursor: pointer; }
 
 @media (min-width: 769px) and (max-width: 1199px) {
   .postcomment-input-container textarea {
@@ -2222,15 +2238,16 @@ a {
 
 .mypage-right-middle-box-1 {
   display: flex;
+  flex-grow: 1;
+  margin-left: 10px;
+  margin-right: 5px;
+  margin-bottom: 10px;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   border: #E1E1E1 solid 1px;
-  height: 100%;
-  width: 100%;
-  margin: 10px;
-  border-radius: 40px;
-  padding-right: 5px; }
+  height: 298px;
+  border-radius: 40px; }
   .mypage-right-middle-box-1 div {
     display: flex;
     width: 100%;
@@ -2240,7 +2257,7 @@ a {
     .mypage-right-middle-box-1 div span {
       width: 100%;
       text-align: center;
-      font-size: 1.7rem;
+      font-size: 2rem;
       font-family: 'NanumGothic'; }
 
 .mypage-number {
@@ -2252,11 +2269,22 @@ a {
   background-color: #E1E1E1;
   display: flex;
   justify-content: center;
-  height: 100%;
-  width: 100%; }
+  height: 300px;
+  flex-grow: 1;
+  margin-left: 5px;
+  margin-right: 10px;
+  margin-bottom: 10px; }
   .mypage-right-middle-box-2 img {
-    margin: 10px;
-    width: 150px; }
+    width: 180px; }
+  .mypage-right-middle-box-2 div {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3rem;
+    color: white;
+    font-weight: 1500;
+    font-family: 'NanumGothic'; }
 
 .modify-userinfo {
   margin-top: 15px;
@@ -2278,7 +2306,7 @@ a {
 .mypage-right-bottom-container {
   margin: 10px;
   flex-grow: 1;
-  height: 340px;
+  height: 355px;
   border: #E1E1E1 solid 1px;
   border-radius: 25px; }
 
@@ -2289,12 +2317,15 @@ a {
     width: 80%; } }
 
 @media (min-width: 769px) and (max-width: 1199px) {
+  .mypage-container {
+    width: 100%;
+    height: 750px;
+    display: flex;
+    padding-top: 10px; }
   .mypage-left-container {
     width: 250px; }
   .mypage-right-container {
-    width: 80%; } }
-
-@media (min-width: 769px) and (max-width: 1199px) {
+    width: 80%; }
   .mypage-right-middle-box-1 div span {
     font-size: 2rem;
     font-family: 'NanumGothic';
@@ -2309,6 +2340,7 @@ a {
 @media (min-width: 335px) and (max-width: 768px) {
   .mypage-container {
     display: flex;
+    width: 100%;
     flex-direction: column; }
   .mypage-left-container {
     justify-content: center;
@@ -2390,7 +2422,7 @@ a {
   padding-left: 30px;
   text-align: left;
   font-size: 2rem;
-  font-weight: 800; }
+  font-weight: 700; }
 
 .admin-table-sub {
   width: 1200px;
@@ -2419,13 +2451,19 @@ a {
     font-size: 1.5rem; }
   .admin-table-post-data tr {
     display: grid;
-    grid-template-columns: 0.5fr 1fr 3fr 1fr;
+    grid-template-columns: 0.5fr 0.5fr 1fr 3fr 1fr;
     text-align: center;
     height: 40px; }
     .admin-table-post-data tr td {
-      font-size: 1.5rem; }
+      font-size: 1.5rem;
+      display: flex;
+      justify-content: center;
+      align-items: center; }
     .admin-table-post-data tr th {
-      font-size: 1.5rem; }
+      font-size: 1.5rem;
+      display: flex;
+      justify-content: center;
+      align-items: center; }
 
 .td-textalign-left {
   text-align: left;
@@ -2445,9 +2483,15 @@ a {
     text-align: center;
     height: 40px; }
     .admin-table-comment-box tr td {
-      font-size: 1.5rem; }
+      font-size: 1.5rem;
+      display: flex;
+      justify-content: center;
+      align-items: center; }
     .admin-table-comment-box tr th {
-      font-size: 1.5rem; }
+      font-size: 1.5rem;
+      display: flex;
+      justify-content: center;
+      align-items: center; }
 
 .admin-button {
   text-align: right; }
@@ -2458,7 +2502,9 @@ a {
   justify-content: center;
   align-items: center; }
   .admin-table-button-box div {
-    font-size: 1.5rem; }
+    font-size: 1.7rem;
+    margin-left: 0;
+    font-weight: 700; }
 
 @media (min-width: 769px) and (max-width: 1199px) {
   .admin-table-comment-box {
@@ -2592,15 +2638,16 @@ a {
 
 .mypage-right-middle-box-1 {
   display: flex;
+  flex-grow: 1;
+  margin-left: 10px;
+  margin-right: 5px;
+  margin-bottom: 10px;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   border: #E1E1E1 solid 1px;
-  height: 100%;
-  width: 100%;
-  margin: 10px;
-  border-radius: 40px;
-  padding-right: 5px; }
+  height: 298px;
+  border-radius: 40px; }
   .mypage-right-middle-box-1 div {
     display: flex;
     width: 100%;
@@ -2610,7 +2657,7 @@ a {
     .mypage-right-middle-box-1 div span {
       width: 100%;
       text-align: center;
-      font-size: 1.7rem;
+      font-size: 2rem;
       font-family: 'NanumGothic'; }
 
 .mypage-number {
@@ -2622,11 +2669,22 @@ a {
   background-color: #E1E1E1;
   display: flex;
   justify-content: center;
-  height: 100%;
-  width: 100%; }
+  height: 300px;
+  flex-grow: 1;
+  margin-left: 5px;
+  margin-right: 10px;
+  margin-bottom: 10px; }
   .mypage-right-middle-box-2 img {
-    margin: 10px;
-    width: 150px; }
+    width: 180px; }
+  .mypage-right-middle-box-2 div {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3rem;
+    color: white;
+    font-weight: 1500;
+    font-family: 'NanumGothic'; }
 
 .modify-userinfo {
   margin-top: 15px;
@@ -2648,7 +2706,7 @@ a {
 .mypage-right-bottom-container {
   margin: 10px;
   flex-grow: 1;
-  height: 340px;
+  height: 355px;
   border: #E1E1E1 solid 1px;
   border-radius: 25px; }
 
@@ -2659,12 +2717,15 @@ a {
     width: 80%; } }
 
 @media (min-width: 769px) and (max-width: 1199px) {
+  .mypage-container {
+    width: 100%;
+    height: 750px;
+    display: flex;
+    padding-top: 10px; }
   .mypage-left-container {
     width: 250px; }
   .mypage-right-container {
-    width: 80%; } }
-
-@media (min-width: 769px) and (max-width: 1199px) {
+    width: 80%; }
   .mypage-right-middle-box-1 div span {
     font-size: 2rem;
     font-family: 'NanumGothic';
@@ -2679,6 +2740,7 @@ a {
 @media (min-width: 335px) and (max-width: 768px) {
   .mypage-container {
     display: flex;
+    width: 100%;
     flex-direction: column; }
   .mypage-left-container {
     justify-content: center;

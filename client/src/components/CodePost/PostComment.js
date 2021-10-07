@@ -23,6 +23,7 @@ const serverUrl = 'https://api.codehigh.club';
 function PostComment() {
   const userState = useSelector((state) => state.userReducer);
   const { userInfo } = userState;
+
   const postState = useSelector((state) => state.codePostReducer);
   const { codePost, postComment, message } = postState;
 
@@ -34,7 +35,7 @@ function PostComment() {
   });
   const [modifyCommetButton, setModifyCommetButton] = useState(0);
   const [modifyUserComment, setModifyUserComment] = useState({
-    content: ''
+    content: '',
   });
 
   const dispatch = useDispatch();
@@ -148,7 +149,7 @@ function PostComment() {
     const data = {
       id: id,
       accessToken: accessToken,
-      modify:modifyUserComment
+      modify: modifyUserComment,
     };
     dispatch(modifyComment(data));
     setModifyCommetButton(0);
@@ -255,7 +256,12 @@ function PostComment() {
                           defaultValue={item.content}
                           onChange={handleInputValueModify('content')}
                         ></textarea>
-                        <button className='postcomment-input-button'onClick={()=>handleButtonModifyComment(item.id)}>수정</button>
+                        <button
+                          className='postcomment-input-button'
+                          onClick={() => handleButtonModifyComment(item.id)}
+                        >
+                          수정
+                        </button>
                       </div>
                     ) : (
                       <div className='postcomment-message'>{item.content}</div>

@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
+
 import Tag from '../basic/tag/Tag';
+
 import tagNameData from './TagNameData';
 
 function CodeInputTagBox({ codeInputInfo, setCodeInputInfo }) {
