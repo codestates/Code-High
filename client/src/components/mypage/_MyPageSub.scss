@@ -1,0 +1,249 @@
+.mypage{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+.mypage-container{
+    width: 1200px;
+    height: 750px;
+    display: flex;
+    padding-top: 10px;
+}
+
+.mypage-left-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+    height: 695px;
+    border: $gray solid 1px;
+    border-radius: 25px;
+    padding-top: 50px;
+    margin-left: 10px;
+    div{
+        font-size: 1.5rem;
+        font-family: 'NanumGothic';
+        img{
+            width: 150px;
+        }
+    }
+}
+
+.mypage-right-container{
+    height: auto;
+    flex-wrap: wrap;
+}
+
+.remaincodenotice{
+    background-color: #{$darkgreen};
+    flex-grow: 1;
+    border-radius: 25px;
+    padding-bottom: 0px;
+    line-height: 70px;
+    font-family: 'NanumGothic';
+    font-size : 1.5rem;
+    color: #{$white};
+    padding-left : 20px;
+    margin-left: 10px;
+    margin-right: 10px;
+    border-radius: 10px;
+}
+
+.mypage-right-midlle-container{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+    height: 300px;
+
+    // div{
+    //     flex: 1;
+    //     margin: 10px;
+    //     height: 300px;
+    //     border-radius: 40px;
+    // }
+}
+
+.mypage-right-middle-box-1{
+    display: flex;
+    flex-grow: 1;
+    margin-left: 10px;
+    margin-right: 5px;
+    margin-bottom: 10px;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border: $gray solid 1px;
+    height: 298px;
+    border-radius: 40px;
+    div{
+        display: flex;
+        width: 100%;
+        height: 50px;
+        justify-content: center;
+        align-items: center;
+        span{
+            width: 100%;
+            text-align: center;
+            font-size: 2rem;
+            font-family: 'NanumGothic';
+        }
+    }
+    
+}
+
+.mypage-number{
+    color: #{$darkgreen};
+}
+
+.mypage-right-middle-box-2{
+    align-items: center;
+    border-radius: 40px;
+    background-color: #{$gray};
+    display: flex;
+    justify-content: center;
+    height: 300px;
+    flex-grow: 1;
+    margin-left: 5px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    img{
+        width: 180px;
+    }
+    div{
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 2.3rem;
+        color: white;
+        font-weight: 1500;
+        font-family: 'NanumGothic';
+        margin-left: 40px;
+    }
+}
+
+.modify-userinfo{
+    margin-top: 15px;
+    font-weight: 1000;
+    text-decoration: underline;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.modify-userinfo-img{
+    width: auto;
+    height: auto;
+    max-width: 25px;
+    max-height: 25px;
+}
+.userinfo-name{
+    margin-top: 5px;    
+    font-weight: 700;
+    margin-bottom: 2px;
+}
+.userinfo-email{
+  margin-top: 5px;
+}
+.mypage-right-bottom-container{
+    margin: 10px;
+    flex-grow: 1;
+    height: 355px;
+    border: $gray solid 1px;
+    border-radius: 25px;
+}
+@include desktop{
+    .mypage-left-container{
+        width: 250px;
+    }
+    .mypage-right-container{
+        width: 80%;
+    }
+}
+
+
+@include tablet {
+    .mypage-container{
+        width: 100%;
+        height: 750px;
+        display: flex;
+        padding-top: 10px;
+    }
+    .mypage-left-container{
+        width: 250px;
+    }
+    .mypage-right-container{
+        width: 80%;
+    }
+    .mypage-right-middle-box-1{
+        div{
+            span{
+                font-size: 2rem;
+                font-family: 'NanumGothic';
+                font-weight: 1500;
+            }
+        }
+        
+    }
+    .mypage-right-middle-box-2{
+        flex-direction: column;
+        img{
+            width: 150px;
+        }
+        div{
+            font-size: 2.0rem;
+            margin-top: 10px;
+        }
+    }
+}
+
+
+@include mobile {
+    
+    .mypage-container{
+        display: flex;
+        height: 100%;
+        width: 100%;
+        flex-direction: column;
+    }
+    .mypage-left-container{
+        justify-content: center;
+        align-items: center;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        display: flex;
+        div{
+            display: flex;
+        }
+        div:nth-child(1){
+            flex-direction: column;
+        }
+    }
+
+    .mypage-left-container{
+        flex: 1;
+        margin: 10px;
+    }
+
+    .mypage-right-middle-box-1{
+        div{
+            span{
+                font-size: 1.7rem;
+                font-family: 'NanumGothic';
+                font-weight: 1500;
+            }
+        }
+        
+    }
+    .mypage-right-middle-box-2{
+        flex-direction: column;
+        img{
+            width: 150px;
+        }
+        div{
+            font-size: 1.7rem;
+        }
+    }
+}

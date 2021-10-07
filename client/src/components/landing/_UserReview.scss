@@ -1,0 +1,160 @@
+.userreview {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #{$gray};
+  padding: 70px 0;
+  -ms-user-select:none;
+  -moz-user-select:-moz-none;
+  -khtml-user-select:none;
+  -webkit-user-select:none;
+  user-select:none;
+}
+
+.userreview-container {
+  width: 1200px;
+  display: flex;
+  flex-direction: column;
+}
+
+.userreview-subject {
+  h1 {
+    font-size: 3.5rem;
+    color: #{$green};
+    margin-bottom: 30px;
+    font-family: 'NanumGothic';
+  }
+}
+
+.userreview-reverse{
+  background-color: #{$gray};
+}
+
+.userreview-box-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  background-color: #{$gray};
+  span {
+    background-color: white;
+    border-radius: 10px;
+    margin: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    height: 500px;
+  }
+  img {
+    width: 100px;
+    margin: 30px 0;
+  }
+  h5 {
+    font-size: 1.5rem;
+    margin-bottom: 5px;
+    font-family: 'NanumGothic';
+  }
+  div {
+    margin-bottom: 30px;
+    img{
+      width: 20px;
+      margin: 0;
+    }
+  }
+  p {
+    font-size: 1.4rem;
+    width: 80%;
+    font-family: 'NanumGothic';
+    line-height: 2.1rem;
+  }
+}
+.userreview-howmany-container {
+  display: flex;
+  justify-content: center;
+}
+.userreview-howmany {
+  margin-top: 50px;
+  border-bottom: solid 2px #{$green};
+  width: 660px;
+  h1{
+    font-size: 3.5rem;
+    font-family: 'NanumGothic';
+  }
+}
+
+@include desktop {
+  .userreview-subject {
+    h1 {
+      font-size: 3.5rem;
+      color: #{$green};
+      margin-bottom: 30px;
+      font-family: 'NanumGothic';
+    }
+  }
+  .userreview-box-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+  .userreview-howmany {
+    margin-top: 50px;
+    border-bottom: solid 2px #{$green};
+    width: 475px;
+    h1{
+      font-size: 2.5rem;
+      font-family: 'NanumGothic';
+    }
+  }
+}
+
+@include tablet {
+  .userreview-subject {
+    h1 {
+      font-size: 2.5rem;
+      color: #{$green};
+      margin-bottom: 0;
+      padding: 0 75px;
+      font-family: 'NanumGothic';
+    }
+  }
+  .userreview-box-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 0 70px;
+  }
+  .userreview-howmany {
+    margin-bottom: 50px;
+    border-bottom: solid 2px #{$green};
+    width: 480px;
+    h1{
+      font-size: 2.5rem;
+      font-family: 'NanumGothic';
+    }
+  }
+  .userreview-reverse {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+}
+
+@include mobile {
+  .userreview-subject {
+    h1 {
+      font-size: 2.0rem;
+      color: #{$green};
+      margin-bottom: 30px;
+      padding: 0 55px;
+      font-family: 'NanumGothic';
+    }
+  }
+  .userreview-box-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    padding: 0 50px;
+  }
+  .userreview-reverse {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+  .userreview-howmany-container {
+    display: none;
+  }
+}

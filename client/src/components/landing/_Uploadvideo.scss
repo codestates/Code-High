@@ -1,0 +1,47 @@
+.uploadvideo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  -ms-user-select:none;
+  -moz-user-select:-moz-none;
+  -khtml-user-select:none;
+  -webkit-user-select:none;
+  user-select:none;
+}
+
+.uploadvideo-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+   img {
+     margin: 70px 0;
+    //  border-radius: 10px;
+    //  border: solid 1px #{$gray}
+   }
+}
+@include desktop {
+  .uploadvideo-container {
+    width: 1200px;
+    img {
+      width: 900px;
+    }
+  }
+}
+
+@include tablet {
+  .uploadvideo-container {
+    width: 800px;
+    img {
+      width: 700px;
+    }
+  }
+}
+
+@include mobile {
+  .uploadvideo-container {
+    width: 375px;
+    img {
+      width: 400px;
+    }
+  }
+}

@@ -1,0 +1,152 @@
+.codereview {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  -ms-user-select:none;
+  -moz-user-select:-moz-none;
+  -khtml-user-select:none;
+  -webkit-user-select:none;
+  user-select:none;
+}
+
+.codereview-container {
+  margin: 100px 0;
+  display: grid;
+}
+
+.codereview-left {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  img{
+    width: 350px;
+    position: relative;
+  }
+}
+.codereview-img-box{
+  display: flex;
+}
+.codereview-left-rectangle {
+  background-color: #{$green};
+  width: 40px;
+  height: 200px;
+}
+
+.codereview-right-rectangle {
+  background-color: #{$green};
+  width: 40px;
+  height: 200px;
+}
+
+.codereview-right{
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 50px;
+   h1{
+     font-size: 3.5rem;
+     color: #{$green};
+     margin-bottom: 40px;
+     font-family: 'NanumGothic';
+   }
+   p {
+     font-size: 1.6rem;
+     line-height: 2.3rem;
+     margin-bottom: 40px;
+     font-family: 'NanumGothic';
+   }
+   a{
+    span {
+      margin: 0;
+      font-family: 'NanumGothic';
+      padding: 15px 20px;
+    }
+  }
+}
+
+@include desktop {
+  .codereview-container {
+    margin: 100px 0;
+    display: grid;
+  }
+  .codereview-container {
+    margin: 100px 0;
+    width: 1200px;
+    display: grid;
+    grid-template-columns: 700px 500px;
+  }
+}
+
+@include tablet {
+  .codereview-container {
+    margin: 0;
+    margin-bottom: 50px;
+  }
+  .codereview-container {
+    grid-template-rows: 500px 200px;
+  }
+  .codereview-left {
+    margin: 0;
+    img{
+      width: 500px;
+    }
+  }
+  .codereview-left-rectangle {
+    width: 40px;
+    height: 150px;
+  }
+  
+  .codereview-right-rectangle {
+    width: 40px;
+    height: 150px;
+  }
+  .codereview-right{
+    margin-left: 0;
+    padding-bottom: 100px;
+  }
+}
+
+@include mobile {
+  .codereview-container {
+    margin: 0;
+    margin-bottom: 80px;
+  }
+  .codereview-container {
+    grid-template-rows: 300px 200px;
+  }
+  .codereview-left {
+    margin: 0;
+    img{
+      width: 300px;
+    }
+  }
+  .codereview-left-rectangle {
+    width: 30px;
+    height: 150px;
+  }
+  
+  .codereview-right-rectangle {
+    width: 30px;
+    height: 150px;
+  }
+  .codereview-right{
+    margin-left: 0;
+    h1{
+      font-size: 2.5rem;
+      color: #{$green};
+      margin-bottom: 40px;
+      font-family: 'NanumGothic';
+    }
+    p {
+      font-size: 1.5rem;
+      line-height: 2.1rem;
+      margin-bottom: 40px;
+      font-family: 'NanumGothic';
+    }
+    span {
+      padding: 0 30px;
+      font-family: 'NanumGothic';
+    }
+  }
+}

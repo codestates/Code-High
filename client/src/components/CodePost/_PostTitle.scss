@@ -1,0 +1,28 @@
+.posttitle{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.posttitle-container{
+  width: 1200px;
+  align-items: center;
+  justify-content: flex-start;
+  display: flex;
+  margin-left: 20px;
+  span{
+    font-size: 1.3rem;
+    width: 35px;
+    min-width: 35px;
+    font-family: 'NanumGothic';
+    font-weight: 600;
+  }   
+  div {
+    padding: 0 5px;
+    font-size: 1.3rem;
+    font-family: 'NanumGothic';
+    align-items: center;
+    text-align: left;
+    display: flex;
+  }
+}

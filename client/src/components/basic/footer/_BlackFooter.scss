@@ -1,0 +1,55 @@
+*{
+    margin:0;
+    padding: 0;
+}
+
+.wiki{
+    padding-bottom : 30px;
+}
+
+.black-footer-container{
+    width: 100%;
+    height: 100%;
+    color: #263238;
+    background-color: #263238;
+    text-align: center;
+    text-decoration: none;
+    line-height: 150%;
+    padding: 35px 0;
+    margin: 0px;
+    div{
+        background-color: #263238;
+        color: white;
+        font-size: 13px;
+        height:20px;
+        margin-bottom: 5px;
+        font-family: 'NanumGothic';
+    }
+    h1{
+        background-color: #263238;
+        font-size: 20px;
+        font-weight: 800;
+        color: white;
+        line-height: 150%;
+        margin-bottom: 3px;
+        font-family: 'NanumGothic';
+    }
+    h2{
+        background-color: #263238;
+        font-size: 15px;
+        color: white;
+        line-height: 100%;
+        font-weight: 300;
+        margin-bottom: 3px;
+        font-family: 'NanumGothic';
+    }
+    a {
+        text-decoration: none;
+        color: white;
+        cursor: pointer;
+        background-color: #263238;
+        font-size: 13px;
+        font-family: 'NanumGothic';
+    }
+    
+}

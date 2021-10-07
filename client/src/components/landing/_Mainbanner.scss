@@ -1,0 +1,197 @@
+*{
+  font-size:10px;
+}
+
+.mainbanner {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  //드래그 금지
+  -ms-user-select:none;
+  -moz-user-select:-moz-none;
+  -khtml-user-select:none;
+  -webkit-user-select:none;
+  user-select:none;
+}
+
+.mainbanner-container {
+  padding: 10px 30px;
+  width: auto;
+  height: auto;
+  display: grid;
+}
+
+.mainbanner-left {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  width: 600px;
+  h1 {
+     color: #2F8C4C;
+     font-family: 'NanumGothic';
+   }
+   p {
+     font-family: 'NanumGothic';
+   }
+}
+
+.mainbanner-right {
+  width: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+   img {
+     width: 650px;
+   }
+}
+
+.up-on-scroll{
+  transition: transform 0.7s, opacity 1s;
+}
+
+@include desktop {
+  .mainbanner-container {
+    grid-template-columns: 1fr 1fr;
+  }
+  .mainbanner-right {
+     img {
+       width: 650px;
+     }
+  }
+  .mainbanner-left {
+    h1 {
+       font-size: 4.0rem;
+       line-height: 50px;
+       margin-bottom: 30px;
+     }
+     p {
+       font-size: 1.7rem;
+       font-family: 'NanumGothic';
+  
+       line-height: 30px;
+       margin-bottom: 50px;
+     }
+  }
+  .mainbanner-button-container-mobile{
+    display: none;
+  }
+  .mainbanner-button-container {
+    a{
+      text-decoration: none;
+      font-family: 'NanumGothic';
+      span {
+      margin-right: 50px;
+      margin-left: 0;
+      padding: 20px 50px;
+      width: 100px;
+      font-family: 'NanumGothic';
+      }
+    }
+  }
+}
+
+@include tablet {
+  .mainbanner-container {
+    padding: 10px 30px;
+    grid-template-columns: 400px 400px;
+  }
+  .mainbanner-right {
+    width: 400px;
+    img {
+      width: 400px;
+    }
+  }
+  .mainbanner-left {
+    width: 400px;
+    h1 {
+       font-size: 3.0rem;
+       line-height: 40px;
+       margin-bottom: 40px;
+       font-family: 'NanumGothic';
+     }
+     p {
+       font-size: 1.5rem;
+       font-family: 'NanumGothic';
+       font-weight: 500;
+       line-height: 23px;
+       margin-bottom: 60px;
+     }
+  }
+  .mainbanner-button-container {
+    display: flex;
+    flex-direction: column;
+  }
+  .mainbanner-button-container-mobile{
+    display: none;
+  }
+  .mainbanner-button-container {
+    a{
+      text-decoration: none;
+      margin-bottom: 20px;
+      font-family: 'NanumGothic';
+      span {
+        font-size: 1.3rem;
+        margin-right: 50px;
+        padding: 15px 30px;
+        width: 100px;
+        font-family: 'NanumGothic';
+      }
+    }
+  }
+}
+
+@include mobile {
+  .mainbanner-container {
+    display: flex;
+    flex-direction: column;
+  }
+  .mainbanner-left {
+    justify-content: center;
+    align-items: center;
+    h1 {
+       font-size: 2.5rem;
+       line-height: 35px;
+       margin-bottom: 50px;
+       text-align: center;
+     }
+     p {
+       font-size: 1.5rem;
+       font-family: 'NanumGothic';
+       font-weight: 400;
+       line-height: 23px;
+       margin-bottom: 10px;
+       text-align: center;
+     }
+  }
+  .mainbanner-right {
+    flex-direction: column;
+    img {
+      width: 375px;
+      margin-bottom: 20px;
+    }
+  }
+  .mainbanner-button-container {
+    display: none;
+  }
+
+  .mainbanner-button-container-mobile{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    a{
+      text-decoration: none;
+      margin-bottom: 20px;
+      font-family: 'NanumGothic';
+      span {
+        font-size: 1.3rem;
+        padding: 15px 30px;
+        width: 100px;
+        font-family: 'NanumGothic';
+      }
+    }
+  }
+}

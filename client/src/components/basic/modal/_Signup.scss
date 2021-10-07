@@ -1,0 +1,161 @@
+.signup-modal {
+  position:fixed;
+  top:0;
+  left:0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #{$gray};
+  flex-direction: column;
+}
+
+.signup-container {
+  position: relative;
+  top: 0;
+  display: grid;
+}
+
+.signup-right{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.signup-left {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  h1{
+    font-size: 17px;
+    font-family: 'NanumGothic';
+    font-weight: 800;
+    margin-bottom: 20px;
+  }
+  article {
+    align-items: flex-start;
+    div {
+      font-family: 'NanumGothic';
+      font-size: 14px;
+      font-weight: 600;
+      margin-top: 5px;
+      margin-bottom: 5px;
+      padding: 5px 0;
+    }
+    input {
+      border: solid 1px #{$gray};
+      border-radius: 5px;
+      height: 35px;
+      padding: 0 10px;
+      &:focus {
+        outline: none;
+      }
+    }
+  }
+}
+
+.signup-notice{
+  align-items: flex-start;
+  margin-top: 10px;
+  font-size: 1.3rem;
+  color: rgb(254, 69, 69);
+}
+
+.signup-button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  button {
+  background-color: #{$green};
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  margin-top: 20px;
+  margin-bottom: 30px;
+  font-family: 'NanumGothic';
+  cursor: pointer;
+  }
+}
+
+@include desktop {
+  .signup-container{
+    grid-template-columns: 1fr 1fr;
+    width: 1000px;
+  }
+  .signup-right{
+    width: 600px;
+    img {
+      width: 400px;
+      padding: 70px;
+    }
+  }
+  .signup-left {
+    width: 400px;
+    input {
+      width: 280px;
+    }
+    article {
+      width: 300px;
+    }
+  }
+  .signup-button-container {
+    button {
+      width: 300px;
+    }
+  }
+}
+
+@include tablet {
+  .signup-container{
+    width: 400px;
+  }
+  .signup-right{
+    display: none;
+  }
+  .signup-left {
+    width: 400px;
+    .signup-close {
+      margin-top: 5px;
+    }
+    input {
+      width: 280px;
+    }
+    article {
+      width: 300px;
+    }
+  }
+  .signup-button-container {
+    button {
+      width: 300px;
+    }
+  }
+}
+
+@include mobile {
+  .signup-container{
+    width: 300px;
+  }
+  .signup-right{
+    display: none;
+  }
+  .signup-left {
+    width: 300px;
+    .signup-close {
+      margin-top: 5px;
+    }
+    input {
+      width: 200px;
+    }
+    article {
+      width: 220px;
+    }
+  }
+  .signup-button-container {
+    button {
+      width: 225px;
+    }
+  }
+}
