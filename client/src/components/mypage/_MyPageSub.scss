@@ -117,10 +117,11 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        font-size: 2.5rem;
+        font-size: 2.3rem;
         color: white;
         font-weight: 1500;
-        font-family: 'NanumGothic'
+        font-family: 'NanumGothic';
+        margin-left: 40px;
     }
 }
 
@@ -128,6 +129,9 @@
     margin-top: 15px;
     font-weight: 1000;
     text-decoration: underline;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .modify-userinfo-img{
     width: auto;
@@ -189,7 +193,8 @@
             width: 150px;
         }
         div{
-            font-size: 2.5rem;
+            font-size: 2.0rem;
+            margin-top: 10px;
         }
     }
 }
@@ -225,7 +230,7 @@
     .mypage-right-middle-box-1{
         div{
             span{
-                font-size: 2rem;
+                font-size: 1.7rem;
                 font-family: 'NanumGothic';
                 font-weight: 1500;
             }
@@ -238,7 +243,7 @@
             width: 150px;
         }
         div{
-            font-size: 2rem;
+            font-size: 1.7rem;
         }
     }
 }

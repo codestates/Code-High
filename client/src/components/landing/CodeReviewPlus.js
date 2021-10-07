@@ -28,7 +28,7 @@ function CodeReviewPlus() {
                 <br />
                 피드백을 주고 받을 수 있습니다.
               </p>
-              <Link to='/codestorage'>
+              <Link to='/codereview'>
                 <Button
                   content='바로가기'
                   backgroundColor='#2F8C4C'

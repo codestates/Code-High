@@ -27,7 +27,7 @@ function Uploadvideo() {
               <br />
               코드리뷰 공개를 설정할 수 있습니다.
             </p>
-            <Link to='/codestorage'>
+            <Link to='/codeinput'>
               <Button
                 content='바로가기'
                 backgroundColor='#2F8C4C'
