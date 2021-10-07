@@ -1116,7 +1116,7 @@
   display: flex; }
   .codeinputmain-container textarea:nth-child(2) {
     width: 30%;
-    height: 55vh;
+    height: 50vh;
     background-color: #E1E1E1;
     margin: 5px;
     overflow-y: auto;
@@ -1130,7 +1130,7 @@
 
 .codeinputmain-code {
   width: 70%;
-  height: 55vh;
+  height: 50vh;
   margin: 5px;
   overflow-y: auto;
   padding: 10px;
@@ -1195,7 +1195,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 10px; }
+  margin-bottom: 5px; }
 
 .codeinputtagbox-container {
   width: 1200px;
@@ -1243,7 +1243,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 10px 0; }
+  margin: 5px 0; }
 
 .codeinputtitle-container {
   width: 1200px;
@@ -1259,7 +1259,7 @@
     font-weight: 600; }
   .codeinputtitle-container input {
     width: 90vw;
-    height: 2vh;
+    height: 2.5vh;
     padding: 0 5px;
     font-size: 1.3rem;
     border-radius: 3px;
@@ -1294,7 +1294,7 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(3, 1fr);
-  height: 80vh;
+  height: 78vh;
   overflow-y: scroll; }
 
 .codereviewboard-card {
@@ -1364,7 +1364,7 @@
 
 .kanban-list {
   background-color: #E1E1E1;
-  height: 70vh;
+  height: 65vh;
   padding: 10px;
   margin: 10px;
   overflow-y: scroll; }
@@ -1415,12 +1415,14 @@
   padding: 50px 0; }
   .buttoncontainer-container div span {
     padding: 15px 50px;
-    font-size: 2.0rem;
+    font-size: 1.5rem;
+    font-weight: 700;
     font-family: 'NanumGothic'; }
 
 @media (min-width: 335px) and (max-width: 768px) {
   .buttoncontainer-container div span {
-    font-size: 1.6rem; } }
+    font-size: 1.3rem;
+    font-weight: 700; } }
 
 .codereview {
   display: flex;
@@ -1976,9 +1978,9 @@ a {
   .userreview-howmany {
     margin-top: 50px;
     border-bottom: solid 2px #2F8C4C;
-    width: 660px; }
+    width: 475px; }
     .userreview-howmany h1 {
-      font-size: 3.5rem;
+      font-size: 2.5rem;
       font-family: 'NanumGothic'; } }
 
 @media (min-width: 769px) and (max-width: 1199px) {
@@ -2290,15 +2292,19 @@ a {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 2.5rem;
+    font-size: 2.3rem;
     color: white;
     font-weight: 1500;
-    font-family: 'NanumGothic'; }
+    font-family: 'NanumGothic';
+    margin-left: 40px; }
 
 .modify-userinfo {
   margin-top: 15px;
   font-weight: 1000;
-  text-decoration: underline; }
+  text-decoration: underline;
+  display: flex;
+  justify-content: center;
+  align-items: center; }
 
 .modify-userinfo-img {
   width: auto;
@@ -2346,7 +2352,8 @@ a {
     .mypage-right-middle-box-2 img {
       width: 150px; }
     .mypage-right-middle-box-2 div {
-      font-size: 2.5rem; } }
+      font-size: 2.0rem;
+      margin-top: 10px; } }
 
 @media (min-width: 335px) and (max-width: 768px) {
   .mypage-container {
@@ -2368,7 +2375,7 @@ a {
     flex: 1;
     margin: 10px; }
   .mypage-right-middle-box-1 div span {
-    font-size: 2rem;
+    font-size: 1.7rem;
     font-family: 'NanumGothic';
     font-weight: 1500; }
   .mypage-right-middle-box-2 {
@@ -2376,7 +2383,7 @@ a {
     .mypage-right-middle-box-2 img {
       width: 150px; }
     .mypage-right-middle-box-2 div {
-      font-size: 2rem; } }
+      font-size: 1.7rem; } }
 
 .admin-graph-main {
   display: flex;
@@ -2701,15 +2708,19 @@ a {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 2.5rem;
+    font-size: 2.3rem;
     color: white;
     font-weight: 1500;
-    font-family: 'NanumGothic'; }
+    font-family: 'NanumGothic';
+    margin-left: 40px; }
 
 .modify-userinfo {
   margin-top: 15px;
   font-weight: 1000;
-  text-decoration: underline; }
+  text-decoration: underline;
+  display: flex;
+  justify-content: center;
+  align-items: center; }
 
 .modify-userinfo-img {
   width: auto;
@@ -2757,7 +2768,8 @@ a {
     .mypage-right-middle-box-2 img {
       width: 150px; }
     .mypage-right-middle-box-2 div {
-      font-size: 2.5rem; } }
+      font-size: 2.0rem;
+      margin-top: 10px; } }
 
 @media (min-width: 335px) and (max-width: 768px) {
   .mypage-container {
@@ -2779,7 +2791,7 @@ a {
     flex: 1;
     margin: 10px; }
   .mypage-right-middle-box-1 div span {
-    font-size: 2rem;
+    font-size: 1.7rem;
     font-family: 'NanumGothic';
     font-weight: 1500; }
   .mypage-right-middle-box-2 {
@@ -2787,4 +2799,4 @@ a {
     .mypage-right-middle-box-2 img {
       width: 150px; }
     .mypage-right-middle-box-2 div {
-      font-size: 2rem; } }
+      font-size: 1.7rem; } }

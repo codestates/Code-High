@@ -29,7 +29,7 @@ const MyPageSub = (props) => {
   return (
     <div className='mypage'>
       {mypageInfo === undefined ?(
-        <h1>오류야</h1>
+        <h1>로딩 중</h1>
       ):(
       <div className='mypage-container'>
         <div className='mypage-left-container'>
