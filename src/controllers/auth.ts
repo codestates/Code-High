@@ -245,11 +245,12 @@ const githubLogin = async (req: Request, res: Response) => {
 }
 
 const logout = async (req: Request, res: Response) => {
-  // if (req.body.userRole === 5 ) {
-  //   return res.status(403).send({ message: 'not login yet'});
-  // }
-
   res.clearCookie('refreshToken');
+  
+  if (req.body.userRole === 5 ) {
+    return res.status(403).send({ message: 'not login yet'});
+  }
+
   await User.update(req.body.authUserId, { refreshToken: '' });
 
   res.send({ message: 'logout success'});
