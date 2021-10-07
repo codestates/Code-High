@@ -164,7 +164,7 @@ export async function signoutUser(data) {
 }
 
 //!6.회원탈퇴
-export async function deleteUserInfo(data) {
+export async function deleteUser(data) {
   const response = axios
     .delete(`${serverUrl}/user`, {
       headers: {
@@ -178,11 +178,11 @@ export async function deleteUserInfo(data) {
 
   return {
     type: DELETE_USER_INFO,
-    payload: response,
+    payload: {},
   };
 }
 
-//!7.유저 정보 수정하기
+//7.유저 정보 수정하기
 export function modifyUserInfo(data) {
   const response = axios
     .patch(

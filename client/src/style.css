@@ -529,9 +529,13 @@
   align-items: center; }
   .modifyuser-left .modifyuser-close {
     width: 90%;
-    text-align: end;
-    font-size: 30px;
-    margin-bottom: 50px; }
+    display: flex;
+    justify-content: end;
+    align-items: flex-end; }
+    .modifyuser-left .modifyuser-close span {
+      font-size: 30px;
+      margin-bottom: 10px;
+      margin-top: 10px; }
   .modifyuser-left img {
     width: 250px;
     padding: 0px 20px;
@@ -576,9 +580,13 @@
     border: none;
     border-radius: 5px;
     margin-top: 20px;
-    margin-bottom: 50px;
     font-family: 'NanumGothic';
     cursor: pointer; }
+  .modifyuser-button-container button:nth-child(2) {
+    margin-bottom: 20px;
+    margin-top: 10px;
+    background-color: #E1E1E1;
+    color: black; }
 
 @media (min-width: 1200px) {
   .modifyuser-container {
@@ -595,8 +603,11 @@
       width: 280px; }
     .modifyuser-left article {
       width: 300px; }
-  .modifyuser-button-container button {
-    width: 300px; } }
+  .modifyuser-button-container {
+    display: flex;
+    flex-direction: column; }
+    .modifyuser-button-container button {
+      width: 300px; } }
 
 @media (min-width: 769px) and (max-width: 1199px) {
   .modifyuser-container {
@@ -611,8 +622,11 @@
       width: 280px; }
     .modifyuser-left article {
       width: 300px; }
-  .modifyuser-button-container button {
-    width: 300px; } }
+  .modifyuser-button-container {
+    display: flex;
+    flex-direction: column; }
+    .modifyuser-button-container button {
+      width: 300px; } }
 
 @media (min-width: 335px) and (max-width: 768px) {
   .modifyuser-container {
@@ -627,8 +641,11 @@
       width: 200px; }
     .modifyuser-left article {
       width: 220px; }
-  .modifyuser-button-container button {
-    width: 225px; } }
+  .modifyuser-button-container {
+    display: flex;
+    flex-direction: column; }
+    .modifyuser-button-container button {
+      width: 225px; } }
 
 .signin-modal {
   position: fixed;
@@ -839,7 +856,7 @@
 
 .signup-notice {
   align-items: flex-start;
-  margin-top: 20px;
+  margin-top: 10px;
   font-size: 1.3rem;
   color: #fe4545; }
 
