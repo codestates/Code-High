@@ -30,6 +30,7 @@ const emailLogin = async (req: Request, res: Response) => {
         maxAge: 1000 * 60 * 60 * 24 * 14, // 14d
         httpOnly: true,
         secure: true,
+        sameSite: 'none'
     })
 
     delete userInfo.password;
@@ -97,6 +98,7 @@ const kakaoLogin = async (req: Request, res: Response) => {
       maxAge: 1000 * 60 * 60 * 24 * 14, // 14d
       httpOnly: true,
       secure: true,
+      sameSite: 'none'
     },)
 
     delete userInfo.password;
@@ -158,6 +160,7 @@ const googleLogin = async (req: Request, res: Response) => {
       maxAge: 1000 * 60 * 60 * 24 * 14, // 14d
       httpOnly: true,
       secure: true,
+      sameSite: 'none'
     },)
 
     delete userInfo.password;
@@ -223,6 +226,7 @@ const githubLogin = async (req: Request, res: Response) => {
       maxAge: 1000 * 60 * 60 * 24 * 14, // 14d
       httpOnly: true,
       secure: true,
+      sameSite: 'none'
     },)
 
     delete userInfo.password;
