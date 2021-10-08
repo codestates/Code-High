@@ -16,12 +16,6 @@ Code High는 **알고리즘 학습을 돕고 더 나은 코드를 작성할 수 
 <br/>
 <br/>
 
-## 사용 스택
-- Front-end : HTML React.js Webpack Redux SCSS Axios
-- Back-end : Express TypeScript MySQL TypeORM
-- Deploy : AWS CodeDeploy CodePipeline Route53 ELB CloudFront
-<br/>
-
 ## 서비스 기능
 
 1. 알고리즘 문제 풀이 코드를 업로드할 수 있습니다.
@@ -29,3 +23,12 @@ Code High는 **알고리즘 학습을 돕고 더 나은 코드를 작성할 수 
 3. 공개/ 비공개 설정으로 코드에 대한 의견을 주고 받을 수도 있고, 개인적으로 보관이 가능합니다.
 4. 검색 기능을 통해 작성한 코드를 찾을 수 있습니다.
 5. 스스로 공부한 코드, 코드 리뷰 댓글 등을 확인하며, 관리할 수 있습니다.
+<br/>
+
+## 사용 스택
+- Front-end : HTML React.js Webpack Redux SCSS Axios
+- Back-end : Express TypeScript MySQL TypeORM
+- Deploy : AWS CodeDeploy CodePipeline Route53 ELB CloudFront
+<br/>
+
+
