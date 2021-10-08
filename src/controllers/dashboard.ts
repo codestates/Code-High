@@ -16,7 +16,8 @@ const userTotalStat = async (req: Request, res: Response) => {
   const commentCnt = await Comment.count({ userId: req.body.authUserId });
   const highCompCnt = await Post.createQueryBuilder('post')
   .leftJoin('post.postTags', 'postTag')
-  .where('postTag.tagId = :id', { id: HIGH_UNDERSTANDING })
+  .where('post.userId = :userId', { userId: req.body.authUserId })
+  .andWhere('postTag.tagId = :id', { id: HIGH_UNDERSTANDING })
   .getCount();
 
   res.status(200).send({ postCnt, commentCnt, highCompCnt })
