@@ -655,7 +655,8 @@
   height: 100%;
   display: flex;
   justify-content: center;
-  align-items: center; }
+  align-items: center;
+  z-index: 100; }
 
 .signin-modal-overlay {
   background-color: rgba(0, 0, 0, 0.379);
@@ -1033,7 +1034,8 @@
   -moz-user-select: -moz-none;
   -khtml-user-select: none;
   -webkit-user-select: none;
-  user-select: none; }
+  user-select: none;
+  z-index: 100; }
 
 .sidebar-container {
   width: 1200px;

@@ -131,6 +131,7 @@ function CodeReviewBoard() {
                       }
                       id={item.id}
                       style={{
+                        zIndex:'0',
                         margin: '3px',
                         fontSize: 15,
                         backgroundColor: '#f5f5f5',
