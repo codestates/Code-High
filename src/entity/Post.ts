@@ -36,7 +36,7 @@ export class Post extends BaseEntity {
 
     // foreign key
     // post <-> user n:1
-    @ManyToOne((type) => User, (user) => user.posts)
+    @ManyToOne((type) => User, (user) => user.posts, { onDelete: 'CASCADE' })
     user: User;
 
     // post <-> postTag 1:n
