@@ -22,7 +22,7 @@
     padding-top: 50px;
     margin-left: 10px;
     div{
-        font-size: 1.5rem;
+        font-size: 1.0rem;
         font-family: 'NanumGothic';
         img{
             width: 150px;
@@ -42,7 +42,7 @@
     padding-bottom: 0px;
     line-height: 70px;
     font-family: 'NanumGothic';
-    font-size : 1.5rem;
+    font-size : 1.0rem;
     color: #{$white};
     padding-left : 20px;
     margin-left: 10px;
@@ -87,7 +87,7 @@
         span{
             width: 100%;
             text-align: center;
-            font-size: 2rem;
+            font-size: 1.3rem;
             font-family: 'NanumGothic';
         }
     }
@@ -117,7 +117,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        font-size: 2.3rem;
+        font-size: 1.5rem;
         color: white;
         font-weight: 1500;
         font-family: 'NanumGothic';
@@ -180,7 +180,7 @@
     .mypage-right-middle-box-1{
         div{
             span{
-                font-size: 2rem;
+                font-size: 1.2rem;
                 font-family: 'NanumGothic';
                 font-weight: 1500;
             }
@@ -193,7 +193,7 @@
             width: 150px;
         }
         div{
-            font-size: 2.0rem;
+            font-size: 1.3rem;
             margin-top: 10px;
         }
     }
@@ -230,7 +230,7 @@
     .mypage-right-middle-box-1{
         div{
             span{
-                font-size: 1.7rem;
+                font-size: 1.2rem;
                 font-family: 'NanumGothic';
                 font-weight: 1500;
             }
@@ -243,7 +243,7 @@
             width: 150px;
         }
         div{
-            font-size: 1.7rem;
+            font-size: 1.2rem;
         }
     }
 }

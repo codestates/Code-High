@@ -133,7 +133,7 @@ function CodeReviewBoard() {
                       style={{
                         zIndex:'0',
                         margin: '3px',
-                        fontSize: 15,
+                        fontSize: 12,
                         backgroundColor: '#f5f5f5',
                         fontWeight: 500,
                         fontFamily:
