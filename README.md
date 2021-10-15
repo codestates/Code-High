@@ -27,7 +27,7 @@ Code High는 **알고리즘 학습을 돕고 더 나은 코드를 작성할 수 
 <br/>
 
 ## 사용 스택
-- Front-end : HTML React.js Webpack Redux SCSS Axios
+- Front-end : HTML SCSS React.js Webpack Redux
 - Back-end : Express TypeScript MySQL TypeORM
 - Deploy : AWS CodeDeploy CodePipeline Route53 ELB CloudFront
 <br/>
