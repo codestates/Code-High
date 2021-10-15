@@ -17,15 +17,6 @@
   flex-direction: column;
 }
 
-.userreview-subject {
-  h1 {
-    font-size: 3.5rem;
-    color: #{$green};
-    margin-bottom: 30px;
-    font-family: 'NanumGothic';
-  }
-}
-
 .userreview-reverse{
   background-color: #{$gray};
 }
@@ -49,7 +40,7 @@
     margin: 30px 0;
   }
   h5 {
-    font-size: 1.5rem;
+    font-size: 1.0rem;
     margin-bottom: 5px;
     font-family: 'NanumGothic';
   }
@@ -61,10 +52,10 @@
     }
   }
   p {
-    font-size: 1.4rem;
+    font-size: 0.9rem;
     width: 80%;
     font-family: 'NanumGothic';
-    line-height: 2.1rem;
+    line-height: 1.4rem;
   }
 }
 .userreview-howmany-container {
@@ -84,7 +75,7 @@
 @include desktop {
   .userreview-subject {
     h1 {
-      font-size: 3.5rem;
+      font-size: 2.0rem;
       color: #{$green};
       margin-bottom: 30px;
       font-family: 'NanumGothic';
@@ -99,7 +90,7 @@
     border-bottom: solid 2px #{$green};
     width: 475px;
     h1{
-      font-size: 2.5rem;
+      font-size: 1.6rem;
       font-family: 'NanumGothic';
     }
   }
@@ -108,7 +99,7 @@
 @include tablet {
   .userreview-subject {
     h1 {
-      font-size: 2.5rem;
+      font-size: 2.0rem;
       color: #{$green};
       margin-bottom: 0;
       padding: 0 75px;
@@ -125,7 +116,7 @@
     border-bottom: solid 2px #{$green};
     width: 480px;
     h1{
-      font-size: 2.5rem;
+      font-size: 1.6rem;
       font-family: 'NanumGothic';
     }
   }
@@ -138,7 +129,7 @@
 @include mobile {
   .userreview-subject {
     h1 {
-      font-size: 2.0rem;
+      font-size: 1.5rem;
       color: #{$green};
       margin-bottom: 30px;
       padding: 0 55px;

@@ -10,12 +10,12 @@
   display: flex;
     textarea:nth-child(2){
       width: 30%;
-      height: 50vh;
+      height: 47.5vh;
       background-color: #{$gray};
       margin: 5px;
       overflow-y: auto;
-      padding: 10px;
-      font-size: 1.5rem;
+      padding: 20px;
+      font-size: 1.0rem;
       resize: none;
       border: none;
       font-family: 'NanumGothic';
@@ -30,7 +30,6 @@
   margin: 5px;
   overflow-y: auto;
   padding: 10px;
-  font-size: auto;
   resize: none;
   border: none;
   font-family: 'NanumGothic';

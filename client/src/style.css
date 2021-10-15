@@ -12,7 +12,7 @@
   height: 100%; }
 
 .admin-graph-subject {
-  font-size: 2rem;
+  font-size: 1.5rem;
   font-weight: 600;
   margin-bottom: 20px;
   display: flex;
@@ -32,7 +32,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 3rem; }
+    font-size: 1.0rem; }
 
 .admin-graph {
   border: solid 1px #E1E1E1;
@@ -45,7 +45,7 @@
   flex-direction: column; }
   .admin-graph-status div {
     height: 60px;
-    font-size: 1.7rem;
+    font-size: 1.3rem;
     flex-direction: column; }
 
 .admin-table {
@@ -58,13 +58,13 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  font-size: 2rem; }
+  font-size: 1.5rem; }
 
 .admin-table-subject {
   margin-top: 20px;
   padding-left: 30px;
   text-align: left;
-  font-size: 2rem;
+  font-size: 1.5rem;
   font-weight: 700; }
 
 .admin-table-sub {
@@ -91,19 +91,19 @@
   overflow-y: auto;
   overflow-x: auto; }
   .admin-table-post-data div {
-    font-size: 1.5rem; }
+    font-size: 1.4rem; }
   .admin-table-post-data tr {
     display: grid;
     grid-template-columns: 0.5fr 0.5fr 1fr 3fr 1fr;
     text-align: center;
     height: 40px; }
     .admin-table-post-data tr td {
-      font-size: 1.5rem;
+      font-size: 1.0rem;
       display: flex;
       justify-content: center;
       align-items: center; }
     .admin-table-post-data tr th {
-      font-size: 1.5rem;
+      font-size: 1.0rem;
       display: flex;
       justify-content: center;
       align-items: center; }
@@ -119,19 +119,19 @@
   overflow-y: auto;
   overflow-x: auto; }
   .admin-table-comment-box div {
-    font-size: 1.5rem; }
+    font-size: 1.0rem; }
   .admin-table-comment-box tr {
     display: grid;
     grid-template-columns: 0.5fr 0.5fr 1fr 5fr;
     text-align: center;
     height: 40px; }
     .admin-table-comment-box tr td {
-      font-size: 1.5rem;
+      font-size: 1.0rem;
       display: flex;
       justify-content: center;
       align-items: center; }
     .admin-table-comment-box tr th {
-      font-size: 1.5rem;
+      font-size: 1.0rem;
       display: flex;
       justify-content: center;
       align-items: center; }
@@ -145,7 +145,7 @@
   justify-content: center;
   align-items: center; }
   .admin-table-button-box div {
-    font-size: 1.7rem;
+    font-size: 1.0rem;
     margin-left: 0;
     font-weight: 700; }
 
@@ -263,7 +263,7 @@
   cursor: pointer;
   line-height: 40px;
   padding: 10px;
-  font-size: 15px;
+  font-size: 1.0rem;
   margin-left: 10px; }
 
 .login-error-container {
@@ -280,7 +280,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 1.5rem;
+    font-size: 1.0rem;
     font-family: 'NanumGothic';
     text-align: center;
     margin-top: 20px; }
@@ -395,6 +395,7 @@
   border-radius: 50%;
   background: #2F8C4C;
   color: #ffffff;
+  font-size: 0.7rem;
   animation: ldio-fjikxf1d8mn 1s linear infinite;
   display: flex;
   justify-content: center;
@@ -857,7 +858,7 @@
 .signup-notice {
   align-items: flex-start;
   margin-top: 10px;
-  font-size: 1.3rem;
+  font-size: 0.8rem;
   color: #fe4545; }
 
 .signup-button-container {
@@ -1015,7 +1016,7 @@
   .navbar-container {
     height: 70px; }
   .navbar-logo-container img {
-    width: 250px;
+    width: 200px;
     padding: 5px 0; }
   .navbar-right li {
     margin-left: 20px; } }
@@ -1033,7 +1034,8 @@
   -moz-user-select: -moz-none;
   -khtml-user-select: none;
   -webkit-user-select: none;
-  user-select: none; }
+  user-select: none;
+  z-index: 100; }
 
 .sidebar-container {
   width: 1200px;
@@ -1056,7 +1058,7 @@
     margin-right: 23px; }
     .sidebar-main li a {
       color: black;
-      font-size: 1.5rem;
+      font-size: 0.9rem;
       margin-top: 10px;
       margin-bottom: 10px;
       font-family: 'NanumGothic';
@@ -1078,11 +1080,11 @@
   display: flex;
   align-items: center; }
   .searchinput-container span {
-    font-size: 2.0rem;
+    font-size: 1.0rem;
     padding: 10px;
     color: #E1E1E1; }
   .searchinput-container input {
-    font-size: 1.7rem;
+    font-size: 1.0rem;
     color: black;
     border: none;
     width: 150px; }
@@ -1133,12 +1135,12 @@
   display: flex; }
   .codeinputmain-container textarea:nth-child(2) {
     width: 30%;
-    height: 50vh;
+    height: 47.5vh;
     background-color: #E1E1E1;
     margin: 5px;
     overflow-y: auto;
-    padding: 10px;
-    font-size: 1.5rem;
+    padding: 20px;
+    font-size: 1.0rem;
     resize: none;
     border: none;
     font-family: 'NanumGothic'; }
@@ -1151,7 +1153,6 @@
   margin: 5px;
   overflow-y: auto;
   padding: 10px;
-  font-size: auto;
   resize: none;
   border: none;
   font-family: 'NanumGothic';
@@ -1172,7 +1173,7 @@
   display: flex;
   align-items: center; }
   .codeinputsecretbutton-checkbox span {
-    font-size: 1.5rem;
+    font-size: 1.0rem;
     margin-left: 5px;
     font-family: 'NanumGothic'; }
   .codeinputsecretbutton-checkbox input[type="checkbox"] {
@@ -1205,7 +1206,7 @@
   margin-left: 10px; }
   .codeinputsecretbutton-button span {
     padding: 10px 30px;
-    font-size: 1.7rem;
+    font-size: 1.0rem;
     font-family: 'NanumGothic'; }
 
 .codeinputtagbox {
@@ -1227,7 +1228,7 @@
   .codeinputtagbox-tagbox span {
     display: flex;
     align-items: center;
-    font-size: 1.3rem;
+    font-size: 0.8rem;
     margin: 7px;
     width: 53px;
     text-align: center;
@@ -1268,7 +1269,7 @@
   justify-content: center;
   display: flex; }
   .codeinputtitle-container span {
-    font-size: 1.3rem;
+    font-size: 1.0rem;
     margin: 0 10px;
     width: 35px;
     min-width: 35px;
@@ -1278,7 +1279,7 @@
     width: 90vw;
     height: 2.5vh;
     padding: 0 5px;
-    font-size: 1.3rem;
+    font-size: 0.9rem;
     border-radius: 3px;
     border: solid 1px #E1E1E1;
     font-family: 'NanumGothic'; }
@@ -1309,7 +1310,7 @@
 
 .codereviewboard-cardbox {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, 390px);
   grid-template-rows: repeat(3, 1fr);
   height: 78vh;
   overflow-y: scroll; }
@@ -1320,11 +1321,13 @@
   margin: 5px;
   border-radius: 5px; }
   .codereviewboard-card h1 {
-    font-size: 1.5rem;
+    font-size: 0.8rem;
+    font-family: 'Nanum Gothic';
     margin-bottom: 5px;
     margin-left: 3px; }
   .codereviewboard-card div:nth-child(2) {
-    font-size: 1.3rem;
+    font-size: 1.0rem;
+    font-family: 'Nanum Gothic';
     background-color: #f5f5f5;
     padding: 5px;
     height: 180px; }
@@ -1370,7 +1373,7 @@
   grid-template-columns: 1fr 1fr 1fr;
   margin-top: 10px; }
   .kanban-subject div {
-    font-size: 1.5rem;
+    font-size: 1.0rem;
     font-weight: 600;
     margin-left: 15px;
     color: #2F8C4C; }
@@ -1398,7 +1401,7 @@
   .kanban-list-item:active {
     cursor: grabbing; }
   .kanban-list-item h1 {
-    font-size: 1.5rem;
+    font-size: 0.9rem;
     margin-bottom: 5px;
     margin-left: 7px; }
   .kanban-list-item div:nth-child(2) {
@@ -1432,14 +1435,12 @@
   padding: 50px 0; }
   .buttoncontainer-container div span {
     padding: 15px 50px;
-    font-size: 1.5rem;
-    font-weight: 700;
+    font-size: 1.0rem;
     font-family: 'NanumGothic'; }
 
 @media (min-width: 335px) and (max-width: 768px) {
   .buttoncontainer-container div span {
-    font-size: 1.3rem;
-    font-weight: 700; } }
+    font-size: 1.0rem; } }
 
 .codereview {
   display: flex;
@@ -1627,9 +1628,6 @@
   .gettingstart {
     display: none; } }
 
-* {
-  font-size: 10px; }
-
 .mainbanner {
   width: 100%;
   height: 100%;
@@ -1677,11 +1675,11 @@
   .mainbanner-right img {
     width: 650px; }
   .mainbanner-left h1 {
-    font-size: 4.0rem;
-    line-height: 50px;
+    font-size: 2.3rem;
+    line-height: 40px;
     margin-bottom: 30px; }
   .mainbanner-left p {
-    font-size: 1.7rem;
+    font-size: 1.2rem;
     font-family: 'NanumGothic';
     line-height: 30px;
     margin-bottom: 50px; }
@@ -1708,12 +1706,12 @@
   .mainbanner-left {
     width: 400px; }
     .mainbanner-left h1 {
-      font-size: 3.0rem;
+      font-size: 2.0rem;
       line-height: 40px;
       margin-bottom: 40px;
       font-family: 'NanumGothic'; }
     .mainbanner-left p {
-      font-size: 1.5rem;
+      font-size: 1.0rem;
       font-family: 'NanumGothic';
       font-weight: 500;
       line-height: 23px;
@@ -1728,8 +1726,8 @@
     margin-bottom: 20px;
     font-family: 'NanumGothic'; }
     .mainbanner-button-container a span {
-      font-size: 1.3rem;
-      margin-right: 50px;
+      font-size: 0.8rem;
+      margin-left: -5px;
       padding: 15px 30px;
       width: 100px;
       font-family: 'NanumGothic'; } }
@@ -1742,12 +1740,12 @@
     justify-content: center;
     align-items: center; }
     .mainbanner-left h1 {
-      font-size: 2.5rem;
+      font-size: 1.6rem;
       line-height: 35px;
       margin-bottom: 50px;
       text-align: center; }
     .mainbanner-left p {
-      font-size: 1.5rem;
+      font-size: 1.0rem;
       font-family: 'NanumGothic';
       font-weight: 400;
       line-height: 23px;
@@ -1770,7 +1768,7 @@
       margin-bottom: 20px;
       font-family: 'NanumGothic'; }
       .mainbanner-button-container-mobile a span {
-        font-size: 1.3rem;
+        font-size: 0.8rem;
         padding: 15px 30px;
         width: 100px;
         font-family: 'NanumGothic'; } }
@@ -1816,15 +1814,15 @@ a {
     width: 200px; }
   .subbanner-right h1 {
     color: #2F8C4C;
-    font-size: 2.5rem;
+    font-size: 1.5rem;
     margin-bottom: 20px;
     font-family: 'NanumGothic'; }
   .subbanner-right p {
-    font-size: 1.4rem;
+    font-size: 1.0rem;
     margin-bottom: 20px;
     font-family: 'NanumGothic'; }
   .subbanner-right span {
-    padding: 5px 50px;
+    padding: 10px 30px;
     margin-left: 0;
     font-family: 'NanumGothic'; }
 
@@ -1861,10 +1859,10 @@ a {
     display: flex;
     flex-direction: column-reverse; }
     .subbanner-right h1 {
-      font-size: 2.0rem;
+      font-size: 1.5rem;
       font-family: 'NanumGothic'; }
     .subbanner-right p {
-      font-size: 1.5rem;
+      font-size: 1.0rem;
       font-family: 'NanumGothic'; }
     .subbanner-right img {
       background-color: white;
@@ -1873,7 +1871,8 @@ a {
       justify-content: center;
       margin-top: 10px; }
     .subbanner-right span {
-      padding: 5px 30px;
+      padding: 10px 20px;
+      font-size: 0.8rem;
       font-family: 'NanumGothic'; }
   .subbanner-p {
     display: none;
@@ -1931,12 +1930,6 @@ a {
   display: flex;
   flex-direction: column; }
 
-.userreview-subject h1 {
-  font-size: 3.5rem;
-  color: #2F8C4C;
-  margin-bottom: 30px;
-  font-family: 'NanumGothic'; }
-
 .userreview-reverse {
   background-color: #E1E1E1; }
 
@@ -1957,7 +1950,7 @@ a {
     width: 100px;
     margin: 30px 0; }
   .userreview-box-container h5 {
-    font-size: 1.5rem;
+    font-size: 1.0rem;
     margin-bottom: 5px;
     font-family: 'NanumGothic'; }
   .userreview-box-container div {
@@ -1966,10 +1959,10 @@ a {
       width: 20px;
       margin: 0; }
   .userreview-box-container p {
-    font-size: 1.4rem;
+    font-size: 0.9rem;
     width: 80%;
     font-family: 'NanumGothic';
-    line-height: 2.1rem; }
+    line-height: 1.4rem; }
 
 .userreview-howmany-container {
   display: flex;
@@ -1985,7 +1978,7 @@ a {
 
 @media (min-width: 1200px) {
   .userreview-subject h1 {
-    font-size: 3.5rem;
+    font-size: 2.0rem;
     color: #2F8C4C;
     margin-bottom: 30px;
     font-family: 'NanumGothic'; }
@@ -1997,12 +1990,12 @@ a {
     border-bottom: solid 2px #2F8C4C;
     width: 475px; }
     .userreview-howmany h1 {
-      font-size: 2.5rem;
+      font-size: 1.6rem;
       font-family: 'NanumGothic'; } }
 
 @media (min-width: 769px) and (max-width: 1199px) {
   .userreview-subject h1 {
-    font-size: 2.5rem;
+    font-size: 2.0rem;
     color: #2F8C4C;
     margin-bottom: 0;
     padding: 0 75px;
@@ -2016,7 +2009,7 @@ a {
     border-bottom: solid 2px #2F8C4C;
     width: 480px; }
     .userreview-howmany h1 {
-      font-size: 2.5rem;
+      font-size: 1.6rem;
       font-family: 'NanumGothic'; }
   .userreview-reverse {
     display: flex;
@@ -2024,7 +2017,7 @@ a {
 
 @media (min-width: 335px) and (max-width: 768px) {
   .userreview-subject h1 {
-    font-size: 2.0rem;
+    font-size: 1.5rem;
     color: #2F8C4C;
     margin-bottom: 30px;
     padding: 0 55px;
@@ -2056,10 +2049,10 @@ a {
 
 .codepostview-text {
   width: 30%;
-  height: 36.5vh;
+  height: 35vh;
   background-color: #E1E1E1;
   overflow-y: auto;
-  font-size: 1.4rem;
+  font-size: 1.0rem;
   line-height: 2.0rem;
   resize: none;
   border: none;
@@ -2080,10 +2073,10 @@ a {
   margin: 0 10px; }
 
 .postcomment-buttons span {
-  font-size: 1.4rem;
+  font-size: 0.9rem;
   padding: 10px 30px;
   font-family: 'NanumGothic';
-  font-weight: 600;
+  font-weight: 500;
   color: white; }
 
 .postcomment {
@@ -2106,14 +2099,14 @@ a {
   align-items: center; }
   .postcomment-input-container textarea {
     width: 1083px;
-    font-size: 1.4rem;
+    font-size: 1.0rem;
     resize: none;
     display: flex;
     padding: 10px; }
     .postcomment-input-container textarea:focus {
       outline: none; }
   .postcomment-input-container span {
-    font-size: 1.4rem;
+    font-size: 1.0rem;
     padding: 0 25px;
     font-family: 'NanumGothic';
     font-weight: 600; }
@@ -2140,21 +2133,21 @@ a {
 
 .postcomment-message {
   display: flex;
-  font-size: 1.4rem;
+  font-size: 1.0rem;
   margin-top: 5px; }
 
 .postcomment-username {
   margin-right: 10px;
-  font-size: 1.4rem;
+  font-size: 1.0rem;
   font-weight: 700; }
 
 .postcomment-createdAt {
-  font-size: 1.2rem;
+  font-size: 1.0rem;
   color: gray;
   font-weight: 100; }
 
 .postcomment-deleteButton-container button {
-  font-size: 1.6rem;
+  font-size: 1.0rem;
   margin-left: 5px;
   border-radius: 5px;
   background-color: white;
@@ -2233,7 +2226,7 @@ a {
   padding-top: 50px;
   margin-left: 10px; }
   .mypage-left-container div {
-    font-size: 1.5rem;
+    font-size: 1.0rem;
     font-family: 'NanumGothic'; }
     .mypage-left-container div img {
       width: 150px; }
@@ -2249,7 +2242,7 @@ a {
   padding-bottom: 0px;
   line-height: 70px;
   font-family: 'NanumGothic';
-  font-size: 1.5rem;
+  font-size: 1.0rem;
   color: #fff;
   padding-left: 20px;
   margin-left: 10px;
@@ -2285,7 +2278,7 @@ a {
     .mypage-right-middle-box-1 div span {
       width: 100%;
       text-align: center;
-      font-size: 2rem;
+      font-size: 1.3rem;
       font-family: 'NanumGothic'; }
 
 .mypage-number {
@@ -2309,7 +2302,7 @@ a {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 2.3rem;
+    font-size: 1.5rem;
     color: white;
     font-weight: 1500;
     font-family: 'NanumGothic';
@@ -2361,7 +2354,7 @@ a {
   .mypage-right-container {
     width: 80%; }
   .mypage-right-middle-box-1 div span {
-    font-size: 2rem;
+    font-size: 1.2rem;
     font-family: 'NanumGothic';
     font-weight: 1500; }
   .mypage-right-middle-box-2 {
@@ -2369,7 +2362,7 @@ a {
     .mypage-right-middle-box-2 img {
       width: 150px; }
     .mypage-right-middle-box-2 div {
-      font-size: 2.0rem;
+      font-size: 1.3rem;
       margin-top: 10px; } }
 
 @media (min-width: 335px) and (max-width: 768px) {
@@ -2392,7 +2385,7 @@ a {
     flex: 1;
     margin: 10px; }
   .mypage-right-middle-box-1 div span {
-    font-size: 1.7rem;
+    font-size: 1.2rem;
     font-family: 'NanumGothic';
     font-weight: 1500; }
   .mypage-right-middle-box-2 {
@@ -2400,7 +2393,7 @@ a {
     .mypage-right-middle-box-2 img {
       width: 150px; }
     .mypage-right-middle-box-2 div {
-      font-size: 1.7rem; } }
+      font-size: 1.2rem; } }
 
 .admin-graph-main {
   display: flex;
@@ -2413,7 +2406,7 @@ a {
   height: 100%; }
 
 .admin-graph-subject {
-  font-size: 2rem;
+  font-size: 1.5rem;
   font-weight: 600;
   margin-bottom: 20px;
   display: flex;
@@ -2433,7 +2426,7 @@ a {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 3rem; }
+    font-size: 1.0rem; }
 
 .admin-graph {
   border: solid 1px #E1E1E1;
@@ -2446,7 +2439,7 @@ a {
   flex-direction: column; }
   .admin-graph-status div {
     height: 60px;
-    font-size: 1.7rem;
+    font-size: 1.3rem;
     flex-direction: column; }
 
 .admin-table {
@@ -2459,13 +2452,13 @@ a {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  font-size: 2rem; }
+  font-size: 1.5rem; }
 
 .admin-table-subject {
   margin-top: 20px;
   padding-left: 30px;
   text-align: left;
-  font-size: 2rem;
+  font-size: 1.5rem;
   font-weight: 700; }
 
 .admin-table-sub {
@@ -2492,19 +2485,19 @@ a {
   overflow-y: auto;
   overflow-x: auto; }
   .admin-table-post-data div {
-    font-size: 1.5rem; }
+    font-size: 1.4rem; }
   .admin-table-post-data tr {
     display: grid;
     grid-template-columns: 0.5fr 0.5fr 1fr 3fr 1fr;
     text-align: center;
     height: 40px; }
     .admin-table-post-data tr td {
-      font-size: 1.5rem;
+      font-size: 1.0rem;
       display: flex;
       justify-content: center;
       align-items: center; }
     .admin-table-post-data tr th {
-      font-size: 1.5rem;
+      font-size: 1.0rem;
       display: flex;
       justify-content: center;
       align-items: center; }
@@ -2520,19 +2513,19 @@ a {
   overflow-y: auto;
   overflow-x: auto; }
   .admin-table-comment-box div {
-    font-size: 1.5rem; }
+    font-size: 1.0rem; }
   .admin-table-comment-box tr {
     display: grid;
     grid-template-columns: 0.5fr 0.5fr 1fr 5fr;
     text-align: center;
     height: 40px; }
     .admin-table-comment-box tr td {
-      font-size: 1.5rem;
+      font-size: 1.0rem;
       display: flex;
       justify-content: center;
       align-items: center; }
     .admin-table-comment-box tr th {
-      font-size: 1.5rem;
+      font-size: 1.0rem;
       display: flex;
       justify-content: center;
       align-items: center; }
@@ -2546,7 +2539,7 @@ a {
   justify-content: center;
   align-items: center; }
   .admin-table-button-box div {
-    font-size: 1.7rem;
+    font-size: 1.0rem;
     margin-left: 0;
     font-weight: 700; }
 
@@ -2613,14 +2606,14 @@ a {
   display: flex;
   margin-left: 20px; }
   .posttitle-container span {
-    font-size: 1.3rem;
+    font-size: 1.0rem;
     width: 35px;
     min-width: 35px;
     font-family: 'NanumGothic';
     font-weight: 600; }
   .posttitle-container div {
     padding: 0 5px;
-    font-size: 1.3rem;
+    font-size: 1.0rem;
     font-family: 'NanumGothic';
     align-items: center;
     text-align: left;
@@ -2649,7 +2642,7 @@ a {
   padding-top: 50px;
   margin-left: 10px; }
   .mypage-left-container div {
-    font-size: 1.5rem;
+    font-size: 1.0rem;
     font-family: 'NanumGothic'; }
     .mypage-left-container div img {
       width: 150px; }
@@ -2665,7 +2658,7 @@ a {
   padding-bottom: 0px;
   line-height: 70px;
   font-family: 'NanumGothic';
-  font-size: 1.5rem;
+  font-size: 1.0rem;
   color: #fff;
   padding-left: 20px;
   margin-left: 10px;
@@ -2701,7 +2694,7 @@ a {
     .mypage-right-middle-box-1 div span {
       width: 100%;
       text-align: center;
-      font-size: 2rem;
+      font-size: 1.3rem;
       font-family: 'NanumGothic'; }
 
 .mypage-number {
@@ -2725,7 +2718,7 @@ a {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 2.3rem;
+    font-size: 1.5rem;
     color: white;
     font-weight: 1500;
     font-family: 'NanumGothic';
@@ -2777,7 +2770,7 @@ a {
   .mypage-right-container {
     width: 80%; }
   .mypage-right-middle-box-1 div span {
-    font-size: 2rem;
+    font-size: 1.2rem;
     font-family: 'NanumGothic';
     font-weight: 1500; }
   .mypage-right-middle-box-2 {
@@ -2785,7 +2778,7 @@ a {
     .mypage-right-middle-box-2 img {
       width: 150px; }
     .mypage-right-middle-box-2 div {
-      font-size: 2.0rem;
+      font-size: 1.3rem;
       margin-top: 10px; } }
 
 @media (min-width: 335px) and (max-width: 768px) {
@@ -2808,7 +2801,7 @@ a {
     flex: 1;
     margin: 10px; }
   .mypage-right-middle-box-1 div span {
-    font-size: 1.7rem;
+    font-size: 1.2rem;
     font-family: 'NanumGothic';
     font-weight: 1500; }
   .mypage-right-middle-box-2 {
@@ -2816,4 +2809,4 @@ a {
     .mypage-right-middle-box-2 img {
       width: 150px; }
     .mypage-right-middle-box-2 div {
-      font-size: 1.7rem; } }
+      font-size: 1.2rem; } }

@@ -225,7 +225,7 @@ function Kanban() {
                             width: '95%',
                             height: '100px',
                             margin: '5px',
-                            fontSize: 15,
+                            fontSize: 12,
                             backgroundColor: '#f5f5f5',
                             fontWeight: 500,
                             fontFamily:
@@ -269,7 +269,7 @@ function Kanban() {
                             width: '95%',
                             height: '100px',
                             margin: '5px',
-                            fontSize: 15,
+                            fontSize: 12,
                             backgroundColor: '#f5f5f5',
                             fontWeight: 500,
                             fontFamily:
@@ -313,7 +313,7 @@ function Kanban() {
                             width: '95%',
                             height: '100px',
                             margin: '5px',
-                            fontSize: 15,
+                            fontSize: 12,
                             backgroundColor: '#f5f5f5',
                             fontWeight: 500,
                             fontFamily:

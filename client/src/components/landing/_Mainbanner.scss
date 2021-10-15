@@ -1,7 +1,3 @@
-*{
-  font-size:10px;
-}
-
 .mainbanner {
   width: 100%;
   height: 100%;
@@ -63,12 +59,12 @@
   }
   .mainbanner-left {
     h1 {
-       font-size: 4.0rem;
-       line-height: 50px;
-       margin-bottom: 30px;
+      font-size: 2.3rem;
+      line-height: 40px;
+      margin-bottom: 30px;
      }
      p {
-       font-size: 1.7rem;
+       font-size: 1.2rem;
        font-family: 'NanumGothic';
   
        line-height: 30px;
@@ -107,13 +103,13 @@
   .mainbanner-left {
     width: 400px;
     h1 {
-       font-size: 3.0rem;
+       font-size: 2.0rem;
        line-height: 40px;
        margin-bottom: 40px;
        font-family: 'NanumGothic';
      }
      p {
-       font-size: 1.5rem;
+       font-size: 1.0rem;
        font-family: 'NanumGothic';
        font-weight: 500;
        line-height: 23px;
@@ -133,8 +129,8 @@
       margin-bottom: 20px;
       font-family: 'NanumGothic';
       span {
-        font-size: 1.3rem;
-        margin-right: 50px;
+        font-size: 0.8rem;
+        margin-left: -5px;
         padding: 15px 30px;
         width: 100px;
         font-family: 'NanumGothic';
@@ -152,13 +148,13 @@
     justify-content: center;
     align-items: center;
     h1 {
-       font-size: 2.5rem;
+       font-size: 1.6rem;
        line-height: 35px;
        margin-bottom: 50px;
        text-align: center;
      }
      p {
-       font-size: 1.5rem;
+       font-size: 1.0rem;
        font-family: 'NanumGothic';
        font-weight: 400;
        line-height: 23px;
@@ -187,7 +183,7 @@
       margin-bottom: 20px;
       font-family: 'NanumGothic';
       span {
-        font-size: 1.3rem;
+        font-size: 0.8rem;
         padding: 15px 30px;
         width: 100px;
         font-family: 'NanumGothic';
