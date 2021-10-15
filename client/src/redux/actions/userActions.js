@@ -162,7 +162,7 @@ export async function signoutUser(data) {
   };
 }
 
-//!6.회원탈퇴
+//6.회원탈퇴
 export async function deleteUser(data) {
   const response = axios
     .delete(`${serverUrl}/user`, {

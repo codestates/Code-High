@@ -9,14 +9,14 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    font-size: 2rem;
+    font-size: 1.5rem;
 }
 
 .admin-table-subject{
     margin-top: 20px;
     padding-left: 30px;
     text-align: left;
-    font-size: 2rem;
+    font-size: 1.5rem;
     font-weight: 700;
 }
 
@@ -47,7 +47,7 @@
     overflow-y: auto;
     overflow-x: auto;
     div{
-        font-size: 1.5rem;
+        font-size: 1.4rem;
     }
     tr{
         display: grid;
@@ -55,13 +55,13 @@
         text-align: center;
         height: 40px;
         td{
-            font-size: 1.5rem;
+            font-size: 1.0rem;
             display: flex;
             justify-content: center;
             align-items: center;
         }
         th{
-            font-size: 1.5rem;
+            font-size: 1.0rem;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -80,7 +80,7 @@
     overflow-y: auto;
     overflow-x: auto;
     div{
-        font-size: 1.5rem;
+        font-size: 1.0rem;
     }
     tr{
         display: grid;
@@ -88,13 +88,13 @@
         text-align: center;
         height: 40px;
         td{
-            font-size: 1.5rem;
+            font-size: 1.0rem;
             display: flex;
             justify-content: center;
             align-items: center;
         }
         th{
-            font-size: 1.5rem;
+            font-size: 1.0rem;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -112,7 +112,7 @@
     justify-content: center;
     align-items: center;
     div{
-        font-size: 1.7rem;
+        font-size: 1.0rem;
         margin-left: 0;
         font-weight: 700;
     }

@@ -59,7 +59,7 @@ function UserReview() {
           </div>
           <div className='userreview-howmany-container up-on-scroll'>
             <div className='userreview-howmany up-on-scroll'>
-              <h1>19,203,049명이 코드를 공유하고 있습니다.</h1>
+              <h1>1,213,013명이 코드를 공유하고 있습니다.</h1>
             </div>
           </div>
         </div>
